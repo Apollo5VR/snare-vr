@@ -1,0 +1,322 @@
+fileFormatVersion: 2
+guid: c569a85b422a6724f9e0279415e8e2c6
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: BackofMouth
+    100004: BackofMouth_end
+    100006: Bone
+    100008: Bone.001
+    100010: Bone.001_end
+    100012: Bone.002
+    100014: Bone.002_end
+    100016: Bone.003
+    100018: Bone.003_end
+    100020: Bone.004
+    100022: Bone.004_end
+    100024: Bone.005
+    100026: Bone.006
+    100028: Bone.006_end
+    100030: Bone_end
+    100032: Hat Bone Lower
+    100034: Hat Bone Mid
+    100036: Hat Bone Tip
+    100038: Hat Bone Tip_end
+    100040: Hat Bone Upper Lower
+    100042: Hat Bone Upper Mid
+    100044: Hat Bone Upper Upper
+    100046: Hat.000
+    100048: Hat.000_MeshPart0
+    100050: Hat.000_MeshPart1
+    100052: Hat.000_MeshPart2
+    100054: Hat.000_MeshPart3
+    100056: Hat.000_MeshPart4
+    100058: Hat.000_MeshPart5
+    100060: Hat.000_MeshPart6
+    100062: //RootNode
+    400000: Armature
+    400002: BackofMouth
+    400004: BackofMouth_end
+    400006: Bone
+    400008: Bone.001
+    400010: Bone.001_end
+    400012: Bone.002
+    400014: Bone.002_end
+    400016: Bone.003
+    400018: Bone.003_end
+    400020: Bone.004
+    400022: Bone.004_end
+    400024: Bone.005
+    400026: Bone.006
+    400028: Bone.006_end
+    400030: Bone_end
+    400032: Hat Bone Lower
+    400034: Hat Bone Mid
+    400036: Hat Bone Tip
+    400038: Hat Bone Tip_end
+    400040: Hat Bone Upper Lower
+    400042: Hat Bone Upper Mid
+    400044: Hat Bone Upper Upper
+    400046: Hat.000
+    400048: Hat.000_MeshPart0
+    400050: Hat.000_MeshPart1
+    400052: Hat.000_MeshPart2
+    400054: Hat.000_MeshPart3
+    400056: Hat.000_MeshPart4
+    400058: Hat.000_MeshPart5
+    400060: Hat.000_MeshPart6
+    400062: //RootNode
+    4300000: Hat.000_MeshPart0
+    4300002: Hat.000_MeshPart1
+    4300004: Hat.000_MeshPart2
+    4300006: Hat.000_MeshPart3
+    4300008: Hat.000_MeshPart4
+    4300010: Hat.000_MeshPart5
+    4300012: Hat.000_MeshPart6
+    4300014: Hat.000
+    7400000: NewHatTalk3.2
+    7400002: Armature|CameraAction
+    7400004: Armature|Hat.000Action
+    7400006: Armature|PlaneAction
+    7400008: HatPause
+    9500000: //RootNode
+    13700000: Hat.000_MeshPart0
+    13700002: Hat.000_MeshPart1
+    13700004: Hat.000_MeshPart2
+    13700006: Hat.000_MeshPart3
+    13700008: Hat.000_MeshPart4
+    13700010: Hat.000_MeshPart5
+    13700012: Hat.000_MeshPart6
+    13700014: Hat.000
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hat Base
+    second: {fileID: 2100000, guid: b107753292d5ae14ebad973878a20c49, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: NewHatTalk3.2
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 5
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|CameraAction
+      takeName: Armature|CameraAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Hat.000Action
+      takeName: Armature|Hat.000Action
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|PlaneAction
+      takeName: Armature|PlaneAction
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: HatPause
+      takeName: Armature|ArmatureAction
+      firstFrame: 72
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
