@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Scene6 - Potions Question.unity
+- path: Assets/Scenes/Scene 0 - LoadingScene.unity
   isLoaded: 1
   isActive: 1
+  isSubScene: 0
