@@ -271,7 +271,7 @@ public class ResponseCollector : MonoBehaviour {
             {
                 //collect new response
                 hpSpeechRecognitionConclusive = GameObject.Find("SpeechRecognition").GetComponent<HPSpeechRecognitionEngine>();
-                conclusiveAnswer = hpSpeechRecognitionConclusive.conclusiveAnswer;
+                //conclusiveAnswer = hpSpeechRecognitionConclusive.conclusiveAnswer;
 
                 if (writtenInconclusive == false)
                 {
@@ -346,7 +346,8 @@ public class ResponseCollector : MonoBehaviour {
 	}
     void CollectResponses<Scene>(Scene scene)
     {
-        questionAnswer = hpSpeechRecognitionEngine.questionAnswer;
+        //questionAnswer = hpSpeechRecognitionEngine.questionAnswer;
+
         //conclusiveAnswer = hpSpeechRecognitionEngine.conclusiveAnswer;
         //objectUsed = //connect the script here that collects which object was interacted with
     }

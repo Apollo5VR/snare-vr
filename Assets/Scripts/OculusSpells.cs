@@ -134,7 +134,8 @@ public class OculusSpells: MonoBehaviour {
         //if spellsaid !null and has changed
         if (spellTimerTicking)
         {
-            spellSaid = hpSpeechRecognitionEngine.spellSaid;
+            //diabled
+            //spellSaid = hpSpeechRecognitionEngine.spellSaid;
         }
         //spellSaid = hpSpeechRecognitionEngine.spellSaid;
         if (spellTimerTicking)
@@ -158,7 +159,7 @@ public class OculusSpells: MonoBehaviour {
 
 
         //controllerInputType = "Secondary";
-        if (spellSaid == "Akio"|| OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        if (spellSaid == "Akio") //OVRInput.Get(OVRInput.Button.PrimaryHandTrigger
         {
             //start here: add^ if spellSaid == accio, then continue...clear spellword on GetUp
 
@@ -237,25 +238,26 @@ public class OculusSpells: MonoBehaviour {
             }
         }
 
-        //for turning off accio spell on release
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
-        {
-            wandSparks.SetActive(false);
-            hitObject.SetActive(false);
-            spellTimerTicking = false;
-            spellTime = 0;
-            laser.gameObject.SetActive(false);
-            spellSaid = null;
-        }
-        if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
-        {
-            wandFlame.SetActive(false);
-            hitObject.SetActive(false);
-            spellTimerTicking = false;
-            spellTime = 0;
-            laser.gameObject.SetActive(false);
-            spellSaid = null;
-        }
+        //TODO - 1213 - renable with new system
+        ////for turning off accio spell on release
+        //if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
+        //{
+        //    wandSparks.SetActive(false);
+        //    hitObject.SetActive(false);
+        //    spellTimerTicking = false;
+        //    spellTime = 0;
+        //    laser.gameObject.SetActive(false);
+        //    spellSaid = null;
+        //}
+        //if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+        //{
+        //    wandFlame.SetActive(false);
+        //    hitObject.SetActive(false);
+        //    spellTimerTicking = false;
+        //    spellTime = 0;
+        //    laser.gameObject.SetActive(false);
+        //    spellSaid = null;
+        //}
 
         if (spellSaid == "Wingardium Leviosa")
         {
@@ -327,7 +329,7 @@ public class OculusSpells: MonoBehaviour {
         }
 
     }
-        if (spellSaid == "Incendio" || OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
+        if (spellSaid == "Incendio") //OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger
         {
             wandFlame.SetActive(true);
             //flameAudio.Play();

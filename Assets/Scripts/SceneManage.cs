@@ -20,7 +20,7 @@ public class SceneManage : MonoBehaviour {
     public GameObject question1Text;
     public GameObject question2Text;
     public bool here;
-    AudioSource audioHat;
+    public AudioSource audioHat;
     float objectTime;
     bool objectTimeTicking;
     public float bottleAppear;
@@ -42,7 +42,7 @@ public class SceneManage : MonoBehaviour {
         //doorOpenTime2 = doorOpen.doorOpenTime;
         pullCurrentScene = SceneManager.GetActiveScene().name;
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        audioHat = question1Audio.GetComponent<AudioSource>();
+        //audioHat = question1Audio.GetComponent<AudioSource>();
 
         //RESET THESE LIVE!
         //question1Text.SetActive(false);
@@ -70,87 +70,87 @@ public class SceneManage : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
-    void Update() {
+    //// Update is called once per frame
+    //void Update() {
 
-        //track time for object vizualization
-        if (objectTimeTicking)
-        {
-            objectTime += Time.deltaTime;
-            //Debug.Log(objectTime);
-            if (objectTime > bottleAppear && objectTime < bottleDisappear)
-            {
-                wordResponseObjects.SetActive(false);
-                bottle.SetActive(true);
-            }
-            else if (objectTime > scrollAppear && objectTime < scrollDisappear)
-            {
-                bottle.SetActive(false);
-                scroll.SetActive(true);
-            }
-            else if (objectTime > bookAppear && objectTime < bookDisappear)
-            {
-                scroll.SetActive(false);
-                book.SetActive(true);
-            }
-        }
-        //ENABLE IF #2- want delay in firework launch
-        //if (Time.time > doorOpenTime2 && Time.time < (doorOpenTime2 + 10))
-        //{
-        //    for (int i = 0; i < 2; i++)
-        //    {
-        //        fireWorks[i].SetActive(true);
-        //    }
-        //}
-        if (audio2HasPlayed == true)
-        {
-            //audio2.Play();
-        }
-        //play audio
+    //    //track time for object vizualization
+    //    if (objectTimeTicking)
+    //    {
+    //        objectTime += Time.deltaTime;
+    //        //Debug.Log(objectTime);
+    //        if (objectTime > bottleAppear && objectTime < bottleDisappear)
+    //        {
+    //            wordResponseObjects.SetActive(false);
+    //            bottle.SetActive(true);
+    //        }
+    //        else if (objectTime > scrollAppear && objectTime < scrollDisappear)
+    //        {
+    //            bottle.SetActive(false);
+    //            scroll.SetActive(true);
+    //        }
+    //        else if (objectTime > bookAppear && objectTime < bookDisappear)
+    //        {
+    //            scroll.SetActive(false);
+    //            book.SetActive(true);
+    //        }
+    //    }
+    //    //ENABLE IF #2- want delay in firework launch
+    //    //if (Time.time > doorOpenTime2 && Time.time < (doorOpenTime2 + 10))
+    //    //{
+    //    //    for (int i = 0; i < 2; i++)
+    //    //    {
+    //    //        fireWorks[i].SetActive(true);
+    //    //    }
+    //    //}
+    //    if (audio2HasPlayed == true)
+    //    {
+    //        //audio2.Play();
+    //    }
+    //    //play audio
 
-        if (pullCurrentScene == questionScene)
-        {
+    //    if (pullCurrentScene == questionScene)
+    //    {
 
-            //THE ORIGINAL SCRIPT, Reactivate and FIX!
-            if (!audio1HasPlayed)// && nextLevel == 4) //&& Time.time < 2.5
-            {
+    //        //THE ORIGINAL SCRIPT, Reactivate and FIX!
+    //        if (!audio1HasPlayed)// && nextLevel == 4) //&& Time.time < 2.5
+    //        {
 
-                audioHat.Play();
-                audio1HasPlayed = true;
-                question1Text.SetActive(true);
+    //            audioHat.Play();
+    //            audio1HasPlayed = true;
+    //            question1Text.SetActive(true);
 
-            }
+    //        }
 
-            if (!audio2HasPlayed && hpSpeechRecognitionEngine.questionAnswer != "notReady" && !audioHat.isPlaying)//&& !audio1.isPlaying
-            {
-                //Start object time count to correctly activate object vizuals
-                objectTimeTicking = true;
+    //        if (!audio2HasPlayed && !audioHat.isPlaying)//&& !audio1.isPlaying //&& hpSpeechRecognitionEngine.questionAnswer != "notReady" 
+    //        {
+    //            //Start object time count to correctly activate object vizuals
+    //            objectTimeTicking = true;
 
-                audioHat = question2Audio.GetComponent<AudioSource>();
-                audioHat.Play();
-                audio2HasPlayed = true;
-                question2Text.SetActive(true);
-                here = true;
+    //            audioHat = question2Audio.GetComponent<AudioSource>();
+    //            audioHat.Play();
+    //            audio2HasPlayed = true;
+    //            question2Text.SetActive(true);
+    //            here = true;
 
-            }
-
-
-            //12.11 USE THIS!
-            if (audio2HasPlayed == true && !audioHat.isPlaying)
-            {
-                StartCoroutine(WaitTillRead());
-
-            }
-            //if (audio2HasPlayed == true)//&& audio2.isPlaying
-            //{
-
-            //    StartCoroutine(WaitTillRead());
-            //    audio2HasPlayed = false;
-            //}
+    //        }
 
 
-        }
-    }
+    //        //12.11 USE THIS!
+    //        if (audio2HasPlayed == true && !audioHat.isPlaying)
+    //        {
+    //            StartCoroutine(WaitTillRead());
+
+    //        }
+    //        //if (audio2HasPlayed == true)//&& audio2.isPlaying
+    //        //{
+
+    //        //    StartCoroutine(WaitTillRead());
+    //        //    audio2HasPlayed = false;
+    //        //}
+
+
+    //    }
+    //}
 
     //}
     void OnTriggerEnter(Collider other)
@@ -170,7 +170,7 @@ public class SceneManage : MonoBehaviour {
         {
             print(this.GetComponent<Text>().text);
             {
-                hpSpeechRecognitionEngine.questionAnswer = this.GetComponent<Text>().text;
+                //hpSpeechRecognitionEngine.questionAnswer = this.GetComponent<Text>().text;
             }
         }
 
