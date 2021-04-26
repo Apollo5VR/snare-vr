@@ -1855,11 +1855,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   laserMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   wandSparks: {fileID: 962905784}
   wandFlame: {fileID: 962905783}
   hitObject: {fileID: 0}
-  moveSpeed: 0.001
+  moveSpeed: 0.05
   hpSpeechRecognitionEngine: {fileID: 0}
   spellSaid: 
   stupifyProjectiles: []
@@ -1878,6 +1878,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 962905779}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &962905787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962905780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5b1b54556836a49948cf0f09394c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RingOnValidPickup: 1
+  RingOnValidRemotePickup: 1
+  RingHelperScale: 0.2
 --- !u!1 &965093411
 GameObject:
   m_ObjectHideFlags: 0
