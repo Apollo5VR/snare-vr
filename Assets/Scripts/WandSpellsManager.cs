@@ -43,12 +43,13 @@ namespace BNG
         bool acciotrue = false;
         public DestroyProjectile destroyProjectile;
         private Vector3 hitObjectInitialPosition;
+        private bool firing = false;
 
         // Use this for initialization
         void Start()
         {
-            stupifyAudio = GameObject.Find("StupifyAudio").GetComponent<AudioSource>();
-            AccioAudio = GameObject.Find("AccioAudio").GetComponent<AudioSource>();
+            //stupifyAudio = GameObject.Find("StupifyAudio").GetComponent<AudioSource>();
+            //AccioAudio = GameObject.Find("AccioAudio").GetComponent<AudioSource>();
 
             wandSparks.SetActive(false);
             wandFlame.SetActive(false);
@@ -76,18 +77,26 @@ namespace BNG
 
         public override void OnTrigger(float triggerValue)
         {
-            DetermineSpell();
+            if(triggerValue >= 0.75f)
+            {
+                if (!firing)
+                {
+                    DetermineSpell();
 
-            ActivateSpell();
+                    ActivateSpell();
 
-            StartCoroutine(PlaySelectedSpell());
+                    firing = true;
+
+                    StartCoroutine(PlaySelectedSpell());
+                }
+            }
+            else
+            {
+                firing = false;
+                DeactivateSpell();
+            }
 
             base.OnTrigger(triggerValue);
-        }
-
-        public override void OnTriggerUp()
-        {
-            DeactivateSpell();
         }
 
         private void DetermineSpell()
@@ -115,7 +124,7 @@ namespace BNG
         {
             if (spellSaid == "Accio")
             {
-                while (true)
+                while (firing)
                 {
                     //creates a laser 20 forward when pressed down & a hit point
                     laser.SetPosition(0, gameObject.transform.position);
