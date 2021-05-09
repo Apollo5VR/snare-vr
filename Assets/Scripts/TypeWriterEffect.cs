@@ -13,7 +13,8 @@ public class TypeWriterEffect : MonoBehaviour {
     public string fullText3;
     public string fullText4;
     public string fullText5;
-    public string fullText6 = "Collection complete, your response has been recorded. ";
+    public string fullText6;
+    public string fullText7 = "Collection complete, your response has been recorded. ";
     private string currentText = "";
     public int fullTextCount;
     public bool hasFinishedTypingz;
@@ -33,7 +34,7 @@ public class TypeWriterEffect : MonoBehaviour {
             StartCoroutine(ShowText());
         }
         //opens door once  walk instructions given
-        if (fullTextCount == 5)
+        if (fullTextCount == 6)
         {
             doorAnimator.SetBool("doorOpenNowBool", true);
         }
@@ -66,23 +67,31 @@ public class TypeWriterEffect : MonoBehaviour {
                 fullText = fullText5;
                 hasFinishedTypingz = false;
             }
-            //specifically for Proving Scene Completion Text
             else if (fullTextCount == 6)
             {
                 fullText = fullText6;
                 hasFinishedTypingz = false;
+            }
+            //specifically for Proving Scene Completion Text
+            else if (fullTextCount == 7)
+            {
+                fullText = fullText7;
+                hasFinishedTypingz = false;
                 delay1 = delayProving;
             }
+
             for (int i = 0; i < fullText.Length; i++)
             {
                 currentText = fullText.Substring(0, i);
                 this.GetComponent<Text>().text = currentText;
                 yield return new WaitForSeconds(delay);
             }
+
             yield return new WaitForSeconds(delay1);
             fullTextCount = fullTextCount + 1;
             hasFinishedTypingz = true;
-            if (fullTextCount == 6)
+
+            if (fullTextCount == 7)
             {
                 hasFinishedTypingz = false;
             }
