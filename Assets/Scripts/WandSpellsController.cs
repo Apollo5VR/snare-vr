@@ -12,6 +12,7 @@ namespace BNG
         public LayerMask spellLaserMask; //applies to objects so that only they are interactable (layermasks)
         public LayerMask spellWheelLaserMask;
 
+        public GameObject player;
         public GameObject wandSparks;
         public GameObject wandFirePrefab;
         public GameObject wandFlashPrefab;
@@ -52,6 +53,8 @@ namespace BNG
             wandFlash.SetActive(false);
 
             laser = GetComponentInChildren<LineRenderer>();
+            laser.gameObject.SetActive(false);
+            spellSelectionWheelManager.gameObject.SetActive(false);
         }
 
         //public void Update()
@@ -77,6 +80,8 @@ namespace BNG
 
         private void ActivateSpellWheel()
         {
+            //spellSelectionWheelManager.gameObject.transform.position = player.transform.position + new Vector3(0, 0f,0.25f);
+            //spellSelectionWheelManager.gameObject.transform.rotation = new Quaternion(spellSelectionWheelManager.gameObject.transform.rotation.x, player.transform.position.y, spellSelectionWheelManager.gameObject.transform.rotation.z, spellSelectionWheelManager.gameObject.transform.rotation.w);
             spellSelectionWheelManager.gameObject.SetActive(true);
         }
 
@@ -120,7 +125,6 @@ namespace BNG
                 laser.gameObject.SetActive(true);
                 spellAudio.Play();
 
-                //TODO
                 switch (spellSelected)
                 {
                     case CommonEnums.availableSpells.Accio:
@@ -189,8 +193,6 @@ namespace BNG
 
         private IEnumerator CastIncendio()
         {
-            //TODO - remake a vfx upwards flame that instantiates / relocates and activates to the spot of the object it hit
-
             while (spellActive)
             {
                 //creates a laser 20 forward when pressed down & a hit point
@@ -227,7 +229,6 @@ namespace BNG
             }
         }
 
-        //TODO - Complete this 
         private IEnumerator CastStupify()
         {
             while (spellActive)

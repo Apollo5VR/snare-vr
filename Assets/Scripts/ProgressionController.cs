@@ -38,6 +38,9 @@ public class ProgressionController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         playerCollider = player.GetComponent<Collider>();
         //doorOpenTime2 = doorOpen.doorOpenTime;
         pullCurrentScene = SceneManager.GetActiveScene().name;
@@ -156,6 +159,15 @@ public class ProgressionController : MonoBehaviour {
     public void LoadNextScene()
     {
         SceneManager.LoadScene(nextLevel);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        //TODO - find spawn position, relocate player
+        player.transform.position = GameObject.Find("StartingPosition").transform.position;
     }
 
 
