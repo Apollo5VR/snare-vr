@@ -6,7 +6,12 @@ public class DoorController : MonoBehaviour
 {
     public ProgressionController progressionController;
 
-    void OnTriggerEnter(Collider other)
+    private void Start()
+    {
+        progressionController = GameObject.Find("ProgressionController").GetComponent<ProgressionController>();
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Scene 1 Door collided with:" + other.name + "tag is: " + other.tag);
 
