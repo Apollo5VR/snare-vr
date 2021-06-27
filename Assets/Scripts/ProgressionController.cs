@@ -173,6 +173,7 @@ public class ProgressionController : MonoBehaviour {
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
