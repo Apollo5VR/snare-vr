@@ -33,6 +33,7 @@ public class ProgressionController : MonoBehaviour {
     public GameObject scroll;
     public GameObject book;
     public GameObject wordResponseObjects;
+    public bool debugProgressNextScene;
 
 
 
@@ -156,6 +157,15 @@ public class ProgressionController : MonoBehaviour {
     //}
 
     //}
+    public void Update()
+    {
+        if (debugProgressNextScene)
+        {
+            debugProgressNextScene = false;
+            SceneManager.LoadScene(nextLevel);
+        }
+    }
+
     public void LoadNextScene()
     {
         SceneManager.LoadScene(nextLevel);
