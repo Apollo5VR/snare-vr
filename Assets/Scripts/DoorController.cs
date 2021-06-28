@@ -13,12 +13,30 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Scene 1 Door collided with:" + other.name + "tag is: " + other.tag);
-
         if(other.tag == "Player")
         {
-            //TODO call scene progress on sceneManager
-            progressionController.LoadNextScene();
+            if(progressionController.nextLevel == 1)
+            {
+                //TODO call scene progress on sceneManager
+                progressionController.LoadNextScene();
+            }
+            else if(progressionController.nextLevel == 2)
+            {
+                if (progressionController.petPlaced)
+                {
+                    //TODO call scene progress on sceneManager
+                    progressionController.LoadNextScene();
+                }
+                else
+                {
+                    Debug.Log("Notify user that they still need to place pet / choose pet");
+                }
+            }
         }
+    }
+
+    public void OnSnappedPet()
+    {
+        progressionController.petPlaced = true;
     }
 }

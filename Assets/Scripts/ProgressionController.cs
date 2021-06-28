@@ -33,6 +33,8 @@ public class ProgressionController : MonoBehaviour {
     public GameObject scroll;
     public GameObject book;
     public GameObject wordResponseObjects;
+    public bool petPlaced = false;
+    public GameObject sceneLoadingBlackSphere;
     public bool debugProgressNextScene;
 
 
@@ -41,6 +43,7 @@ public class ProgressionController : MonoBehaviour {
     void Start() {
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneLoadedUnloaded;
 
         playerCollider = player.GetComponent<Collider>();
         //doorOpenTime2 = doorOpen.doorOpenTime;
@@ -171,22 +174,46 @@ public class ProgressionController : MonoBehaviour {
         SceneManager.LoadScene(nextLevel);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        Debug.Log("OnSceneLoaded: " + scene.name);
         Debug.Log(mode);
 
         //TODO - find spawn position, relocate player
-        player.transform.position = GameObject.Find("StartingPosition").transform.position;
+        Transform startingPosition = GameObject.Find("StartingPosition").transform;
+
+        if (startingPosition != null)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            player.transform.position = startingPosition.position;
+            player.transform.localRotation = startingPosition.localRotation;
+            sceneLoadingBlackSphere.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Player starting position not found");
+        }
+
+        startingPosition = null;
+    }
+
+    private void OnSceneLoadedUnloaded(Scene scene)
+    {
+        sceneLoadingBlackSphere.SetActive(true);
     }
 
 
-    IEnumerator WaitTillRead()
+    private IEnumerator WaitTillRead()
     {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(nextLevel);
 
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
     }
 
 }
