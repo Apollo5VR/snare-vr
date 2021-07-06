@@ -491,7 +491,9 @@ namespace BNG {
             }
         }
 
-        IEnumerator doTeleport(Vector3 playerDestination, Quaternion playerRotation, bool rotatePlayer) {
+        //TODO - GG - potential revert this to private, but get a reference of this for Progression Controller
+        public IEnumerator doTeleport(Vector3 playerDestination, Quaternion playerRotation, bool rotatePlayer)
+        {
 
             if(!setVariables) {
                 setupVariables();
