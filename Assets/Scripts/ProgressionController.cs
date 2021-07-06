@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ProgressionController : MonoBehaviour {
     public int nextLevel;
     public GameObject player;
+    public BNG.PlayerTeleport playerTeleport;
     private Collider playerCollider;
     //public DoorOpen doorOpen;
     //private float doorOpenTime2;
@@ -36,14 +37,14 @@ public class ProgressionController : MonoBehaviour {
     public bool petPlaced = false;
     public GameObject sceneLoadingBlackSphere;
     public bool debugProgressNextScene;
+    public bool testMovePlayer;
 
+// Use this for initialization
+    private void Start() {
 
-
-    // Use this for initialization
-    void Start() {
-
+        //playerController = player.FindComponentInChildWithTag<Transform>("Player").gameObject;
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneLoadedUnloaded;
+        //SceneManager.sceneUnloaded += OnSceneLoadedUnloaded;
 
         playerCollider = player.GetComponent<Collider>();
         //doorOpenTime2 = doorOpen.doorOpenTime;
@@ -170,7 +171,10 @@ public class ProgressionController : MonoBehaviour {
     }
 
     public void LoadNextScene()
-    {
+    {   
+        //depreciated
+        //sceneLoadingBlackSphere.SetActive(true);
+
         SceneManager.LoadScene(nextLevel);
     }
 
@@ -185,9 +189,7 @@ public class ProgressionController : MonoBehaviour {
         if (startingPosition != null)
         {
             Debug.Log("OnSceneLoaded: " + scene.name);
-            player.transform.position = startingPosition.position;
-            player.transform.localRotation = startingPosition.localRotation;
-            sceneLoadingBlackSphere.SetActive(false);
+            StartCoroutine(playerTeleport.doTeleport(startingPosition.localPosition, startingPosition.localRotation, true));
         }
         else
         {
@@ -196,12 +198,6 @@ public class ProgressionController : MonoBehaviour {
 
         startingPosition = null;
     }
-
-    private void OnSceneLoadedUnloaded(Scene scene)
-    {
-        sceneLoadingBlackSphere.SetActive(true);
-    }
-
 
     private IEnumerator WaitTillRead()
     {
@@ -213,7 +209,7 @@ public class ProgressionController : MonoBehaviour {
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
+        //SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
     }
 
 }
