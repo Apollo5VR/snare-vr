@@ -178,6 +178,14 @@ public class ProgressionController : MonoBehaviour {
         SceneManager.LoadScene(nextLevel);
     }
 
+    public void LoadChallengeScene(int sceneIncrement)
+    {
+        //depreciated
+        //sceneLoadingBlackSphere.SetActive(true);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIncrement);
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
@@ -212,5 +220,10 @@ public class ProgressionController : MonoBehaviour {
         //SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
     }
 
+    //TODO - connect this to some type of switchboard so we dont have to keep doing GetComponent, or figure out Instance
+    public ProgressionController GetProgressionController()
+    {
+        return this;
+    }
 }
 
