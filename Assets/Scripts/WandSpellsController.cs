@@ -24,6 +24,8 @@ namespace BNG
         public AudioSource spellAudio;
         public Vector3 hitObjectInitialPosition;
 
+        public ProgressionController progressionController;
+
         public CommonEnums.availableSpells spellSelected;
         private Ray ray;
         private LineRenderer laser;
@@ -328,6 +330,51 @@ namespace BNG
         private void DeactivateSputter()
         {
             //TODO 
+        }
+
+        private IEnumerator CastChallengeSelectionRaycast()
+        {
+            while (spellActive)
+            {
+                //creates a laser 20 forward when pressed down & a hit point
+                laser.SetPosition(0, gameObject.transform.position);
+                laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 20);// NEW update this in all
+                RaycastHit hit;
+
+                ray = new Ray(transform.position, transform.forward);  /*faster moethod: https://answers.unity.com/questions/949222/is-raycast-efficient-in-update.html */
+                if (Physics.Raycast(ray, out hit, 20, spellLaserMask))
+                {
+                    if (hitObject != hit.transform.gameObject)
+                    {
+                        //TODO - selection
+                        switch (hitObject.name)
+                        {
+                            //TODO - communicate with Response collector weight of selection 
+                            //TODO - communicate with ProgressionController which scene to load
+                            case "Slytherin":
+                                //75% slytherin //5% Gryfindor etc
+                                progressionController.LoadChallengeScene(1);
+                                break;
+                            case "Gryfindor":
+                                progressionController.LoadChallengeScene(2);
+                                break;
+                            case "RavenClaw":
+                                progressionController.LoadChallengeScene(3);
+                                break;
+                            case "HufflePuff":
+                                progressionController.LoadChallengeScene(4);
+                                break;
+                            default:
+                                progressionController.LoadChallengeScene(1);
+                                break;
+                        }
+                    }
+                }
+
+                yield return null;
+            }
+
+            DeactivateWingardiumLeviosa();
         }
 
         //TODO - not quite ready (secondary item)
