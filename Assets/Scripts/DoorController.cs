@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public ProgressionController progressionController;
-
-    private void Start()
-    {
-        progressionController = GameObject.Find("ProgressionController").GetComponent<ProgressionController>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            if(progressionController.nextLevel == 1)
+            if(ProgressionController.Instance.nextLevel == 1)
             {
                 //TODO call scene progress on sceneManager
-                progressionController.LoadNextScene();
+                ProgressionController.Instance.LoadNextScene();
             }
-            else if(progressionController.nextLevel == 2)
+            else if(ProgressionController.Instance.nextLevel == 2)
             {
-                if (progressionController.petPlaced)
+                if (ProgressionController.Instance.petPlaced)
                 {
                     //TODO call scene progress on sceneManager
-                    progressionController.LoadNextScene();
+                    ProgressionController.Instance.LoadNextScene();
                 }
                 else
                 {
@@ -37,6 +30,6 @@ public class DoorController : MonoBehaviour
 
     public void OnSnappedPet()
     {
-        progressionController.petPlaced = true;
+        ProgressionController.Instance.petPlaced = true;
     }
 }

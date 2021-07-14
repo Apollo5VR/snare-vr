@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ProgressionController : MonoBehaviour {
+    public static ProgressionController Instance { get; private set; }
     public int nextLevel;
     public GameObject player;
     public BNG.PlayerTeleport playerTeleport;
@@ -39,12 +40,24 @@ public class ProgressionController : MonoBehaviour {
     public bool debugProgressNextScene;
     public bool testMovePlayer;
 
-// Use this for initialization
-    private void Start() {
+    //singleton
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-        //playerController = player.FindComponentInChildWithTag<Transform>("Player").gameObject;
+    // Use this for initialization
+    private void Start()
+    {
+
         SceneManager.sceneLoaded += OnSceneLoaded;
-        //SceneManager.sceneUnloaded += OnSceneLoadedUnloaded;
 
         playerCollider = player.GetComponent<Collider>();
         //doorOpenTime2 = doorOpen.doorOpenTime;
@@ -52,30 +65,10 @@ public class ProgressionController : MonoBehaviour {
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         //audioHat = question1Audio.GetComponent<AudioSource>();
 
-        //RESET THESE LIVE!
-        //question1Text.SetActive(false);
-        //question2Text.SetActive(false);
-
         //deactivate all objects (till time to appear)
         bottle.SetActive(false);
         scroll.SetActive(false);
         book.SetActive(false);
-
-        //SHIT TO DELETE
-        //for (int i = 0; i < totalScenes; i++)
-        //{
-        //    //sceneNumber.Add("tube");
-
-        //    sceneNumberTest = "Scene " + i + ":" + SceneManager.GetSceneByBuildIndex(i).ToString();
-
-        //    //sceneNumber.Add(i);
-        //}
-        //ENABLE IF #1- want delay in firework launch
-        //for (int i = 0; i < 2; i++)
-        //{
-        //    fireWorks[i].SetActive(false);
-        //}
-
     }
 
     //// Update is called once per frame
@@ -218,12 +211,6 @@ public class ProgressionController : MonoBehaviour {
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         //SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
-    }
-
-    //TODO - connect this to some type of switchboard so we dont have to keep doing GetComponent, or figure out Instance
-    public ProgressionController GetProgressionController()
-    {
-        return this;
     }
 }
 

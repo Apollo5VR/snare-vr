@@ -24,8 +24,6 @@ namespace BNG
         public AudioSource spellAudio;
         public Vector3 hitObjectInitialPosition;
 
-        public ProgressionController progressionController;
-
         public CommonEnums.availableSpells spellSelected;
         private Ray ray;
         private LineRenderer laser;
@@ -353,19 +351,19 @@ namespace BNG
                             //TODO - communicate with ProgressionController which scene to load
                             case "Slytherin":
                                 //75% slytherin //5% Gryfindor etc
-                                progressionController.LoadChallengeScene(1);
+                                ProgressionController.Instance.LoadChallengeScene(1);
                                 break;
                             case "Gryfindor":
-                                progressionController.LoadChallengeScene(2);
+                                ProgressionController.Instance.LoadChallengeScene(2);
                                 break;
                             case "RavenClaw":
-                                progressionController.LoadChallengeScene(3);
+                                ProgressionController.Instance.LoadChallengeScene(3);
                                 break;
                             case "HufflePuff":
-                                progressionController.LoadChallengeScene(4);
+                                ProgressionController.Instance.LoadChallengeScene(4);
                                 break;
                             default:
-                                progressionController.LoadChallengeScene(1);
+                                ProgressionController.Instance.LoadChallengeScene(1);
                                 break;
                         }
                     }

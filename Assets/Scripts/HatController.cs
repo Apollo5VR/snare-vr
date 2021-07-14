@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HatController : MonoBehaviour
 {
-    public ProgressionController progressionController;
     public bool isAnimTrigger;
     public GameObject pointerArrow;
     // animate the game object from -1 to +1 and back
@@ -16,8 +15,6 @@ public class HatController : MonoBehaviour
 
     private void Start()
     {
-        progressionController = GameObject.Find("ProgressionController").GetComponent<ProgressionController>();
-
         minimum = pointerArrow.transform.position.y - 0.25f;
         maximum = pointerArrow.transform.position.y + 0.25f;
     }
@@ -35,7 +32,7 @@ public class HatController : MonoBehaviour
             }
             else
             {
-                progressionController.LoadNextScene();
+                ProgressionController.Instance.LoadNextScene();
             }
         }
     }
