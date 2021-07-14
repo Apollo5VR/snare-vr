@@ -12,6 +12,7 @@ public class SpellSelectionWheelManager : MonoBehaviour
 
     public static SpellSelectionWheelManager Instance { get; private set; }
 
+    //singleton
     private void Awake()
     {
         if (Instance == null)
