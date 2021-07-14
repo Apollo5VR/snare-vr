@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ResponseCollector : MonoBehaviour {
+    public static ResponseCollector Instance { get; private set; }
     public string questionAnswer;
     public string objectUsed;
     public HPSpeechRecognitionEngine hpSpeechRecognitionEngine;
@@ -44,8 +45,18 @@ public class ResponseCollector : MonoBehaviour {
     public Material wizCurrentMat;
     public Material[] matArray;
 
-
-
+    //singleton
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start () {
