@@ -30,6 +30,7 @@ public class DoorController : MonoBehaviour
 
     public void OnSnappedPet()
     {
+        //TODO - move this to the ResponseCollector, then have ProgressionController ref ResponseCollector to get this value? Some kind of get set?
         ProgressionController.Instance.petPlaced = true;
     }
 }
