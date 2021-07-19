@@ -8,6 +8,10 @@ TagManager:
   - FireWork
   - haloObject
   - Robe
+  - Ravenclaw
+  - Gryfindor
+  - Slytherin
+  - Hufflepuff
   layers:
   - Default
   - TransparentFX
