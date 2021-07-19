@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class ResponseCollector : MonoBehaviour {
-    public static ResponseCollector Instance { get; private set; }
+    //public static ResponseCollector Instance { get; private set; }
     public string questionAnswer;
     public string objectUsed;
     public HPSpeechRecognitionEngine hpSpeechRecognitionEngine;
@@ -26,10 +26,16 @@ public class ResponseCollector : MonoBehaviour {
     public Material hufflePuffMat;
     public Material slytherinMat;
     public Material ravenClawMat;
+
+    //depreciated
+    public int ravenClawPoints;
     public int gryffindorPoints;
     public int hufflePuffPoints;
     public int slytherinPoints;
-    public int ravenClawPoints;
+
+    //replaced by
+    private int[] housePoints = new int[5]; // none, ravenClawPoints, gryffindorPoints, hufflePuffPoints, slytherinPoints
+
     public bool robesCollected = false;
     public bool jumpToNextScene = false;
     public bool resultInconclusive = false;
@@ -45,7 +51,13 @@ public class ResponseCollector : MonoBehaviour {
     public Material wizCurrentMat;
     public Material[] matArray;
 
-    //singleton
+    public static Action<CommonEnums.HouseResponses> OnResponseSelected;
+    public static Action OnToggleSceneSelectionResponse;
+    public static Func<string, CommonEnums.HouseResponses> OnCheckAcceptableTags;
+    public bool sceneSelectionResponse = false;
+
+    //singleton - depreciated 
+    /*
     private void Awake()
     {
         if (Instance == null)
@@ -57,11 +69,16 @@ public class ResponseCollector : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    */
 
     // Use this for initialization
-    void Start () {
-        DontDestroyOnLoad(this.gameObject);
-        SceneManager.sceneUnloaded += CollectResponses;
+    private void Start ()
+    {
+        //SceneManager.sceneUnloaded += CollectResponses;
+        OnResponseSelected += StoreResponse;
+        OnCheckAcceptableTags += CheckAcceptableTags;
+        OnToggleSceneSelectionResponse += ToggleSceneSelectionResponse;
+
         gryffindorMat = (Material)Resources.Load("redcoatcolor", typeof(Material));
         hufflePuffMat = (Material)Resources.Load("yellowcoatcolor", typeof(Material));
         slytherinMat = (Material)Resources.Load("greencoatcolor", typeof(Material));
@@ -69,9 +86,81 @@ public class ResponseCollector : MonoBehaviour {
         //just in case
         crestRecieved = false;
 
-}
+    }
+
+    private CommonEnums.HouseResponses CheckAcceptableTags(string tag)
+    {
+        CommonEnums.HouseResponses response;
+
+        switch (tag)
+        {
+            case "Ravenclaw":
+                response = CommonEnums.HouseResponses.Ravenclaw;
+                break;
+            case "Gryfindor":
+                response = CommonEnums.HouseResponses.Gryfindor;
+                break;
+            case "Hufflepuff":
+                response = CommonEnums.HouseResponses.Hufflepuff;
+                break;
+            case "Slytherin":
+                response = CommonEnums.HouseResponses.Slytherin;
+                break;
+            default:
+                response = CommonEnums.HouseResponses.None;
+                break;
+        }
+
+        return response;
+    }
+
+    private void ToggleSceneSelectionResponse()
+    {
+        sceneSelectionResponse = true;
+    }
+
+    //TODO - how to abstract this so it can use strings or Enums to determine storage?
+    private void StoreResponse(CommonEnums.HouseResponses response)
+    {
+        #region depreciated
+        /*
+        switch (response)
+        {
+            case CommonEnums.HouseResponses.Ravenclaw:
+                //more
+                specifiedHouse = (int)CommonEnums.HouseResponses.Ravenclaw;
+                break;
+            case "Gryfindor":
+                //do stuff
+                specifiedHouse = (int)CommonEnums.HouseResponses.Gryfindor;
+                break;
+            case "Hufflepuff":
+                //df
+                specifiedHouse = (int)CommonEnums.HouseResponses.Hufflepuff;
+                break;
+            case "Slytherin":
+                //dfd
+                specifiedHouse = (int)CommonEnums.HouseResponses.Slytherin;
+                break;
+            default:
+                //do
+                specifiedHouse = (int)CommonEnums.HouseResponses.None;
+                break;
+        }
+        */
+        #endregion
+
+        housePoints[(int)response] += 1;
+
+        if (sceneSelectionResponse)
+        {
+            sceneSelectionResponse = false;
+            ProgressionController.OnLoadChallengeScene((int)response);
+        }
+    }
 
     // Update is called once per frame
+    /*
     void Update () {
         //Debug.Log(humanRobeObjects);
 
@@ -355,11 +444,19 @@ public class ResponseCollector : MonoBehaviour {
             //}
         }
 	}
+    */
+
     void CollectResponses<Scene>(Scene scene)
     {
         //questionAnswer = hpSpeechRecognitionEngine.questionAnswer;
 
         //conclusiveAnswer = hpSpeechRecognitionEngine.conclusiveAnswer;
         //objectUsed = //connect the script here that collects which object was interacted with
+    }
+
+    private void OnDestroy()
+    {
+        OnResponseSelected -= StoreResponse;
+        OnToggleSceneSelectionResponse -= ToggleSceneSelectionResponse;
     }
 }

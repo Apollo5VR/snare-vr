@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class ProgressionController : MonoBehaviour {
-    public static ProgressionController Instance { get; private set; }
+    //public static ProgressionController Instance { get; private set; }
     public int nextLevel;
     public GameObject player;
     public BNG.PlayerTeleport playerTeleport;
@@ -40,7 +41,11 @@ public class ProgressionController : MonoBehaviour {
     public bool debugProgressNextScene;
     public bool testMovePlayer;
 
-    //singleton
+    public static Action OnLoadNextScene;
+    public static Action<int> OnLoadChallengeScene;
+
+    //singleton - depreciated / swapping to Action Sub 
+    /*
     private void Awake()
     {
         if (Instance == null)
@@ -52,12 +57,15 @@ public class ProgressionController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    */
 
     // Use this for initialization
     private void Start()
     {
-
+        //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
+        OnLoadNextScene += LoadNextScene;
+        OnLoadChallengeScene += LoadChallengeScene;
 
         playerCollider = player.GetComponent<Collider>();
         //doorOpenTime2 = doorOpen.doorOpenTime;
@@ -163,20 +171,21 @@ public class ProgressionController : MonoBehaviour {
         }
     }
 
-    public void LoadNextScene()
+    private void LoadNextScene()
     {   
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
         SceneManager.LoadScene(nextLevel);
+
     }
 
-    public void LoadChallengeScene(int sceneIncrement)
+    public void LoadChallengeScene(int sceneIncrement = 0)
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIncrement);
+        SceneManager.LoadScene(nextLevel + sceneIncrement);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -210,6 +219,7 @@ public class ProgressionController : MonoBehaviour {
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        OnLoadNextScene -= LoadNextScene;
         //SceneManager.sceneUnloaded -= OnSceneLoadedUnloaded;
     }
 }

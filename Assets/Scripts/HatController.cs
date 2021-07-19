@@ -32,9 +32,36 @@ public class HatController : MonoBehaviour
             }
             else
             {
-                ProgressionController.Instance.LoadNextScene();
+                SendTimeBasedResponse();
+                ProgressionController.OnLoadNextScene?.Invoke();
             }
         }
+    }
+
+    //TODO - adjust this to actually mean something
+    private void SendTimeBasedResponse()
+    {
+        float time = Time.timeSinceLevelLoad;
+        CommonEnums.HouseResponses response = CommonEnums.HouseResponses.None;
+
+        if(time > 120)
+        {
+            response = CommonEnums.HouseResponses.Ravenclaw;
+        }
+        else if(time > 90)
+        {
+            response = CommonEnums.HouseResponses.Hufflepuff;
+        }
+        else if (time > 60)
+        {
+            response = CommonEnums.HouseResponses.Gryfindor;
+        }
+        else if (time > 30)
+        {
+            response = CommonEnums.HouseResponses.Slytherin;
+        }
+
+        ResponseCollector.OnResponseSelected?.Invoke(response);
     }
 
     void Update()

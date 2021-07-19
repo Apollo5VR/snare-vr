@@ -24,7 +24,7 @@ namespace BNG
         public AudioSource spellAudio;
         public Vector3 hitObjectInitialPosition;
 
-        public CommonEnums.availableSpells spellSelected;
+        public CommonEnums.AvailableSpells spellSelected;
         private Ray ray;
         private LineRenderer laser;
 
@@ -127,19 +127,19 @@ namespace BNG
 
                 switch (spellSelected)
                 {
-                    case CommonEnums.availableSpells.Accio:
+                    case CommonEnums.AvailableSpells.Accio:
                         StartCoroutine(CastAccio());
                         break;
-                    case CommonEnums.availableSpells.Incendio:
+                    case CommonEnums.AvailableSpells.Incendio:
                         StartCoroutine(CastIncendio());
                         break;
-                    case CommonEnums.availableSpells.WingardiumLeviosa:
+                    case CommonEnums.AvailableSpells.WingardiumLeviosa:
                         StartCoroutine(CastWingardiumLeviosa());
                         break;
-                    case CommonEnums.availableSpells.Stupify:
+                    case CommonEnums.AvailableSpells.Stupify:
                         StartCoroutine(CastStupify());
                         break;
-                    case CommonEnums.availableSpells.None:
+                    case CommonEnums.AvailableSpells.None:
                         StartCoroutine(CastSputter());
                         break;
                 }
@@ -332,6 +332,8 @@ namespace BNG
 
         private IEnumerator CastChallengeSelectionRaycast()
         {
+            int sceneSelection = 0;
+
             while (spellActive)
             {
                 //creates a laser 20 forward when pressed down & a hit point
@@ -344,28 +346,9 @@ namespace BNG
                 {
                     if (hitObject != hit.transform.gameObject)
                     {
-                        //TODO - selection
-                        switch (hitObject.name)
-                        {
-                            //TODO - communicate with Response collector weight of selection 
-                            //TODO - communicate with ProgressionController which scene to load
-                            case "Slytherin":
-                                //75% slytherin //5% Gryfindor etc
-                                ProgressionController.Instance.LoadChallengeScene(1);
-                                break;
-                            case "Gryfindor":
-                                ProgressionController.Instance.LoadChallengeScene(2);
-                                break;
-                            case "RavenClaw":
-                                ProgressionController.Instance.LoadChallengeScene(3);
-                                break;
-                            case "HufflePuff":
-                                ProgressionController.Instance.LoadChallengeScene(4);
-                                break;
-                            default:
-                                ProgressionController.Instance.LoadChallengeScene(1);
-                                break;
-                        }
+                        CommonEnums.HouseResponses response = ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag);
+                        ResponseCollector.OnToggleSceneSelectionResponse?.Invoke();
+                        ResponseCollector.OnResponseSelected?.Invoke(response);
                     }
                 }
 
