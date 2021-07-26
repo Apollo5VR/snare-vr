@@ -1312,7 +1312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevel: 0
   player: {fileID: 1478061574}
-  playerController: {fileID: 1644664409}
   playerTeleport: {fileID: 1644664417}
   pullCurrentScene: 
   questionScene: 
@@ -4430,7 +4429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32ef7042ee5d104997bd85de1e506e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressionController: {fileID: 459634539}
 --- !u!1 &1749738576
 GameObject:
   m_ObjectHideFlags: 0
@@ -5305,6 +5303,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1644664409}
+    - target: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: debugHitObject
+      value: 
+      objectReference: {fileID: 1715459667}
     - target: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
       propertyPath: spellSelectionWheelManager

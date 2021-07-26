@@ -24,6 +24,10 @@ namespace BNG
         public AudioSource spellAudio;
         public Vector3 hitObjectInitialPosition;
 
+        //test stuff
+        public GameObject debugHitObject;
+            public bool debugTrue = false;
+
         public CommonEnums.AvailableSpells spellSelected;
         private Ray ray;
         private LineRenderer laser;
@@ -268,8 +272,15 @@ namespace BNG
             }
         }
 
+        //TODO - consider turning this on indefinitely for object once activated 1x
         private IEnumerator CastWingardiumLeviosa()
         {
+            float minimum = 0;
+            float maximum = 0;
+
+            // starting value for the Lerp
+            float t = 0.0f;
+
             while (spellActive)
             {
                 //creates a laser 20 forward when pressed down & a hit point
@@ -282,17 +293,92 @@ namespace BNG
                 {
                     if (hitObject != hit.transform.gameObject)
                     {
+                        minimum = hit.transform.position.y + 0.5f;
+                        maximum = hit.transform.position.y + 1.0f;
+
+                        // starting value for the Lerp
+                        t = 0.0f;
+
                         hitObject = hit.transform.gameObject;
+
+                        //depreciated (testing only)
+                        //StartCoroutine(FloatObject(hit.transform.gameObject, hit.transform.position));
+
+                        //depreciated 
+                        /*
                         hitObject.GetComponent<Rigidbody>().isKinematic = true;
                         hitObject.GetComponent<Rigidbody>().useGravity = false;
                         hitObject.transform.parent = gameObject.transform;
+                        */
+                    }
+
+                    // animate the position of the game object...
+                    hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
+
+                    // .. and increase the t interpolater
+                    t += 0.75f * Time.deltaTime;
+
+                    // now check if the interpolator has reached 1.0
+                    // and swap maximum and minimum so game object moves
+                    // in the opposite direction.
+                    if (t > 1.0f)
+                    {
+                        float temp = maximum;
+                        maximum = minimum;
+                        minimum = temp;
+                        t = 0.0f;
                     }
                 }
 
                 yield return null;
             }
 
+            //note: object has gravity enabled, so should just fall to ground once lerp stops
+
             DeactivateWingardiumLeviosa();
+        }
+
+        public void Update()
+        {
+            if (debugTrue)
+            {
+                debugTrue = false;
+                StartCoroutine(FloatObject(debugHitObject, debugHitObject.transform.position));
+            }
+        }
+
+        //depreciated - testing only
+        private IEnumerator FloatObject(GameObject floatObject, Vector3 startingHeight)
+        {
+            float minimum = startingHeight.y + 0.5f;
+            float maximum = startingHeight.y + 1.0f;
+
+            // starting value for the Lerp
+            float t = 0.0f;
+
+            yield return null;
+
+            while (true) //spellActive
+            {
+                // animate the position of the game object...
+                floatObject.transform.position = new Vector3(floatObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), floatObject.transform.position.z);
+
+                // .. and increase the t interpolater
+                t += 0.75f * Time.deltaTime;
+
+                yield return null;
+
+                // now check if the interpolator has reached 1.0
+                // and swap maximum and minimum so game object moves
+                // in the opposite direction.
+                if (t > 1.0f)
+                {
+                    float temp = maximum;
+                    maximum = minimum;
+                    minimum = temp;
+                    t = 0.0f;
+                }
+            }
         }
 
         private void DeactivateWingardiumLeviosa()
