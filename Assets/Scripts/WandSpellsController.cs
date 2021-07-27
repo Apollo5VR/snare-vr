@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace BNG
 {
@@ -36,6 +37,7 @@ namespace BNG
         private GameObject wandFlash;
         private GameObject hitObject;
         private bool spellActive = false;
+        private int activeScene = 0;
 
         #region deactives
         /*
@@ -59,6 +61,13 @@ namespace BNG
             laser = GetComponentInChildren<LineRenderer>();
             laser.gameObject.SetActive(false);
             spellSelectionWheelManager.gameObject.SetActive(false);
+
+            //TODO - refactor - remove the necessity for this - scene management should only be checked in ProgressionController
+            activeScene = SceneManager.GetActiveScene().buildIndex;
+            if(activeScene == 3)
+            {
+                spellSelected = CommonEnums.AvailableSpells.None;
+            }
         }
 
         //public void Update()
@@ -144,7 +153,16 @@ namespace BNG
                         StartCoroutine(CastStupify());
                         break;
                     case CommonEnums.AvailableSpells.None:
-                        StartCoroutine(CastSputter());
+                        //TODO - refactor this - dont like the conditional necessity for this
+                        if (activeScene != 3) // "SortingHatQuestioningScene"
+                        {
+                            StartCoroutine(CastSputter());
+                        }
+                        else
+                        {
+                            StartCoroutine(CastChallengeSelectionRaycast());
+                        }
+                        
                         break;
                 }
             }
@@ -258,6 +276,13 @@ namespace BNG
                 yield return null;
             }
 
+            //TODO - for these might have to place in hit check above incase its not the last object before they release trigger
+            //Scene 3 Proving - Troll
+            if (ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Gryfindor)
+            {
+                ResponseCollector.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
+            }
+
             DeactivateStupify();
         }
 
@@ -311,29 +336,34 @@ namespace BNG
                         hitObject.transform.parent = gameObject.transform;
                         */
                     }
+                }
 
-                    // animate the position of the game object...
-                    hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
+                // animate the position of the game object...
+                hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
 
-                    // .. and increase the t interpolater
-                    t += 0.75f * Time.deltaTime;
+                // .. and increase the t interpolater
+                t += 0.75f * Time.deltaTime;
 
-                    // now check if the interpolator has reached 1.0
-                    // and swap maximum and minimum so game object moves
-                    // in the opposite direction.
-                    if (t > 1.0f)
-                    {
-                        float temp = maximum;
-                        maximum = minimum;
-                        minimum = temp;
-                        t = 0.0f;
-                    }
+                // now check if the interpolator has reached 1.0
+                // and swap maximum and minimum so game object moves
+                // in the opposite direction.
+                if (t > 1.0f)
+                {
+                    float temp = maximum;
+                    maximum = minimum;
+                    minimum = temp;
+                    t = 0.0f;
                 }
 
                 yield return null;
             }
 
             //note: object has gravity enabled, so should just fall to ground once lerp stops
+            //Scene 3 Proving - Statue
+            if(ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Ravenclaw)
+            {
+                ResponseCollector.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Ravenclaw);
+            }
 
             DeactivateWingardiumLeviosa();
         }
@@ -441,7 +471,12 @@ namespace BNG
                 yield return null;
             }
 
-            DeactivateWingardiumLeviosa();
+            DeactivateChallengeSelectionRaycast();
+        }
+
+        private void DeactivateChallengeSelectionRaycast()
+        {
+            hitObject = null;
         }
 
         //TODO - not quite ready (secondary item)
