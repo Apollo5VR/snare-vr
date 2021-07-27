@@ -9,7 +9,14 @@ public class ResponseTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        response = ResponseCollector.OnCheckAcceptableTags.Invoke(other.tag);
+        if (isTag)
+        {
+            response = ResponseCollector.OnCheckAcceptableTags.Invoke(gameObject.tag);
+        }
+        else
+        {
+            response = ResponseCollector.OnCheckAcceptableTags.Invoke(other.tag);
+        }
 
         if (response == CommonEnums.HouseResponses.None)
         {

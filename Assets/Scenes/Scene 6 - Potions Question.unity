@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Skull_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 162054, guid: b83486c316327104fa36c5369ddfee42, type: 3}
+      propertyPath: m_TagString
+      value: Slytherin
+      objectReference: {fileID: 0}
     - target: {fileID: 425948, guid: b83486c316327104fa36c5369ddfee42, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -615,6 +619,35 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
+--- !u!65 &550795827
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550795824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6132815, y: 0.53559864, z: 0.614034}
+  m_Center: {x: 0, y: 0.23882121, z: -0.08043491}
+--- !u!54 &550795828
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550795824}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &651674035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,6 +658,10 @@ PrefabInstance:
     - target: {fileID: 137432, guid: 26480b10b116dc84d861444e623a6923, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Scroll_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 137432, guid: 26480b10b116dc84d861444e623a6923, type: 3}
+      propertyPath: m_TagString
+      value: Ravenclaw
       objectReference: {fileID: 0}
     - target: {fileID: 458630, guid: 26480b10b116dc84d861444e623a6923, type: 3}
       propertyPath: m_RootOrder
@@ -815,6 +852,35 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
+--- !u!65 &651674040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651674037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7669582, y: 0.12604392, z: 0.12604426}
+  m_Center: {x: 0, y: 0.06302196, z: 0}
+--- !u!54 &651674041
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651674037}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &657456337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,9 +1464,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 863765101}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a4a4858937e3045ba8ac0fdee12159, type: 3}
+  m_Script: {fileID: 11500000, guid: 89563ee7fdc98e141a9c6c514dae0ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTag: 0
 --- !u!1 &957138379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1679,6 +1746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Crystals_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 142910, guid: a1d6b037e45af2c45abe0ee06620122f, type: 3}
+      propertyPath: m_TagString
+      value: Ravenclaw
+      objectReference: {fileID: 0}
     - target: {fileID: 457906, guid: a1d6b037e45af2c45abe0ee06620122f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1868,6 +1939,35 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
+--- !u!65 &1307819854
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307819851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0255471, y: 0.9789202, z: 0.7660295}
+  m_Center: {x: -0.09465028, y: 0.4894601, z: -0.11260606}
+--- !u!54 &1307819855
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307819851}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1476951061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1959,6 +2059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: flower
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6872a3f3f92cd184b98c9485e2a4127e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hufflepuff
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6872a3f3f92cd184b98c9485e2a4127e, type: 3}
@@ -2109,6 +2214,35 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
+--- !u!65 &1476951066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476951063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.07426449, y: 0.07426449, z: 0.1334488}
+  m_Center: {x: -0.0000000058935576, y: 0.0000000030508773, z: -0.060145814}
+--- !u!54 &1476951067
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476951063}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2138934541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,6 +2477,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sword
       objectReference: {fileID: 0}
+    - target: {fileID: 7874178847408326378, guid: 8624357e3e342fa419d3c55e952fe1c7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Gryfindor
+      objectReference: {fileID: 0}
     - target: {fileID: 8522586762445629247, guid: 8624357e3e342fa419d3c55e952fe1c7,
         type: 3}
       propertyPath: m_ReceiveShadows
@@ -2497,3 +2636,32 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
+--- !u!54 &3273355803081774816
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273355803081774813}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &3273355803081774817
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273355803081774813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.053335518, y: 0.029489962, z: 0.22589505}
+  m_Center: {x: -0.0000004772679, y: -0.000000004344425, z: 0.10294751}
