@@ -457,6 +457,7 @@ public class ResponseCollector : MonoBehaviour {
     private void OnDestroy()
     {
         OnResponseSelected -= StoreResponse;
+        OnCheckAcceptableTags -= CheckAcceptableTags;
         OnToggleSceneSelectionResponse -= ToggleSceneSelectionResponse;
     }
 }

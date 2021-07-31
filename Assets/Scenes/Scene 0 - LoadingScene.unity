@@ -2689,6 +2689,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b398385316db41f4cb7d362478358dc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1048796628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048796631}
+  - component: {fileID: 1048796630}
+  - component: {fileID: 1048796629}
+  m_Layer: 0
+  m_Name: ResponseCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1048796629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048796628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3522f7dcc1f7e7489c6b7b443ac59c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1048796630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048796628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55204259bf89934cb71aec12e391d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionAnswer: 
+  objectUsed: 
+  hpSpeechRecognitionEngine: {fileID: 0}
+  hpSpeechRecognitionConclusive: {fileID: 0}
+  pullCurrentScene: 
+  gryffindorCrest: {fileID: 0}
+  hufflePuffCrest: {fileID: 0}
+  slytherinCrest: {fileID: 0}
+  ravenClawCrest: {fileID: 0}
+  robeCount: 0
+  humanRobeObjects: []
+  humanRobeObject: {fileID: 0}
+  humanRobeMat: {fileID: 0}
+  gryffindorMat: {fileID: 0}
+  hufflePuffMat: {fileID: 0}
+  slytherinMat: {fileID: 0}
+  ravenClawMat: {fileID: 0}
+  ravenClawPoints: 0
+  gryffindorPoints: 0
+  hufflePuffPoints: 0
+  slytherinPoints: 0
+  robesCollected: 0
+  jumpToNextScene: 0
+  resultInconclusive: 0
+  crowdCheer: {fileID: 0}
+  inconclusiveText: {fileID: 0}
+  writtenInconclusive: 0
+  conclusiveAnswer: 
+  highestPoints: 0
+  lowestPoints: 0
+  pointsList: 
+  highestPointsTester: 0
+  witchCurrentMat: {fileID: 0}
+  wizCurrentMat: {fileID: 0}
+  matArray: []
+  sceneSelectionResponse: 0
+--- !u!4 &1048796631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048796628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -50.998653, y: 2.4831069, z: 44.364502}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149982075
 GameObject:
   m_ObjectHideFlags: 0
