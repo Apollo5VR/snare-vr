@@ -175,6 +175,10 @@ public class ProgressionController : MonoBehaviour {
     {   
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
+        if(SceneManager.GetActiveScene().buildIndex > 5)
+        {
+            SceneManager.LoadScene(9); //results scene
+        }
 
         SceneManager.LoadScene(nextLevel);
 

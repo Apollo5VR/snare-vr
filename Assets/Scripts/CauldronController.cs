@@ -17,6 +17,8 @@ public class CauldronController : MonoBehaviour
     public float bubbleFxDuration;
     public AudioSource[] audioData;
 
+    public Transform returnTranform;
+
     public Color[] potionsColor;
     public GameObject surfaceGO;
     private Material surfaceMat;
@@ -78,6 +80,9 @@ public class CauldronController : MonoBehaviour
         }
 
         audioData[0].Stop();
+
+        //TODO - GG - some kind of scene progression or button activation here? only bubbles on success - success means progress
+        ProgressionController.OnLoadNextScene?.Invoke();
     }
 
     private void CreateBubble()
@@ -111,18 +116,13 @@ public class CauldronController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //for(int i = 0; i < responseHouseEnums.Count; i++)
-        //{
-        //if(responseObjNames[i] == "")
-        //{
+        other.gameObject.transform.position = returnTranform.position;
+
         if (!finalResponseSent)
         {
             CommonEnums.HouseResponses response = ResponseCollector.OnCheckAcceptableTags.Invoke(other.tag);
             responseHouseEnums.Add(response);
             responseObjNames[responseHouseEnums.Count - 1] = other.name;
-            //break;
-            //}
-            //}
 
             if (responseHouseEnums.Count == 2)
             {
@@ -144,7 +144,6 @@ public class CauldronController : MonoBehaviour
 
                         SetColor(i);
 
-                        //TODO - GG - some kind of scene progression or button activation here?
                         StartCoroutine(BubbleFx());
 
                         break;
