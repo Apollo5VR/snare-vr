@@ -1206,6 +1206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
+  wand: {fileID: 0}
+  isWandDefaultSnapZone: 0
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
@@ -1334,7 +1336,6 @@ MonoBehaviour:
   scroll: {fileID: 1295435999}
   book: {fileID: 1295435999}
   wordResponseObjects: {fileID: 95537618}
-  petPlaced: 0
   sceneLoadingBlackSphere: {fileID: 314023242}
   debugProgressNextScene: 0
   testMovePlayer: 0
@@ -2143,6 +2144,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
+  wand: {fileID: 6190616934869674929}
+  isWandDefaultSnapZone: 1
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
@@ -3048,6 +3051,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
+  wand: {fileID: 0}
+  isWandDefaultSnapZone: 0
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
@@ -4001,6 +4006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
+  wand: {fileID: 0}
+  isWandDefaultSnapZone: 0
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
@@ -5504,6 +5511,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LocalPositionOffset: {x: 0, y: -0.5, z: 0}
   LocalRotationOffset: {x: 90, y: 0, z: 0}
+--- !u!114 &6190616934869674929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380961580216612828, guid: 9c1769eabfde23544ab69e4cb33bca69,
+    type: 3}
+  m_PrefabInstance: {fileID: 6190616934869674921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190616934869674922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8554767907922132801
 MonoBehaviour:
   m_ObjectHideFlags: 0
