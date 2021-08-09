@@ -311,6 +311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
+  wand: {fileID: 0}
+  isWandDefaultSnapZone: 0
   CanDropItem: 1
   CanSwapItem: 1
   CanRemoveItem: 1
@@ -4605,7 +4607,7 @@ MonoBehaviour:
   BreakDistance: 0
   HideHandGraphics: 1
   ParentToHands: 0
-  ParentHandModel: 1
+  ParentHandModel: 0
   SnapHandModel: 1
   CanBeDropped: 1
   CanBeSnappedToSnapZone: 1
