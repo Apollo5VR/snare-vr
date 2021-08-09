@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace BNG {
     public class SnapZone : MonoBehaviour {
@@ -10,6 +11,8 @@ namespace BNG {
         [Header("Starting / Held Item")]
         [Tooltip("The currently held item. Set this in the editor to equip on start.")]
         public Grabbable HeldItem;
+        public Grabbable wand;
+        public bool isWandDefaultSnapZone;
 
 
         [Header("Options")]
@@ -106,6 +109,26 @@ namespace BNG {
             if (HeldItem != null) {
                 GrabGrabbable(HeldItem);
             }
+
+            //TODO - sub onsceneload
+            if (isWandDefaultSnapZone)
+            {
+                SceneManager.sceneLoaded += OnSceneLoaded;
+            }
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            // Auto Equip item
+            //if (HeldItem == null)
+            //{
+                GrabGrabbable(wand);
+            //}
+        }
+
+        //TODO - link this up with onSceneLoad
+        public void GrabWandOnNewScene()
+        {
         }
 
         // Update is called once per frame
@@ -438,6 +461,14 @@ namespace BNG {
             }
 
             HeldItem = null;
+        }
+
+        private void OnDestroy()
+        {
+            if (isWandDefaultSnapZone)
+            {
+                SceneManager.sceneLoaded -= OnSceneLoaded;
+            }
         }
     }
 }
