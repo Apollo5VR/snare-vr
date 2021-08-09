@@ -13,10 +13,15 @@ public class HatController : MonoBehaviour
     // starting value for the Lerp
     static float t = 0.0f;
 
+    //TODO - Refactor to get rid of pointerArrow checks (script used in 3 locations, only 1 controls arrow anim)
+
     private void Start()
     {
-        minimum = pointerArrow.transform.position.y - 0.25f;
-        maximum = pointerArrow.transform.position.y + 0.25f;
+        if (pointerArrow != null)
+        {
+            minimum = pointerArrow.transform.position.y - 0.25f;
+            maximum = pointerArrow.transform.position.y + 0.25f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,8 +32,12 @@ public class HatController : MonoBehaviour
 
             if (isAnimTrigger)
             {
-                this.GetComponent<Animator>().enabled = false;
-                pointerArrow.SetActive(false);
+                this.GetComponentInParent<Animator>().enabled = false;
+
+                if (pointerArrow != null)
+                {
+                    pointerArrow.SetActive(false);
+                }
             }
             else
             {
@@ -66,7 +75,7 @@ public class HatController : MonoBehaviour
 
     void Update()
     {
-        if (pointerArrow.activeSelf)
+        if (pointerArrow != null && pointerArrow.activeSelf)
         {
             // animate the position of the game object...
             pointerArrow.transform.position = new Vector3(pointerArrow.transform.position.x, Mathf.Lerp(minimum, maximum, t), pointerArrow.transform.position.z);
