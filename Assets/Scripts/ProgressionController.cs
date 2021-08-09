@@ -36,7 +36,7 @@ public class ProgressionController : MonoBehaviour {
     public GameObject scroll;
     public GameObject book;
     public GameObject wordResponseObjects;
-    public bool petPlaced = false;
+    //public bool petPlaced = false;
     public GameObject sceneLoadingBlackSphere;
     public bool debugProgressNextScene;
     public bool testMovePlayer;
@@ -189,7 +189,7 @@ public class ProgressionController : MonoBehaviour {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        SceneManager.LoadScene(nextLevel + sceneIncrement);
+        SceneManager.LoadScene((nextLevel - 1) + sceneIncrement);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
