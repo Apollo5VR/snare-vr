@@ -62,9 +62,14 @@ namespace BNG
             laser.gameObject.SetActive(false);
             spellSelectionWheelManager.gameObject.SetActive(false);
 
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
             //TODO - refactor - remove the necessity for this - scene management should only be checked in ProgressionController
             activeScene = SceneManager.GetActiveScene().buildIndex;
-            if(activeScene == 3)
+            if (activeScene == 3)
             {
                 spellSelected = CommonEnums.AvailableSpells.None;
             }
@@ -454,14 +459,15 @@ namespace BNG
             {
                 //creates a laser 20 forward when pressed down & a hit point
                 laser.SetPosition(0, gameObject.transform.position);
-                laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 20);// NEW update this in all
+                laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 50);// NEW update this in all
                 RaycastHit hit;
 
                 ray = new Ray(transform.position, transform.forward);  /*faster moethod: https://answers.unity.com/questions/949222/is-raycast-efficient-in-update.html */
-                if (Physics.Raycast(ray, out hit, 20, spellLaserMask))
+                if (Physics.Raycast(ray, out hit, 50, spellLaserMask))
                 {
                     if (hitObject != hit.transform.gameObject)
                     {
+                        hitObject = hit.transform.gameObject;
                         CommonEnums.HouseResponses response = ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag);
                         ResponseCollector.OnToggleSceneSelectionResponse?.Invoke();
                         ResponseCollector.OnResponseSelected?.Invoke(response);
@@ -492,6 +498,11 @@ namespace BNG
             halo.GetType().GetProperty("enabled").SetValue(halo, false, null); //unsure what null does...
         }
         */
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 }
 
