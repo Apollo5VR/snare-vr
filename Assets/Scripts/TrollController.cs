@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class TrollController : MonoBehaviour {
-    public GameObject liveTroll;
-    public GameObject deadTroll;
+    public bool testBool = false;
+
     public GameObject knight;
     public Animator optionalDoorAnimator;
-    //GameObject trollClub;
+    public Animator[] trollAnims; //2 - position, leg movement
     Vector3 liveTrollPosition;
-    //public ResponseCollector responseCollector;
-    //int nextLevel;
-    float delayTime;
-    bool startDelayTime;
+    private float delayTime;
+    private bool startDelayTime;
+
+    public AudioSource[] audioOptions;
 
     //animations;
     public string trollFallAnimation;
@@ -25,16 +25,24 @@ public class TrollController : MonoBehaviour {
     public static Action<CommonEnums.HouseResponses> OnResponseSelected;
 
     // Use this for initialization
-    void Start () {
-        deadTroll.SetActive(false);
-        //trollClub = GameObject.Find("TrollClub");
-        //responseCollector = GameObject.Find("ResponseCollector").GetComponent<ResponseCollector>();
-        //nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+    void Start ()
+    {
         OnResponseSelected += CommandTroll;
+    }
+
+    public void Update()
+    {
+        if (testBool)
+        {
+            StartCoroutine(ShootTroll());
+            testBool = false;
+        }
     }
 
     private void CommandTroll(CommonEnums.HouseResponses response)
     {
+        DisableTroll();
+
         switch ((int)response)
         {
             case 1:
@@ -50,6 +58,7 @@ public class TrollController : MonoBehaviour {
             case 3:
                 //Hufflepuff;
                 //shoot stun from friend
+                StartCoroutine(ShootTroll());
                 break;
             case 4:
                 //Slytherin;
@@ -66,53 +75,21 @@ public class TrollController : MonoBehaviour {
 
     private IEnumerator TimerToEndScene()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(5);
 
         ProgressionController.OnLoadNextScene();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        /*
-        if (startDelayTime == true)
-        {
-            delayTime = delayTime + Time.deltaTime;
-        }
-        if (delayTime > 5)
-        {
-                SceneManager.LoadScene(nextLevel);
-        }
-        */
-        //for TESTING
-        //if (Time.time > 5 && Time.time < 6)
-        //{
-        //    liveTrollPosition = liveTroll.transform.position;
-        //    //Instantiate Dead Troll
-        //    deadTroll.transform.position = liveTrollPosition;
-        //    deadTroll.SetActive(true);
 
-        //    //unparent club & make use gravity
+    private IEnumerator ShootTroll()
+    {
+            audioOptions[1].Play();
+            this.GetComponent<LineRenderer>().enabled = true;
 
-        //    //delete Live Troll
-        //    Destroy(liveTroll);
+            yield return new WaitForSeconds(3.5f);
 
-        //    //unparent club & make use gravity
-
-
-
-
-        //    //liveTrollPosition = liveTroll.transform.position;
-        //    //trollLegsStateMachine.SetTrigger(trollLegsAnimation);
-        //    //trollFallStateMachine.SetTrigger(trollFallAnimation);
-        //}
+            audioOptions[1].Stop();
+            this.GetComponent<LineRenderer>().enabled = false;
     }
-
-    //void OnTriggerEnter(Collider other)
-    //{
-
-        //trollDeath();
-
-    //}
 
     private void DoorOpen()
     {
@@ -124,30 +101,23 @@ public class TrollController : MonoBehaviour {
 
     private void TrollDistract()
     {
-        liveTroll.transform.LookAt(knight.transform);
+        this.transform.LookAt(knight.transform);
     }
 
     private void TrollDeath()
     {
-        //responseCollector.objectUsed = "Troll";
-        //startDelayTime = true;
-        liveTrollPosition = liveTroll.transform.position;
-        //Instantiate Dead Troll
-        deadTroll.transform.position = liveTrollPosition;
-        deadTroll.SetActive(true);
+        this.transform.localScale = new Vector3(0, 0, 0);
+    }
 
-        //unparent club & make use gravity
-        //trollClub.transform.SetParent(null);
-        //trollClub.GetComponent<Rigidbody>().useGravity = true;
+    private void DisableTroll()
+    {
+        //sfx
+        audioOptions[0].Stop();
 
-        //record response
-        
-
-
-        //delete Live Troll
-        //Destroy(liveTroll);
-        liveTroll.transform.localScale = new Vector3(0, 0, 0);
-
-        //unparent club & make use gravity
+        //anims
+        foreach (Animator trollanim in trollAnims)
+        {
+            trollanim.enabled = false;
+        }
     }
 }
