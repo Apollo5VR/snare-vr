@@ -11,7 +11,7 @@ public class ResponseCollector : MonoBehaviour {
     public string objectUsed;
     public HPSpeechRecognitionEngine hpSpeechRecognitionEngine;
     public HPSpeechRecognitionEngine hpSpeechRecognitionConclusive;
-    DestroyProjectile destroyProjectile;
+    TrollController destroyProjectile;
     public string pullCurrentScene;
     public GameObject gryffindorCrest;
     public GameObject hufflePuffCrest;

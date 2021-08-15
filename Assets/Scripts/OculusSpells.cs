@@ -50,7 +50,7 @@ public class OculusSpells: MonoBehaviour {
     AudioSource flameAudio;
     AudioSource AccioAudio;
     bool acciotrue = false;
-    public DestroyProjectile destroyProjectile;
+    public TrollController destroyProjectile;
     private Vector3 hitObjectInitialPosition;
 
     //to collect Text script for printing "object collected"
@@ -349,7 +349,7 @@ public class OculusSpells: MonoBehaviour {
 
                 if (hitObject.name == "Troll")
                 {
-                    destroyProjectile.trollDeath();
+                    //destroyProjectile.TrollDeath();
                 }
             }
             if (spellTime > spellTimeEnd)
