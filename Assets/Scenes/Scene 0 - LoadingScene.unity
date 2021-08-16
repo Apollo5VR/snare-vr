@@ -2744,41 +2744,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55204259bf89934cb71aec12e391d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionAnswer: 
-  objectUsed: 
-  hpSpeechRecognitionEngine: {fileID: 0}
-  hpSpeechRecognitionConclusive: {fileID: 0}
-  pullCurrentScene: 
-  gryffindorCrest: {fileID: 0}
-  hufflePuffCrest: {fileID: 0}
-  slytherinCrest: {fileID: 0}
-  ravenClawCrest: {fileID: 0}
-  robeCount: 0
-  humanRobeObjects: []
-  humanRobeObject: {fileID: 0}
-  humanRobeMat: {fileID: 0}
-  gryffindorMat: {fileID: 0}
-  hufflePuffMat: {fileID: 0}
-  slytherinMat: {fileID: 0}
-  ravenClawMat: {fileID: 0}
-  ravenClawPoints: 0
-  gryffindorPoints: 0
-  hufflePuffPoints: 0
-  slytherinPoints: 0
-  robesCollected: 0
-  jumpToNextScene: 0
-  resultInconclusive: 0
   crowdCheer: {fileID: 0}
-  inconclusiveText: {fileID: 0}
-  writtenInconclusive: 0
-  conclusiveAnswer: 
-  highestPoints: 0
-  lowestPoints: 0
-  pointsList: 
-  highestPointsTester: 0
-  witchCurrentMat: {fileID: 0}
-  wizCurrentMat: {fileID: 0}
-  matArray: []
+  houseCrests: []
+  humanRobeObjects: []
+  resultText: {fileID: 0}
+  resultTextOptions:
+  - If you want to try again, put on the hat!
+  - Oh no, it seems the sorting hat can't decide between 2 houses. We're loading
+    up 1 final tiebreaker question!
   sceneSelectionResponse: 0
 --- !u!4 &1048796631
 Transform:

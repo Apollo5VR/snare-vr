@@ -18,24 +18,20 @@ public class SocialSceneController : MonoBehaviour
         switch ((int)response)
         {
             case 1:
-                //Ravenclaw;
-                //turn right
-                audioOptions[0].Play();
-                break;
-            case 2:
-                //Gryfindor;
-                //die
+                //Ravenclaw
                 audioOptions[1].Play();
                 break;
-            case 3:
-                //Hufflepuff;
-                //shoot stun from friend
+            case 2:
+                //Gryfindor
                 audioOptions[2].Play();
                 break;
-            case 4:
-                //Slytherin;
-                //open door
+            case 3:
+                //Hufflepuff
                 audioOptions[3].Play();
+                break;
+            case 4:
+                //Slytherin
+                audioOptions[4].Play();
                 break;
             default:
                 break;

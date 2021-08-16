@@ -5,41 +5,21 @@ using System.Linq;
 using UnityEngine.UI;
 using System;
 
-public class ResponseCollector : MonoBehaviour {
+public class ResponseCollector : MonoBehaviour
+{
     public static ResponseCollector Instance { get; private set; }
-    public string questionAnswer;
-    public string objectUsed;
-    public HPSpeechRecognitionEngine hpSpeechRecognitionEngine;
-    public HPSpeechRecognitionEngine hpSpeechRecognitionConclusive;
-    TrollController destroyProjectile;
-    public string pullCurrentScene;
-    public GameObject gryffindorCrest;
-    public GameObject hufflePuffCrest;
-    public GameObject slytherinCrest;
-    public GameObject ravenClawCrest;
-    bool crestRecieved = false;
-    public int robeCount;
-    public GameObject[] humanRobeObjects;
-    public GameObject humanRobeObject;
-    public Material humanRobeMat;
-    public Material gryffindorMat;
-    public Material hufflePuffMat;
-    public Material slytherinMat;
-    public Material ravenClawMat;
-
-    //depreciated
-    public int ravenClawPoints;
-    public int gryffindorPoints;
-    public int hufflePuffPoints;
-    public int slytherinPoints;
-
-    //replaced by
-    private int[] housePoints = new int[5]; // none, ravenClawPoints, gryffindorPoints, hufflePuffPoints, slytherinPoints
-
-    public bool robesCollected = false;
-    public bool jumpToNextScene = false;
-    public bool resultInconclusive = false;
     public AudioSource crowdCheer;
+    public GameObject[] houseCrestsObj; //none, ravenclaw, gryfindor, hufflepuff, slytherin
+    public GameObject[] humanRobeObjs; //none, ravenclaw, gryfindor, hufflepuff, slytherin
+    //public GameObject humanRobeObject;
+    public Material[] robeMats;
+    private int challengeSceneSelected;
+    public int[] housePoints = new int[5]; // none, ravenClawPoints, gryffindorPoints, hufflePuffPoints, slytherinPoints
+    //public GameObject inconclusiveText;
+    public Text resultText;
+    public String[] resultTextOptions;
+    /*
+    public bool resultInconclusive = false;
     public GameObject inconclusiveText;
     public bool writtenInconclusive;
     public string conclusiveAnswer;
@@ -50,13 +30,14 @@ public class ResponseCollector : MonoBehaviour {
     public Material witchCurrentMat;
     public Material wizCurrentMat;
     public Material[] matArray;
+    */
 
+        //new stuff
     public Action<CommonEnums.HouseResponses> OnResponseSelected;
     public Action OnToggleSceneSelectionResponse;
+    public Action OnToggleResultsCalculation;
     public Func<string, CommonEnums.HouseResponses> OnCheckAcceptableTags;
     public bool sceneSelectionResponse = false;
-
-    //singleton - depreciated 
     
     private void Awake()
     {
@@ -70,22 +51,14 @@ public class ResponseCollector : MonoBehaviour {
         }
     }
     
-
-    // Use this for initialization
-    private void Start ()
+    private void Start()
     {
-        //SceneManager.sceneUnloaded += CollectResponses;
         OnResponseSelected += StoreResponse;
         OnCheckAcceptableTags += CheckAcceptableTags;
         OnToggleSceneSelectionResponse += ToggleSceneSelectionResponse;
+        OnToggleResultsCalculation += DetermineFinalHouse;
 
-        gryffindorMat = (Material)Resources.Load("redcoatcolor", typeof(Material));
-        hufflePuffMat = (Material)Resources.Load("yellowcoatcolor", typeof(Material));
-        slytherinMat = (Material)Resources.Load("greencoatcolor", typeof(Material));
-        ravenClawMat = (Material)Resources.Load("bluecoatcolor", typeof(Material));
-        //just in case
-        crestRecieved = false;
-
+        robeMats = Resources.LoadAll<Material>("robes");
     }
 
     private CommonEnums.HouseResponses CheckAcceptableTags(string tag)
@@ -119,339 +92,128 @@ public class ResponseCollector : MonoBehaviour {
         sceneSelectionResponse = true;
     }
 
-    //TODO - how to abstract this so it can use strings or Enums to determine storage?
     private void StoreResponse(CommonEnums.HouseResponses response)
     {
-        #region depreciated
-        /*
-        switch (response)
-        {
-            case CommonEnums.HouseResponses.Ravenclaw:
-                //more
-                specifiedHouse = (int)CommonEnums.HouseResponses.Ravenclaw;
-                break;
-            case "Gryfindor":
-                //do stuff
-                specifiedHouse = (int)CommonEnums.HouseResponses.Gryfindor;
-                break;
-            case "Hufflepuff":
-                //df
-                specifiedHouse = (int)CommonEnums.HouseResponses.Hufflepuff;
-                break;
-            case "Slytherin":
-                //dfd
-                specifiedHouse = (int)CommonEnums.HouseResponses.Slytherin;
-                break;
-            default:
-                //do
-                specifiedHouse = (int)CommonEnums.HouseResponses.None;
-                break;
-        }
-        */
-        #endregion
-
         housePoints[(int)response] += 1;
 
         if (sceneSelectionResponse)
         {
+            challengeSceneSelected = (int)response;
             sceneSelectionResponse = false;
             ProgressionController.Instance.OnLoadChallengeScene((int)response);
         }
     }
 
-    // Update is called once per frame
+    //this is dumb - just going to make a local manager
     /*
-    void Update () {
-        //Debug.Log(humanRobeObjects);
-
-        //just to make sure this updates
-        highestPoints = Mathf.Max(gryffindorPoints, slytherinPoints, ravenClawPoints, hufflePuffPoints);
-
-        //pull current scene
-        pullCurrentScene = SceneManager.GetActiveScene().name;
-
-        //Soley for testing purposes
-        if (jumpToNextScene == true && pullCurrentScene == "Scene 3 - SortingHatQuestioningScene")
-            {
-            questionAnswer = "Power";
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-
-        if (crestRecieved == false && pullCurrentScene == "Scene 5 - GrandHallResultsScene" && highestPoints < 90)
+    private void FindAndOrderHouseCrests()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Crest");
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = new Vector3(0,0,0);
+        float[] crestDistances = [];
+        for(int i = 0; i < gos.Length; i++)
         {
-            //get crests
-            gryffindorCrest = GameObject.Find("GryffindorCrestPlank");
-            ravenClawCrest = GameObject.Find("RavenClawCrestPlank");
-            slytherinCrest = GameObject.Find("SlytherinCrestPlank");
-            hufflePuffCrest = GameObject.Find("HufflePuffCrestPlank");
+            crestDistances[i] = Vector3.Distance(new Vector3(0,0,0), gos[i].transform.position);
 
-            //deactivate
-            gryffindorCrest.SetActive(false);
-            ravenClawCrest.SetActive(false);
-            slytherinCrest.SetActive(false);
-            hufflePuffCrest.SetActive(false);
-
-            //gets audio
-            crowdCheer = GameObject.Find("CheeringAudio").GetComponent<AudioSource>();
-
-            //gets text
-            inconclusiveText = GameObject.Find("EndText");
-            //GetComponent<Text>().text
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
         }
-
-        if (pullCurrentScene == "Scene 5 - GrandHallResultsScene") //&& crestRecieved != true
-        {
-
-            if (!robesCollected == true)
-            {
-                robeCount = GameObject.FindGameObjectsWithTag("Robe").Length;
-                //Debug.Log(robeCount);
-                //collect robes to reassign color depending on response
-                humanRobeObjects = GameObject.FindGameObjectsWithTag("Robe");
-                humanRobeObjects.ToList();
-                robesCollected = true;
-            }
-            if (crestRecieved == false && resultInconclusive != true)
-            {
-                crestRecieved = true;
-                if (objectUsed == "Troll")
-                {
-                    gryffindorPoints++;
-                }
-                if (questionAnswer == "Glory")
-                {
-                    gryffindorPoints++;
-                }
-                if (objectUsed == "MerlinBook (UnityEngine.GameObject)")
-                {
-                    slytherinPoints++;
-                }
-                if (questionAnswer == "Power")
-                {
-                    slytherinPoints++;
-                }
-                if (objectUsed == "StudentRecords (UnityEngine.GameObject)")
-                {
-                    ravenClawPoints++;
-                }
-                if (questionAnswer == "Wisdom")
-                {
-                    ravenClawPoints++;
-                }
-                if (objectUsed == "DragonsBloodBottle (UnityEngine.GameObject)")
-                {
-                    hufflePuffPoints++;
-                }
-                if (questionAnswer == "Love")
-                {
-                    hufflePuffPoints++;
-                }
-                //tell program that if two houses are both the highest value, then result inconclusive
-
-                highestPoints = Mathf.Max(gryffindorPoints, slytherinPoints, ravenClawPoints, hufflePuffPoints);
-                lowestPoints = Mathf.Min(gryffindorPoints, slytherinPoints, ravenClawPoints, hufflePuffPoints);
-
-                //if no verbal answer has been made i.e. 100pts assigned
-                if (highestPoints < 90)
-                {
-                    //add each house points to list to check if multiple equal the max
-                    pointsList.Add(gryffindorPoints);
-                    pointsList.Add(slytherinPoints);
-                    pointsList.Add(ravenClawPoints);
-                    pointsList.Add(hufflePuffPoints);
-
-                    //do multiple of the house results also equal the highest number
-                    foreach (int housePoint in pointsList)
-                    {
-                        if (housePoint == highestPoints)
-                        {
-                            highestPointsTester = highestPointsTester + 1;
-                        }
-                    }
-                }
- 
-    
-                //if any equal each other, bool is true, pass this code
-                if (highestPointsTester < 2)
-                {
-                    if (highestPoints == gryffindorPoints)
-                    {
-                        gryffindorCrest.SetActive(true);
-                        foreach (GameObject humanRobeObject in humanRobeObjects)
-                        {
-                            //get a copy of the materials array
-                            Material[] matArray = humanRobeObject.GetComponent<Renderer>().materials;
-                           
-                            if (humanRobeObject.name == "YoungWitch")
-                            {
-                                //designate a change to the 3rd element in the material
-                                matArray[3] = new Material(gryffindorMat);
-                                //reinstantiate material array
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                                //witchCurrentMat = new Material(gryffindorMat);
-                            }
-                            else
-                            {
-                                matArray[1] = new Material(gryffindorMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                        }
-                    }
-                    else if (highestPoints == slytherinPoints)
-                    {
-                        slytherinCrest.SetActive(true);
-                        foreach (GameObject humanRobeObject in humanRobeObjects)
-                        {
-                            Material[] matArray = humanRobeObject.GetComponent<Renderer>().materials;
-
-                            if (humanRobeObject.name == "YoungWitch")
-                            {
-                                matArray[3] = new Material(slytherinMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                            else
-                            {
-                                matArray[1] = new Material(slytherinMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                        }
-                    }
-                    else if (highestPoints == ravenClawPoints)
-                    {
-                        ravenClawCrest.SetActive(true);
-                        foreach (GameObject humanRobeObject in humanRobeObjects)
-                        {
-                            Material[] matArray = humanRobeObject.GetComponent<Renderer>().materials;
-
-                            if (humanRobeObject.name == "YoungWitch")
-                            {
-                                matArray[3] = new Material(ravenClawMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                            else
-                            {
-                                matArray[1] = new Material(ravenClawMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                        }
-                    }
-                    else if (highestPoints == hufflePuffPoints)
-                    {
-                        hufflePuffCrest.SetActive(true);
-                        foreach (GameObject humanRobeObject in humanRobeObjects)
-                        {
-                            Material[] matArray = humanRobeObject.GetComponent<Renderer>().materials;
-
-                            if (humanRobeObject.name == "YoungWitch")
-                            {
-                                matArray[3] = new Material(hufflePuffMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                            else
-                            {
-                                matArray[1] = new Material(hufflePuffMat);
-                                humanRobeObject.GetComponent<Renderer>().materials = matArray;
-                            }
-                        }
-                    }
-                }
-                //if multiple equal the same, determine inconclusive
-                else if (highestPointsTester >= 2)
-                {
-                    resultInconclusive = true;
-                    crowdCheer.Stop();
-                }
-
-            }
-
-            //Do Speech recognition thing again here...maybe print a request?
-
-            //if inconclusive, allow the user to respond with the house they prefer aka Harry moment (slyth vs gryf)
-            if (resultInconclusive == true)
-            {
-                //collect new response
-                hpSpeechRecognitionConclusive = GameObject.Find("SpeechRecognition").GetComponent<HPSpeechRecognitionEngine>();
-                //conclusiveAnswer = hpSpeechRecognitionConclusive.conclusiveAnswer;
-
-                if (writtenInconclusive == false)
-                {
-                    inconclusiveText.GetComponent<Text>().text = "Results Inconclusive. Speak which house you desire...";
-                    writtenInconclusive = true;
-                    
-                }
-                if (conclusiveAnswer == "Gryffindor")
-                {
-                    gryffindorPoints = 100;
-                    resultInconclusive = false;
-                    highestPointsTester = 0;
-                    crestRecieved = false;
-                    crowdCheer.Play();
-                }
-                if (conclusiveAnswer == "Slytherin")
-                {
-                    slytherinPoints = 100;
-                    resultInconclusive = false;
-                    highestPointsTester = 0;
-                    crestRecieved = false;
-                    crowdCheer.Play();
-                }
-                if (conclusiveAnswer == "Hufflepuff")
-                {
-                    hufflePuffPoints = 100;
-                    resultInconclusive = false;
-                    highestPointsTester = 0;
-                    crestRecieved = false;
-                    crowdCheer.Play();
-                }
-                if (conclusiveAnswer == "Ravenclaw")
-                {
-                    ravenClawPoints = 100;
-                    resultInconclusive = false;
-                    highestPointsTester = 0;
-                    crestRecieved = false;
-                    crowdCheer.Play();
-                }
-                //crestRecieved = false;
-            }
-
-
-            //    else if (objectUsed == "MerlinBook (UnityEngine.GameObject)")
-            //    {
-            //        slytherinCrest.SetActive(true);
-            //    foreach (GameObject humanRobeObject in humanRobeObjects)
-            //    {
-
-            //        humanRobeObject.GetComponent<Renderer>().material = new Material(slytherinMat);
-            //    }
-            //}
-            //else if (objectUsed == "StudentRecords (UnityEngine.GameObject)")
-            //{
-            //    ravenClawCrest.SetActive(true);
-            //    foreach (GameObject humanRobeObject in humanRobeObjects)
-            //    {
-
-            //        humanRobeObject.GetComponent<Renderer>().material = new Material(ravenClawMat);
-            //    }
-            //}
-            //else if (objectUsed == "DragonsBloodBottle (UnityEngine.GameObject)")
-            //{
-            //    hufflePuffCrest.SetActive(true);
-            //    foreach (GameObject humanRobeObject in humanRobeObjects)
-            //    {
-
-            //        humanRobeObject.GetComponent<Renderer>().material = new Material(hufflePuffMat);
-            //    }
-            //}
-        }
-	}
+    }
     */
 
-    void CollectResponses<Scene>(Scene scene)
+    private void DetermineFinalHouse()
     {
-        //questionAnswer = hpSpeechRecognitionEngine.questionAnswer;
+        humanRobeObjs = GameObject.FindGameObjectsWithTag("Robe");
+        GameObject resultsSceneManagerObj = GameObject.Find("ResultsSceneManager");
+        ResultsSceneManager rsm = resultsSceneManagerObj.GetComponent<ResultsSceneManager>();
+        houseCrestsObj = rsm.houseCrestsHolder;
+        resultText = rsm.resultTextHolder;
 
-        //conclusiveAnswer = hpSpeechRecognitionEngine.conclusiveAnswer;
-        //objectUsed = //connect the script here that collects which object was interacted with
+        foreach (GameObject obj in houseCrestsObj)
+        {
+            obj.SetActive(false);
+        }
+
+        int greatestHousePoints = Mathf.Max(housePoints[0], housePoints[1], housePoints[2], housePoints[3], housePoints[4]);
+        int lowestHousePoints = Mathf.Min(housePoints[0], housePoints[1], housePoints[2], housePoints[3], housePoints[4]);
+        int houseTieTester = 0;
+        int finalHouse = 0;
+
+        //do multiple of the house results also equal the highest number i.e. no house wins
+        for (int i = 0; i < housePoints.Length; i++)
+        {
+            if (housePoints[i] == greatestHousePoints)
+            {
+                finalHouse = i;
+                houseTieTester = houseTieTester + 1;
+            }
+        }
+
+        //if only 1 house is greaters, assign robe colors & cheer
+        if (houseTieTester < 2)
+        {
+            houseCrestsObj[finalHouse].SetActive(true);
+
+            string[] houseNames = Enum.GetNames(typeof(CommonEnums.HouseResponses));
+
+            SwapRobeColors(finalHouse);
+            resultText.text = "Congrats you " + houseNames[finalHouse] + ". " + resultTextOptions[0];
+            //crowdCheer.Play();
+        }
+        //if multiple equal the same, determine inconclusive
+        else
+        {
+            //0 is None
+            houseCrestsObj[0].SetActive(true);
+
+            resultText.text = resultTextOptions[1];
+
+            for (int i = 0; i < housePoints.Length; i++)
+            {
+                housePoints[i] = 0;
+            }
+
+            //TODO - trouble with this is its not quite accurate, if they tie 2 houses, they are loaded with another scene that could lead to 4 results
+            StartCoroutine(TimerToReloadChallengeScene());
+
+            //crowdCheer.Stop();
+        }
+    }
+
+    private IEnumerator TimerToReloadChallengeScene()
+    {
+        yield return new WaitForSeconds(8);
+
+        //exclude 0 which is a none scene & 1 which is potions scene (has 2 responses)
+        ProgressionController.Instance.OnLoadChallengeScene((int)UnityEngine.Random.Range(2, 5));
+    }
+
+    private void SwapRobeColors(int finalHouse)
+    {
+        foreach (GameObject humanRobeObject in humanRobeObjs)
+        {
+            Material[] matArray = humanRobeObject.GetComponent<Renderer>().materials;
+            Material finalRobeMat = robeMats[finalHouse];
+
+            if (humanRobeObject.name == "YoungWitch")
+            {
+                matArray[3] = new Material(finalRobeMat);
+                humanRobeObject.GetComponent<Renderer>().materials = matArray;
+            }
+            else
+            {
+                matArray[1] = new Material(finalRobeMat);
+                humanRobeObject.GetComponent<Renderer>().materials = matArray;
+            }
+        }
     }
 
     private void OnDestroy()
@@ -461,3 +223,4 @@ public class ResponseCollector : MonoBehaviour {
         OnToggleSceneSelectionResponse -= ToggleSceneSelectionResponse;
     }
 }
+

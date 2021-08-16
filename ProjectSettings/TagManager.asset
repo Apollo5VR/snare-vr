@@ -12,6 +12,7 @@ TagManager:
   - Gryfindor
   - Slytherin
   - Hufflepuff
+  - Crest
   layers:
   - Default
   - TransparentFX
