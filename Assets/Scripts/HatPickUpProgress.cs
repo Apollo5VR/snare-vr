@@ -18,7 +18,7 @@ namespace BNG
         {
             yield return new WaitForSeconds(3);
 
-            ProgressionController.OnLoadNextScene?.Invoke();
+            ProgressionController.Instance.OnLoadNextScene?.Invoke();
         }
     }
 }

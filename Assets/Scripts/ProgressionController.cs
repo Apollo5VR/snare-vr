@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 
 public class ProgressionController : MonoBehaviour {
-    //public static ProgressionController Instance { get; private set; }
+    public static ProgressionController Instance { get; private set; }
     public int nextLevel;
     public GameObject player;
     public BNG.PlayerTeleport playerTeleport;
@@ -41,11 +41,11 @@ public class ProgressionController : MonoBehaviour {
     public bool debugProgressNextScene;
     public bool testMovePlayer;
 
-    public static Action OnLoadNextScene;
-    public static Action<int> OnLoadChallengeScene;
+    public Action OnLoadNextScene;
+    public Action<int> OnLoadChallengeScene;
 
     //singleton - depreciated / swapping to Action Sub 
-    /*
+    
     private void Awake()
     {
         if (Instance == null)
@@ -57,7 +57,7 @@ public class ProgressionController : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    */
+    
 
     // Use this for initialization
     private void Start()
@@ -177,7 +177,7 @@ public class ProgressionController : MonoBehaviour {
         //sceneLoadingBlackSphere.SetActive(true);
         if(SceneManager.GetActiveScene().buildIndex > 5)
         {
-            SceneManager.LoadScene(9); //results scene
+            SceneManager.LoadScene(8); //results scene
         }
 
         SceneManager.LoadScene(nextLevel);

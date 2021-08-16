@@ -82,7 +82,7 @@ public class CauldronController : MonoBehaviour
         audioData[0].Stop();
 
         //TODO - GG - some kind of scene progression or button activation here? only bubbles on success - success means progress
-        ProgressionController.OnLoadNextScene?.Invoke();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke();
     }
 
     private void CreateBubble()
@@ -120,7 +120,7 @@ public class CauldronController : MonoBehaviour
 
         if (!finalResponseSent)
         {
-            CommonEnums.HouseResponses response = ResponseCollector.OnCheckAcceptableTags.Invoke(other.tag);
+            CommonEnums.HouseResponses response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(other.tag);
             responseHouseEnums.Add(response);
             responseObjNames[responseHouseEnums.Count - 1] = other.name;
 
@@ -137,7 +137,7 @@ public class CauldronController : MonoBehaviour
                         //send the response for the 2 items
                         foreach (CommonEnums.HouseResponses houseResponse in responseHouseEnums)
                         {
-                            ResponseCollector.OnResponseSelected?.Invoke(houseResponse);
+                            ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
                         }
 
                         finalResponseSent = true;

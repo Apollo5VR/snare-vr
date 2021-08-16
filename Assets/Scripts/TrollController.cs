@@ -22,12 +22,11 @@ public class TrollController : MonoBehaviour {
     public string trollLegsAnimation;
     public Animator trollFallStateMachine;
     public Animator trollLegsStateMachine;
-    public static Action<CommonEnums.HouseResponses> OnResponseSelected;
 
     // Use this for initialization
     void Start ()
     {
-        OnResponseSelected += CommandTroll;
+        ResponseCollector.Instance.OnResponseSelected += CommandTroll;
     }
 
     public void Update()
@@ -66,7 +65,6 @@ public class TrollController : MonoBehaviour {
                 DoorOpen();
                 break;
             default:
-                response = CommonEnums.HouseResponses.None;
                 break;
         }
 
@@ -77,7 +75,7 @@ public class TrollController : MonoBehaviour {
     {
         yield return new WaitForSeconds(5);
 
-        ProgressionController.OnLoadNextScene();
+        ProgressionController.Instance.OnLoadNextScene();
     }
 
     private IEnumerator ShootTroll()
@@ -119,5 +117,12 @@ public class TrollController : MonoBehaviour {
         {
             trollanim.enabled = false;
         }
+
+        ResponseCollector.Instance.OnResponseSelected -= CommandTroll;
+    }
+
+    private void OnDestroy()
+    {
+        ResponseCollector.Instance.OnResponseSelected -= CommandTroll;
     }
 }

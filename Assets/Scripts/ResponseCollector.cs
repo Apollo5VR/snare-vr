@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System;
 
 public class ResponseCollector : MonoBehaviour {
-    //public static ResponseCollector Instance { get; private set; }
+    public static ResponseCollector Instance { get; private set; }
     public string questionAnswer;
     public string objectUsed;
     public HPSpeechRecognitionEngine hpSpeechRecognitionEngine;
@@ -51,13 +51,13 @@ public class ResponseCollector : MonoBehaviour {
     public Material wizCurrentMat;
     public Material[] matArray;
 
-    public static Action<CommonEnums.HouseResponses> OnResponseSelected;
-    public static Action OnToggleSceneSelectionResponse;
-    public static Func<string, CommonEnums.HouseResponses> OnCheckAcceptableTags;
+    public Action<CommonEnums.HouseResponses> OnResponseSelected;
+    public Action OnToggleSceneSelectionResponse;
+    public Func<string, CommonEnums.HouseResponses> OnCheckAcceptableTags;
     public bool sceneSelectionResponse = false;
 
     //singleton - depreciated 
-    /*
+    
     private void Awake()
     {
         if (Instance == null)
@@ -69,7 +69,7 @@ public class ResponseCollector : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    */
+    
 
     // Use this for initialization
     private void Start ()
@@ -155,7 +155,7 @@ public class ResponseCollector : MonoBehaviour {
         if (sceneSelectionResponse)
         {
             sceneSelectionResponse = false;
-            ProgressionController.OnLoadChallengeScene((int)response);
+            ProgressionController.Instance.OnLoadChallengeScene((int)response);
         }
     }
 

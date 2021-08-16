@@ -283,9 +283,9 @@ namespace BNG
 
             //TODO - for these might have to place in hit check above incase its not the last object before they release trigger
             //Scene 3 Proving - Troll
-            if (ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Gryfindor)
+            if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Gryfindor)
             {
-                ResponseCollector.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
+                ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
             }
 
             DeactivateStupify();
@@ -365,9 +365,9 @@ namespace BNG
 
             //note: object has gravity enabled, so should just fall to ground once lerp stops
             //Scene 3 Proving - Statue
-            if(ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Ravenclaw)
+            if(ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Ravenclaw)
             {
-                ResponseCollector.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Ravenclaw);
+                ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Ravenclaw);
             }
 
             DeactivateWingardiumLeviosa();
@@ -468,9 +468,9 @@ namespace BNG
                     if (hitObject != hit.transform.gameObject)
                     {
                         hitObject = hit.transform.gameObject;
-                        CommonEnums.HouseResponses response = ResponseCollector.OnCheckAcceptableTags.Invoke(hitObject.tag);
-                        ResponseCollector.OnToggleSceneSelectionResponse?.Invoke();
-                        ResponseCollector.OnResponseSelected?.Invoke(response);
+                        CommonEnums.HouseResponses response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag);
+                        ResponseCollector.Instance.OnToggleSceneSelectionResponse?.Invoke();
+                        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
                     }
                 }
 

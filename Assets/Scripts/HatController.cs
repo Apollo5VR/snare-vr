@@ -42,7 +42,7 @@ public class HatController : MonoBehaviour
             else
             {
                 SendTimeBasedResponse();
-                ProgressionController.OnLoadNextScene?.Invoke();
+                ProgressionController.Instance.OnLoadNextScene?.Invoke();
             }
         }
     }
@@ -70,7 +70,7 @@ public class HatController : MonoBehaviour
             response = CommonEnums.HouseResponses.Slytherin;
         }
 
-        ResponseCollector.OnResponseSelected?.Invoke(response);
+        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
     }
 
     void Update()

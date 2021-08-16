@@ -11,11 +11,11 @@ public class ResponseTrigger : MonoBehaviour
     {
         if (isTag)
         {
-            response = ResponseCollector.OnCheckAcceptableTags.Invoke(gameObject.tag);
+            response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(gameObject.tag);
         }
         else
         {
-            response = ResponseCollector.OnCheckAcceptableTags.Invoke(other.tag);
+            response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(other.tag);
         }
 
         if (response == CommonEnums.HouseResponses.None)
@@ -24,6 +24,6 @@ public class ResponseTrigger : MonoBehaviour
         }
 
         //"Subject" 
-        ResponseCollector.OnResponseSelected?.Invoke(response);
+        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
     }
 }
