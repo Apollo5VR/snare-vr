@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Herry Putter Capstone
+  productName: HPVR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -127,7 +127,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 2.0
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 0}
@@ -135,7 +135,6 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 2474197753653497008, guid: d14962cc57cd1e848ba8f9fa177e3b02, type: 2}
   - {fileID: 11400000, guid: 9cc517523af92444cb7af3953d179d42, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -154,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.oculus.UnitySample
+    Android: com.oculus.HPVR
     Facebook: com.oculus.UnitySample
     PSP2: com.oculus.UnitySample
     Standalone: com.oculus.UnitySample
