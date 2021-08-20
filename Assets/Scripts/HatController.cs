@@ -42,7 +42,7 @@ public class HatController : MonoBehaviour
             else
             {
                 SendTimeBasedResponse();
-                ProgressionController.Instance.OnLoadNextScene?.Invoke();
+                ProgressionController.Instance.OnLoadNextScene?.Invoke(2);
             }
         }
     }

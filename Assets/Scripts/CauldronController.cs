@@ -82,7 +82,7 @@ public class CauldronController : MonoBehaviour
         audioData[0].Stop();
 
         //TODO - GG - some kind of scene progression or button activation here? only bubbles on success - success means progress
-        ProgressionController.Instance.OnLoadNextScene?.Invoke();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(3);
     }
 
     private void CreateBubble()

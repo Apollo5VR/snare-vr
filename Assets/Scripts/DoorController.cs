@@ -8,7 +8,7 @@ public class DoorController : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            ProgressionController.Instance.OnLoadNextScene?.Invoke();
+            ProgressionController.Instance.OnLoadNextScene?.Invoke(0);
         }
     }
 }

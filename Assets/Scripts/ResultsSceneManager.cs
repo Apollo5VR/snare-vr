@@ -7,6 +7,7 @@ public class ResultsSceneManager : MonoBehaviour
 {
     public GameObject[] houseCrestsHolder; //none, ravenClawPoints, gryffindorPoints, hufflePuffPoints, slytherinPoints
     public Text resultTextHolder;
+    public Text hiddenResultTextHolder;
 
     private void Start()
     {

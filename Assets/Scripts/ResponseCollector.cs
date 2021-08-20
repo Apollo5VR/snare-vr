@@ -132,10 +132,11 @@ public class ResponseCollector : MonoBehaviour
     private void DetermineFinalHouse()
     {
         humanRobeObjs = GameObject.FindGameObjectsWithTag("Robe");
-        GameObject resultsSceneManagerObj = GameObject.Find("ResultsSceneManager");
+        GameObject resultsSceneManagerObj = GameObject.Find("ResultsSceneHatManager");
         ResultsSceneManager rsm = resultsSceneManagerObj.GetComponent<ResultsSceneManager>();
         houseCrestsObj = rsm.houseCrestsHolder;
         resultText = rsm.resultTextHolder;
+        rsm.hiddenResultTextHolder.text = "You Found It!" + "\nNa:" + housePoints[0] + "R: " + housePoints[1] + "G: " + housePoints[2] + "\nH: " + housePoints[3] + "S: " + housePoints[4];
 
         foreach (GameObject obj in houseCrestsObj)
         {

@@ -68,14 +68,7 @@ public class TrollController : MonoBehaviour {
                 break;
         }
 
-        StartCoroutine(TimerToEndScene());
-    }
-
-    private IEnumerator TimerToEndScene()
-    {
-        yield return new WaitForSeconds(5);
-
-        ProgressionController.Instance.OnLoadNextScene();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
     }
 
     private IEnumerator ShootTroll()

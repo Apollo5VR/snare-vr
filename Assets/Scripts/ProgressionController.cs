@@ -11,12 +11,12 @@ public class ProgressionController : MonoBehaviour
     public BNG.PlayerTeleport playerTeleport;
     public GameObject sceneLoadingBlackSphere;
     public bool debugProgressNextScene;
-    public bool testMovePlayer;
 
-    public Action OnLoadNextScene;
+    public Action<float> OnLoadNextScene;
     public Action<int> OnLoadChallengeScene;
 
     private int nextLevel;
+    private IEnumerator autoProgressCR;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class ProgressionController : MonoBehaviour
         //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnLoadNextScene += LoadNextScene;
-        OnLoadChallengeScene += LoadSpecifiedScene;
+        OnLoadChallengeScene += LoadQuestionScene;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
     }
@@ -52,21 +52,22 @@ public class ProgressionController : MonoBehaviour
         }
     }
 
-    private void LoadNextScene()
+    private void LoadNextScene(float time)
     {   
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        if(SceneManager.GetActiveScene().buildIndex > 5)
+        if(SceneManager.GetActiveScene().buildIndex > 4)
         {
-            SceneManager.LoadScene(8); //results scene
+            StartCoroutine(TimerToEndScene(8, time)); // 8 - results scene
         }
-
-        SceneManager.LoadScene(nextLevel);
-
+        else
+        {
+            StartCoroutine(TimerToEndScene(nextLevel, time));
+        }
     }
 
-    public void LoadSpecifiedScene(int sceneIncrement = 0)
+    public void LoadQuestionScene(int sceneIncrement = 0)
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
@@ -78,8 +79,14 @@ public class ProgressionController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        StopAllCoroutines();
+
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        Debug.Log(mode);
+        if(nextLevel < 5)
+        {
+            autoProgressCR = TimerToEndScene(nextLevel, 210);
+            StartCoroutine(autoProgressCR);
+        }
 
         //TODO - find spawn position, relocate player
         Transform startingPosition = GameObject.Find("StartingPosition").transform;
@@ -103,11 +110,29 @@ public class ProgressionController : MonoBehaviour
         SceneManager.LoadScene(nextLevel);
     }
 
+    public void DelayedSceneProgression(int sceneBuildIndex, float time)
+    {
+        StartCoroutine(TimerToEndScene(sceneBuildIndex, time));
+    }
+
+    private IEnumerator TimerToEndScene(int sceneBuildIndex, float time)
+    {
+        //if a user triggers end scene by completing all actions, stop the auto progress
+        if(time < 30)
+        {
+            StopCoroutine(autoProgressCR);
+        }
+
+        yield return new WaitForSeconds(time);
+
+        SceneManager.LoadScene(sceneBuildIndex);
+    }
+
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         OnLoadNextScene -= LoadNextScene;
-        OnLoadChallengeScene -= LoadSpecifiedScene;
+        OnLoadChallengeScene -= LoadQuestionScene;
     }
 }
 

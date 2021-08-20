@@ -19,32 +19,25 @@ public class SocialSceneController : MonoBehaviour
         {
             case 1:
                 //Ravenclaw
-                audioOptions[1].Play();
+                audioOptions[0].Play();
                 break;
             case 2:
                 //Gryfindor
-                audioOptions[2].Play();
+                audioOptions[1].Play();
                 break;
             case 3:
                 //Hufflepuff
-                audioOptions[3].Play();
+                audioOptions[2].Play();
                 break;
             case 4:
                 //Slytherin
-                audioOptions[4].Play();
+                audioOptions[3].Play();
                 break;
             default:
                 break;
         }
 
-        StartCoroutine(TimerToEndScene());
-    }
-
-    private IEnumerator TimerToEndScene()
-    {
-        yield return new WaitForSeconds(5);
-
-        ProgressionController.Instance.OnLoadNextScene();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
     }
 
     void Destroy()

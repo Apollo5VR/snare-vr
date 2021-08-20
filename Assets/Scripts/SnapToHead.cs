@@ -19,7 +19,7 @@ public class SnapToHead : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         transform.position = m_MainCamera.gameObject.transform.position;
-        transform.localRotation = transform.localRotation * new Quaternion(0, 0, 180, 0);
+        transform.localRotation = transform.localRotation * new Quaternion(0, 0, 0.5f, 0);
         transform.parent = m_MainCamera.gameObject.transform;
 
         danceText.SetActive(true);
@@ -34,13 +34,6 @@ public class SnapToHead : MonoBehaviour
             }
         }
 
-        StartCoroutine(TimerToEndScene());
-    }
-
-    private IEnumerator TimerToEndScene()
-    {
-        yield return new WaitForSeconds(8);
-
-        ProgressionController.Instance.OnLoadNextScene();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
     }
 }

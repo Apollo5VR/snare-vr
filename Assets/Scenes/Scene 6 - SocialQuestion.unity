@@ -511,7 +511,6 @@ GameObject:
   - component: {fileID: 520727283}
   - component: {fileID: 520727284}
   - component: {fileID: 520727285}
-  - component: {fileID: 520727286}
   m_Layer: 0
   m_Name: Book
   m_TagString: Ravenclaw
@@ -573,14 +572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testBool: 0
---- !u!81 &520727286
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 520727281}
-  m_Enabled: 1
 --- !u!1 &584261714
 GameObject:
   m_ObjectHideFlags: 0
