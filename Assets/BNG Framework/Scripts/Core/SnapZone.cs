@@ -113,16 +113,19 @@ namespace BNG {
             //TODO - sub onsceneload
             if (isWandDefaultSnapZone)
             {
-                SceneManager.sceneLoaded += OnSceneLoaded;
+                //SceneManager.sceneLoaded += OnSceneLoaded;
             }
         }
 
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        public void OnWandDropped() //Scene scene, LoadSceneMode mode
         {
             // Auto Equip item
             //if (HeldItem == null)
             //{
+            if (isWandDefaultSnapZone)
+            {
                 GrabGrabbable(wand);
+            }
             //}
         }
 
@@ -467,7 +470,7 @@ namespace BNG {
         {
             if (isWandDefaultSnapZone)
             {
-                SceneManager.sceneLoaded -= OnSceneLoaded;
+                //SceneManager.sceneLoaded -= OnSceneLoaded;
             }
         }
     }
