@@ -6152,6 +6152,41 @@ PrefabInstance:
       propertyPath: RingHelperScale
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 815246588}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnWandDropped
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BNG.SnapZone, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6381165550358394521, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
       propertyPath: m_Name

@@ -115,9 +115,12 @@ public class CauldronController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        other.gameObject.GetComponent<Rigidbody>().useGravity = true;
-        other.gameObject.transform.position = returnTranform.position + new Vector3(0,0, UnityEngine.Random.Range(-2,2));
+        //depreciated
+        //Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+        //rb.isKinematic = true;
+        //rb.useGravity = true;
+
+        other.gameObject.transform.position = returnTranform.position + new Vector3(0, 0, UnityEngine.Random.Range(-1, 1));
 
         if (!finalResponseSent)
         {
@@ -165,6 +168,6 @@ public class CauldronController : MonoBehaviour
                     }
                 }
             }
-        }  
+        }
     }
 }
