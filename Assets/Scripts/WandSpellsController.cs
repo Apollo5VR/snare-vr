@@ -262,11 +262,11 @@ namespace BNG
             {
                 //creates a laser 20 forward when pressed down & a hit point
                 laser.SetPosition(0, gameObject.transform.position);
-                laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 20);// NEW update this in all
+                laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 50);// NEW update this in all
                 RaycastHit hit;
 
                 ray = new Ray(transform.position, transform.forward);  /*faster moethod: https://answers.unity.com/questions/949222/is-raycast-efficient-in-update.html */
-                if (Physics.Raycast(ray, out hit, 20, spellLaserMask))
+                if (Physics.Raycast(ray, out hit, 50, spellLaserMask))
                 {
                     if (hitObject != hit.transform.gameObject)
                     {

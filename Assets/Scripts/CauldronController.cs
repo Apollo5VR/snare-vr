@@ -81,7 +81,6 @@ public class CauldronController : MonoBehaviour
 
         audioData[0].Stop();
 
-        //TODO - GG - some kind of scene progression or button activation here? only bubbles on success - success means progress
         ProgressionController.Instance.OnLoadNextScene?.Invoke(3);
     }
 
@@ -116,7 +115,9 @@ public class CauldronController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.transform.position = returnTranform.position;
+        other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        other.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        other.gameObject.transform.position = returnTranform.position + new Vector3(0,0, UnityEngine.Random.Range(-2,2));
 
         if (!finalResponseSent)
         {

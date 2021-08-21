@@ -40,6 +40,10 @@ public class ProgressionController : MonoBehaviour
         OnLoadChallengeScene += LoadQuestionScene;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+
+        //also called in below
+        autoProgressCR = TimerToEndScene(nextLevel, 210);
+        StartCoroutine(autoProgressCR);
     }
 
     //testing only
@@ -120,7 +124,10 @@ public class ProgressionController : MonoBehaviour
         //if a user triggers end scene by completing all actions, stop the auto progress
         if(time < 30)
         {
-            StopCoroutine(autoProgressCR);
+            if(autoProgressCR != null)
+            {
+                StopCoroutine(autoProgressCR);
+            }
         }
 
         yield return new WaitForSeconds(time);

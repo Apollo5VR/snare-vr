@@ -68,7 +68,7 @@ public class TrollController : MonoBehaviour {
                 break;
         }
 
-        ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(6);
     }
 
     private IEnumerator ShootTroll()

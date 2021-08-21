@@ -679,7 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RingOnValidPickup: 1
   RingOnValidRemotePickup: 0
-  RingHelperScale: 30
+  RingHelperScale: 3
 --- !u!54 &84385345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &190594533
 Transform:
@@ -2070,7 +2070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RingOnValidPickup: 1
   RingOnValidRemotePickup: 0
-  RingHelperScale: 15
+  RingHelperScale: 100
 --- !u!54 &1071280452
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RingOnValidPickup: 1
   RingOnValidRemotePickup: 0
-  RingHelperScale: 10
+  RingHelperScale: 20
 --- !u!54 &1131954934
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3541,7 +3541,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1327303489
 Transform:
@@ -3573,7 +3573,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!102 &1347166713
 TextMesh:
@@ -5801,7 +5801,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946701820}
   m_LocalRotation: {x: 0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 0, y: 0.539, z: -63.99999}
+  m_LocalPosition: {x: 0, y: 0.555, z: -63.99999}
   m_LocalScale: {x: 13.333334, y: 0.033333335, z: 199.99997}
   m_Children: []
   m_Father: {fileID: 190594533}
@@ -5992,7 +5992,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!82 &2142150356
 AudioSource:
