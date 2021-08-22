@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SnapToHead : MonoBehaviour
 {
@@ -35,5 +36,13 @@ public class SnapToHead : MonoBehaviour
         }
 
         ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
+
+        SceneManager.sceneUnloaded += DestroySelf;
+    }
+
+    private void DestroySelf(Scene scene)
+    {
+        Destroy(gameObject);
+        SceneManager.sceneUnloaded -= DestroySelf;
     }
 }

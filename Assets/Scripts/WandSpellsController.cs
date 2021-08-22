@@ -25,6 +25,8 @@ namespace BNG
         public AudioSource spellAudio;
         public Vector3 hitObjectInitialPosition;
 
+        public DigitalRuby.LightningBolt.LightningBoltScript lightingBoltScript;
+
         //test stuff
         public GameObject debugHitObject;
             public bool debugTrue = false;
@@ -34,10 +36,12 @@ namespace BNG
         private LineRenderer laser;
 
         private GameObject wandFire;
-        private GameObject wandFlash;
+        //private GameObject wandFlash; //depreciated
         private GameObject hitObject;
         private bool spellActive = false;
         private int activeScene = 0;
+
+        private int closeCount = 0;
 
         #region deactives
         /*
@@ -55,8 +59,10 @@ namespace BNG
             wandSparks.SetActive(false);
             wandFire = Instantiate(wandFirePrefab);
             wandFire.SetActive(false);
-            wandFlash = Instantiate(wandFlashPrefab);
-            wandFlash.SetActive(false);
+
+            //depreciated - stupify 
+            //wandFlash = Instantiate(wandFlashPrefab, gameObject.transform);
+            //wandFlash.SetActive(false);
 
             laser = GetComponentInChildren<LineRenderer>();
             laser.gameObject.SetActive(false);
@@ -105,10 +111,30 @@ namespace BNG
 
         public override void OnButton1Up()
         {
-
             ActivateSpellWheel();
 
             base.OnButton1Up();
+        }
+
+        //close helpers
+        //TODO - if crashes - look here
+        public override void OnButton2()
+        {
+            Debug.Log("button Y held");
+
+            closeCount++;
+
+            if (spellActive && closeCount > 1000)
+            {
+                Application.Quit();
+            }
+
+            base.OnButton2();
+        }
+
+        public override void OnButton2Up()
+        {
+            closeCount = 0;
         }
 
         public override void OnTrigger(float triggerValue)
@@ -155,7 +181,7 @@ namespace BNG
                         StartCoroutine(CastWingardiumLeviosa());
                         break;
                     case CommonEnums.AvailableSpells.Stupify:
-                        StartCoroutine(CastStupify());
+                        StartCoroutine(CastLightning());
                         break;
                     case CommonEnums.AvailableSpells.None:
                         //TODO - refactor this - dont like the conditional necessity for this
@@ -252,11 +278,11 @@ namespace BNG
             if (hitObject != null)
             {
                 hitObject = null;
-                wandFire.SetActive(false);
+                //wandFire.SetActive(false);
             }
         }
 
-        private IEnumerator CastStupify()
+        private IEnumerator CastLightning() //previously Stupify
         {
             while (spellActive)
             {
@@ -271,34 +297,55 @@ namespace BNG
                     if (hitObject != hit.transform.gameObject)
                     {
                         hitObject = hit.transform.gameObject;
-                        wandFlash.transform.position = hitObject.transform.position;
+                        lightingBoltScript.EndObject = hitObject;
+
                         yield return null;
-                        wandFlash.SetActive(true);
+
+                        lightingBoltScript.Trigger();
+                        //lightingBoltScript.gameObject.SetActive(true);
+                        //this.GetComponent<LineRenderer>().enabled = true;
+
+                        //depreciated (stupify)
+                        //wandFlash.transform.position = hitObject.transform.position;
+                        //yield return null;
+                        //wandFlash.SetActive(true);
                     }
 
+                    lightingBoltScript.Trigger();
                 }
 
                 yield return null;
             }
 
-            //TODO - for these might have to place in hit check above incase its not the last object before they release trigger
             //Scene 3 Proving - Troll
-            if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Gryfindor)
+            if(hitObject != null && hitObject.name == "TheTroll")
             {
-                ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
+                if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject?.tag) == CommonEnums.HouseResponses.Gryfindor)
+                {
+                    if(TrollController.Instance != null)
+                    {
+                        TrollController.Instance.OnTrollSceneResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
+                    }
+                }
             }
 
-            DeactivateStupify();
+            DeactivateLightning();
         }
 
-        private void DeactivateStupify()
+        private void DeactivateLightning() //previously stupify
         {
+            lightingBoltScript.EndObject = null;
+            //lightingBoltScript.gameObject.SetActive(false);
+
+            //this.GetComponent<LineRenderer>().enabled = false;
             //might need to put in ^ halo script here to deactivate halo again...but not sure
             //playSound = false;
             if (hitObject != null)
             {
                 hitObject = null;
-                wandFlash.SetActive(false);
+
+                //depreciated - stupify
+                //wandFlash.SetActive(false);
             }
         }
 
@@ -344,7 +391,10 @@ namespace BNG
                 }
 
                 // animate the position of the game object...
-                hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
+                if(hitObject != null)
+                {
+                    hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
+                }            
 
                 // .. and increase the t interpolater
                 t += 0.75f * Time.deltaTime;
@@ -365,9 +415,15 @@ namespace BNG
 
             //note: object has gravity enabled, so should just fall to ground once lerp stops
             //Scene 3 Proving - Statue
-            if(ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Ravenclaw)
+            if (hitObject != null && hitObject.name == "TheKnight")
             {
-                ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Ravenclaw);
+                if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag) == CommonEnums.HouseResponses.Ravenclaw)
+                {
+                    if (TrollController.Instance != null)
+                    {
+                        TrollController.Instance.OnTrollSceneResponseSelected?.Invoke(CommonEnums.HouseResponses.Ravenclaw);
+                    }
+                }
             }
 
             DeactivateWingardiumLeviosa();
@@ -453,8 +509,6 @@ namespace BNG
 
         private IEnumerator CastChallengeSelectionRaycast()
         {
-            int sceneSelection = 0;
-
             while (spellActive)
             {
                 //creates a laser 20 forward when pressed down & a hit point

@@ -37,6 +37,8 @@ public class SocialSceneController : MonoBehaviour
                 break;
         }
 
+        ResponseCollector.Instance.OnResponseSelected -= SocialCommand;
+
         ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
     }
 

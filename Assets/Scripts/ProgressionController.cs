@@ -61,7 +61,7 @@ public class ProgressionController : MonoBehaviour
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        if(SceneManager.GetActiveScene().buildIndex > 4)
+        if(SceneManager.GetActiveScene().buildIndex > 3)
         {
             StartCoroutine(TimerToEndScene(8, time)); // 8 - results scene
         }

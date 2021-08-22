@@ -166,7 +166,7 @@ public class ResponseCollector : MonoBehaviour
             string[] houseNames = Enum.GetNames(typeof(CommonEnums.HouseResponses));
 
             SwapRobeColors(finalHouse);
-            resultText.text = "Congrats you " + houseNames[finalHouse] + ". " + resultTextOptions[0];
+            resultText.text = "Congrats you " + houseNames[finalHouse] + HouseNameScrambler() + ". " + resultTextOptions[0];
             //crowdCheer.Play();
         }
         //if multiple equal the same, determine inconclusive
@@ -186,6 +186,25 @@ public class ResponseCollector : MonoBehaviour
             StartCoroutine(TimerToReloadChallengeScene());
 
             //crowdCheer.Stop();
+        }
+    }
+
+    private string HouseNameScrambler()
+    {
+        switch (UnityEngine.Random.Range(0, 4))
+        {
+            case 0:
+                return "a";
+            case 1:
+                return "d";
+            case 2:
+                return "z";
+            case 3:
+                return "o";
+            case 4:
+                return "i";
+            default:
+                return "p";
         }
     }
 

@@ -6,24 +6,40 @@ public class ResponseTrigger : MonoBehaviour
 {
     public bool isTag; //used to determine if should compare the tag of this object, or the tag of object that collided with this object
     private CommonEnums.HouseResponses response;
+    private int responseCount = 0;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isTag)
+        //limits each object to only sending 1 response
+        if(responseCount < 1)
         {
-            response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(gameObject.tag);
-        }
-        else
-        {
-            response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(other.tag);
-        }
+            if (isTag)
+            {
+                response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(gameObject.tag);
+            }
+            else
+            {
+                response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(other.tag);
+            }
 
-        if (response == CommonEnums.HouseResponses.None)
-        {
-            return;
-        }
+            if (response == CommonEnums.HouseResponses.None)
+            {
+                return;
+            }
 
-        //"Subject" 
-        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+            Debug.Log("ResponseCollected");
+
+            //note: one unique case, all other instances handled differently
+            if(TrollController.Instance != null)
+            {
+                TrollController.Instance.OnTrollSceneResponseSelected?.Invoke(response);
+            }
+            else
+            {
+                ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+            }
+
+            responseCount++;
+        }
     }
 }

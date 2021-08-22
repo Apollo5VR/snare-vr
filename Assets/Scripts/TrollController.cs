@@ -6,27 +6,58 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class TrollController : MonoBehaviour {
+    public static TrollController Instance { get; private set; }
     public bool testBool = false;
 
+    public GameObject explosion;
+    public GameObject trollBody;
     public GameObject knight;
     public Animator optionalDoorAnimator;
     public Animator[] trollAnims; //2 - position, leg movement
-    Vector3 liveTrollPosition;
-    private float delayTime;
-    private bool startDelayTime;
 
     public AudioSource[] audioOptions;
 
-    //animations;
-    public string trollFallAnimation;
-    public string trollLegsAnimation;
-    public Animator trollFallStateMachine;
-    public Animator trollLegsStateMachine;
+    public Action<CommonEnums.HouseResponses> OnTrollSceneResponseSelected;
+
+    //depreciated
+    //private Vector3 liveTrollPosition;
+    //private float delayTime;
+    //private bool startDelayTime;
+
+    //depreciated animations;
+    //public string trollFallAnimation;
+    //public string trollLegsAnimation;
+    //public Animator trollFallStateMachine;
+    //public Animator trollLegsStateMachine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Use this for initialization
     void Start ()
     {
-        ResponseCollector.Instance.OnResponseSelected += CommandTroll;
+        OnTrollSceneResponseSelected += CommandTroll;
+
+        StartCoroutine(TimerTillTrollKills());
+    }
+
+    private IEnumerator TimerTillTrollKills()
+    {
+        //15s till the troll reaches you
+        yield return new WaitForSeconds(16);
+
+        ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.None);
+
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(0);
     }
 
     public void Update()
@@ -42,12 +73,15 @@ public class TrollController : MonoBehaviour {
     {
         DisableTroll();
 
+        //will usually happen only 1x, but can happen more if you "change your mind" last second (part of the test)
+        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+
         switch ((int)response)
         {
             case 1:
                 //Ravenclaw;
                 //turn right
-                TrollDistract();
+                StartCoroutine(TrollDistractRotation());
                 break;
             case 2:
                 //Gryfindor;
@@ -80,6 +114,8 @@ public class TrollController : MonoBehaviour {
 
             audioOptions[1].Stop();
             this.GetComponent<LineRenderer>().enabled = false;
+
+            TrollDeath();
     }
 
     private void DoorOpen()
@@ -90,14 +126,33 @@ public class TrollController : MonoBehaviour {
         }
     }
 
+    //depreciated
     private void TrollDistract()
     {
-        this.transform.LookAt(knight.transform);
+        transform.LookAt(knight.transform);
+
+    }
+
+    private IEnumerator TrollDistractRotation()
+    {
+        while(true)
+        {
+            Vector3 direction = knight.transform.position - transform.position;
+            direction.y = 0;
+            Quaternion toRotation = Quaternion.LookRotation(direction);
+
+            yield return null;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.001f * Time.time);
+        }
     }
 
     private void TrollDeath()
     {
-        this.transform.localScale = new Vector3(0, 0, 0);
+        trollBody.SetActive(false);
+
+        //vfx explosion
+        explosion.SetActive(true);
     }
 
     private void DisableTroll()
@@ -117,5 +172,7 @@ public class TrollController : MonoBehaviour {
     private void OnDestroy()
     {
         ResponseCollector.Instance.OnResponseSelected -= CommandTroll;
+
+        StopAllCoroutines();
     }
 }

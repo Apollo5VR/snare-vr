@@ -16339,6 +16339,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e804a105741464c4196f69f5404197e9, type: 2}
+    - target: {fileID: 13700014, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700014, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700014, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a74ebe2cfee379c49ba623bd07f561d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
 --- !u!4 &1190443398 stripped
@@ -24765,7 +24777,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!82 &82658548996077893
 AudioSource:
   m_ObjectHideFlags: 0
