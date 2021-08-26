@@ -1622,7 +1622,7 @@ PrefabInstance:
     - target: {fileID: 1654835181286922616, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: CharacterControllerYOffset
-      value: -0.5
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2652272226723133968, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}

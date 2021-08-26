@@ -55,7 +55,8 @@ public class TrollController : MonoBehaviour {
         //15s till the troll reaches you
         yield return new WaitForSeconds(16);
 
-        ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.None);
+        //note: deactivating this as no response is super discouraging in initial testing (not funny)
+        //ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.None);
 
         ProgressionController.Instance.OnLoadNextScene?.Invoke(0);
     }

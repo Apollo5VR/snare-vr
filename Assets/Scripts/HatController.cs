@@ -53,19 +53,19 @@ public class HatController : MonoBehaviour
         float time = Time.timeSinceLevelLoad;
         CommonEnums.HouseResponses response = CommonEnums.HouseResponses.None;
 
-        if(time > 120)
+        if(time > 90)
         {
             response = CommonEnums.HouseResponses.Ravenclaw;
         }
-        else if(time > 90)
+        else if(time > 60)
         {
             response = CommonEnums.HouseResponses.Hufflepuff;
         }
-        else if (time > 60)
+        else if (time > 30)
         {
             response = CommonEnums.HouseResponses.Gryfindor;
         }
-        else if (time > 30)
+        else if (time > 0)
         {
             response = CommonEnums.HouseResponses.Slytherin;
         }

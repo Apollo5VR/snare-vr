@@ -39,9 +39,6 @@ public class FloatLerp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
             gameObject.SetActive(false);
-        }
     }
 }

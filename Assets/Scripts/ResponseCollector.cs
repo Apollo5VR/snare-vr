@@ -143,8 +143,8 @@ public class ResponseCollector : MonoBehaviour
             obj.SetActive(false);
         }
 
-        int greatestHousePoints = Mathf.Max(housePoints[0], housePoints[1], housePoints[2], housePoints[3], housePoints[4]);
-        int lowestHousePoints = Mathf.Min(housePoints[0], housePoints[1], housePoints[2], housePoints[3], housePoints[4]);
+        int greatestHousePoints = Mathf.Max(housePoints[1], housePoints[2], housePoints[3], housePoints[4]); //removing none - housePoints[0]
+        int lowestHousePoints = Mathf.Min(housePoints[1], housePoints[2], housePoints[3], housePoints[4]); //removing none - housePoints[0]
         int houseTieTester = 0;
         int finalHouse = 0;
 
