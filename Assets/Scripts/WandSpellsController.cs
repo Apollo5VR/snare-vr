@@ -223,7 +223,7 @@ namespace BNG
                         hitObject.GetComponent<Rigidbody>().useGravity = false;
                     }
 
-                    hitObject.transform.position = Vector3.MoveTowards(hitObject.transform.position, gameObject.transform.position + new Vector3(0,0,1), moveSpeed);
+                    hitObject.transform.position = Vector3.MoveTowards(hitObject.transform.position, gameObject.transform.position + new Vector3(0,0,2.5f), moveSpeed);
                 }
 
                 yield return null;
