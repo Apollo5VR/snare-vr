@@ -98,9 +98,9 @@ public class ResponseCollector : MonoBehaviour
 
         if (sceneSelectionResponse)
         {
-            challengeSceneSelected = (int)response;
+            challengeSceneSelected = (int)response + 1;
             sceneSelectionResponse = false;
-            ProgressionController.Instance.OnLoadChallengeScene((int)response);
+            ProgressionController.Instance.OnLoadChallengeScene((int)response); //note: +1 to align with actual scene num
         }
     }
 

@@ -527,7 +527,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100036, guid: 93acd495ffe81694a8e9f5578a5a4201, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100036, guid: 93acd495ffe81694a8e9f5578a5a4201, type: 3}
       propertyPath: m_TagString
@@ -2156,7 +2156,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d438672b7528dc6428ff337cdd066826,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d438672b7528dc6428ff337cdd066826,
         type: 3}
@@ -2433,7 +2433,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f35c9931a4222f249816b11ae8a13fc1,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f35c9931a4222f249816b11ae8a13fc1,
         type: 3}
@@ -8373,7 +8373,7 @@ GameObject:
   - component: {fileID: 1324162282921105843}
   - component: {fileID: 1324162282921105842}
   - component: {fileID: 1324162282921105845}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Mouse
   m_TagString: Gryfindor
   m_Icon: {fileID: 0}

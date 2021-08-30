@@ -57,13 +57,13 @@ public class ProgressionController : MonoBehaviour
     }
 
     private void LoadNextScene(float time)
-    {   
+    {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        if(SceneManager.GetActiveScene().buildIndex > 4)
+        if (SceneManager.GetActiveScene().buildIndex > 4)
         {
-            StartCoroutine(TimerToEndScene(8, time)); // 8 - results scene
+            StartCoroutine(TimerToEndScene(9, time)); // 9 - results scene
         }
         else
         {
@@ -76,7 +76,7 @@ public class ProgressionController : MonoBehaviour
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        //3 is the challenge selection scene
+        //4 is the challenge selection scene
         //TODO - find way to not need hard coded value
         SceneManager.LoadScene(4 + sceneIncrement);
     }

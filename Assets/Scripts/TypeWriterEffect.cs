@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class TypeWriterEffect : MonoBehaviour {
 
 	public float delay = 0.1f;
-    public float delay1 = 5.0f;
+    public float delay1 = 4.0f;
     public float delayProving = 15.0f;
     public List<string> fullTextList; 
     private string chosenText = "";

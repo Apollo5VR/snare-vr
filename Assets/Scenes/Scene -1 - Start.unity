@@ -2170,7 +2170,7 @@ PrefabInstance:
     - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
@@ -2181,7 +2181,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1328938866}
     - target: {fileID: 6380961580216612831, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
       propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -2306,6 +2306,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3522f7dcc1f7e7489c6b7b443ac59c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &478291332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
+    type: 3}
+  m_PrefabInstance: {fileID: 478291324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478291325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0feb0109bc97a45a62345f3e1fc657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &478291338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6380961580216612828, guid: 9c1769eabfde23544ab69e4cb33bca69,
+    type: 3}
+  m_PrefabInstance: {fileID: 478291324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478291325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &544142365
@@ -2891,7 +2915,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 767393242}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
@@ -2921,7 +2945,7 @@ PrefabInstance:
     - target: {fileID: 1654835181286922616, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: CharacterControllerYOffset
-      value: -0.25
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2652272226723133968, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
@@ -3782,7 +3806,7 @@ MonoBehaviour:
   - {fileID: 87951347}
   - {fileID: 319872508}
   - {fileID: 11047851}
-  wandSpellsController: {fileID: 0}
+  wandSpellsController: {fileID: 478291332}
 --- !u!1 &1060928356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,7 +4401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HeldItem: {fileID: 0}
-  wand: {fileID: 0}
+  wand: {fileID: 478291338}
   isWandDefaultSnapZone: 1
   CanDropItem: 1
   CanSwapItem: 1

@@ -77,7 +77,7 @@ namespace BNG
         {
             //TODO - refactor - remove the necessity for this - scene management should only be checked in ProgressionController
             activeScene = SceneManager.GetActiveScene().buildIndex;
-            if (activeScene == 3)
+            if (activeScene == 4)
             {
                 spellSelected = CommonEnums.AvailableSpells.None;
             }
@@ -202,7 +202,7 @@ namespace BNG
                         break;
                     case CommonEnums.AvailableSpells.None:
                         //TODO - refactor this - dont like the conditional necessity for this
-                        if (activeScene != 3) // "SortingHatQuestioningScene"
+                        if (activeScene != 4) // "SortingHatQuestioningScene"
                         {
                             StartCoroutine(CastSputter());
                         }
