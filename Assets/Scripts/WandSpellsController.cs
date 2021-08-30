@@ -42,6 +42,8 @@ namespace BNG
         private int activeScene = 0;
 
         private int closeCount = 0;
+        private int startCount = 0;
+        private bool isStart = true;
 
         #region deactives
         /*
@@ -109,9 +111,24 @@ namespace BNG
             spellSelectionWheelManager.gameObject.SetActive(true);
         }
 
+        public override void OnGrab(Grabber grabber)
+        {
+            if (isStart)
+            {
+                Debug.Log("Wand Grabbed");
+                isStart = false;
+                ProgressionController.Instance.OnLoadNextScene(1);
+
+                base.OnGrab(grabber);
+            }
+        }
+
         public override void OnButton1Up()
         {
-            ActivateSpellWheel();
+            if(!isStart)
+            {
+                ActivateSpellWheel();
+            }
 
             base.OnButton1Up();
         }

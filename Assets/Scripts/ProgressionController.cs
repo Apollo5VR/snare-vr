@@ -61,7 +61,7 @@ public class ProgressionController : MonoBehaviour
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
 
-        if(SceneManager.GetActiveScene().buildIndex > 3)
+        if(SceneManager.GetActiveScene().buildIndex > 4)
         {
             StartCoroutine(TimerToEndScene(8, time)); // 8 - results scene
         }
@@ -78,7 +78,7 @@ public class ProgressionController : MonoBehaviour
 
         //3 is the challenge selection scene
         //TODO - find way to not need hard coded value
-        SceneManager.LoadScene(3 + sceneIncrement);
+        SceneManager.LoadScene(4 + sceneIncrement);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -86,7 +86,7 @@ public class ProgressionController : MonoBehaviour
         StopAllCoroutines();
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if(nextLevel < 5)
+        if(nextLevel < 6)
         {
             autoProgressCR = TimerToEndScene(nextLevel, 210);
             StartCoroutine(autoProgressCR);

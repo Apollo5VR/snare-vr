@@ -6,16 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scene 0 - LoadingScene.unity
+    path: Assets/Scenes/Scene -1 - Start.unity
+    guid: c55ece11057c520479ee8b2194869894
+  - enabled: 1
+    path: Assets/Scenes/Scene 0 - Tutorial.unity
     guid: 34975f0720d64754c94756727031783d
   - enabled: 1
     path: Assets/Scenes/Scene 1 - TrainStation.unity
     guid: 334f4a2030ce97041b49c6f1d52fa59b
   - enabled: 1
-    path: Assets/Scenes/Scene 2 - GrandHallScene.unity
+    path: Assets/Scenes/Scene 2 - GrandHall.unity
     guid: 944b23554ae0c7d479b98756a02cc3f9
   - enabled: 1
-    path: Assets/Scenes/Scene 3 - SortingHatQuestioningScene.unity
+    path: Assets/Scenes/Scene 3 - SortingHatQuestion.unity
     guid: f7279bca1e99c444ea8e25ac3d01cf04
   - enabled: 1
     path: Assets/Scenes/Scene 4 - PotionsQuestion.unity
@@ -30,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene 7 - MaskQuestion.unity
     guid: 2b5ae4d18c9f56a40859bd2b82d7f0aa
   - enabled: 1
-    path: Assets/Scenes/Scene 8 - GrandHallResultsScene.unity
+    path: Assets/Scenes/Scene 8 - GrandHallResults.unity
     guid: 176387d2378048848b45a74c8dce47fb
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9cc517523af92444cb7af3953d179d42,

@@ -37,8 +37,8 @@ public class FloatLerp : MonoBehaviour
             }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-            gameObject.SetActive(false);
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+            //gameObject.SetActive(false);
+    //}
 }
