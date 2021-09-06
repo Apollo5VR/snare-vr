@@ -17,6 +17,10 @@ public class CauldronController : MonoBehaviour
     public float bubbleFxDuration;
     public AudioSource[] audioData;
 
+    public GameObject potionsText;
+    public GameObject potionsBottle;
+    //public MeshRenderer potionsMeshRenderer;
+    //public Material[] potionMats;
     public Transform returnTranform;
 
     public Color[] potionsColor;
@@ -40,6 +44,9 @@ public class CauldronController : MonoBehaviour
 
     private void Start()
     {
+        potionsBottle.SetActive(false);
+        potionsText.SetActive(false);
+
         audioData = GetComponents<AudioSource>();
 
         surfaceMat = surfaceGO.GetComponent<Renderer>().material;
@@ -62,6 +69,18 @@ public class CauldronController : MonoBehaviour
         }
     }
 
+    private void ActivatePotionBottle()
+    {
+        potionsBottle.SetActive(true);
+        potionsText.SetActive(true);
+    }
+
+    public void bottleGrabbedDrink()
+    {
+        audioData[2].Play();
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(6);
+    }
+
     private IEnumerator BubbleFx()
     {
         float currentTimePassed = 0;
@@ -81,7 +100,9 @@ public class CauldronController : MonoBehaviour
 
         audioData[0].Stop();
 
-        ProgressionController.Instance.OnLoadNextScene?.Invoke(3);
+        ActivatePotionBottle();
+
+        //ProgressionController.Instance.OnLoadNextScene?.Invoke(20);
     }
 
     private void CreateBubble()
@@ -111,6 +132,8 @@ public class CauldronController : MonoBehaviour
         Color darkerShade = potionsColor[index] * 1.25f;
         darkerShade.a = 1;
         bubbleMat.color = darkerShade; //to recorrect the transparency
+
+        //potionsMeshRenderer.material.SetColor("_Color", darkerShade);
     }
 
     private void OnTriggerEnter(Collider other)
