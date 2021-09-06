@@ -12,38 +12,39 @@ namespace BNG
         public SpellSelectionWheelManager spellSelectionWheelManager;
         public LayerMask spellLaserMask; //applies to objects so that only they are interactable (layermasks)
         public LayerMask spellWheelLaserMask;
+        public GrabbableHaptics wandHaptics;
 
         public GameObject player;
         public GameObject wandSparks;
         public GameObject wandFirePrefab;
         public GameObject wandFlashPrefab;
 
-        public float moveSpeed = 0.001f; //how fast the accio'd object moves to the players wand
         public ResponseCollector responseCollector;
-        public int nextLevel;//TODO - remove
 
         public AudioSource spellAudio;
-        public Vector3 hitObjectInitialPosition;
 
         public DigitalRuby.LightningBolt.LightningBoltScript lightingBoltScript;
 
         //test stuff
-        public GameObject debugHitObject;
-            public bool debugTrue = false;
+        //public GameObject debugHitObject;
+            //public bool debugTrue = false;
 
         public CommonEnums.AvailableSpells spellSelected;
-        private Ray ray;
-        private LineRenderer laser;
 
         private GameObject wandFire;
-        //private GameObject wandFlash; //depreciated
         private GameObject hitObject;
         private bool spellActive = false;
         private int activeScene = 0;
 
         private int closeCount = 0;
-        private int startCount = 0;
         private bool isStart = true;
+        private float moveSpeed = 0.05f; //how fast the accio'd object moves to the players wand
+        private int nextLevel;
+
+        private Ray ray;
+        private LineRenderer laser;
+
+        private Vector3 hitObjectInitialPosition;
 
         #region deactives
         /*
@@ -82,27 +83,6 @@ namespace BNG
                 spellSelected = CommonEnums.AvailableSpells.None;
             }
         }
-
-        //public void Update()
-        //{
-        //    if (!spellActive)
-        //    {
-        //        //creates a laser 20 forward when pressed down & a hit point
-        //        laser.SetPosition(0, gameObject.transform.position);
-        //        laser.SetPosition(1, transform.TransformDirection(Vector3.forward) * 20);// NEW update this in all
-        //        RaycastHit hit;
-
-        //        ray = new Ray(transform.position, transform.forward);  /*faster moethod: https://answers.unity.com/questions/949222/is-raycast-efficient-in-update.html */
-        //        if (Physics.Raycast(ray, out hit, 20, spellLaserMask))
-        //        {
-        //            if (hitObject != hit.transform.gameObject)
-        //            {
-        //                hitObject = hit.transform.gameObject;
-        //                StartCoroutine(ToggleHitHalo(hitObject));
-        //            }
-        //        }
-        //    }
-        //}
 
         private void ActivateSpellWheel()
         {
@@ -156,7 +136,9 @@ namespace BNG
 
         public override void OnTrigger(float triggerValue)
         {
-                if (triggerValue >= 0.75f)
+            wandHaptics.doHaptics(wandHaptics.currentGrabber.HandSide);
+
+            if (triggerValue >= 0.75f)
                 {
                     if (!spellActive)
                     {
@@ -446,6 +428,7 @@ namespace BNG
             DeactivateWingardiumLeviosa();
         }
 
+        /*
         public void Update()
         {
             if (debugTrue)
@@ -454,6 +437,7 @@ namespace BNG
                 StartCoroutine(FloatObject(debugHitObject, debugHitObject.transform.position));
             }
         }
+        */
 
         //depreciated - testing only
         private IEnumerator FloatObject(GameObject floatObject, Vector3 startingHeight)
