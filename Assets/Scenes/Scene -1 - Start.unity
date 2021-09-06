@@ -2139,6 +2139,11 @@ PrefabInstance:
       objectReference: {fileID: 776089216}
     - target: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
         type: 3}
+      propertyPath: wandHaptics
+      value: 
+      objectReference: {fileID: 478291330}
+    - target: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
+        type: 3}
       propertyPath: spellSelected
       value: 2
       objectReference: {fileID: 0}
@@ -2308,6 +2313,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3522f7dcc1f7e7489c6b7b443ac59c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &478291330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478291325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b90ed01ac5d94e9468b242b4c38496a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HapticsOnValidPickup: 1
+  HapticsOnValidRemotePickup: 0
+  HapticsOnCollision: 0
+  HapticsOnGrab: 1
+  VibrateFrequency: 0.3
+  VibrateAmplitude: 0.1
+  VibrateDuration: 0.1
+  currentGrabber: {fileID: 0}
 --- !u!114 &478291332 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6380961580216612816, guid: 9c1769eabfde23544ab69e4cb33bca69,
