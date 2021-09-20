@@ -24,19 +24,14 @@ public class BallGameController : MonoBehaviour
     public int rotationPoint;
     private int[,] presetCombinations = new int[,] {  { 0, 1, 0 }, { 0, 2, 1 }, { 1, 2, 2 } };
     private Vector3[,] resetPositions = new Vector3[,] { { new Vector3(0,0,0), new Vector3(0, 0, 0), new Vector3(0, 0, 0) } };
-    //new int[1, 3] { { 0, 2, 1 } };
 
     public bool testBool;
 
     Vector3 startPosition;
 
-    //TODO cant have the ball parented, moving on its own logic
     private void Start()
     {
         startPosition = cups[0].transform.position;
-        //resetPositions[0, 0] = cups[0].transform.position;
-        //resetPositions[0, 1] = cups[1].transform.position;
-        //resetPositions[0, 2] = cups[2].transform.position;
 
         ball.transform.position = cups[1].transform.position;
 

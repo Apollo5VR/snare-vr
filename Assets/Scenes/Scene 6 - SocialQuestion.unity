@@ -1309,8 +1309,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shells: []
-  shellSelected: {fileID: 0}
+  shellSelected: {fileID: 230170027}
   shellOnBall: {fileID: 230170027}
+  testBool: 0
 --- !u!1 &872409552
 GameObject:
   m_ObjectHideFlags: 0
