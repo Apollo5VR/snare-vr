@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class BallGameController : MonoBehaviour
 {
@@ -16,6 +18,10 @@ public class BallGameController : MonoBehaviour
     public int halfRotations;
     public float halfRotationsMax = 2; //note: can never equal 0/1
     public int startCounter = 0;
+    public Text instructionResults;
+
+    public static Action OnBallGameStarted;
+    public static Action OnShellSelectionGuessed;
 
     public GameObject previousCupFirst;
 
@@ -31,6 +37,9 @@ public class BallGameController : MonoBehaviour
 
     private void Start()
     {
+        OnBallGameStarted += StartBallGame;
+        OnShellSelectionGuessed += DetermineResult;
+
         startPosition = cups[0].transform.position;
 
         ball.transform.position = cups[1].transform.position;
@@ -45,6 +54,41 @@ public class BallGameController : MonoBehaviour
     {
         if (testBool)
         {
+            StartCoroutine(LoopingRotate()); 
+            testBool = false;
+        }
+    }
+
+    private void StartBallGame()
+    {
+        StartCoroutine(LoopingRotate());
+    }
+
+    private void DetermineResult()
+    {
+        if (shellSelectionManager.shellSelected == shellSelectionManager.shellOnBall)
+        {
+            //win
+            instructionResults.text = "YOU WIN!";
+            //activate text
+            //play music
+            //progress to next scene in x seconds
+        }
+        else
+        {
+            //try again
+            instructionResults.text = "GUESS AGAIN!";
+            //activate text
+            //play error
+        }
+    }
+
+    private IEnumerator LoopingRotate()
+    {
+        shellSelectionManager.playState = 1;
+
+        for (int i = 10; i > 0; i--)
+        {
             halfRotations = 0;
             startCounter = 0;
 
@@ -55,8 +99,12 @@ public class BallGameController : MonoBehaviour
             rotationPoint = presetCombinations[randomPresetSelection, 2];
 
             StartCoroutine(RotatePairs(firstCup, secondCup, rotationPoint)); //note: param 1 can never be same as param 3
-            testBool = false;
+
+            yield return new WaitForSeconds(1);
         }
+
+        instructionResults.text = "TAP CUBE TO GUESS BALL LOCATION";
+        shellSelectionManager.playState = 2;
     }
 
     private IEnumerator RotatePairs(int first, int second, int rotPoint)
@@ -109,10 +157,18 @@ public class BallGameController : MonoBehaviour
             yield return null;
         }
 
+        ball.transform.SetParent(this.gameObject.transform);
+
         //to relocate the shells after each iteration so that 1, 2, 3 order stays the same on start of next iteration (necessary)
         for (int i = 0; i < cups.Length; i++)
         {
             cups[i].transform.position = resetPositions[0, i];
         }       
+    }
+
+    private void OnDestroy()
+    {
+        OnBallGameStarted -= StartBallGame;
+        OnShellSelectionGuessed -= DetermineResult;
     }
 }

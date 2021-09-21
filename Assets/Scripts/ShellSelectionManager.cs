@@ -8,6 +8,7 @@ public class ShellSelectionManager : MonoBehaviour
     public GameObject[] shells; //todo remove might not need
     public GameObject shellSelected;
     public GameObject shellOnBall;
+    public int playState; //0, 1, 2
 
     public static Action<GameObject> OnShellSelected;
     public static Action<GameObject> OnBallStopped;
@@ -30,7 +31,8 @@ public class ShellSelectionManager : MonoBehaviour
     {
         if (testBool)
         {
-            StartCoroutine(LiftShell(shellSelected));
+            UpdateShellSelected(shellSelected);
+            //StartCoroutine(LiftShell(shellSelected));
             testBool = false;
         }
     }
@@ -38,8 +40,20 @@ public class ShellSelectionManager : MonoBehaviour
     //Observer in an Observer Pattern
     private void UpdateShellSelected(GameObject shell)
     {
-        shellSelected = shell;
-        StartCoroutine(LiftShell(shellSelected));
+        //1 is playing, no action allowed
+        if(playState == 0)
+        {
+            //start game
+            BallGameController.OnBallGameStarted?.Invoke();
+
+            playState = 1;
+        }
+        else if(playState == 2)
+        {
+            shellSelected = shell;
+            StartCoroutine(LiftShell(shellSelected));
+            BallGameController.OnShellSelectionGuessed?.Invoke();
+        }
     }
 
     private IEnumerator LiftShell(GameObject shell)
@@ -67,6 +81,7 @@ public class ShellSelectionManager : MonoBehaviour
                 t = 0.0f;
 
                 liftCup = false;
+                //playState = 0; //resets the play state to 0 to play again (TODO - remove? game over over?)
                 shell.transform.position = originalPosition;
             }
 
@@ -82,6 +97,6 @@ public class ShellSelectionManager : MonoBehaviour
     public void OnDestroy()
     {
         OnShellSelected -= UpdateShellSelected;
-        OnBallStopped += UpdateBallLocation;
+        OnBallStopped -= UpdateBallLocation;
     }
 }
