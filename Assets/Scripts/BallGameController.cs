@@ -73,6 +73,7 @@ public class BallGameController : MonoBehaviour
             //activate text
             //play music
             //progress to next scene in x seconds
+            ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
         }
         else
         {

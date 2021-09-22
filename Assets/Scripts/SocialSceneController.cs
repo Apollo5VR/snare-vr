@@ -6,6 +6,8 @@ using System;
 public class SocialSceneController : MonoBehaviour
 {
     public AudioSource[] audioOptions;
+    public Transform[] ballLocations;
+    public BallGameController ballGameController;
 
     // Use this for initialization
     void Start()
@@ -19,27 +21,38 @@ public class SocialSceneController : MonoBehaviour
         {
             case 1:
                 //Ravenclaw
+                ballGameController.gameObject.transform.position = ballLocations[0].transform.position;
+                ballGameController.gameObject.transform.rotation = ballLocations[0].transform.rotation;
                 audioOptions[0].Play();
                 break;
             case 2:
                 //Gryfindor
+                ballGameController.gameObject.transform.position = ballLocations[1].transform.position;
+                ballGameController.gameObject.transform.rotation = ballLocations[1].transform.rotation;
                 audioOptions[1].Play();
                 break;
             case 3:
                 //Hufflepuff
+                ballGameController.gameObject.transform.position = ballLocations[2].transform.position;
+                ballGameController.gameObject.transform.rotation = ballLocations[2].transform.rotation;
                 audioOptions[2].Play();
                 break;
             case 4:
                 //Slytherin
+                ballGameController.gameObject.transform.position = ballLocations[3].transform.position;
+                ballGameController.gameObject.transform.rotation = ballLocations[3].transform.rotation;
                 audioOptions[3].Play();
                 break;
             default:
                 break;
         }
 
+        ballGameController.gameObject.SetActive(true);
+
         ResponseCollector.Instance.OnResponseSelected -= SocialCommand;
 
-        ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
+        //moved to end of ball controller
+        //ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
     }
 
     void Destroy()
