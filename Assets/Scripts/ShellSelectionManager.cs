@@ -8,13 +8,13 @@ public class ShellSelectionManager : MonoBehaviour
     public GameObject[] shells; //todo remove might not need
     public GameObject shellSelected;
     public GameObject shellOnBall;
-    public int playState; //0, 1, 2
+    public int playState; //0, 1, 2, 3 (1 is currently playing, 3 is ended)
 
     public static Action<GameObject> OnShellSelected;
     public static Action<GameObject> OnBallStopped;
 
-    private float minimum = -2.0f;
-    private float maximum = -1.5f;
+    private float minimum;
+    private float maximum;
     // starting value for the Lerp
     static float t = 0.0f;
 
@@ -44,8 +44,7 @@ public class ShellSelectionManager : MonoBehaviour
         if(playState == 0)
         {
             //start game
-            BallGameController.OnBallGameStarted?.Invoke();
-
+            StartCoroutine(LiftShell(shellSelected));
             playState = 1;
         }
         else if(playState == 2)
@@ -59,8 +58,10 @@ public class ShellSelectionManager : MonoBehaviour
     private IEnumerator LiftShell(GameObject shell)
     {
         bool liftCup = true;
+        Collider shellCollider = shell.GetComponent<Collider>();
+        shellCollider.enabled = false;
         Vector3 originalPosition = shell.transform.position;
-        maximum = originalPosition.y + 0.75f;
+        maximum = originalPosition.y + 1.0f;
         minimum = originalPosition.y;
 
         while (liftCup)
@@ -86,6 +87,14 @@ public class ShellSelectionManager : MonoBehaviour
             }
 
             yield return null;
+        }
+
+        shellCollider.enabled = true;
+
+        //to show them the ball before game starts
+        if (playState == 1)
+        {
+            BallGameController.OnBallGameStarted?.Invoke();
         }
     }
 

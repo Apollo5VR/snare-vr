@@ -23,7 +23,7 @@ public class TriggerShellSelection : MonoBehaviour
     {
         if (isBall)
         {
-            if(shell != other.gameObject)
+            if(shell != other.gameObject && other.gameObject.name != "Wand")
             {
                 ShellSelectionManager.OnBallStopped?.Invoke(other.gameObject);
             }

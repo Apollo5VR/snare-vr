@@ -39,15 +39,6 @@ public class BallGameController : MonoBehaviour
     {
         OnBallGameStarted += StartBallGame;
         OnShellSelectionGuessed += DetermineResult;
-
-        startPosition = cups[0].transform.position;
-
-        ball.transform.position = cups[1].transform.position;
-
-        for (int i = 0; i < cups.Length; i++)
-        {
-            resetPositions[0, i] = cups[i].transform.position;
-        }
     }
 
     void Update()
@@ -61,6 +52,15 @@ public class BallGameController : MonoBehaviour
 
     private void StartBallGame()
     {
+        startPosition = cups[0].transform.position;
+
+        ball.transform.position = cups[1].transform.position;
+
+        for (int i = 0; i < cups.Length; i++)
+        {
+            resetPositions[0, i] = cups[i].transform.position;
+        }
+
         StartCoroutine(LoopingRotate());
     }
 
@@ -70,6 +70,7 @@ public class BallGameController : MonoBehaviour
         {
             //win
             instructionResults.text = "YOU WIN!";
+            shellSelectionManager.playState = 3; //nothing will happen anymore
             //activate text
             //play music
             //progress to next scene in x seconds
@@ -86,6 +87,9 @@ public class BallGameController : MonoBehaviour
 
     private IEnumerator LoopingRotate()
     {
+        //pause to give user time to memorize location
+        yield return new WaitForSeconds(1);
+
         shellSelectionManager.playState = 1;
 
         for (int i = 10; i > 0; i--)
@@ -104,7 +108,7 @@ public class BallGameController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        instructionResults.text = "TAP CUBE TO GUESS BALL LOCATION";
+        instructionResults.text = "USE WAND - TAP CUP TO GUESS BALL LOCATION";
         shellSelectionManager.playState = 2;
     }
 
