@@ -60,7 +60,7 @@ namespace BNG
         void Start()
         {
             wandSparks.SetActive(false);
-            wandFire = Instantiate(wandFirePrefab);
+            wandFire = Instantiate(wandFirePrefab, this.gameObject.transform);
             wandFire.SetActive(false);
 
             //depreciated - stupify 
@@ -258,6 +258,7 @@ namespace BNG
                     if (hitObject != hit.transform.gameObject)
                     {
                         hitObject = hit.transform.gameObject;
+                        wandFire.transform.SetParent(null);
                         wandFire.transform.position = hitObject.transform.position;
                         wandFire.SetActive(true);
                     }
@@ -277,7 +278,8 @@ namespace BNG
             if (hitObject != null)
             {
                 hitObject = null;
-                //wandFire.SetActive(false);
+                wandFire.transform.SetParent(this.gameObject.transform);
+                wandFire.SetActive(false);
             }
         }
 

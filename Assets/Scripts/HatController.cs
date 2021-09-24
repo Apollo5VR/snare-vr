@@ -44,7 +44,6 @@ public class HatController : MonoBehaviour
                 SendTimeBasedResponse();
                 //note: replaced loading questions scene with just auto loading into the first question
                 ProgressionController.Instance.OnLoadChallengeScene(1);
-                //ProgressionController.Instance.OnLoadNextScene?.Invoke(0.5f);
             }
         }
     }

@@ -61,24 +61,37 @@ public class ProgressionController : MonoBehaviour
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        //int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         //note: manual selection added for 1st go through all scenes, then choice of 1 replay
+        /*
         if(isManualSelection && (buildIndex > 4 && buildIndex < 9))
         {
             StartCoroutine(TimerToEndScene(9, time)); // 9 - results scene
         }
-        else
+        //for first time picking up hat
+        else if(buildIndex == 3)
         {
-            StartCoroutine(TimerToEndScene(nextLevel, time));
+            SceneManager.LoadScene(5);
         }
+        */
+        //else
+        //{
+            StartCoroutine(TimerToEndScene(nextLevel, time));
+        //}
     }
 
     public void LoadQuestionScene(int sceneIncrement = 0)
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
-        isManualSelection = true;
+
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        if(buildIndex == 9)
+        {
+            isManualSelection = true;
+        }
+
         //4 is the challenge selection scene
         //TODO - find way to not need hard coded value
         SceneManager.LoadScene(4 + sceneIncrement);
