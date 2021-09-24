@@ -1736,6 +1736,7 @@ MonoBehaviour:
   halfRotationsMax: 2
   startCounter: 0
   instructionResults: {fileID: 662310320}
+  appearExplosion: {fileID: 1174411254}
   previousCupFirst: {fileID: 0}
   firstCup: 0
   secondCup: 0
@@ -3428,11 +3429,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198755747245941714, guid: 1b2f874ca128bcf43939323fc2eaf3ae,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b2f874ca128bcf43939323fc2eaf3ae, type: 3}
 --- !u!4 &1174411253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4740369159779244, guid: 1b2f874ca128bcf43939323fc2eaf3ae,
+    type: 3}
+  m_PrefabInstance: {fileID: 1174411252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1174411254 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198755747245941714, guid: 1b2f874ca128bcf43939323fc2eaf3ae,
     type: 3}
   m_PrefabInstance: {fileID: 1174411252}
   m_PrefabAsset: {fileID: 0}

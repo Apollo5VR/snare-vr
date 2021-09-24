@@ -48,6 +48,7 @@ public class SocialSceneController : MonoBehaviour
         }
 
         ballGameController.gameObject.SetActive(true);
+        ballGameController.appearExplosion.Play();
 
         ResponseCollector.Instance.OnResponseSelected -= SocialCommand;
 

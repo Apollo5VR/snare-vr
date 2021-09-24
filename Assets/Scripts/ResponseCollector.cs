@@ -166,8 +166,17 @@ public class ResponseCollector : MonoBehaviour
             string[] houseNames = Enum.GetNames(typeof(CommonEnums.HouseResponses));
 
             SwapRobeColors(finalHouse);
-            resultText.text = "Congrats you " + houseNames[finalHouse] + HouseNameScrambler() + ". " + resultTextOptions[0];
-            //crowdCheer.Play();
+
+            if (!ProgressionController.Instance.isManualSelection)
+            {
+                resultText.text = "Congrats you " + houseNames[finalHouse] + HouseNameScrambler() + "! " + resultTextOptions[0];
+            }
+            else
+            {
+                resultText.text = houseNames[finalHouse] + HouseNameScrambler() + "! " + resultTextOptions[2];
+                //crowdCheer.Play();
+            }
+
         }
         //if multiple equal the same, determine inconclusive
         else

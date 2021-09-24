@@ -1965,9 +1965,10 @@ MonoBehaviour:
   housePoints: 0000000000000000000000000000000000000000
   resultText: {fileID: 0}
   resultTextOptions:
-  - If you want to try again, put on the hat!
-  - Oh no, it seems the sorting hat can't decide between 2 houses. We're loading
-    up 1 final tiebreaker question!
+  - 'If you want to try again, put on the hat! '
+  - 'Oh no, it seems the sorting hat can''t decide between 2 houses. We''re loading
+    up 1 final tiebreaker question! '
+  - 'Thanks for playing! Ending in 20 seconds... '
   sceneSelectionResponse: 0
 --- !u!4 &357991596
 Transform:
@@ -3744,6 +3745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTeleport: {fileID: 776089215}
   sceneLoadingBlackSphere: {fileID: 1915027670}
+  isManualSelection: 0
   debugProgressNextScene: 0
 --- !u!4 &993326902
 Transform:

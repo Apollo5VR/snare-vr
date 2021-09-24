@@ -10,6 +10,7 @@ public class ProgressionController : MonoBehaviour
     public static ProgressionController Instance { get; private set; }
     public BNG.PlayerTeleport playerTeleport;
     public GameObject sceneLoadingBlackSphere;
+    public bool isManualSelection = false;
     public bool debugProgressNextScene;
 
     public Action<float> OnLoadNextScene;
@@ -60,8 +61,10 @@ public class ProgressionController : MonoBehaviour
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (SceneManager.GetActiveScene().buildIndex > 4)
+        //note: manual selection added for 1st go through all scenes, then choice of 1 replay
+        if(isManualSelection && (buildIndex > 4 && buildIndex < 9))
         {
             StartCoroutine(TimerToEndScene(9, time)); // 9 - results scene
         }
@@ -75,7 +78,7 @@ public class ProgressionController : MonoBehaviour
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
-
+        isManualSelection = true;
         //4 is the challenge selection scene
         //TODO - find way to not need hard coded value
         SceneManager.LoadScene(4 + sceneIncrement);

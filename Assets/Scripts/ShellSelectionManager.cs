@@ -43,9 +43,12 @@ public class ShellSelectionManager : MonoBehaviour
         //1 is playing, no action allowed
         if(playState == 0)
         {
-            //start game
-            StartCoroutine(LiftShell(shellSelected));
-            playState = 1;
+            if(shell == shellOnBall)
+            {
+                //start game
+                StartCoroutine(LiftShell(shellSelected));
+                playState = 1;
+            }
         }
         else if(playState == 2)
         {

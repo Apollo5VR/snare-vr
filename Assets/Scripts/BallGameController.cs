@@ -19,6 +19,7 @@ public class BallGameController : MonoBehaviour
     public float halfRotationsMax = 2; //note: can never equal 0/1
     public int startCounter = 0;
     public Text instructionResults;
+    public ParticleSystem appearExplosion;
 
     public static Action OnBallGameStarted;
     public static Action OnShellSelectionGuessed;
@@ -108,7 +109,7 @@ public class BallGameController : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        instructionResults.text = "USE WAND - TAP CUP TO GUESS BALL LOCATION";
+        instructionResults.text = "USE WAND - TAP CUP \n TO GUESS BALL LOCATION";
         shellSelectionManager.playState = 2;
     }
 
