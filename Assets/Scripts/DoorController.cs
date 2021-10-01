@@ -11,4 +11,9 @@ public class DoorController : MonoBehaviour
             ProgressionController.Instance.OnLoadNextScene?.Invoke(0);
         }
     }
+
+    public void ProgressViaTeleport()
+    {
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(1);
+    }
 }
