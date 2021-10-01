@@ -3035,7 +3035,7 @@ GameObject:
   - component: {fileID: 291213327}
   - component: {fileID: 291213326}
   - component: {fileID: 291213328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: AnimDisableTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13285,7 +13285,7 @@ PrefabInstance:
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.48
+      value: 13.565
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
@@ -16058,7 +16058,7 @@ GameObject:
   - component: {fileID: 1147931131}
   - component: {fileID: 1147931130}
   - component: {fileID: 1147931132}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HatPlacedTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16779,6 +16779,106 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4448538448667131}
     m_Modifications:
+    - target: {fileID: 100000, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100062, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400062, guid: c569a85b422a6724f9e0279415e8e2c6, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -19709,6 +19809,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pointerArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8a4c2a09939a87145a499852d723a5fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a4c2a09939a87145a499852d723a5fb, type: 3}
@@ -24355,7 +24460,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4099954327773371}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Upper Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24381,7 +24486,7 @@ GameObject:
   - component: {fileID: 243848700}
   - component: {fileID: 243848701}
   - component: {fileID: 243848708}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24397,7 +24502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084131060882859}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24414,7 +24519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4321872638287953}
   - component: {fileID: 95109566549102105}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: sorting-hat-anim attempt 10.28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24430,7 +24535,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4853529893750559}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24447,7 +24552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4585827966448637}
   - component: {fileID: 137767489574808341}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24463,7 +24568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4951219545601937}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Upper Upper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24479,7 +24584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4246790801908223}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24495,7 +24600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4019531152879545}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24511,7 +24616,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4018144671735383}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24527,7 +24632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4644308522163845}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Tip_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24543,7 +24648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766788145519511}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24559,7 +24664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4392380870941355}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.002_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24575,7 +24680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4079020306245419}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24591,7 +24696,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4971651432128429}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24607,7 +24712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4113469237268297}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Upper Lower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24623,7 +24728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4485783748957275}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.001_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24639,7 +24744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4046573043806905}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24656,7 +24761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4383650957884033}
   - component: {fileID: 137174866052346503}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24672,7 +24777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4065659716400753}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.003_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24689,7 +24794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4380455452061273}
   - component: {fileID: 137317567053890417}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24706,7 +24811,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4072018214672613}
   - component: {fileID: 137977499146826447}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24723,7 +24828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4942256025545785}
   - component: {fileID: 137520743362625651}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24740,7 +24845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717683848878583}
   - component: {fileID: 137745316969720977}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24757,7 +24862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4540159167672419}
   - component: {fileID: 137917898254348701}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000_MeshPart5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24774,7 +24879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4955449029989255}
   - component: {fileID: 87926582}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24790,7 +24895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559982120117547}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat Bone Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24806,7 +24911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666892842876329}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bone.004_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24822,7 +24927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4923281713919351}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Hat.000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
