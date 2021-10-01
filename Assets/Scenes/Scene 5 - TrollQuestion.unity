@@ -5780,6 +5780,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportDestination
       objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
 --- !u!1 &594285002
@@ -11629,7 +11634,7 @@ PrefabInstance:
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.16
+      value: -7.89
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
@@ -11680,6 +11685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeleportDestination (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
@@ -16364,7 +16374,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 14
+  m_Radius: 7.19
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &1709274041
 AudioSource:

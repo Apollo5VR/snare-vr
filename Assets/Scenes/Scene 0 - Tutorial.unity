@@ -458,17 +458,17 @@ PrefabInstance:
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.7658
+      value: 1.9802
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.7658
+      value: 1.9802
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.7658
+      value: 1.9802
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
@@ -478,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.54
+      value: -0.55764
       objectReference: {fileID: 0}
     - target: {fileID: 2304609608794562053, guid: 745474d57ad4f6641b08c258fdbfcc63,
         type: 3}
@@ -524,6 +524,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeleportDestination
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115224820539905523, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_Height
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5115224820539905523, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
@@ -1190,8 +1205,8 @@ MonoBehaviour:
     spell book. '
   - 'TAP one of the spells with your wand to select it. POINT at the chair and press
     TRIGGER '
-  - 'Now...Drop Your Wand at your hip and Use the LEFT joysticks to WALK  through
-    the open door to the train station.  '
+  - 'Now...Drop Your Wand at your hip and Use the LEFT joystick to TELEPORT  to the
+    open door to the train station.  '
   fullTextCount: 0
   optionalDoorAnimator: {fileID: 393017558}
 --- !u!1 &1041759288

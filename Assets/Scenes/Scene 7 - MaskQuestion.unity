@@ -321,6 +321,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportDestination
       objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
 --- !u!1 &381573132

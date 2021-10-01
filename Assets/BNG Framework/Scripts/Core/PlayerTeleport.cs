@@ -151,6 +151,7 @@ namespace BNG {
             // Make sure teleport line is a root object
             if (TeleportLine != null) {
                 TeleportLine.transform.parent = null;
+                DontDestroyOnLoad(TeleportLine); //GG so not destroyed when unparented
                 TeleportLine.transform.position = Vector3.zero;
                 TeleportLine.transform.rotation = Quaternion.identity;
 

@@ -579,6 +579,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportDestination
       objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
 --- !u!4 &200504113 stripped
@@ -2444,6 +2449,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeleportDestination (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038816008240260661, guid: 745474d57ad4f6641b08c258fdbfcc63,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 745474d57ad4f6641b08c258fdbfcc63, type: 3}
@@ -6019,7 +6029,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0.03}
 --- !u!114 &1095800146904809
 MonoBehaviour:
