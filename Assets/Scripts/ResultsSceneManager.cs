@@ -19,19 +19,22 @@ public class ResultsSceneManager : MonoBehaviour
         }
     }
 
-    //should be called by child Hat object
-    private void OnTriggerEnter(Collider other)
+    public void TriggerHatStuff()
     {
-        if (other.tag == "Player")
-        {
-            //0 is the questions scene
-            ProgressionController.Instance.OnLoadChallengeScene(0);
-        }
+        StartCoroutine(PickupDelay());
+    }
+
+    private IEnumerator PickupDelay()
+    {
+        yield return new WaitForSeconds(2);
+
+        //0 is the questions scene
+        ProgressionController.Instance.OnLoadChallengeScene(0);
     }
 
     private IEnumerator CloseGame()
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(20);
 
         Application.Quit();
     }

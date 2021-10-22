@@ -10,6 +10,14 @@ public class CartMovementController : MonoBehaviour
     private float moveSpeed = 0.075f;
     public bool go;
 
+    public BNG.Grabbable cartGrabbable;
+    private Component halo;
+
+    private void Start()
+    {
+        halo = this.GetComponent("Halo");
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //TODO - refactor this to not need such specific
@@ -34,23 +42,24 @@ public class CartMovementController : MonoBehaviour
 
         if (go)
         {
-            StartCoroutine(DelayedMoveTrick());
+            halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
+            cartGrabbable.enabled = true;
         }
     }
 
-    /*
-    public void FixedUpdate()
+    public void RunCartSim()
     {
-        moveTrickObjects.transform.position = Vector3.MoveTowards(moveTrickObjects.transform.position, gameObject.transform.position + new Vector3(0, 0, -3), moveSpeed);
+        StartCoroutine(DelayedMoveTrick()); //TODO - relocate this
     }
-    */
-    
+
 
     private IEnumerator DelayedMoveTrick()
     {
-        yield return new WaitForSeconds(12);
+        //yield return new WaitForSeconds(12);
 
         petObjects.SetActive(false);
+
+        yield return null;
 
         while (moveTrickObjects.transform.position != (gameObject.transform.position + new Vector3(0, 0, -3)))
         {

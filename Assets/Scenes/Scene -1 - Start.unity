@@ -206,7 +206,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f37a7b81e8ef236489a67d8ae0208839, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -550,7 +550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f37a7b81e8ef236489a67d8ae0208839, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -681,7 +681,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197158144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 207054218}
@@ -689,7 +689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 94.3, y: 82.2}
+  m_AnchoredPosition: {x: 91.2, y: 82.2}
   m_SizeDelta: {x: -320, y: -359.84424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197158146
@@ -725,7 +725,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BAUBIL
+  m_Text: LIGHTNING
 --- !u!222 &197158147
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -765,7 +765,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207054217}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.014}
+  m_LocalPosition: {x: 0, y: 0, z: 1.046}
   m_LocalScale: {x: 0.0033754031, y: 0.003375403, z: 3.877791}
   m_Children:
   - {fileID: 322630926}
@@ -1816,7 +1816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f37a7b81e8ef236489a67d8ae0208839, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1916,7 +1916,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ACCIO
+  m_Text: COLLECT
 --- !u!222 &322630928
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   - 'If you want to try again, put on the hat! '
   - 'Oh no, it seems the sorting hat can''t decide between 2 houses. We''re loading
     up 1 final tiebreaker question! '
-  - 'Thanks for playing! Ending in 10 seconds... '
+  - 'Thanks for playing! Ending in 20 seconds... '
   sceneSelectionResponse: 0
 --- !u!4 &357991596
 Transform:
@@ -2063,7 +2063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INCENDIO
+  m_Text: FLAME
 --- !u!222 &419596223
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2338,7 +2338,7 @@ MonoBehaviour:
   HapticsOnValidPickup: 1
   HapticsOnValidRemotePickup: 0
   HapticsOnCollision: 0
-  HapticsOnGrab: 1
+  HapticsOnGrab: 0
   VibrateFrequency: 0.3
   VibrateAmplitude: 0.1
   VibrateDuration: 0.1
@@ -5055,7 +5055,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f37a7b81e8ef236489a67d8ae0208839, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5155,7 +5155,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WING LEVI
+  m_Text: FLOAT
 --- !u!222 &1517983347
 CanvasRenderer:
   m_ObjectHideFlags: 0

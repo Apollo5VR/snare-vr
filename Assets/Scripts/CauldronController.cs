@@ -101,8 +101,6 @@ public class CauldronController : MonoBehaviour
         audioData[0].Stop();
 
         ActivatePotionBottle();
-
-        //ProgressionController.Instance.OnLoadNextScene?.Invoke(20);
     }
 
     private void CreateBubble()

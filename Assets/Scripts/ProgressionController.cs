@@ -61,10 +61,9 @@ public class ProgressionController : MonoBehaviour
     {
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
-        //int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        int buildIndex = SceneManager.GetActiveScene().buildIndex;
 
         //note: manual selection added for 1st go through all scenes, then choice of 1 replay
-        /*
         if(isManualSelection && (buildIndex > 4 && buildIndex < 9))
         {
             StartCoroutine(TimerToEndScene(9, time)); // 9 - results scene
@@ -74,11 +73,10 @@ public class ProgressionController : MonoBehaviour
         {
             SceneManager.LoadScene(5);
         }
-        */
-        //else
-        //{
+        else
+        {
             StartCoroutine(TimerToEndScene(nextLevel, time));
-        //}
+        }
     }
 
     public void LoadQuestionScene(int sceneIncrement = 0)

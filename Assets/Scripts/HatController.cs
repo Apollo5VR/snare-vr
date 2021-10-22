@@ -39,13 +39,22 @@ public class HatController : MonoBehaviour
                     pointerArrow.SetActive(false);
                 }
             }
-            else
-            {
-                SendTimeBasedResponse();
-                //note: replaced loading questions scene with just auto loading into the first question
-                ProgressionController.Instance.OnLoadChallengeScene(1);
-            }
         }
+    }
+
+    public void TriggerGrabActions()
+    {
+            SendTimeBasedResponse();
+
+            StartCoroutine(PickupDelay());
+    }
+
+    private IEnumerator PickupDelay()
+    {
+        yield return new WaitForSeconds(2);
+
+        //note: replaced loading questions scene with just auto loading into the first question
+        ProgressionController.Instance.OnLoadChallengeScene(1);
     }
 
     //TODO - adjust this to actually mean something

@@ -169,11 +169,11 @@ public class ResponseCollector : MonoBehaviour
 
             if (!ProgressionController.Instance.isManualSelection)
             {
-                resultText.text = "Congrats you " + houseNames[finalHouse] + HouseNameScrambler() + "! " + resultTextOptions[0];
+                resultText.text = "Congrats you " + houseNames[finalHouse] + "! " + resultTextOptions[0]; //HouseNameScrambler()
             }
             else
             {
-                resultText.text = houseNames[finalHouse] + HouseNameScrambler() + "! " + resultTextOptions[2];
+                resultText.text = houseNames[finalHouse] + "! " + resultTextOptions[2]; //HouseNameScrambler()
                 //crowdCheer.Play();
             }
 
@@ -219,7 +219,7 @@ public class ResponseCollector : MonoBehaviour
 
     private IEnumerator TimerToReloadChallengeScene()
     {
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(10);
 
         //exclude 0 which is a none scene & 1 which is potions scene (has 2 responses)
         ProgressionController.Instance.OnLoadChallengeScene((int)UnityEngine.Random.Range(2, 5));

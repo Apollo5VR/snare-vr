@@ -33,14 +33,6 @@ public class TriggerSpellSelection : MonoBehaviour
     private void OnDisable()
     {
         touchTime = 0;
-    }
-
-    private void Update()
-    {
-        if (touchTime < 1)
-        {
-            loadingLine.transform.localScale = new Vector3(touchTime, loadingLine.transform.localScale.y, loadingLine.transform.localScale.z);
-            touchTime += Time.deltaTime;
-        }
+        loadingLine.transform.localScale = new Vector3(touchTime, loadingLine.transform.localScale.y, loadingLine.transform.localScale.z);
     }
 }

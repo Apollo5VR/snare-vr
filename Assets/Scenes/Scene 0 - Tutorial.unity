@@ -1057,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 93acd495ffe81694a8e9f5578a5a4201, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.031469345
+      value: -0.306
       objectReference: {fileID: 0}
     - target: {fileID: 400036, guid: 93acd495ffe81694a8e9f5578a5a4201, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1195,18 +1195,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73177704b088194b90acd2a4202ec2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.1
-  delay1: 5
+  delay: 0.075
+  delay1: 7
   delayProving: 15
   fullTextList:
-  - 'Before we can invite you to Haugwords, lets make sure youre magical! '
-  - 'Press TRIGGER to activate the wands magic '
-  - 'Great Job! You''re magical! Now let''s try a spell. PRESS A or X to open your
-    spell book. '
+  - 'Before we can invite you to Hogwarts, lets make sure youre magical! GRAB your
+    wand._ '
+  - 'Press TRIGGER to activate the wand''s magic._ '
+  - 'Great Job! You ARE magical! Now let''s try a spell. PRESS A or X to open your
+    spell book._ '
   - 'TAP one of the spells with your wand to select it. POINT at the chair and press
-    TRIGGER '
-  - 'Now...Drop Your Wand at your hip and Use the LEFT joystick to TELEPORT  to the
-    open door to the train station.  '
+    TRIGGER._ '
+  - 'Now...Drop Your Wand at your hip and Use the LEFT joystick to TELEPORT to the
+    open door to the train station. '
   fullTextCount: 0
   optionalDoorAnimator: {fileID: 393017558}
 --- !u!1 &1041759288
