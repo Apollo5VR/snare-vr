@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 944b23554ae0c7d479b98756a02cc3f9
   - enabled: 1
     path: Assets/Scenes/Scene 3 - SortingHatQuestion.unity
-    guid: f7279bca1e99c444ea8e25ac3d01cf04
+    guid: 9a724443cc45f714293c2bc8202dd7eb
   - enabled: 1
     path: Assets/Scenes/Scene 4 - PotionsQuestion.unity
     guid: 693561b0af1530b419e66366f9f8e4bf
@@ -35,6 +35,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene 8 - GrandHallResults.unity
     guid: 176387d2378048848b45a74c8dce47fb
+  - enabled: 1
+    path: Assets/Scenes/Scene 9 - MoreLevelsQuestion.unity
+    guid: f7279bca1e99c444ea8e25ac3d01cf04
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9cc517523af92444cb7af3953d179d42,
       type: 2}
