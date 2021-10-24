@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public class CartMovementController : MonoBehaviour
@@ -20,22 +21,28 @@ public class CartMovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //TODO - refactor this to not need such specific
+        CommonEnums.HouseResponses houseResponse = CommonEnums.HouseResponses.None;
+
         switch (other.gameObject.tag)
         {
             case "Ravenclaw":
+                houseResponse = CommonEnums.HouseResponses.Ravenclaw;
                 go = true;
                 break;
             case "Gryfindor":
+                houseResponse = CommonEnums.HouseResponses.Gryfindor;
                 go = true;
                 break;
             case "Hufflepuff":
+                houseResponse = CommonEnums.HouseResponses.Hufflepuff;
                 go = true;
                 break;
             case "Slytherin":
+                houseResponse = CommonEnums.HouseResponses.Slytherin;
                 go = true;
                 break;
             default:
+                houseResponse = CommonEnums.HouseResponses.None;
                 go = false;
                 break;
         }
@@ -44,6 +51,19 @@ public class CartMovementController : MonoBehaviour
         {
             halo.GetType().GetProperty("enabled").SetValue(halo, false, null);
             cartGrabbable.enabled = true;
+
+            ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
+
+            if (!Application.isEditor)
+            {
+                //Analytics Beta
+                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "specificQuestion", "Pets" },
+                    { "houseIndex", (int)houseResponse },
+                };
+                Events.CustomData("questionResponse", parameters);
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.Services.Analytics;
 
 public class TrollController : MonoBehaviour {
     public static TrollController Instance { get; private set; }
@@ -76,6 +77,17 @@ public class TrollController : MonoBehaviour {
 
         //will usually happen only 1x, but can happen more if you "change your mind" last second (part of the test)
         ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "specificQuestion", "Troll" },
+                { "houseIndex", (int)response },
+            };
+            Events.CustomData("questionResponse", parameters);
+        }
 
         switch ((int)response)
         {

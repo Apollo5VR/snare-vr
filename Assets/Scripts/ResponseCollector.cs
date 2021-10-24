@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using Unity.Services.Analytics;
 
 public class ResponseCollector : MonoBehaviour
 {
@@ -175,6 +176,16 @@ public class ResponseCollector : MonoBehaviour
             {
                 resultText.text = houseNames[finalHouse] + "! " + resultTextOptions[2]; //HouseNameScrambler()
                 //crowdCheer.Play();
+            }
+
+            if (!Application.isEditor)
+            {
+                //Analytics Beta
+                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "houseIndex", finalHouse },
+                };
+                Events.CustomData("finalResults", parameters);
             }
 
         }

@@ -27,12 +27,14 @@ public class ResponseTrigger : MonoBehaviour
                 return;
             }
 
-            Debug.Log("ResponseCollected");
-
             //note: one unique case, all other instances handled differently
             if(TrollController.Instance != null)
             {
                 TrollController.Instance.OnTrollSceneResponseSelected?.Invoke(response);
+            }
+            else if (MaskController.Instance != null)
+            {
+                MaskController.Instance.OnMaskSceneResponseSelected?.Invoke(response, gameObject);
             }
             else
             {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using Unity.Services.Analytics;
 
 public class ProgressionController : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class ProgressionController : MonoBehaviour
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
 
         //also called in below
-        autoProgressCR = TimerToEndScene(nextLevel, 210);
+        autoProgressCR = TimerToEndScene(nextLevel, 300);
         StartCoroutine(autoProgressCR);
     }
 
@@ -62,21 +63,25 @@ public class ProgressionController : MonoBehaviour
         //depreciated
         //sceneLoadingBlackSphere.SetActive(true);
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
+        int level = 0;
 
         //note: manual selection added for 1st go through all scenes, then choice of 1 replay
-        if(isManualSelection && (buildIndex > 4 && buildIndex < 9))
+        if (isManualSelection && (buildIndex > 4 && buildIndex < 9))
         {
-            StartCoroutine(TimerToEndScene(9, time)); // 9 - results scene
+            level = 9;
         }
         //for first time picking up hat
         else if(buildIndex == 3)
         {
-            SceneManager.LoadScene(5);
+            time = 0;
+            level = 5;
         }
         else
         {
-            StartCoroutine(TimerToEndScene(nextLevel, time));
+            level = nextLevel;
         }
+
+        StartCoroutine(TimerToEndScene(level, time));
     }
 
     public void LoadQuestionScene(int sceneIncrement = 0)
@@ -88,6 +93,16 @@ public class ProgressionController : MonoBehaviour
         if(buildIndex == 9)
         {
             isManualSelection = true;
+        }
+
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "buildIndex", 4 + sceneIncrement }
+            };
+            Events.CustomData("sceneload_replay", parameters);
         }
 
         //4 is the challenge selection scene
@@ -142,6 +157,16 @@ public class ProgressionController : MonoBehaviour
             {
                 StopCoroutine(autoProgressCR);
             }
+        }
+
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "buildIndex", sceneBuildIndex }
+            };
+            Events.CustomData("sceneload", parameters);
         }
 
         yield return new WaitForSeconds(time);

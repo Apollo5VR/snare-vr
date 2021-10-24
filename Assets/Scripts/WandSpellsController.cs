@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.Services.Analytics;
 
 namespace BNG
 {
@@ -136,15 +137,15 @@ namespace BNG
 
         public override void OnTrigger(float triggerValue)
         {
-            wandHaptics.doHaptics(wandHaptics.currentGrabber.HandSide);
-
             if (triggerValue >= 0.75f)
                 {
                     if (!spellActive)
                     {
                         spellActive = true;
 
-                        DetermineAndToggleSpell(spellActive);
+                    wandHaptics.doHaptics(wandHaptics.currentGrabber.HandSide);
+
+                    DetermineAndToggleSpell(spellActive);
                     }
                 }
                 else
@@ -179,7 +180,7 @@ namespace BNG
                     case CommonEnums.AvailableSpells.WingardiumLeviosa:
                         StartCoroutine(CastWingardiumLeviosa());
                         break;
-                    case CommonEnums.AvailableSpells.Stupify:
+                    case CommonEnums.AvailableSpells.Baubil:
                         StartCoroutine(CastLightning());
                         break;
                     case CommonEnums.AvailableSpells.None:
@@ -526,8 +527,27 @@ namespace BNG
                     {
                         hitObject = hit.transform.gameObject;
                         CommonEnums.HouseResponses response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag);
-                        ResponseCollector.Instance.OnToggleSceneSelectionResponse?.Invoke();
-                        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+
+                        if(response != CommonEnums.HouseResponses.None)
+                        {
+                            ResponseCollector.Instance.OnToggleSceneSelectionResponse?.Invoke();
+                            ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+                        }
+                        //End Scene Yes Or No more levels scene
+                        else
+                        {
+                            string answer = hitObject.name;
+
+                            if (!Application.isEditor)
+                            {
+                                //Analytics Beta
+                                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                                {
+                                    { "moreResponse", answer }
+                                };
+                                Events.CustomData("moreLevels", parameters);
+                            }
+                        }
                     }
                 }
 

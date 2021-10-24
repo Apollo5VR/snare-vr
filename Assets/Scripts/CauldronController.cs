@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq; //note: heavy on processor, wouldnt use if this functionality happened frequently
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public class CauldronController : MonoBehaviour
@@ -163,6 +164,17 @@ public class CauldronController : MonoBehaviour
                         foreach (CommonEnums.HouseResponses houseResponse in responseHouseEnums)
                         {
                             ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
+
+                            if (!Application.isEditor)
+                            {
+                                //Analytics Beta
+                                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                                {
+                                    { "specificQuestion", "Potion" },
+                                    { "houseIndex", (int)houseResponse },
+                                };
+                                Events.CustomData("questionResponse", parameters);
+                            }
                         }
 
                         finalResponseSent = true;

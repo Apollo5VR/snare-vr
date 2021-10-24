@@ -22,7 +22,7 @@ public class CommonEnums : MonoBehaviour
     {
         None = -1,
         Accio = 0, //Distance grab 
-        Stupify = 1, //Paralyze 
+        Baubil = 1, //Lightning
         WingardiumLeviosa = 2, //Float 
         Incendio = 3 //Burn
     }

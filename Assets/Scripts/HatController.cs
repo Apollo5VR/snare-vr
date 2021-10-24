@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
 
 public class HatController : MonoBehaviour
@@ -63,11 +64,11 @@ public class HatController : MonoBehaviour
         float time = Time.timeSinceLevelLoad;
         CommonEnums.HouseResponses response = CommonEnums.HouseResponses.None;
 
-        if(time > 90)
+        if(time > 60)
         {
             response = CommonEnums.HouseResponses.Ravenclaw;
         }
-        else if(time > 60)
+        else if(time > 45)
         {
             response = CommonEnums.HouseResponses.Hufflepuff;
         }
@@ -81,6 +82,17 @@ public class HatController : MonoBehaviour
         }
 
         ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "specificQuestion", "HatPickup" },
+                    { "houseIndex", (int)response },
+                };
+            Events.CustomData("questionResponse", parameters);
+        }
     }
 
     void Update()

@@ -12,7 +12,7 @@ public class TriggerSpellSelection : MonoBehaviour
         if(other.gameObject.name == "Wand")
         {
             //"Subject" 
-            if(touchTime < 1)
+            if(touchTime < 0.75f)
             {
                 loadingLine.transform.localScale = new Vector3(touchTime, loadingLine.transform.localScale.y, loadingLine.transform.localScale.z);
                 touchTime += Time.deltaTime;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Services.Analytics;
 
 public class SocialSceneController : MonoBehaviour
 {
@@ -52,8 +53,16 @@ public class SocialSceneController : MonoBehaviour
 
         ResponseCollector.Instance.OnResponseSelected -= SocialCommand;
 
-        //moved to end of ball controller
-        //ProgressionController.Instance.OnLoadNextScene?.Invoke(8);
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "specificQuestion", "Social" },
+                    { "houseIndex", (int)response },
+                };
+            Events.CustomData("questionResponse", parameters);
+        }
     }
 
     void Destroy()

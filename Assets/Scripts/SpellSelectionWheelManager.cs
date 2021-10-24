@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.Services.Analytics;
 
 public class SpellSelectionWheelManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SpellSelectionWheelManager : MonoBehaviour
     public BNG.WandSpellsController wandSpellsController;
 
     public static Action<GameObject> OnSpellSelected;
+
+    private bool tutorialResponseRecorded;
 
     //depreciated - redundant since we use Action based sub 
     /*
@@ -36,25 +39,47 @@ public class SpellSelectionWheelManager : MonoBehaviour
     //Observer in an Observer Pattern
     private void UpdateSpellSelected(GameObject spellButton)
     {
+        CommonEnums.HouseResponses houseResponse = CommonEnums.HouseResponses.None;
+
         switch (spellButton.gameObject.name)
         {
             case "Accio":
                 wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Accio;
-                //TODO - notify ResponseCollector - 
-                //CommonEnums.houseResponses.Ravenclaw
+                houseResponse = CommonEnums.HouseResponses.Ravenclaw;
                 break;
-            case "Stupify":
-                wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Stupify;
+            case "Baubil":
+                wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Baubil; //now Lightning
+                houseResponse = CommonEnums.HouseResponses.Gryfindor;
                 break;
             case "WingardiumLeviosa":
                 wandSpellsController.spellSelected = CommonEnums.AvailableSpells.WingardiumLeviosa;
+                houseResponse = CommonEnums.HouseResponses.Hufflepuff;
                 break;
             case "Incendio":
                 wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Incendio;
+                houseResponse = CommonEnums.HouseResponses.Slytherin;
                 break;
             default:
                 wandSpellsController.spellSelected = CommonEnums.AvailableSpells.None;
                 break;
+        }
+
+        if (!tutorialResponseRecorded)
+        {
+            ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
+
+            if (!Application.isEditor)
+            {
+                //Analytics Beta
+                Dictionary<string, object> parameters = new Dictionary<string, object>()
+                {
+                    { "specificQuestion", "TutorialSpellSelection" },
+                    { "houseIndex", (int)houseResponse },
+                };
+                Events.CustomData("questionResponse", parameters);
+            }
+
+            tutorialResponseRecorded = true;
         }
 
         gameObject.SetActive(false);

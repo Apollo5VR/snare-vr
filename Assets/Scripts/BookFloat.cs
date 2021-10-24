@@ -29,12 +29,6 @@ public class BookFloat : MonoBehaviour
 
     void Update()
     {
-        if (testBool)
-        {
-            ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.Hufflepuff);
-            testBool = false;
-        }
-
         if (isFloating)
         {
             // animate the position of the game object...
