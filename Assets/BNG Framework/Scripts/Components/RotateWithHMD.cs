@@ -67,7 +67,7 @@ namespace BNG {
             if (camTransform == null && GameObject.FindGameObjectWithTag("MainCamera") != null) {
                 camTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
                 followTransform.position = camTransform.position;
-                followTransform.localEulerAngles = Vector3.zero;
+                //followTransform.localEulerAngles = Vector3.zero; //GG - dont want the rotation spell book to be completely vertical
             }
 
             // No main camera available
