@@ -8872,8 +8872,8 @@ MonoBehaviour:
   delay1: 5
   delayProving: 15
   fullTextList:
-  - 'CHOOSE a pet from the table by picking it up and putting it in the cart basket '
-  - Then GRAB the cart handle and PREPARE to go through 9 & 3/4ths
+  - 'CHOOSE a pet from the table by picking it up and putting it in the cart basket_ '
+  - 'Then GRAB the cart handle and PREPARE to go through 9 & 3/4ths_ '
   fullTextCount: 0
   optionalDoorAnimator: {fileID: 0}
 --- !u!23 &6084578968915313209
