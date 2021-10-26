@@ -1988,10 +1988,10 @@ MonoBehaviour:
   housePoints: 0000000000000000000000000000000000000000
   resultText: {fileID: 0}
   resultTextOptions:
-  - 'If you want to try again, put on the hat!_ '
+  - 'If you want to try again, put on the hat! '
   - 'Oh no, it seems the sorting hat can''t decide between 2 houses. We''re loading
-    up 1 final tiebreaker question!_ '
-  - 'Loading 1 More Question_ '
+    up 1 final tiebreaker question!  '
+  - 'Loading 1 More Question '
   sceneSelectionResponse: 0
 --- !u!4 &357991596
 Transform:
@@ -3055,6 +3055,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 902458549010064508, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 966512732591709781, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: m_Enabled
