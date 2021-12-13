@@ -13,6 +13,7 @@ TagManager:
   - Slytherin
   - Hufflepuff
   - Crest
+  - Shard
   layers:
   - Default
   - TransparentFX
