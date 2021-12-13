@@ -13,6 +13,7 @@ public class ProgressionController : MonoBehaviour
     public GameObject sceneLoadingBlackSphere;
     public bool isManualSelection = false;
     public bool debugProgressNextScene;
+    public bool testMaskMaker = false;
 
     public Action<float> OnLoadNextScene;
     public Action<int> OnLoadChallengeScene;
@@ -65,6 +66,13 @@ public class ProgressionController : MonoBehaviour
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         int level = 0;
 
+        //TODO for testing only - likely remove
+        if(testMaskMaker)
+        {
+            level = 11;
+            StartCoroutine(TimerToEndScene(level, time));
+            return;
+        }
         //note: manual selection added for 1st go through all scenes, then choice of 1 replay
         if (isManualSelection && (buildIndex > 4 && buildIndex < 9))
         {

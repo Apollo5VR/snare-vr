@@ -4068,6 +4068,7 @@ MonoBehaviour:
   sceneLoadingBlackSphere: {fileID: 1915027670}
   isManualSelection: 0
   debugProgressNextScene: 0
+  testMaskMaker: 1
 --- !u!4 &993326902
 Transform:
   m_ObjectHideFlags: 0
