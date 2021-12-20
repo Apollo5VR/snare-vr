@@ -9,6 +9,8 @@ public class ChiselController : MonoBehaviour
     public bool touchingStoneShard = false;
     public GameObject stoneShard;
 
+    public int shardDestroyedCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,16 @@ public class ChiselController : MonoBehaviour
         {
             stoneShard.SetActive(false);
             stoneShard = null;
+
+            shardDestroyedCount++;
+
+            if(shardDestroyedCount == 9)
+            {
+                if (BNG.WholeStoneController.Instance != null)
+                {
+                    BNG.WholeStoneController.Instance.OnRockInteraction(CommonEnums.HouseResponses.Gryfindor);
+                }
+            }
         }
     }
 }

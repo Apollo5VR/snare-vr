@@ -319,6 +319,7 @@ namespace BNG
                 yield return null;
             }
 
+            //TODO - as were getting repeatative - refactor for a spell controller response manager
             //Scene 3 Proving - Troll
             if(hitObject != null && hitObject.name == "TheTroll")
             {
@@ -327,6 +328,18 @@ namespace BNG
                     if(TrollController.Instance != null)
                     {
                         TrollController.Instance.OnTrollSceneResponseSelected?.Invoke(CommonEnums.HouseResponses.Gryfindor);
+                    }
+                }
+            }
+
+            //Scene 10 Mask Maker - Rock
+            if (hitObject != null && hitObject.name == "RockCube")
+            {
+                if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject?.tag) != CommonEnums.HouseResponses.None)
+                {
+                    if (BNG.WholeStoneController.Instance != null)
+                    {
+                        BNG.WholeStoneController.Instance.OnRockInteraction(CommonEnums.HouseResponses.Slytherin);
                     }
                 }
             }
@@ -395,6 +408,19 @@ namespace BNG
                 // animate the position of the game object...
                 if(hitObject != null)
                 {
+                    if (hitObject.name == "RockCube")
+                    {
+                        if (ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject?.tag) != CommonEnums.HouseResponses.None)
+                        {
+                            if (BNG.WholeStoneController.Instance != null)
+                            {
+                                BNG.WholeStoneController.Instance.OnRockInteraction(CommonEnums.HouseResponses.Slytherin);
+
+                                break;
+                            }
+                        }
+                    }
+
                     hitObject.transform.position = new Vector3(hitObject.transform.position.x, Mathf.Lerp(minimum, maximum, t), hitObject.transform.position.z);
                 }            
 

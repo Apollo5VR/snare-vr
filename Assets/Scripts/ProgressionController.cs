@@ -21,6 +21,9 @@ public class ProgressionController : MonoBehaviour
     private int nextLevel;
     private IEnumerator autoProgressCR;
 
+    private int questionSelectionScene = 4;
+    private int resultsScene = 9; //gets updated if more scenes added
+
     private void Awake()
     {
         if (Instance == null)
@@ -37,6 +40,8 @@ public class ProgressionController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        resultsScene = SceneManager.sceneCount - 1;
+
         //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnLoadNextScene += LoadNextScene;
