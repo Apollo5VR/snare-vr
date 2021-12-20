@@ -414,8 +414,8 @@ namespace BNG
                         {
                             if (BNG.WholeStoneController.Instance != null)
                             {
-                                BNG.WholeStoneController.Instance.OnRockInteraction(CommonEnums.HouseResponses.Slytherin);
-
+                                BNG.WholeStoneController.Instance.OnRockInteraction(CommonEnums.HouseResponses.Hufflepuff);
+                                hitObject = null;
                                 break;
                             }
                         }

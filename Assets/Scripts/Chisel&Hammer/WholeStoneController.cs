@@ -39,7 +39,7 @@ namespace BNG
 
         private void AlterRock(CommonEnums.HouseResponses response)
         {
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponentInChildren<BoxCollider>().enabled = false;
 
             //will usually happen only 1x, but can happen more if you "change your mind" last second (part of the test) (still? 12.19.21)
             ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
@@ -73,7 +73,7 @@ namespace BNG
                     //Hufflepuff;
                     //rock animated
                     rotator.enabled = true;
-                    speakAudio.enabled = true;
+                    speakAudio.Play();
                     StartCoroutine(RockAudioWait());
                     //audio source play
                     break;
@@ -101,7 +101,9 @@ namespace BNG
             {
                 if (stoneShards[i].activeSelf == true)
                 {
-                    stoneShards[i].GetComponent<Rigidbody>().isKinematic = false;
+                    Rigidbody shardRb = stoneShards[i].GetComponent<Rigidbody>();
+                    shardRb.isKinematic = false;
+                    shardRb.useGravity = true;
                 }
             }
         }
