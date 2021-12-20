@@ -22,7 +22,7 @@ public class ProgressionController : MonoBehaviour
     private IEnumerator autoProgressCR;
 
     private int questionSelectionScene = 4;
-    private int resultsScene = 9; //gets updated if more scenes added
+    private int resultsScene = 9; //originally 9, gets updated if more scenes added
 
     private void Awake()
     {
@@ -71,20 +71,20 @@ public class ProgressionController : MonoBehaviour
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         int level = 0;
 
-        //TODO for testing only - likely remove
+        //TODO for testing only - likely remove 
         if(testMaskMaker)
         {
-            level = 11;
+            level = 5;
             StartCoroutine(TimerToEndScene(level, time));
             return;
         }
         //note: manual selection added for 1st go through all scenes, then choice of 1 replay
-        if (isManualSelection && (buildIndex > 4 && buildIndex < 9))
+        if (isManualSelection && (buildIndex > questionSelectionScene && buildIndex < resultsScene))
         {
-            level = 9;
+            level = resultsScene;
         }
         //for first time picking up hat
-        else if(buildIndex == 3)
+        else if(buildIndex == (resultsScene - 1))
         {
             time = 0;
             level = 5;
@@ -103,7 +103,7 @@ public class ProgressionController : MonoBehaviour
         //sceneLoadingBlackSphere.SetActive(true);
 
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
-        if(buildIndex == 9)
+        if(buildIndex == resultsScene)
         {
             isManualSelection = true;
         }
@@ -113,14 +113,13 @@ public class ProgressionController : MonoBehaviour
             //Analytics Beta
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
-                { "buildIndex", 4 + sceneIncrement }
+                { "buildIndex", questionSelectionScene + sceneIncrement }
             };
             Events.CustomData("sceneload_replay", parameters);
         }
 
-        //4 is the challenge selection scene
         //TODO - find way to not need hard coded value
-        SceneManager.LoadScene(4 + sceneIncrement);
+        SceneManager.LoadScene(questionSelectionScene + sceneIncrement);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

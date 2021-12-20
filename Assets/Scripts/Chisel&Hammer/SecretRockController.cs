@@ -17,7 +17,7 @@ public class SecretRockController : MonoBehaviour
     {
         if(sentCount == 0)
         {
-            if ((transform.position.y - yOriginValue) > 0.01)
+            if ((transform.position.y - yOriginValue) > 0.03)
             {
                 //rock has been pressed
                 if (BNG.WholeStoneController.Instance != null)

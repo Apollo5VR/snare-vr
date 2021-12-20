@@ -15,6 +15,7 @@ namespace BNG
         public GameObject secretShard;
         public HandleRotator rotator;
         public AudioSource speakAudio;
+        public GameObject santaHat;
         //public HammerController hammerController;
 
         public Action<CommonEnums.HouseResponses> OnRockInteraction;
@@ -106,9 +107,14 @@ namespace BNG
                     shardRb.useGravity = true;
                 }
             }
+
+            santaHat.GetComponent<SphereCollider>().enabled = true;
+
+            ProgressionController.Instance.OnLoadNextScene?.Invoke(15);
         }
 
         // Update is called once per frame
+        /*
         void Update()
         {
             //TODO - remove all this was only for testing
@@ -135,6 +141,7 @@ namespace BNG
                 reActivateShard.SetActive(true);
             }
         }
+        */
 
         private void OnDestroy()
         {
