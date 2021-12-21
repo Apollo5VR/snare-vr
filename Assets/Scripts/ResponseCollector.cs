@@ -99,7 +99,7 @@ public class ResponseCollector : MonoBehaviour
 
         if (sceneSelectionResponse)
         {
-            challengeSceneSelected = (int)response + 1;
+            challengeSceneSelected = (int)response + 1; //12.20 to reupdate for Santa addition (1 level) - TODO - refactor eventually for infinite levels
             sceneSelectionResponse = false;
             ProgressionController.Instance.OnLoadChallengeScene((int)response); //note: +1 to align with actual scene num
         }

@@ -28,11 +28,15 @@ public class ChiselController : MonoBehaviour
         //TODO - activate a glow or color change of the chisel to notify user visually contact is made 
         if(collisionInfo.gameObject.tag == "Shard")
         {
-            //TODO-  confirm ON Collision haptics covers this
-            //chiselHandHaptic.doHaptics(chiselHandHaptic.currentGrabber.HandSide);
             stoneShard = collisionInfo.gameObject;
             chiselColor.material.color = Color.green;
             touchingStoneShard = true;
+        }
+
+        //adding this haptic call because oncollision premade does not do the job
+        if(chiselHandHaptic.currentGrabber)
+        {
+            chiselHandHaptic.doHaptics(chiselHandHaptic.currentGrabber.HandSide);
         }
     }
 
@@ -56,7 +60,7 @@ public class ChiselController : MonoBehaviour
 
             shardDestroyedCount++;
 
-            if(shardDestroyedCount == 9)
+            if(shardDestroyedCount == 15)
             {
                 if (BNG.WholeStoneController.Instance != null)
                 {

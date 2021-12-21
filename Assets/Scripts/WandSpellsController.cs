@@ -552,13 +552,27 @@ namespace BNG
                     if (hitObject != hit.transform.gameObject)
                     {
                         hitObject = hit.transform.gameObject;
-                        CommonEnums.HouseResponses response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag);
+                        //CommonEnums.HouseResponses response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(hitObject.tag);
 
+                        //if is an int name
+                        if(int.TryParse(hitObject.name, out int value))
+                        {
+                            int level = int.Parse(hitObject.name);
+
+                            ProgressionController.Instance.OnLoadChallengeScene(level);
+
+                            //old - pre-santa
+                            //ResponseCollector.Instance.OnToggleSceneSelectionResponse?.Invoke();
+                            //ResponseCollector.Instance.OnResponseSelected?.Invoke(level);
+                        }
+                        //old code 12.20 b4 santa update
+                        /*
                         if(response != CommonEnums.HouseResponses.None)
                         {
                             ResponseCollector.Instance.OnToggleSceneSelectionResponse?.Invoke();
                             ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
                         }
+                        */ 
                         //End Scene Yes Or No more levels scene
                         else
                         {

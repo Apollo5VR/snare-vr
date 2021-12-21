@@ -113,9 +113,10 @@ public class ProgressionController : MonoBehaviour
             //Analytics Beta
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
-                { "buildIndex", questionSelectionScene + sceneIncrement }
+                //12.21 currently sceneIncrement 1 - 5
+                { "buildIndex", questionSelectionScene + sceneIncrement}
             };
-            Events.CustomData("sceneload_replay", parameters);
+            Events.CustomData("sceneload_replay_santaupdate", parameters);
         }
 
         //TODO - find way to not need hard coded value

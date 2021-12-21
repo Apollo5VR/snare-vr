@@ -54,7 +54,7 @@ public class TrollController : MonoBehaviour {
     private IEnumerator TimerTillTrollKills()
     {
         //15s till the troll reaches you
-        yield return new WaitForSeconds(16);
+        yield return new WaitForSeconds(28);
 
         //note: deactivating this as no response is super discouraging in initial testing (not funny)
         //ResponseCollector.Instance.OnResponseSelected?.Invoke(CommonEnums.HouseResponses.None);
