@@ -40,7 +40,7 @@ public class ProgressionController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        resultsScene = SceneManager.sceneCount - 1;
+        resultsScene = SceneManager.sceneCountInBuildSettings - 2;
 
         //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -82,12 +82,6 @@ public class ProgressionController : MonoBehaviour
         if (isManualSelection && (buildIndex > questionSelectionScene && buildIndex < resultsScene))
         {
             level = resultsScene;
-        }
-        //for first time picking up hat
-        else if(buildIndex == (resultsScene - 1))
-        {
-            time = 0;
-            level = 5;
         }
         else
         {
