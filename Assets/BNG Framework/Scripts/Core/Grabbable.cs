@@ -9,7 +9,6 @@ namespace BNG {
     /// An object that can be picked up by a Grabber
     /// </summary>
     public class Grabbable : MonoBehaviour {
-
         /// <summary>
         /// Is this object currently being held by a Grabber
         /// </summary>
@@ -425,6 +424,10 @@ namespace BNG {
         /// </summary>
         [Tooltip("If Grab Mechanic is set to Snap, the closest GrabPoint will be used. Add a SnapPoint Component to a GrabPoint to specify custom hand poses and rotation.")]
         public List<Transform> GrabPoints;
+
+        [Header("Turret")]
+        [Tooltip("for turret")]
+        public bool isTurret = false;
 
         /// <summary>
         /// Can the object be moved towards a Grabber. 
@@ -1196,7 +1199,8 @@ namespace BNG {
                 }
                 // Check if a grabber is holding this object
                 else if (heldByGrabbers != null && heldByGrabbers.Count > 1) {
-                    // destination = Quaternion.Lerp(destination, GetGrabberQuaternion(heldByGrabbers[1], true), TwoHandedRotationLerpAmount);
+                    //TODO - GG reactivating this 1.3
+                    destination = Quaternion.Lerp(destination, GetGrabberQuaternion(heldByGrabbers[1], true), TwoHandedRotationLerpAmount);
                 }
             }
 
@@ -1245,7 +1249,16 @@ namespace BNG {
             }
             else if (GrabMechanic == GrabType.Precise) {
                 movePosition(grabTransform.position);
-                moveRotation(grabTransform.rotation);
+
+                //GG
+                if(isTurret)
+                {
+                    moveRotation(Quaternion.Lerp(transform.rotation, GetGrabbersAveragedRotation(), Time.deltaTime * 2));
+                }
+                else
+                {
+                    moveRotation(grabTransform.rotation);
+                }
             }
         }
 

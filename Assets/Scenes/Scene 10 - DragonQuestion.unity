@@ -3154,7 +3154,7 @@ MonoBehaviour:
   SecondaryGrabBehavior: 2
   TwoHandedPosition: 1
   TwoHandedPostionLerpAmount: 0.5
-  TwoHandedRotation: 1
+  TwoHandedRotation: 0
   TwoHandedRotationLerpAmount: 0.5
   TwoHandedDropBehavior: 0
   TwoHandedLookVector: 0
@@ -3183,6 +3183,7 @@ MonoBehaviour:
   GrabPoints:
   - {fileID: 173620268}
   - {fileID: 531168149}
+  isTurret: 1
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
