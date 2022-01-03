@@ -13,7 +13,7 @@ public class ProgressionController : MonoBehaviour
     public GameObject sceneLoadingBlackSphere;
     public bool isManualSelection = false;
     public bool debugProgressNextScene;
-    public bool testMaskMaker = false;
+    public bool testNewScene = false;
 
     public Action<float> OnLoadNextScene;
     public Action<int> OnLoadChallengeScene;
@@ -72,9 +72,9 @@ public class ProgressionController : MonoBehaviour
         int level = 0;
 
         //TODO for testing only - likely remove 
-        if(testMaskMaker)
+        if(testNewScene)
         {
-            level = 5;
+            level = 12;
             StartCoroutine(TimerToEndScene(level, time));
             return;
         }
