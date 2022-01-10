@@ -24,17 +24,44 @@ public class TurretRayCast : MonoBehaviour
     public GameObject HitFXPrefab; //{ get; private set; }
 
     public GameObject flameCollider;
+    //Script Purpose: To create a countdown clock that respawns zombies
 
-    private void Start()
+    public GameObject zombieAgent;
+    public float originalTime;
+    public float timeCounter; //TODO - private
+    public GameObject[] randomSpawnLocations;
+    public int randomNumber; //TODO - private
+
+    private int score = 0;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        //not worth it
-        //TODO confirm Y is the length
-        //flameCollider.transform.localScale = new Vector3(flameCollider.transform.localScale.x, MaxRange, flameCollider.transform.localScale.z);
+        //randomSpawnLocations = GameObject.FindGameObjectsWithTag("SpawnLocation");
+        //timeCounter = timeDifficulty;
     }
 
-    //TODO - remove when done testing
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
+        //if the count down reaches 0, respawn another zombie
+        if (timeCounter <= 0)
+        {
+
+            //select one of the random spawn locations
+            randomNumber = Random.Range(0, 3);
+            Debug.Log("The exact random location is: " + randomNumber);
+
+            //spawn at chosen random location
+            GameObject wolf = Instantiate(zombieAgent, randomSpawnLocations[randomNumber].transform.position, new Quaternion(0,-180,0, 0));
+            wolf.SetActive(true);
+
+            //reset counter to the original time
+            timeCounter = originalTime;
+        }
+
+        //start countdown
+        timeCounter = timeCounter - Time.deltaTime;
 
     }
 
@@ -47,6 +74,8 @@ public class TurretRayCast : MonoBehaviour
             ApplyParticleFX(other.transform.position, Quaternion.identity);
 
             StartCoroutine(DestroyAfterDelay(other.gameObject));
+
+            score++;
         }
 
         //depr - not needed right now
