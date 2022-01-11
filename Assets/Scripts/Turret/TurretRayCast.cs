@@ -32,6 +32,8 @@ public class TurretRayCast : MonoBehaviour
     public GameObject[] randomSpawnLocations;
     public int randomNumber; //TODO - private
 
+    public bool start = false;
+
     private int score = 0;
 
     // Start is called before the first frame update
@@ -44,25 +46,27 @@ public class TurretRayCast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if the count down reaches 0, respawn another zombie
-        if (timeCounter <= 0)
+        if (start)
         {
+            //if the count down reaches 0, respawn another zombie
+            if (timeCounter <= 0)
+            {
 
-            //select one of the random spawn locations
-            randomNumber = Random.Range(0, 3);
-            Debug.Log("The exact random location is: " + randomNumber);
+                //select one of the random spawn locations
+                randomNumber = Random.Range(0, 3);
+                Debug.Log("The exact random location is: " + randomNumber);
 
-            //spawn at chosen random location
-            GameObject wolf = Instantiate(zombieAgent, randomSpawnLocations[randomNumber].transform.position, new Quaternion(0,-180,0, 0));
-            wolf.SetActive(true);
+                //spawn at chosen random location
+                GameObject wolf = Instantiate(zombieAgent, randomSpawnLocations[randomNumber].transform.position, new Quaternion(0, -180, 0, 0));
+                wolf.SetActive(true);
 
-            //reset counter to the original time
-            timeCounter = originalTime;
+                //reset counter to the original time
+                timeCounter = originalTime;
+            }
+
+            //start countdown
+            timeCounter = timeCounter - Time.deltaTime;
         }
-
-        //start countdown
-        timeCounter = timeCounter - Time.deltaTime;
-
     }
 
     private void OnTriggerEnter(Collider other)

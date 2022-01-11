@@ -17,6 +17,7 @@ public class ProgressionController : MonoBehaviour
 
     public Action<float> OnLoadNextScene;
     public Action<int> OnLoadChallengeScene;
+    public Func<BNG.PlayerTeleport> OnRequestTeleporter;
 
     private int nextLevel;
     private IEnumerator autoProgressCR;
@@ -35,6 +36,11 @@ public class ProgressionController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private BNG.PlayerTeleport PassTeleporter()
+    {
+        return playerTeleport;
+    }
     
 
     // Use this for initialization
@@ -46,6 +52,7 @@ public class ProgressionController : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnLoadNextScene += LoadNextScene;
         OnLoadChallengeScene += LoadQuestionScene;
+        OnRequestTeleporter += PassTeleporter;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
 
