@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Unity.Services.Analytics;
 
 public class TurretProgressionController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class TurretProgressionController : MonoBehaviour
     public Action OnDecrementLP;
     public Action OnIncrementScore;
     public Action<CommonEnums.HouseResponses, GameObject> OnEggSceneResponseSelected;
+
+    public BNG.Grabbable turretGrabbable;
+    public GameObject dragonFire;
 
     private BNG.PlayerTeleport playerTeleport;
 
@@ -40,6 +44,8 @@ public class TurretProgressionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dragonFire.SetActive(false);
+
         OnGetDinoNest += GetDinoNest;
         OnDecrementLP += UpdateLifePoints;
         OnIncrementScore += UpdateScore;
@@ -54,6 +60,11 @@ public class TurretProgressionController : MonoBehaviour
         }
 
         StartCoroutine(MovePlayerToDragon());
+    }
+
+    public void ActivateFire()
+    {
+        dragonFire.SetActive(true);
     }
 
     private Transform GetDinoNest()
@@ -85,6 +96,8 @@ public class TurretProgressionController : MonoBehaviour
     {
         score++;
 
+        instructionsText.text = "Kill " + (winScore - score) + " more wolves!";
+
         if (score == winScore)
         {
             StartCoroutine(MoveToDragonEggs(true));
@@ -93,7 +106,9 @@ public class TurretProgressionController : MonoBehaviour
 
     private IEnumerator MoveToDragonEggs(bool isWin)
     {
-        if(!isWin)
+        dragonFire.SetActive(false);
+
+        if (!isWin)
         {
             instructionsText.text = "Oh no, all the eggs have been eaten!";
             missionText.text = "I thank you for your help. But all that was left of my children was this chicken egg. Please take it, it pains me too much";
@@ -105,6 +120,8 @@ public class TurretProgressionController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(8);
+
+        turretGrabbable.DropTurret();
 
         StartCoroutine(playerTeleport.doTeleport(eggsTranform.localPosition, eggsTranform.localRotation, true));
 
@@ -130,15 +147,30 @@ public class TurretProgressionController : MonoBehaviour
     //TODO - make this so its on grab, not on trigger - then update timer to be faster
     private void EggSelected(CommonEnums.HouseResponses response, GameObject eggObj)
     {
+        ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
+
+        if (!Application.isEditor)
+        {
+            //Analytics Beta
+            Dictionary<string, object> parameters = new Dictionary<string, object>()
+            {
+                { "specificQuestion", "DragonTurret" },
+                { "houseIndex", (int)response },
+            };
+            Events.CustomData("questionResponse", parameters);
+        }
+
         //if win
         for (int i = 0; i < dragonEggs.Length - 1; i++)
         {
             if(eggObj != dragonEggs[i])
             {
+                Debug.Log("deactivated egg: " + dragonEggs[i].name);
+
                 dragonEggs[i].SetActive(false);
             }
         }
 
-        ProgressionController.Instance.OnLoadNextScene?.Invoke(25);
+        ProgressionController.Instance.OnLoadNextScene?.Invoke(10);
     }
 }

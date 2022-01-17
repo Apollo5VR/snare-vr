@@ -536,7 +536,16 @@ namespace BNG {
                     }
                 }
             }
-        }        
+        }   
+        
+        public virtual void DropTurret()
+        {
+            for (int x = 0; x < heldByGrabbers.Count; x++)
+            {
+                Grabber g = heldByGrabbers[x];
+                DropItem(g, true, true);
+            }
+        }
 
         public virtual void Update() {
 

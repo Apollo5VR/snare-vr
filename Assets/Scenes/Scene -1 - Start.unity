@@ -3770,6 +3770,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -4098,7 +4099,7 @@ MonoBehaviour:
   sceneLoadingBlackSphere: {fileID: 1915027670}
   isManualSelection: 0
   debugProgressNextScene: 0
-  testNewScene: 1
+  testNewScene: 0
 --- !u!4 &993326902
 Transform:
   m_ObjectHideFlags: 0
@@ -4586,6 +4587,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -4996,6 +4998,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -6009,6 +6012,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -6439,6 +6443,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
