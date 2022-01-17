@@ -34,13 +34,9 @@ public class TurretRayCast : MonoBehaviour
 
     public bool start = false;
 
-    private int score = 0;
-
-    // Start is called before the first frame update
-    void Start()
+    public void StartWolfSequence()
     {
-        //randomSpawnLocations = GameObject.FindGameObjectsWithTag("SpawnLocation");
-        //timeCounter = timeDifficulty;
+        start = true;
     }
 
     // Update is called once per frame
@@ -75,11 +71,11 @@ public class TurretRayCast : MonoBehaviour
         {
             //TODO - add a outline highlight so player can still see enemy
 
+            TurretProgressionController.Instance.OnIncrementScore();
+
             ApplyParticleFX(other.transform.position, Quaternion.identity);
 
             StartCoroutine(DestroyAfterDelay(other.gameObject));
-
-            score++;
         }
 
         //depr - not needed right now
@@ -116,11 +112,12 @@ public class TurretRayCast : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay(GameObject hitObj)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
 
         RePoolEnemy(hitObj);
     }
 
+    //TODO - actually create an object pool
     private void RePoolEnemy(GameObject objForRepool)
     {
         objForRepool.SetActive(false);

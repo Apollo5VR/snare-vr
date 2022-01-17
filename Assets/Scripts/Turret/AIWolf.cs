@@ -9,21 +9,15 @@ public class AIWolf : MonoBehaviour
 
     //collect the zombie and player details
     public NavMeshAgent thisZombieAgent = null;
-    public Transform player;
+    public Transform destination;
     public float speed = 1.0f;
 
-    //increase difficulty as time progresses
-    private float difficultyTimeCounter;
-    //public float easy;
-    //public float medium;
-    //public float hard;
-
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        //thisZombieAgent = GetComponent<NavMeshAgent>();
-        difficultyTimeCounter = Time.time;
+        destination = TurretProgressionController.Instance.OnGetDinoNest();
+
         thisZombieAgent.speed = speed;
-        thisZombieAgent.SetDestination(player.position);
+        thisZombieAgent.SetDestination(destination.position);
     }
 }

@@ -10,12 +10,13 @@ public class ResponseTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //limits each object to only sending 1 response
+        //limits each object to only sending 1 response per level
         if(responseCount < 1)
         {
             if (isTag)
             {
                 response = ResponseCollector.Instance.OnCheckAcceptableTags.Invoke(gameObject.tag);
+                Debug.Log("gameO" + other.gameObject.name);
             }
             else
             {
@@ -35,6 +36,10 @@ public class ResponseTrigger : MonoBehaviour
             else if (MaskController.Instance != null)
             {
                 MaskController.Instance.OnMaskSceneResponseSelected?.Invoke(response, gameObject);
+            }
+            else if(TurretProgressionController.Instance != null)
+            {
+                TurretProgressionController.Instance.OnEggSceneResponseSelected(response, gameObject);
             }
             else
             {

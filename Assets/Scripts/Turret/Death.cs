@@ -14,15 +14,10 @@ public class Death : MonoBehaviour
     //create array of hearts (amount of health)
     public GameObject[] hearts;
 
-
-    private void Start()
-    {
-        hearts = GameObject.FindGameObjectsWithTag("Heart");
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Zombie")
+        //if wolf
+        if (other.gameObject.layer == 8)
         {
             PlayerAttacked();
             Destroy(other.gameObject);
@@ -34,19 +29,25 @@ public class Death : MonoBehaviour
         //add up ever time the player is hit
         playerHit = playerHit + 1;
 
-        //for each time player hit, deactivate a heart
-        hearts[playerHit - 1].SetActive(false);
+        TurretProgressionController.Instance.OnDecrementLP();
 
-        Debug.Log("Wolf Bit You:" + playerHit + "Time(s)");
+        //for each time player hit, deactivate an egg
+        if(playerHit <= hearts.Length)
+        {
+            hearts[playerHit - 1].SetActive(false);
+
+            Debug.Log("Wolf Bit You:" + playerHit + "Time(s)");
+        }
 
         //if hit three times, game over - bring up restart screen
-        if (playerHit == 3)
+        if (playerHit == 4)
         {
-            //NEED TO SET THIS UP
-            UICanvas.SetActive(true);
-            //Reticule.SetActive(true);
-
             Debug.Log("Wolves have attacked the eggs " + playerHit + " times, its all over.");
+
+            for (int i = 0; i < hearts.Length; i++)
+            {
+                hearts[i].SetActive(false);
+            }
         }
     }
 }
