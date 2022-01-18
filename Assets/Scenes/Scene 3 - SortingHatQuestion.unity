@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 49655949}
   - component: {fileID: 49655948}
   m_Layer: 0
-  m_Name: Gryfindor
+  m_Name: Party
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -233,11 +233,11 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.00001, y: -10.299998}
+  m_AnchoredPosition: {x: -37.100014, y: -10.299998}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49655948
@@ -273,7 +273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[FIGHT A TROLL]'
+  m_Text: '[HOST A PARTY]'
 --- !u!222 &49655949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -308,7 +308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86664249}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0301673, y: 0.9, z: 1.16}
+  m_LocalPosition: {x: -1.6362175, y: 0.9, z: 1.16}
   m_LocalScale: {x: 1.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1959151626}
@@ -431,6 +431,67 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00097380485, y: 0.007977098, z: -0.000045971014}
     m_Extent: {x: 0.0026164355, y: 0.010665536, z: 0.014597383}
   m_DirtyAABB: 0
+--- !u!1 &187464394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187464395}
+  - component: {fileID: 187464397}
+  - component: {fileID: 187464396}
+  m_Layer: 8
+  m_Name: 6
+  m_TagString: Slytherin
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &187464395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187464394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2989498, y: 0.9, z: 1.16}
+  m_LocalScale: {x: 2.61525, y: 3.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1959151626}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &187464396
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187464394}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &187464397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187464394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &220177277
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +598,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257270011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6477003, y: 0.9, z: 1.16}
+  m_LocalPosition: {x: -2.2537503, y: 0.9, z: 1.16}
   m_LocalScale: {x: 1.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1959151626}
@@ -862,7 +923,7 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -975,7 +1036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686825563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34729964, y: 0.9, z: 1.16}
+  m_LocalPosition: {x: -0.2587505, y: 0.9, z: 1.16}
   m_LocalScale: {x: 1.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1959151626}
@@ -1484,7 +1545,7 @@ GameObject:
   - component: {fileID: 880469649}
   - component: {fileID: 880469648}
   m_Layer: 0
-  m_Name: RavenClaw
+  m_Name: Troll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1502,11 +1563,11 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.699993, y: -10.299998}
+  m_AnchoredPosition: {x: -93.80002, y: -10.299998}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880469648
@@ -1542,7 +1603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[MIX A POTION]'
+  m_Text: '[FIGHT A TROLL]'
 --- !u!222 &880469649
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1785,7 +1846,7 @@ GameObject:
   - component: {fileID: 1183116759}
   - component: {fileID: 1183116758}
   m_Layer: 0
-  m_Name: HufflePuff
+  m_Name: MaskPick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1803,11 +1864,11 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74.80001, y: -10.3}
+  m_AnchoredPosition: {x: 22.69999, y: -10.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183116758
@@ -1843,7 +1904,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[HOST A PARTY]'
+  m_Text: '[PICK A MASK]'
 --- !u!222 &1183116759
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1981,7 +2042,7 @@ GameObject:
   - component: {fileID: 1323112201}
   - component: {fileID: 1323112200}
   m_Layer: 0
-  m_Name: Santa
+  m_Name: Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1999,11 +2060,11 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -95.2, y: -10.299998}
+  m_AnchoredPosition: {x: -147.30002, y: -10.299998}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323112200
@@ -2039,7 +2100,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[SANTA GIFT]'
+  m_Text: '[MIX A POTION]'
 --- !u!222 &1323112201
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2140,7 +2201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525972188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0142996, y: 0.9, z: 1.16}
+  m_LocalPosition: {x: 0.4082495, y: 0.9, z: 1.16}
   m_LocalScale: {x: 1.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1959151626}
@@ -2323,12 +2384,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 1.13}
   m_LocalScale: {x: 0.011632436, y: 0.011632439, z: 0.011632439}
   m_Children:
+  - {fileID: 1323112199}
   - {fileID: 880469646}
   - {fileID: 49655947}
   - {fileID: 1183116756}
   - {fileID: 1628551556}
+  - {fileID: 1916480780}
   - {fileID: 508871540}
-  - {fileID: 1323112199}
   m_Father: {fileID: 1959151626}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2410,7 +2472,7 @@ GameObject:
   - component: {fileID: 1628551559}
   - component: {fileID: 1628551558}
   m_Layer: 0
-  m_Name: Slytherin
+  m_Name: SecretRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2428,11 +2490,11 @@ RectTransform:
   m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
   m_Children: []
   m_Father: {fileID: 1598550994}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.20001, y: -10.299998}
+  m_AnchoredPosition: {x: 83.09999, y: -10.299998}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1628551558
@@ -2468,7 +2530,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[PICK A MASK]'
+  m_Text: '[OPEN A SECRET]'
 --- !u!222 &1628551559
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2535,7 +2597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708802270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.37870038, y: 0.9, z: 1.16}
+  m_LocalPosition: {x: -0.9847505, y: 0.9, z: 1.16}
   m_LocalScale: {x: 1.5, y: 3.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1959151626}
@@ -2804,6 +2866,85 @@ Transform:
   m_Father: {fileID: 432295639}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1916480779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1916480780}
+  - component: {fileID: 1916480782}
+  - component: {fileID: 1916480781}
+  m_Layer: 0
+  m_Name: Dragon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!224 &1916480780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916480779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.41585815, y: 0.41585815, z: 0.41585815}
+  m_Children: []
+  m_Father: {fileID: 1598550994}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 146.9, y: -10.299998}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1916480781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916480779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 13
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '[SAVE DRAGON EGGS]'
+--- !u!222 &1916480782
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916480779}
+  m_CullTransparentMesh: 0
 --- !u!1 &1925323983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2920,6 +3061,7 @@ Transform:
   - {fileID: 1708802271}
   - {fileID: 686825564}
   - {fileID: 1525972189}
+  - {fileID: 187464395}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

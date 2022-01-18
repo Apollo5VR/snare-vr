@@ -23,7 +23,7 @@ public class ProgressionController : MonoBehaviour
     private IEnumerator autoProgressCR;
 
     private int questionSelectionScene = 4;
-    private int resultsScene = 9; //originally 9, gets updated if more scenes added
+    private int resultsScene = 10; //originally 10, gets updated if more scenes added
 
     private void Awake()
     {
@@ -78,10 +78,10 @@ public class ProgressionController : MonoBehaviour
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         int level = 0;
 
-        //TODO for testing only - likely remove 
+        //for testing only
         if(testNewScene)
         {
-            level = 12;
+            level = 12; //update this number to the test scene
             StartCoroutine(TimerToEndScene(level, time));
             return;
         }
@@ -100,9 +100,6 @@ public class ProgressionController : MonoBehaviour
 
     public void LoadQuestionScene(int sceneIncrement = 0)
     {
-        //depreciated
-        //sceneLoadingBlackSphere.SetActive(true);
-
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         if(buildIndex == resultsScene)
         {
@@ -114,13 +111,12 @@ public class ProgressionController : MonoBehaviour
             //Analytics Beta
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
-                //12.21 currently sceneIncrement 1 - 5
+                //1.17 currently sceneIncrement 1 - 6
                 { "buildIndex", questionSelectionScene + sceneIncrement}
             };
-            Events.CustomData("sceneload_replay_santaupdate", parameters);
+            Events.CustomData("sceneload_replay", parameters);
         }
 
-        //TODO - find way to not need hard coded value
         SceneManager.LoadScene(questionSelectionScene + sceneIncrement);
     }
 
@@ -135,7 +131,6 @@ public class ProgressionController : MonoBehaviour
             StartCoroutine(autoProgressCR);
         }
 
-        //TODO - find spawn position, relocate player
         Transform startingPosition = GameObject.Find("StartingPosition").transform;
 
         if (startingPosition != null)
