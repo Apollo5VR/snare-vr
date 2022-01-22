@@ -127,8 +127,15 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 2.5
+  bundleVersion: 2.6
   preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -264,7 +271,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/graha/Desktop/HPVR/sortinghatvr.keystore
+  AndroidKeystoreName: D:/Users/GrahamGettel/Desktop/The Future/Capstone Udacity/V3/sortinghatvr.keystore
   AndroidKeyaliasName: sorting hat vr keystore
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 1
