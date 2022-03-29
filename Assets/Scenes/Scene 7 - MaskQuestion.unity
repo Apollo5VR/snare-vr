@@ -638,6 +638,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -952,6 +953,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -1844,6 +1846,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -2246,6 +2249,7 @@ MonoBehaviour:
   SecondaryLookAtTransform: {fileID: 0}
   LocalOffsetTransform: {fileID: 0}
   GrabPoints: []
+  isTurret: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -2544,12 +2548,18 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1353413957005136950, guid: 64b01e3d5c639b9409f3e0a69f80b145,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1353413957026011244, guid: 64b01e3d5c639b9409f3e0a69f80b145,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1353413956067707938, guid: 64b01e3d5c639b9409f3e0a69f80b145, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 64b01e3d5c639b9409f3e0a69f80b145, type: 3}
 --- !u!4 &6836253175516377597
 Transform:

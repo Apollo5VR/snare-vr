@@ -425,9 +425,11 @@ namespace BNG {
         [Tooltip("If Grab Mechanic is set to Snap, the closest GrabPoint will be used. Add a SnapPoint Component to a GrabPoint to specify custom hand poses and rotation.")]
         public List<Transform> GrabPoints;
 
+        //GG - my custom stuff
         [Header("Turret")]
         [Tooltip("for turret")]
         public bool isTurret = false;
+        public bool isWire = false;
 
         /// <summary>
         /// Can the object be moved towards a Grabber. 
@@ -1462,6 +1464,11 @@ namespace BNG {
 
         public virtual void GrabItem(Grabber grabbedBy) {
 
+            if(isWire)
+            {
+                rigid.constraints = RigidbodyConstraints.None;
+            }
+
             // Make sure we release this item
             if (BeingHeld && SecondaryGrabBehavior != OtherGrabBehavior.DualGrab) {
                 DropItem(false, true);
@@ -1824,6 +1831,11 @@ namespace BNG {
                         if (rigid.constraints == RigidbodyConstraints.FreezeAll) {
                             rigid.constraints = RigidbodyConstraints.None;
                         }
+                    }
+
+                    if(isWire)
+                    {
+                        rigid.constraints = RigidbodyConstraints.FreezeAll;
                     }
 
                     // On release event

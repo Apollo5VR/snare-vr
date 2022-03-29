@@ -81,7 +81,7 @@ public class ProgressionController : MonoBehaviour
         //for testing only
         if(testNewScene)
         {
-            level = 10; //update this number to the test scene
+            level = 13; //update this number to the test scene
             StartCoroutine(TimerToEndScene(level, time));
             return;
         }

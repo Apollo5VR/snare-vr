@@ -174,7 +174,7 @@ PlayerSettings:
     Android: com.Apollo5Studios.SortingHatVR
     Facebook: com.oculus.UnitySample
     PSP2: com.oculus.UnitySample
-    Standalone: com.oculus.UnitySample
+    Standalone: com.Apollo5Studios.SortingHatVR
     Tizen: com.oculus.UnitySample
     Windows Store Apps: com.oculus.UnitySample
     XboxOne: com.oculus.UnitySample
@@ -719,9 +719,9 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT;UNITY_POST_PROCESSING_STACK_V1
-    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UNITY_POST_PROCESSING_STACK_V1
-    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UNITY_POST_PROCESSING_STACK_V1
+    1: CROSS_PLATFORM_INPUT;UNITY_POST_PROCESSING_STACK_V1;OBI_ONI_SUPPORTED
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UNITY_POST_PROCESSING_STACK_V1;OBI_ONI_SUPPORTED
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT;UNITY_POST_PROCESSING_STACK_V1;OBI_ONI_SUPPORTED
     13: UNITY_POST_PROCESSING_STACK_V1
     14: MOBILE_INPUT
     17: MOBILE_INPUT;UNITY_POST_PROCESSING_STACK_V1
