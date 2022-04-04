@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class WireTrigger : MonoBehaviour
 {
-    private void OnTriggerEnter()
+    public int progressionInt;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        //TODO refactor this to be not dumb
+        if(other.name == "GrabCube" || other.name == "WireGrabber")
+        {
+            WireController.Instance.OnWireSectionComplete?.Invoke(progressionInt);
+        }
     }
-    
 }

@@ -1833,6 +1833,7 @@ namespace BNG {
                         }
                     }
 
+                    //GG
                     if(isWire)
                     {
                         rigid.constraints = RigidbodyConstraints.FreezeAll;
