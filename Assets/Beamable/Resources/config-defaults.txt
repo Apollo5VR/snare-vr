@@ -1,0 +1,8 @@
+{
+    "cid": "1472430594610398",
+    "alias": "apollo5-vr",
+    "pid": "DE_1472430594610401",
+    "platform": "https://api.beamable.com",
+    "socket": "https://api.beamable.com",
+    "containerPrefix": ""
+}
