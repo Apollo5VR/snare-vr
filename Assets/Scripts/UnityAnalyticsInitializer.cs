@@ -9,9 +9,9 @@ public class UnityAnalyticsInitializer : MonoBehaviour
     // Start is called before the first frame update
     async void Start()
     {
-        if (!Application.isEditor)
-        {
+        //if (!Application.isEditor)
+        //{
             await UnityServices.InitializeAsync();
-        }
+        //}
     }
 }
