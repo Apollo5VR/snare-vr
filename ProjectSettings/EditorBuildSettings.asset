@@ -9,42 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene -1 - Start.unity
     guid: c55ece11057c520479ee8b2194869894
   - enabled: 1
-    path: Assets/Scenes/Scene 0 - Tutorial.unity
-    guid: 34975f0720d64754c94756727031783d
-  - enabled: 1
-    path: Assets/Scenes/Scene 1 - TrainStation.unity
-    guid: 334f4a2030ce97041b49c6f1d52fa59b
-  - enabled: 1
-    path: Assets/Scenes/Scene 2 - GrandHall.unity
-    guid: 944b23554ae0c7d479b98756a02cc3f9
-  - enabled: 1
-    path: Assets/Scenes/Scene 3 - SortingHatQuestion.unity
-    guid: 9a724443cc45f714293c2bc8202dd7eb
-  - enabled: 1
-    path: Assets/Scenes/Scene 4 - PotionsQuestion.unity
-    guid: 693561b0af1530b419e66366f9f8e4bf
-  - enabled: 1
-    path: Assets/Scenes/Scene 5 - TrollQuestion.unity
-    guid: ede93ea5561f20943b60f6d59e50c059
-  - enabled: 1
-    path: Assets/Scenes/Scene 6 - SocialQuestion.unity
-    guid: 94d879b0bdf52c74eafe1bc88fcf74a8
-  - enabled: 1
-    path: Assets/Scenes/Scene 7 - MaskQuestion.unity
-    guid: 2b5ae4d18c9f56a40859bd2b82d7f0aa
-  - enabled: 1
-    path: Assets/Scenes/Scene 3.5 - MaskMakingQuestion.unity
-    guid: 84b0cbef49dccf145ad2389938e750a7
-  - enabled: 1
-    path: Assets/Scenes/Scene 3.2 - DragonQuestion.unity
-    guid: 3daa158f729d3b9419aebb485935f39d
-  - enabled: 1
-    path: Assets/Scenes/Scene 8 - GrandHallResults.unity
-    guid: 176387d2378048848b45a74c8dce47fb
-  - enabled: 1
-    path: Assets/Scenes/Scene 9 - MoreLevelsQuestion.unity
-    guid: f7279bca1e99c444ea8e25ac3d01cf04
-  - enabled: 1
     path: Assets/Scenes/Scene 10 - SnareVR.unity
     guid: f7104e57eae53ed44820e790011bbb36
   m_configObjects:

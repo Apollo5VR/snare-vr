@@ -9,12 +9,20 @@ using UnityEngine;
 namespace CloudSaveSample
 {
     [Serializable]
+    public class StatsObject
+    {
+        public float healthFloat;
+        public float staminaFloat;
+    }
+
+    /*
     public class SampleObject
     {
         public string SophisticatedString;
         public int SparklingInt;
         public float AmazingFloat;
     }
+    */
 
     public class CloudSaveSample : MonoBehaviour
     {
@@ -22,13 +30,14 @@ namespace CloudSaveSample
         {
             // Cloud Save needs to be initialized along with the other Unity Services that
             // it depends on (namely, Authentication), and then the user must sign in.
+            //TODO - when looking to update to FB Auth - create a UI (otherwise no UI needed)
             await UnityServices.InitializeAsync();
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
             Debug.Log("Signed in?");
 
-            await ForceSaveSingleData("health", "96.7");
-
+            //legacy sample code
+            /*
             SampleObject outgoingSample = new SampleObject
             {
                 AmazingFloat = 13.37f,
@@ -40,6 +49,33 @@ namespace CloudSaveSample
             Debug.Log($"Loaded sample object: {incomingSample.AmazingFloat}, {incomingSample.SparklingInt}, {incomingSample.SophisticatedString}");
 
             await ForceDeleteSpecificData("object_key");
+            */
+
+
+            StatsObject statsObj = await RetrieveSpecificData<StatsObject>("stats");
+
+            if (statsObj == null)
+            {
+                StatsObject outgoingStats = new StatsObject
+                {
+                    healthFloat = 100.0f,
+                    staminaFloat = 0.0f
+                };
+
+                await ForceSaveObjectData("stats", outgoingStats);
+
+                statsObj = await RetrieveSpecificData<StatsObject>("stats");
+
+                ScriptsConnector.Instance?.SetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
+                Debug.Log("Loaded sample object: " + statsObj.healthFloat);
+            }
+            else
+            {
+                ScriptsConnector.Instance?.SetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
+                Debug.Log("Loaded sample object: " + statsObj.healthFloat);
+            }
+
+
             await ListAllKeys();
             await RetrieveEverything();
         }
@@ -97,7 +133,7 @@ namespace CloudSaveSample
             }
         }
 
-        private async Task ForceSaveObjectData(string key, SampleObject value)
+        private async Task ForceSaveObjectData(string key, StatsObject value)
         {
             try
             {
