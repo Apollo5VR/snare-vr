@@ -101,6 +101,10 @@ public class WireController : MonoBehaviour
                 completeWire.SetActive(false);
                 wireAroundTree.SetActive(true);
                 //deactivate bendable completely
+
+                //TODO - GG - scriptconnector call to trigger trap set api call on lootboxmanager
+                ScriptsConnector.Instance.SetTrapTriggerTime?.Invoke();
+
                 break;
             default:
                 break;

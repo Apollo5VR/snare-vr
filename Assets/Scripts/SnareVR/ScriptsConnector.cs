@@ -11,6 +11,9 @@ public class ScriptsConnector : MonoBehaviour
     public Action<string, float> SetHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
 
+    //Trap Data actions
+    public Action SetTrapTriggerTime;
+
     private void Awake()
     {
         if (Instance == null)
@@ -20,6 +23,14 @@ public class ScriptsConnector : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
         }
     }
 }

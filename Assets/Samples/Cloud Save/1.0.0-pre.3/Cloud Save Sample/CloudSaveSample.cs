@@ -24,6 +24,7 @@ namespace CloudSaveSample
     }
     */
 
+    //GG - Used for Health initialization / Health Get (TODO - rename for own project's purposes)
     public class CloudSaveSample : MonoBehaviour
     {
         private async void Awake()
@@ -34,7 +35,7 @@ namespace CloudSaveSample
             await UnityServices.InitializeAsync();
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-            Debug.Log("Signed in?");
+            Debug.Log("Signed in? Need to do check?");
 
             //legacy sample code
             /*
@@ -50,7 +51,6 @@ namespace CloudSaveSample
 
             await ForceDeleteSpecificData("object_key");
             */
-
 
             StatsObject statsObj = await RetrieveSpecificData<StatsObject>("stats");
 

@@ -29,6 +29,7 @@ public class UserHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //TODO - check for Instance null
         ScriptsConnector.Instance.SetHealth += SetHealth;
         ScriptsConnector.Instance.GetHealth += GetHealth;
     }
@@ -46,5 +47,11 @@ public class UserHealth : MonoBehaviour
 
         //set health value
         healthPoints = healthValue;
+    }
+
+    private void OnDestroy()
+    {
+        ScriptsConnector.Instance.SetHealth -= SetHealth;
+        ScriptsConnector.Instance.GetHealth -= GetHealth;
     }
 }
