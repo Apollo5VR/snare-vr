@@ -9,7 +9,7 @@ public class WireTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //TODO refactor this to be not dumb
-        if(other.name == "GrabCube" || other.name == "WireGrabber")
+        if(other.name == "GrabCube" || other.name == "CompletedWireGrabber")
         {
             WireController.Instance.OnWireSectionComplete?.Invoke(progressionInt);
         }

@@ -66,18 +66,31 @@ namespace CloudSaveSample
 
                 statsObj = await RetrieveSpecificData<StatsObject>("stats");
 
-                ScriptsConnector.Instance?.SetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
+                ScriptsConnector.Instance?.OnSetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
                 Debug.Log("Loaded sample object: " + statsObj.healthFloat);
             }
             else
             {
-                ScriptsConnector.Instance?.SetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
+                ScriptsConnector.Instance?.OnSetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
                 Debug.Log("Loaded sample object: " + statsObj.healthFloat);
             }
 
 
             await ListAllKeys();
             await RetrieveEverything();
+
+            ScriptsConnector.Instance.OnSaveHealthToUGS += SaveHealthToUGS;
+        }
+
+        private async void SaveHealthToUGS(string key, string value)
+        {
+            StatsObject outgoingStats = new StatsObject
+            {
+                healthFloat = float.Parse(value),
+                staminaFloat = 0.0f
+            };
+
+            await ForceSaveObjectData(key, outgoingStats); //"stats"
         }
 
         private async Task ListAllKeys()

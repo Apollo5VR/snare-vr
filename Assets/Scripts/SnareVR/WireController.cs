@@ -22,6 +22,8 @@ public class WireController : MonoBehaviour
     public GameObject completeWire;
     public GameObject wireAroundTree;
 
+    public GameObject rabbit; //TODO - refactor to be created as object item (to fullfil multiple trap/s scenarios)
+
     //private List<GameObject> thist = new List<GameObject>();
 
     //private int[] part1Bendables = new int[] {0,1,2};
@@ -49,7 +51,10 @@ public class WireController : MonoBehaviour
         completeWire.SetActive(false);
         wireAroundTree.SetActive(false);
 
+        rabbit.SetActive(false);
+
         OnWireSectionComplete += WireManipulations;
+        ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
     }
 
     public void WireManipulations(int id)
@@ -103,7 +108,10 @@ public class WireController : MonoBehaviour
                 //deactivate bendable completely
 
                 //TODO - GG - scriptconnector call to trigger trap set api call on lootboxmanager
-                ScriptsConnector.Instance.SetTrapTriggerTime?.Invoke();
+                ScriptsConnector.Instance.OnSetTrapTriggerTime?.Invoke();
+
+                //TODO - UI date and wait for 10s
+                StartCoroutine(CatchTimer(10));
 
                 break;
             default:
@@ -111,5 +119,23 @@ public class WireController : MonoBehaviour
         }
     }
 
-    
+    private void RabbitCaught(bool caught)
+    {
+        if(caught)
+        {
+            rabbit.SetActive(true);
+        }
+
+        ScriptsConnector.Instance.OnUpdateUI("caughtResult", "CAUGHT RABBIT: " + caught.ToString());
+    }
+
+    IEnumerator CatchTimer(float time)
+    {
+        ScriptsConnector.Instance.OnUpdateUI("caughtTime", time.ToString());
+
+        yield return new WaitForSeconds(time);
+
+        //TODO - mock proto of a 10s trap
+        ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+    }
 }

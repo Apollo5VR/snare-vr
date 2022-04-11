@@ -12,7 +12,8 @@ public class LootBoxSceneManager : MonoBehaviour
 
     private void Start()
     {
-        ScriptsConnector.Instance.SetTrapTriggerTime += SetTrapTriggeredTime;
+        ScriptsConnector.Instance.OnSetTrapTriggerTime += SetTrapTriggeredTime;
+        ScriptsConnector.Instance.OnCheckTrap += CheckTrap;
     }
 
     public void Update()
@@ -52,8 +53,45 @@ public class LootBoxSceneManager : MonoBehaviour
         }
     }
 
+    public async void CheckTrap()
+    {
+        try
+        {
+            //sceneView.Disable();
+
+            // Call Cloud Code js script and wait for grant to complete.
+            bool rabbitCaught = await CloudCodeManager.instance.CallCheckTrapEndpoint();
+            if (this == null) return;
+
+            if(rabbitCaught)
+            {
+                //TODO call reward Item
+                ScriptsConnector.Instance.OnRabbitCaught?.Invoke(rabbitCaught);
+            }
+        }
+        catch (CloudCodeResultUnavailableException)
+        {
+            // Exception already handled by CloudCodeManager
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        finally
+        {
+            if (this != null)
+            {
+                //sceneView.Enable();
+            }
+        }
+    }
+
     private void OnDestroy()
     {
-        ScriptsConnector.Instance.SetTrapTriggerTime -= SetTrapTriggeredTime;
+        //TODO - do this check everywhere
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnSetTrapTriggerTime -= SetTrapTriggeredTime;
+        }
     }
 }

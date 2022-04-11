@@ -154,7 +154,8 @@ public class ProgressionController : MonoBehaviour
 
     public void DelayedSceneProgression(int sceneBuildIndex, float time)
     {
-        StartCoroutine(TimerToEndScene(sceneBuildIndex, time));
+        //GG - deactivating since we want the user to remain as long as theyd like
+        //StartCoroutine(TimerToEndScene(sceneBuildIndex, time));
     }
 
     private IEnumerator TimerToEndScene(int sceneBuildIndex, float time)

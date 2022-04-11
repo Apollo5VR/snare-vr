@@ -30,7 +30,7 @@ public class UserHealth : MonoBehaviour
     void Start()
     {
         //TODO - check for Instance null
-        ScriptsConnector.Instance.SetHealth += SetHealth;
+        ScriptsConnector.Instance.OnSetHealth += SetHealth;
         ScriptsConnector.Instance.GetHealth += GetHealth;
     }
 
@@ -47,11 +47,14 @@ public class UserHealth : MonoBehaviour
 
         //set health value
         healthPoints = healthValue;
+
+        //TODO - if trying to reduce calls, relocate to on session quit / exit
+        ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }
 
     private void OnDestroy()
     {
-        ScriptsConnector.Instance.SetHealth -= SetHealth;
+        ScriptsConnector.Instance.OnSetHealth -= SetHealth;
         ScriptsConnector.Instance.GetHealth -= GetHealth;
     }
 }

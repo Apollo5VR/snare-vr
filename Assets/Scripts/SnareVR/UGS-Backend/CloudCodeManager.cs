@@ -68,6 +68,44 @@ public class CloudCodeManager : MonoBehaviour
         }
     }
 
+    public async Task<bool> CallCheckTrapEndpoint()
+    {
+        bool caught = false;
+
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.LogError("Cloud Code can't be called because you're not logged in.");
+                throw new CloudCodeResultUnavailableException(null,
+                    "Not logged in to authentication in CallCheckTrapEndpoint.");
+            }
+
+            Debug.Log("Calling Cloud Code 'CheckTrap'.");
+
+            var trapResult = await CloudCode.CallEndpointAsync<CheckTropResult>(
+                "CheckTrap", new object());
+
+            // Check that scene has not been unloaded while processing async wait to prevent throw.
+            if (this == null) return trapResult.caught;
+
+            if(trapResult.caught == true)
+            {
+                caught = trapResult.caught;
+            }
+
+            Debug.Log("CloudCode script for check trap caught: " + trapResult.caught);
+        }
+        catch (CloudCodeException e)
+        {
+            HandleCloudCodeException(e);
+            throw new CloudCodeResultUnavailableException(e,
+                "Handled exception in CheckTrap.");
+        }
+
+        return caught; //TODO - GG - test if problems this could cause
+    }
+
     void HandleCloudCodeException(CloudCodeException e)
     {
         switch (e.ErrorCode)
@@ -134,6 +172,11 @@ public class CloudCodeManager : MonoBehaviour
                             $"{cloudCodeCustomError.title}: {cloudCodeCustomError.message}");
                 break;
         }
+    }
+
+    public struct CheckTropResult
+    {
+        public bool caught;
     }
 
     // Struct used to receive result from Cloud Code.

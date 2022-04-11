@@ -59,6 +59,17 @@ public class InventoriesController : MonoBehaviour
             Debug.Log("All signed in and ready to go!");
         };
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
+    }
+
+    //GG
+    private void RabbitCaught(bool caught)
+    {
+        if(caught)
+        {
+            AddInstance("RABBIT");
+        }
     }
 
     public async void FetchInventoryItems()
@@ -183,7 +194,7 @@ public class InventoriesController : MonoBehaviour
         m_GetPlayersInventoryItemsText.text += outputString;
     }
 
-    public async void AddInstance()
+    public async void AddInstance(string itemToAdd)
     {
         if (!IsAuthenticationSignedIn())
         {
@@ -193,16 +204,16 @@ public class InventoriesController : MonoBehaviour
         string outputString = "";
         string playersInventoryItemId = null;
         
-        if (!string.IsNullOrEmpty(m_AddInventoryItemCustomIdInput.text))
+        if (!string.IsNullOrEmpty(itemToAdd))
         {
-            playersInventoryItemId = m_AddInventoryItemCustomIdInput.text; //"RABBIT"
+            playersInventoryItemId = itemToAdd; //"RABBIT" or others specified
         }
 
         PlayerInventory.AddInventoryItemOptions options = new PlayerInventory.AddInventoryItemOptions
         {
             PlayersInventoryItemId = playersInventoryItemId
         };
-        PlayersInventoryItem playersInventoryItem = await Economy.PlayerInventory.AddInventoryItemAsync(m_AddInventoryItemConfigIdInput.text, options);
+        PlayersInventoryItem playersInventoryItem = await Economy.PlayerInventory.AddInventoryItemAsync(playersInventoryItemId, options);
         ClearOutputTextBoxes();
         
         if (playersInventoryItem != null)
