@@ -52,6 +52,8 @@ namespace CloudSaveSample
             await ForceDeleteSpecificData("object_key");
             */
 
+            
+            #region HealthDataLoad
             StatsObject statsObj = await RetrieveSpecificData<StatsObject>("stats");
 
             if (statsObj == null)
@@ -74,6 +76,37 @@ namespace CloudSaveSample
                 ScriptsConnector.Instance?.OnSetHealth("playerId", statsObj.healthFloat); //TODO - V2 - update to actual playerId for multiplayer functionality
                 Debug.Log("Loaded sample object: " + statsObj.healthFloat);
             }
+            #endregion
+
+            #region TrapLoadData
+            float trapTriggerTime = await RetrieveSpecificData<float>("TRAP_TRIGGER_TIME");
+
+            if (trapTriggerTime == default) 
+            {
+                //Users first time, load directly into tutorial mode
+
+
+            }
+            else
+            {
+                DateTimeOffset now = DateTimeOffset.UtcNow;
+                long unixTimeMilliseconds = now.ToUnixTimeMilliseconds();
+
+                if(trapTriggerTime == 0)
+                {
+                    //Load directy into build snare
+                }
+                else if (unixTimeMilliseconds > trapTriggerTime)
+                {
+                    //Load directly into check trap mode
+
+                }
+                else
+                {
+                    //Load directly into a "trap not ready" mode
+                }
+            }
+            #endregion
 
 
             await ListAllKeys();
@@ -176,10 +209,21 @@ namespace CloudSaveSample
             try
             {
                 var results = await SaveData.LoadAsync(new HashSet<string>{key});
-                
+
                 if (results.TryGetValue(key, out string value))
                 {
-                    return JsonUtility.FromJson<T>(value);
+                    T objType = JsonUtility.FromJson<T>(value);
+
+                    if (objType == null)
+                    {
+                        //is not obj
+                        return (T)Convert.ChangeType(value, typeof(T)); 
+                    }
+                    else
+                    {
+                        //is obj
+                        return JsonUtility.FromJson<T>(value);
+                    } 
                 }
                 else
                 {
