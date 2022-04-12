@@ -50,16 +50,8 @@ public class InventoriesController : MonoBehaviour
     [SerializeField]
     int m_ItemsPerFetch = 20;
 
-    async void Awake()
+    void Awake()
     {
-        await UnityServices.InitializeAsync();
-
-        AuthenticationService.Instance.SignedIn += delegate
-        {
-            Debug.Log("All signed in and ready to go!");
-        };
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
     }
 
