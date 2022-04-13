@@ -18,6 +18,7 @@ public class CommonEnums : MonoBehaviour
         }
     }
 
+    //TODO remove these depreciated enums once non-snare scripts eradicated
     public enum AvailableSpells
     {
         None = -1,
@@ -31,8 +32,15 @@ public class CommonEnums : MonoBehaviour
     {
         None = 0,
         Ravenclaw = 1,
-        Gryfindor = 2, 
-        Hufflepuff = 3, 
-        Slytherin = 4 
+        Gryfindor = 2,
+        Hufflepuff = 3,
+        Slytherin = 4
+    }
+
+    public enum SnareState
+    {
+        Build,
+        Check,
+        Unavailable
     }
 }

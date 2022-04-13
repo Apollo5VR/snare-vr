@@ -11,6 +11,7 @@ public class ScriptsConnector : MonoBehaviour
     public Action<string, float> OnSetHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
     public Action<string, string> OnSaveHealthToUGS;
+    public Func<string, float> OnGetTimerFromUGS;
 
     //Trap Data actions
     public Action OnSetTrapTriggerTime;

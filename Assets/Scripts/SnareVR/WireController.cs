@@ -31,6 +31,7 @@ public class WireController : MonoBehaviour
 
     public Action<int> OnWireSectionComplete;
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -46,6 +47,10 @@ public class WireController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Setup Trap State
+        //Get trap timer value
+        float time = ScriptsConnector.Instance.OnGetTimerFromUGS.Invoke("TRAP_TRIGGER_TIME");
+
         halfCompleteWire.SetActive(false);
         curvedLineB.gameObject.SetActive(false);
         completeWire.SetActive(false);

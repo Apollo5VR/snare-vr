@@ -113,6 +113,7 @@ namespace CloudSaveSample
             await RetrieveEverything();
 
             ScriptsConnector.Instance.OnSaveHealthToUGS += SaveHealthToUGS;
+            ScriptsConnector.Instance.OnGetTimerFromUGS += GetTimerFromUGS;
         }
 
         private async void SaveHealthToUGS(string key, string value)
@@ -124,6 +125,21 @@ namespace CloudSaveSample
             };
 
             await ForceSaveObjectData(key, outgoingStats); //"stats"
+        }
+
+        //TODO - REFACTOR - this is incredibly round about - look through UGS Documentation
+        private float GetTimerFromUGS(string key)
+        {
+            Task<float> thitdd = TGetTimerFromUGS<float>(key);
+            float thitdds;
+            thitdds = (float)Convert.ChangeType(thitdd, typeof(float));
+
+            return thitdds;
+        }
+
+        private async Task<T> TGetTimerFromUGS<T>(string key)
+        {
+            return await RetrieveSpecificData<T>(key);
         }
 
         private async Task ListAllKeys()
