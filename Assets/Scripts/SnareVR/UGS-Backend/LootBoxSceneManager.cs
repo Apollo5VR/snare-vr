@@ -32,9 +32,12 @@ public class LootBoxSceneManager : MonoBehaviour
             //sceneView.Disable();
 
             // Call Cloud Code js script and wait for grant to complete.
-
             await CloudCodeManager.instance.CallSetTrapTriggeredTimeEndpoint();
             if (this == null) return;
+
+            //call scriptconnector to update Scene on Wirecontorller
+            ScriptsConnector.Instance.OnTrapTriggerTimeSet?.Invoke();
+
         }
         catch (CloudCodeResultUnavailableException)
         {
@@ -68,6 +71,9 @@ public class LootBoxSceneManager : MonoBehaviour
                 //TODO call reward Item
                 ScriptsConnector.Instance.OnRabbitCaught?.Invoke(rabbitCaught);
             }
+
+            //TODO - update so we get this key string from some organizated location
+            ScriptsConnector.Instance.OnDeleteKey?.Invoke("TRAP_TRIGGER_TIME");
         }
         catch (CloudCodeResultUnavailableException)
         {

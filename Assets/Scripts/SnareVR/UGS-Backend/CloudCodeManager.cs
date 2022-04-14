@@ -39,6 +39,49 @@ public class CloudCodeManager : MonoBehaviour
         }
     }
 
+    public async Task<float> CallGetTrapTimeRemainingEndpoint()
+    {
+        float timeRemaining;
+
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.LogError("Cloud Code can't be called because you're not logged in.");
+                throw new CloudCodeResultUnavailableException(null,
+                    "Not logged in to authentication in CallGetTrapTimeRemainingEndpoint.");
+            }
+
+            Debug.Log("Calling Cloud Code 'GetTrapTimeRemaining'.");
+
+            var timeResult = await CloudCode.CallEndpointAsync<TrapTimeRemainingResult>(
+                "GetTrapTimeRemaining", new object());
+
+            // Check that scene has not been unloaded while processing async wait to prevent throw.
+            if (this == null) return timeResult.timeRemaining;
+
+            if(timeResult.trapExists)
+            {
+                timeRemaining = timeResult.timeRemaining;
+            }
+            else
+            {
+                //denotes that there is no time remaining data available
+                timeRemaining = -1.0f;
+            }
+
+            Debug.Log("CloudCode script for time time remaining: " + timeRemaining);
+        }
+        catch (CloudCodeException e)
+        {
+            HandleCloudCodeException(e);
+            throw new CloudCodeResultUnavailableException(e,
+                "Handled exception in CheckTrap.");
+        }
+
+        return timeRemaining;
+    }
+
     public async Task CallSetTrapTriggeredTimeEndpoint()
     {
         try
@@ -83,7 +126,7 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'CheckTrap'.");
 
-            var trapResult = await CloudCode.CallEndpointAsync<CheckTropResult>(
+            var trapResult = await CloudCode.CallEndpointAsync<CheckTrapResult>(
                 "CheckTrap", new object());
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
@@ -174,9 +217,16 @@ public class CloudCodeManager : MonoBehaviour
         }
     }
 
-    public struct CheckTropResult
+    public struct CheckTrapResult
     {
         public bool caught;
+    }
+
+    public struct TrapTimeRemainingResult
+    {
+        public float timeRemaining; //milliseconds
+        public bool trapExists;
+        public bool hasExpired;
     }
 
     // Struct used to receive result from Cloud Code.

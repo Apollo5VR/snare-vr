@@ -27,15 +27,39 @@ namespace CloudSaveSample
     //GG - Used for Health initialization / Health Get (TODO - rename for own project's purposes)
     public class CloudSaveSample : MonoBehaviour
     {
+
+        private Dictionary<string, string> m_CachedCloudData = new Dictionary<string, string>();
+
         private async void Awake()
         {
             // Cloud Save needs to be initialized along with the other Unity Services that
             // it depends on (namely, Authentication), and then the user must sign in.
             //TODO - when looking to update to FB Auth - create a UI (otherwise no UI needed)
             await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-            Debug.Log("Signed in? Need to do check?");
+            AuthenticationService.Instance.SignedIn += () =>
+            {
+                //Shows how to get a playerID
+                Debug.Log($"PlayedID: {AuthenticationService.Instance.PlayerId}");
+
+                //Shows how to get an access token
+                Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
+
+                const string successMessage = "Sign in anonymously succeeded!";
+                Debug.Log(successMessage);
+            };
+
+            AuthenticationService.Instance.SignedOut += () =>
+            {
+                Debug.Log("Signed Out!");
+            };
+            //You can listen to events to display custom messages
+            AuthenticationService.Instance.SignInFailed += errorResponse =>
+            {
+                Debug.LogError($"Sign in anonymously failed with error code: {errorResponse.ErrorCode}");
+            };
+
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
             //legacy sample code
             /*
@@ -51,8 +75,8 @@ namespace CloudSaveSample
 
             await ForceDeleteSpecificData("object_key");
             */
+            await LoadAndCacheData();
 
-            
             #region HealthDataLoad
             StatsObject statsObj = await RetrieveSpecificData<StatsObject>("stats");
 
@@ -78,42 +102,39 @@ namespace CloudSaveSample
             }
             #endregion
 
-            #region TrapLoadData
-            float trapTriggerTime = await RetrieveSpecificData<float>("TRAP_TRIGGER_TIME");
-
-            if (trapTriggerTime == default) 
-            {
-                //Users first time, load directly into tutorial mode
-
-
-            }
-            else
-            {
-                DateTimeOffset now = DateTimeOffset.UtcNow;
-                long unixTimeMilliseconds = now.ToUnixTimeMilliseconds();
-
-                if(trapTriggerTime == 0)
-                {
-                    //Load directy into build snare
-                }
-                else if (unixTimeMilliseconds > trapTriggerTime)
-                {
-                    //Load directly into check trap mode
-
-                }
-                else
-                {
-                    //Load directly into a "trap not ready" mode
-                }
-            }
-            #endregion
-
-
             await ListAllKeys();
             await RetrieveEverything();
 
             ScriptsConnector.Instance.OnSaveHealthToUGS += SaveHealthToUGS;
-            ScriptsConnector.Instance.OnGetTimerFromUGS += GetTimerFromUGS;
+            ScriptsConnector.Instance.OnDeleteKey += DeleteKey;
+            //ScriptsConnector.Instance.OnGetTimerFromUGS += GetTimerFromUGS;
+        }
+
+        private void OnDestroy()
+        {
+            ScriptsConnector.Instance.OnSaveHealthToUGS -= SaveHealthToUGS;
+            ScriptsConnector.Instance.OnDeleteKey -= DeleteKey;
+        }
+
+        //TODO - utilize this later
+        public async Task LoadAndCacheData()
+        {
+            try
+            {
+                m_CachedCloudData = await SaveData.LoadAllAsync();
+
+                // Check that scene has not been unloaded while processing async wait to prevent throw.
+                if (this == null) return;
+
+                if (m_CachedCloudData == null)
+                {
+                    m_CachedCloudData = new Dictionary<string, string>();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         private async void SaveHealthToUGS(string key, string value)
@@ -127,7 +148,13 @@ namespace CloudSaveSample
             await ForceSaveObjectData(key, outgoingStats); //"stats"
         }
 
-        //TODO - REFACTOR - this is incredibly round about - look through UGS Documentation
+        private async void DeleteKey(string key)
+        {
+            await ForceDeleteSpecificData(key);
+        }
+
+        //GG depreciated
+        /*
         private float GetTimerFromUGS(string key)
         {
             Task<float> thitdd = TGetTimerFromUGS<float>(key);
@@ -136,11 +163,13 @@ namespace CloudSaveSample
 
             return thitdds;
         }
+       
 
         private async Task<T> TGetTimerFromUGS<T>(string key)
         {
             return await RetrieveSpecificData<T>(key);
         }
+        */
 
         private async Task ListAllKeys()
         {
@@ -258,6 +287,7 @@ namespace CloudSaveSample
             return default;
         }
 
+        //TODO use this to cache
         private async Task RetrieveEverything()
         {
             try

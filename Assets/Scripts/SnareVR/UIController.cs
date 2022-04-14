@@ -30,11 +30,18 @@ public class UIController : MonoBehaviour
         {
             if (timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime;
-                trapCaughtTimerText.text = timeRemaining.ToString();
+                timeRemaining -= Time.deltaTime * 1000; //equivalent of -1 sec
+
+                //convert time remaining to day / hour / minute format
+                //TODO - is this overkill (heavy processing)?
+                TimeSpan t = TimeSpan.FromMilliseconds(timeRemaining);
+                DateTime expirationDate = new DateTime(t.Ticks);
+                trapCaughtTimerText.text = expirationDate.ToString("dd:hh:mm");
             }
             else
             {
+                ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+
                 Debug.Log("Did you catch something?");
                 timeRemaining = 0;
                 timerIsRunning = false;
@@ -44,7 +51,7 @@ public class UIController : MonoBehaviour
 
     private void UpdateUI(string type, string updatedValue)
     {
-        Debug.Log("type of " + type + "with value: " + updatedValue);
+        Debug.Log("type of " + type + " with value: " + updatedValue);
 
         switch (type)
         {

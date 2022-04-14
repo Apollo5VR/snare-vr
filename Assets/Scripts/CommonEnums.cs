@@ -38,7 +38,7 @@ public class CommonEnums : MonoBehaviour
     }
 
     public enum SnareState
-    {
+    {   None,
         Build,
         Check,
         Unavailable

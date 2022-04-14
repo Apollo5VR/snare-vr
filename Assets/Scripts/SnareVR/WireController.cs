@@ -21,6 +21,7 @@ public class WireController : MonoBehaviour
     public GameObject halfCompleteWire;
     public GameObject completeWire;
     public GameObject wireAroundTree;
+    public GameObject noBuilding;
 
     public GameObject rabbit; //TODO - refactor to be created as object item (to fullfil multiple trap/s scenarios)
 
@@ -30,6 +31,9 @@ public class WireController : MonoBehaviour
     //private int[] part2Bendables = new int[] { 1, 2, 3 }; //just anything greater than part 1 last index
 
     public Action<int> OnWireSectionComplete;
+
+    public float trapTimeRemaining;
+    public CommonEnums.SnareState snareState = CommonEnums.SnareState.None;
 
 
     private void Awake()
@@ -45,22 +49,109 @@ public class WireController : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        //Setup Trap State
-        //Get trap timer value
-        float time = ScriptsConnector.Instance.OnGetTimerFromUGS.Invoke("TRAP_TRIGGER_TIME");
-
+        //scene clear
+        noBuilding.SetActive(false);
         halfCompleteWire.SetActive(false);
+        curvedLineA.gameObject.SetActive(false);
         curvedLineB.gameObject.SetActive(false);
         completeWire.SetActive(false);
         wireAroundTree.SetActive(false);
-
         rabbit.SetActive(false);
+
+        SetupTrapScene();
 
         OnWireSectionComplete += WireManipulations;
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
+        ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupTrapScene;
     }
+
+    private void OnDestroy()
+    {
+        OnWireSectionComplete -= WireManipulations;
+        ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
+        ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupTrapScene;
+    }
+
+    //call on start to set state and save a local value to the WireController
+    public async void SetupTrapScene()
+    {
+        try
+        {
+            //TODO - update this singleton to use the scriptsconnector
+            float time = await CloudCodeManager.instance.CallGetTrapTimeRemainingEndpoint();
+
+            //TODO - better idea in the future to not user a hardcoded value to determine if a trap exists (should just pull if trap exists for this scenario)
+            if (time == -1)
+            {
+                //Users first time OR last session they checked trap, but didnt set up another one (we delete on snare check)
+                snareState = CommonEnums.SnareState.Build;
+
+                inCompleteWire.SetActive(true);
+                curvedLineA.gameObject.SetActive(true);
+                halfCompleteWire.SetActive(false);
+                curvedLineB.gameObject.SetActive(false);
+                completeWire.SetActive(false);
+                wireAroundTree.SetActive(false);
+                rabbit.SetActive(false);
+
+                ScriptsConnector.Instance.OnUpdateUI("caughtResult", "BUILD A SNARE ON THE STUMP!");
+            }
+            else
+            {
+                if (time > 0)
+                {
+                    snareState = CommonEnums.SnareState.Unavailable;
+
+                    noBuilding.SetActive(true);
+                    inCompleteWire.SetActive(false);
+                    halfCompleteWire.SetActive(false);
+                    curvedLineA.gameObject.SetActive(false);
+                    curvedLineB.gameObject.SetActive(false);
+                    completeWire.SetActive(false);
+                    rabbit.SetActive(false);
+
+                    //TODO - check that this formatted in a readable timestamp
+                    ScriptsConnector.Instance.OnUpdateUI("caughtTime", time.ToString());
+                }
+                else if (time <= 0)
+                {
+                    //Load directly into check trap mode
+                    snareState = CommonEnums.SnareState.Check;
+
+                    wireAroundTree.SetActive(true);
+                    inCompleteWire.SetActive(false);
+                    halfCompleteWire.SetActive(false);
+                    curvedLineA.gameObject.SetActive(false);
+                    curvedLineB.gameObject.SetActive(false);
+                    completeWire.SetActive(false);
+                    rabbit.SetActive(false);
+
+                    //automatically check trap on game loaded
+                    ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+                }
+            }
+
+            if (this == null) return;
+        }
+        catch (CloudCodeResultUnavailableException)
+        {
+            // Exception already handled by CloudCodeManager
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        finally
+        {
+            if (this != null)
+            {
+                //sceneView.Enable();
+            }
+        }
+    }
+
 
     public void WireManipulations(int id)
     {
@@ -115,8 +206,9 @@ public class WireController : MonoBehaviour
                 //TODO - GG - scriptconnector call to trigger trap set api call on lootboxmanager
                 ScriptsConnector.Instance.OnSetTrapTriggerTime?.Invoke();
 
+                //depreciated, just for immediate gratification testing
                 //TODO - UI date and wait for 10s
-                StartCoroutine(CatchTimer(10));
+                //StartCoroutine(CatchTimer(10));
 
                 break;
             default:

@@ -11,12 +11,14 @@ public class ScriptsConnector : MonoBehaviour
     public Action<string, float> OnSetHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
     public Action<string, string> OnSaveHealthToUGS;
-    public Func<string, float> OnGetTimerFromUGS;
+    //public Func<string, float> OnGetTimerFromUGS; //depreciated
 
     //Trap Data actions
     public Action OnSetTrapTriggerTime;
+    public Action OnTrapTriggerTimeSet;
     public Action OnCheckTrap;
     public Action<bool> OnRabbitCaught;
+    public Action<string> OnDeleteKey;
 
     //UI
     public Action<string, string> OnUpdateUI; //first string is to declare what UI type update it is, second string is the value you're updating to. //TODO - using string is best?
