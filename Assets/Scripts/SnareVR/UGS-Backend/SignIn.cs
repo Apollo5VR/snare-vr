@@ -87,7 +87,7 @@ AppEventsLogger.activateApp(this);
 
     private async void CallFBLoginManual()
     {
-        await SignInFacebook("EAAEjPF8T9tMBAD76poon09dFrqaBJRLCIvEv9f8osiSNNui6F4KT7i9OHrI6XzqvcOs2qj0yeL6PCpocbJi47j6rl9xf7AeZCioQudOMjJWS1DHYnPj0MKFTQ29Q0Q7U6HolfnMgkylFZBxn1ZAaMyXxXCSEMxiaylLZAWbo0MtqZBljC7duKPF4659OsgwAzK2h2amgurvZCVTnJEVMDT");
+        await SignInFacebook("EAAEjPF8T9tMBALQVywDtpvvnLaEe98Hb0lZA0vrKMnzs0Nl4ZCBw7DAD9556kZCJwFBzB4xMO28e61U7BZAz9ETzwfA4nJxVGZAKKgWWZAqk66SspXTc91ZBVOEGAIAfRHX4ngf8JDQ3wubOiVvGWZCBfWQcBrA0EVGldXyfWMEdrlnbfattA5YMq0sA2sAzGWSlFyIayjAdy9r1WQPHREuJ");
     }
 
     private void InitializeFBLogin()
