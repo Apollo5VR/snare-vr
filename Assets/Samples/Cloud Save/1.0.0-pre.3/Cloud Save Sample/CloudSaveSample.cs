@@ -32,6 +32,8 @@ namespace CloudSaveSample
 
         private async void Awake()
         {
+            //This section deactivated 4.24 to make room for FB testin login script
+            /*
             // Cloud Save needs to be initialized along with the other Unity Services that
             // it depends on (namely, Authentication), and then the user must sign in.
             //TODO - when looking to update to FB Auth - create a UI (otherwise no UI needed)
@@ -60,6 +62,7 @@ namespace CloudSaveSample
             };
 
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            */
 
             //legacy sample code
             /*
@@ -75,8 +78,10 @@ namespace CloudSaveSample
 
             await ForceDeleteSpecificData("object_key");
             */
-            await LoadAndCacheData();
+            //await LoadAndCacheData();
 
+            //TODO - 4.25 reactivate this essential - 
+            /*
             #region HealthDataLoad
             StatsObject statsObj = await RetrieveSpecificData<StatsObject>("stats");
 
@@ -101,9 +106,10 @@ namespace CloudSaveSample
                 Debug.Log("Loaded sample object: " + statsObj.healthFloat);
             }
             #endregion
+            */
 
-            await ListAllKeys();
-            await RetrieveEverything();
+            //await ListAllKeys();
+            //await RetrieveEverything();
 
             ScriptsConnector.Instance.OnSaveHealthToUGS += SaveHealthToUGS;
             ScriptsConnector.Instance.OnDeleteKey += DeleteKey;
