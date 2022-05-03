@@ -70,8 +70,12 @@ public class WireController : MonoBehaviour
     private void OnDestroy()
     {
         OnWireSectionComplete -= WireManipulations;
-        ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
-        ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupTrapScene;
+
+        if (ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
+            ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupTrapScene;
+        }
     }
 
     //call on start to set state and save a local value to the WireController

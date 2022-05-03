@@ -118,8 +118,11 @@ namespace CloudSaveSample
 
         private void OnDestroy()
         {
-            ScriptsConnector.Instance.OnSaveHealthToUGS -= SaveHealthToUGS;
-            ScriptsConnector.Instance.OnDeleteKey -= DeleteKey;
+            if (ScriptsConnector.Instance != null)
+            {
+                ScriptsConnector.Instance.OnSaveHealthToUGS -= SaveHealthToUGS;
+                ScriptsConnector.Instance.OnDeleteKey -= DeleteKey;
+            }
         }
 
         //TODO - utilize this later

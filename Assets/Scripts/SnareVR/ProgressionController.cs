@@ -51,7 +51,7 @@ public class ProgressionController : MonoBehaviour
         //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnLoadNextScene += LoadNextScene;
-        OnLoadChallengeScene += LoadQuestionScene;
+        OnLoadChallengeScene += LoadSpecificScene;
         OnRequestTeleporter += PassTeleporter;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
@@ -98,26 +98,21 @@ public class ProgressionController : MonoBehaviour
         StartCoroutine(TimerToEndScene(level, time));
     }
 
-    public void LoadQuestionScene(int sceneIncrement = 0)
+    public void LoadSpecificScene(int sceneInt = 1)
     {
-        int buildIndex = SceneManager.GetActiveScene().buildIndex;
-        if(buildIndex == resultsScene)
-        {
-            isManualSelection = true;
-        }
-
+        //TODO - update this for Snare VR
         if (!Application.isEditor)
         {
             //Analytics Beta
             Dictionary<string, object> parameters = new Dictionary<string, object>()
             {
                 //1.17 currently sceneIncrement 1 - 6
-                { "buildIndex", questionSelectionScene + sceneIncrement}
+                { "buildIndex", questionSelectionScene + sceneInt}
             };
             Events.CustomData("sceneload_replay", parameters);
         }
 
-        SceneManager.LoadScene(questionSelectionScene + sceneIncrement);
+        SceneManager.LoadScene(sceneInt);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -188,7 +183,7 @@ public class ProgressionController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         OnLoadNextScene -= LoadNextScene;
-        OnLoadChallengeScene -= LoadQuestionScene;
+        OnLoadChallengeScene -= LoadSpecificScene;
     }
 }
 

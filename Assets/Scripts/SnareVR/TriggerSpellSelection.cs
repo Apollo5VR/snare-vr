@@ -8,7 +8,7 @@ public class TriggerSpellSelection : MonoBehaviour
     public GameObject loadingLine;
     public float touchTime = 0;
     public float distanceTilLoad = 0.25f;
-    public float sceneIndex;
+    public int sceneIndex;
     public float heightReturnOffset = 0.125f;
     public float dist;
 
@@ -26,6 +26,7 @@ public class TriggerSpellSelection : MonoBehaviour
             if (dist > distanceTilLoad)
             {
                 Debug.Log("weve passed 1 distance, load scene " + sceneIndex);
+                ProgressionController.Instance.OnLoadChallengeScene(sceneIndex);
             }
         }
     }

@@ -9,10 +9,12 @@ using UnityEngine;
 //using GooglePlayGames.BasicApi;
 using Facebook.Unity;
 using System;
+using UnityEngine.UI;
 
 
 public class SignIn : MonoBehaviour
 {
+    public Text successText;
     public bool testFBLogin = false;
     public void OnClickSignInFacebook() => CallFBLoginManual(); //replacing the dynamic fb sdk login with manual 
 
@@ -52,6 +54,8 @@ AppEventsLogger.activateApp(this);
             //Shows how to get an access token
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
 
+            successText.text = "Success - Press X to open map, Grab location and Pull to Load";
+
             const string successMessage = "Sign in w FB succeeded!";
             Debug.Log(successMessage);
         };
@@ -87,13 +91,22 @@ AppEventsLogger.activateApp(this);
 
     private async void CallFBLoginManual()
     {
-        await SignInFacebook("EAAEjPF8T9tMBAOhVIdGwg4cAZAu5oeqxk8joRVf8v9qqh5AVjZAZAfTyOmkOZBQZAMx3IWHyVq5WnZBY8AuMWjLFgyd7ZBBBd9W2f8alUMirglqP72j91IqnKPDh6T1kAvD8sk3JQsX3aeFjb6Y0xOP27lFayDQLOPOtHRQQBvo0GZAsjsshmiBoIZAN0vwREbUMOBTeAvCyIGMnNeIYLU6Cr");
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        //await SignInFacebook("EAAEjPF8T9tMBAOhVIdGwg4cAZAu5oeqxk8joRVf8v9qqh5AVjZAZAfTyOmkOZBQZAMx3IWHyVq5WnZBY8AuMWjLFgyd7ZBBBd9W2f8alUMirglqP72j91IqnKPDh6T1kAvD8sk3JQsX3aeFjb6Y0xOP27lFayDQLOPOtHRQQBvo0GZAsjsshmiBoIZAN0vwREbUMOBTeAvCyIGMnNeIYLU6Cr");
     }
 
     private void InitializeFBLogin()
     {
-        var perms = new List<string>() { "public_profile", "email" };
-        FB.LogInWithReadPermissions(perms, AuthCallback);
+        if(Application.isEditor)
+        {
+            CallFBLoginManual();
+        }
+        else
+        {
+            var perms = new List<string>() { "public_profile", "email" };
+            FB.LogInWithReadPermissions(perms, AuthCallback);
+        }
     }
 
     private async void AuthCallback(ILoginResult result)
@@ -153,7 +166,6 @@ AppEventsLogger.activateApp(this);
             await AuthenticationService.Instance.SignInWithFacebookAsync(accessTokenStr);
             Debug.Log("Signed in with Facebook!");
             Debug.Log($"PlayedID: {AuthenticationService.Instance.PlayerId}");
-            ProgressionController.Instance.OnLoadNextScene?.Invoke(1);
             //UpdateUI();
         }
         catch (RequestFailedException ex)

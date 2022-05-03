@@ -54,7 +54,10 @@ public class UserHealth : MonoBehaviour
 
     private void OnDestroy()
     {
-        ScriptsConnector.Instance.OnSetHealth -= SetHealth;
-        ScriptsConnector.Instance.GetHealth -= GetHealth;
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnSetHealth -= SetHealth;
+            ScriptsConnector.Instance.GetHealth -= GetHealth;
+        }
     }
 }
