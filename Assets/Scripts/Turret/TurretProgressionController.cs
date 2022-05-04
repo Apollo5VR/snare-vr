@@ -121,7 +121,7 @@ public class TurretProgressionController : MonoBehaviour
 
         yield return new WaitForSeconds(8);
 
-        turretGrabbable.DropTurret();
+        turretGrabbable.DropAll();
 
         StartCoroutine(playerTeleport.doTeleport(eggsTranform.localPosition, eggsTranform.localRotation, true));
 

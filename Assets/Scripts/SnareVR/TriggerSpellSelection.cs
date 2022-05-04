@@ -13,6 +13,14 @@ public class TriggerSpellSelection : MonoBehaviour
     public float dist;
 
     private bool isGrabbed;
+    private BNG.GrabbableHaptics selectionHaptics;
+    private BNG.Grabbable selectionGrabber;
+
+    public  void Start()
+    {
+        selectionHaptics = gameObject.GetComponent<BNG.GrabbableHaptics>();
+        selectionGrabber = gameObject.GetComponent<BNG.Grabbable>();
+    }
 
     private void Update()
     {
@@ -21,11 +29,13 @@ public class TriggerSpellSelection : MonoBehaviour
             //update line width based on distance of this object from line
             dist = Vector3.Distance(gameObject.transform.position, loadingLine.transform.position);
             loadingLine.transform.localScale = new Vector3(dist/1.5f, loadingLine.transform.localScale.y, loadingLine.transform.localScale.z);
+            selectionHaptics.doHaptics(selectionHaptics.currentGrabber.HandSide);
 
             //if reach full 1 distance, then teleport
             if (dist > distanceTilLoad)
             {
                 Debug.Log("weve passed 1 distance, load scene " + sceneIndex);
+                selectionGrabber.DropAll();
                 ProgressionController.Instance.OnLoadChallengeScene(sceneIndex);
             }
         }

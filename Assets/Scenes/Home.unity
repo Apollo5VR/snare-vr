@@ -859,7 +859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91596002}
   m_LocalRotation: {x: -0, y: -0.9516496, z: -0, w: 0.3071857}
-  m_LocalPosition: {x: -1.445, y: -1.787, z: 17.333}
+  m_LocalPosition: {x: -1.787, y: -1.787, z: 17.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -946,6 +946,10 @@ PrefabInstance:
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_Name
       value: log-birch (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1120,7 +1124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &124124252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6720,7 +6724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &625262174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7714,6 +7718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rat
       objectReference: {fileID: 0}
+    - target: {fileID: 1235253707484556, guid: a90fcb421e9b4421daf80033a24541a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4556276457746108, guid: a90fcb421e9b4421daf80033a24541a9, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -8671,6 +8679,10 @@ PrefabInstance:
       value: log-birch (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -8857,6 +8869,10 @@ PrefabInstance:
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_Name
       value: log-birch (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9098,7 +9114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &835854378
 Transform:
   m_ObjectHideFlags: 0
@@ -14905,6 +14921,10 @@ PrefabInstance:
       value: tree_05 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 190764, guid: b75d513df2c5cdb408d4a022c98cf202, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 190764, guid: b75d513df2c5cdb408d4a022c98cf202, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -15298,7 +15318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1390054548
 Transform:
   m_ObjectHideFlags: 0
@@ -16764,7 +16784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1470995529
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20121,6 +20141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnareLoopCompleteOnBranch
       objectReference: {fileID: 0}
+    - target: {fileID: 5886087921676280512, guid: 31ff7c3ee093145419f3969fc9779ed4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6549436088036571258, guid: 31ff7c3ee093145419f3969fc9779ed4,
         type: 3}
       propertyPath: m_RootOrder
@@ -21642,7 +21667,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 78% Health
+  m_Text: 101% Health
 --- !u!222 &1974533245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23014,6 +23039,10 @@ PrefabInstance:
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_Name
       value: log-birch (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000011820032016, guid: 6f0a910cfa5015b478ddf8a29a29afb2, type: 3}
       propertyPath: m_StaticEditorFlags

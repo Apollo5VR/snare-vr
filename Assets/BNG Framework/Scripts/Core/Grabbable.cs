@@ -540,7 +540,7 @@ namespace BNG {
             }
         }   
         
-        public virtual void DropTurret()
+        public virtual void DropAll()
         {
             for (int x = 0; x < heldByGrabbers.Count; x++)
             {
