@@ -11,7 +11,7 @@ public class WireTrigger : MonoBehaviour
         //TODO refactor this to be not dumb
         if(other.name == "GrabCube" || other.name == "CompletedWireGrabber")
         {
-            WireController.Instance.OnWireSectionComplete?.Invoke(progressionInt);
+            ScriptsConnector.Instance.OnWireSectionComplete?.Invoke(progressionInt);
         }
     }
 }

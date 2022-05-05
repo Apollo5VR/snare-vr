@@ -29,10 +29,10 @@ public class FireController : MonoBehaviour
 
         userCurrentHealth += healthMod;
 
-        ScriptsConnector.Instance.OnUpdateUI("healthUpdate", userCurrentHealth.ToString());
+        //ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Health, userCurrentHealth.ToString()); //depreciated now with new UI
         ScriptsConnector.Instance?.OnSetHealth("playerId", userCurrentHealth);
 
-        ScriptsConnector.Instance.OnUpdateUI("caughtResult", "Ewww, you ate raw Rabbit!");
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "Ewww, you ate raw Rabbit. But look at your health!");
     }
 
     private void OnDestroy()

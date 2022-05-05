@@ -7,11 +7,11 @@ using Unity.Services.Analytics;
     public class SpellSelectionWheelManager : MonoBehaviour
     {
         public GameObject[] spellButtons;
-        public BNG.WandSpellsController wandSpellsController;
 
         public static Action<GameObject> OnSpellSelected;
 
         private bool tutorialResponseRecorded;
+        private BNG.WandSpellsController wandSpellsController;
 
         //depreciated - redundant since we use Action based sub 
         /*
@@ -36,7 +36,8 @@ using Unity.Services.Analytics;
             gameObject.SetActive(false);
             OnSpellSelected += UpdateSpellSelected;
         }
-
+        
+    /*
         public void Update()
         {
             if (BNG.InputBridge.Instance.YButton)
@@ -51,6 +52,7 @@ using Unity.Services.Analytics;
                 }
             }
         }
+    */
 
 
 

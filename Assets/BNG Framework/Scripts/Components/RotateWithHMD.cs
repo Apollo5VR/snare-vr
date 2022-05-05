@@ -18,6 +18,8 @@ namespace BNG {
         /// </summary>
         public Vector3 Offset = new Vector3(0, -0.25f, 0);
 
+        public bool spawnOnly = false;
+
         public float RotateSpeed = 5f;
 
         public float MovementSmoothing = 0;
@@ -58,8 +60,20 @@ namespace BNG {
         }
 
         void LateUpdate() {
-            UpdatePosition();
+            if(!spawnOnly)
+            {
+                UpdatePosition();
+            }
         }
+
+        public void OnEnable()
+        {
+            if (originalParent != null && spawnOnly)
+            {
+                UpdatePosition();
+            }
+        }
+
         void UpdatePosition() {
 
             // Find Main Camera Object if it changed or not yet been fou nd
@@ -83,7 +97,15 @@ namespace BNG {
 
             Vector3 moveToPosition = new Vector3(worldOffset.x, camTransform.position.y - Offset.y, worldOffset.z);
             transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, MovementSmoothing);
-            transform.rotation = Quaternion.Lerp(transform.rotation, followTransform.rotation, Time.deltaTime * RotateSpeed);
+
+            if(!spawnOnly)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, followTransform.rotation, Time.deltaTime * RotateSpeed);
+            }
+            else
+            {
+                transform.rotation = followTransform.rotation;
+            }
         }
     }
 }

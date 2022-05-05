@@ -53,6 +53,7 @@ public class ProgressionController : MonoBehaviour
         OnLoadNextScene += LoadNextScene;
         OnLoadChallengeScene += LoadSpecificScene;
         OnRequestTeleporter += PassTeleporter;
+        ScriptsConnector.Instance.OnGetCurrentScene += GetCurrentScene;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -69,6 +70,11 @@ public class ProgressionController : MonoBehaviour
             debugProgressNextScene = false;
             SceneManager.LoadScene(nextLevel);
         }
+    }
+
+    private int GetCurrentScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
     private void LoadNextScene(float time)
@@ -184,6 +190,7 @@ public class ProgressionController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         OnLoadNextScene -= LoadNextScene;
         OnLoadChallengeScene -= LoadSpecificScene;
+        ScriptsConnector.Instance.OnGetCurrentScene -= GetCurrentScene;
     }
 }
 

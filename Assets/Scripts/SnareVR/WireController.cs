@@ -30,8 +30,6 @@ public class WireController : MonoBehaviour
     //private int[] part1Bendables = new int[] {0,1,2};
     //private int[] part2Bendables = new int[] { 1, 2, 3 }; //just anything greater than part 1 last index
 
-    public Action<int> OnWireSectionComplete;
-
     public float trapTimeRemaining;
     public CommonEnums.SnareState snareState = CommonEnums.SnareState.None;
 
@@ -60,31 +58,31 @@ public class WireController : MonoBehaviour
         wireAroundTree.SetActive(false);
         rabbit.SetActive(false);
 
-        SetupTrapScene();
+        SetupSnareScene();
 
-        OnWireSectionComplete += WireManipulations;
+        ScriptsConnector.Instance.OnWireSectionComplete += WireManipulations;
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
-        ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupTrapScene;
+        ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupSnareScene;
     }
 
     private void OnDestroy()
     {
-        OnWireSectionComplete -= WireManipulations;
+        ScriptsConnector.Instance.OnWireSectionComplete -= WireManipulations;
 
         if (ScriptsConnector.Instance != null)
         {
             ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
-            ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupTrapScene;
+            ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupSnareScene;
         }
     }
 
     //call on start to set state and save a local value to the WireController
-    public async void SetupTrapScene()
+    public async void SetupSnareScene()
     {
         try
         {
-            //TODO - update this singleton to use the scriptsconnector
-            float time = await CloudCodeManager.instance.CallGetTrapTimeRemainingEndpoint();
+            //TODO - we've relocated the trap set to zones, only building trap here
+            float time = -1; //await CloudCodeManager.instance.CallGetTrapTimeRemainingEndpoint();
 
             //TODO - better idea in the future to not user a hardcoded value to determine if a trap exists (should just pull if trap exists for this scenario)
             if (time == -1)
@@ -100,7 +98,7 @@ public class WireController : MonoBehaviour
                 wireAroundTree.SetActive(false);
                 rabbit.SetActive(false);
 
-                ScriptsConnector.Instance.OnUpdateUI("caughtResult", "BUILD A SNARE ON THE STUMP!");
+                ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "BUILD A SNARE ON THE STUMP!");
             }
             else
             {
@@ -117,7 +115,7 @@ public class WireController : MonoBehaviour
                     rabbit.SetActive(false);
 
                     //TODO - check that this formatted in a readable timestamp
-                    ScriptsConnector.Instance.OnUpdateUI("caughtTime", time.ToString());
+                    ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Time, time.ToString());
                 }
                 else if (time <= 0)
                 {
@@ -167,31 +165,6 @@ public class WireController : MonoBehaviour
                 inCompleteWire.SetActive(false);
                 curvedLineB.gameObject.SetActive(true);
                 halfCompleteWire.SetActive(true);
-                //deactivate bendable section 1, enable section 2
-                //TODO - refactor to not use LINQ - bad practice
-                //curvedLine.paths = curvedLine.paths.Take(part1Bendables.Length).ToArray();
-                //List<Transform> listCon = curvedLine.paths.ToList();
-                //listCon.RemoveRange(0, part1Bendables.Length);
-                //curvedLine.paths = listCon.ToArray();
-                //might not need to do this if we just set the 4th one Locked from start
-                /*
-                ConfigurableJoint joint = configJoints[part1Bendables.Length].GetComponent<ConfigurableJoint>();
-                joint.angularXMotion = ConfigurableJointMotion.Locked;
-                joint.angularYMotion = ConfigurableJointMotion.Locked;
-                joint.angularZMotion = ConfigurableJointMotion.Locked;
-
-                ConfigurableJoint joint2 = configJoints[part1Bendables.Length + 1].GetComponent<ConfigurableJoint>();
-                joint.angularXMotion = ConfigurableJointMotion.Free;
-                joint.angularYMotion = ConfigurableJointMotion.Free;
-                joint.angularZMotion = ConfigurableJointMotion.Free;
-                */
-
-                /*
-                for(int i = 0; i < part1Bendables.Length; i++)
-                {
-                    curvedLine.paths.Slice
-                }
-                */
 
                 break;
             case 1:
@@ -208,11 +181,15 @@ public class WireController : MonoBehaviour
                 //deactivate bendable completely
 
                 //TODO - GG - scriptconnector call to trigger trap set api call on lootboxmanager
-                ScriptsConnector.Instance.OnSetTrapTriggerTime?.Invoke();
+                //note: moved to trapcontroller
+                //ScriptsConnector.Instance.OnSetTrapTriggerTime?.Invoke();
 
                 //depreciated, just for immediate gratification testing
                 //TODO - UI date and wait for 10s
-                //StartCoroutine(CatchTimer(10));
+                if(ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 1)
+                {
+                    StartCoroutine(CatchTimer(10));
+                }
 
                 break;
             default:
@@ -227,16 +204,17 @@ public class WireController : MonoBehaviour
             rabbit.SetActive(true);
         }
 
-        ScriptsConnector.Instance.OnUpdateUI("caughtResult", "CAUGHT RABBIT: " + caught.ToString());
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "CAUGHT RABBIT: " + caught.ToString());
     }
 
     IEnumerator CatchTimer(float time)
     {
-        ScriptsConnector.Instance.OnUpdateUI("caughtTime", time.ToString());
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "TRAP TRIGGERS IN: " + time.ToString());
 
         yield return new WaitForSeconds(time);
 
         //TODO - mock proto of a 10s trap
-        ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+        //ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+        rabbit.SetActive(true);
     }
 }

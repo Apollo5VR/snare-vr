@@ -36,6 +36,9 @@ public class TriggerSpellSelection : MonoBehaviour
             {
                 Debug.Log("weve passed 1 distance, load scene " + sceneIndex);
                 selectionGrabber.DropAll();
+
+                //call return map here - 
+                ScriptsConnector.Instance.OnReturnMap();
                 ProgressionController.Instance.OnLoadChallengeScene(sceneIndex);
             }
         }

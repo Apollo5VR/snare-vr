@@ -8,9 +8,10 @@ public class UIController : MonoBehaviour
 {
     public Text healthText; //TODO need to update for multiplayer
     public Text trapCaughtTimerText;
+    public Text genericText;
 
-    public float timeRemaining = 10;
-    public bool timerIsRunning = false;
+    private float timeRemaining = -1.0f;
+    //public bool timerIsRunning = false;
 
 
     // Start is called before the first frame update
@@ -20,10 +21,9 @@ public class UIController : MonoBehaviour
         trapCaughtTimerText.text = "TRAP INFO WILL SHOW HERE";
 
         ScriptsConnector.Instance.OnUpdateUI += UpdateUI;
-
-        healthText.text = ScriptsConnector.Instance?.GetHealth.Invoke("playerID").ToString() + "% Health";
     }
 
+    /*
     void Update()
     {
         if (timerIsRunning)
@@ -48,25 +48,53 @@ public class UIController : MonoBehaviour
             }
         }
     }
+    */
 
-    private void UpdateUI(string type, string updatedValue)
+    private void UpdateUI(CommonEnums.UIType type, string updatedValue)
     {
-        Debug.Log("type of " + type + " with value: " + updatedValue);
+        Debug.Log("type of " + type.ToString() + " with value: " + updatedValue);
 
         switch (type)
         {
-            case "caughtTime":
+            //TODO relocate to univesal ui - time
+            case CommonEnums.UIType.Time:
                 timeRemaining = float.Parse(updatedValue);
-                timerIsRunning = true;
+                UpdateTimer();
+                //timerIsRunning = true;
                 break;
-            case "caughtResult":
-                trapCaughtTimerText.text = updatedValue;
+            //relocate to univesal ui - generic
+            case CommonEnums.UIType.Generic:
+                genericText.text = updatedValue;
                 break;
-            case "healthUpdate":
-                healthText.text = updatedValue;
+            //relocate to univesal ui - health
+            case CommonEnums.UIType.Health:
+                healthText.text = "HEALTH:" + updatedValue;
+                break;
+            case CommonEnums.UIType.None:
                 break;
             default:
                 break;
+        }
+    }
+
+    private void UpdateTimer()
+    {
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime * 1000; //equivalent of -1 sec
+
+            //convert time remaining to day / hour / minute format
+            //TODO - is this overkill (heavy processing)?
+            TimeSpan t = TimeSpan.FromMilliseconds(timeRemaining);
+            DateTime expirationDate = new DateTime(t.Ticks);
+            trapCaughtTimerText.text = "TTR: " + expirationDate.ToString("dd:hh:mm");
+        }
+        else
+        {
+            //TODO - relocate this to specific scenes or somewhere else?
+            //ScriptsConnector.Instance.OnCheckTrap?.Invoke();
+            timeRemaining = 0;
+            trapCaughtTimerText.text = "TTR: Trap Expired";
         }
     }
 }

@@ -43,4 +43,12 @@ public class CommonEnums : MonoBehaviour
         Check,
         Unavailable
     }
+
+    public enum UIType
+    {
+        None,
+        Health,
+        Time,
+        Generic
+    }
 }

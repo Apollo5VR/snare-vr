@@ -19,9 +19,14 @@ public class ScriptsConnector : MonoBehaviour
     public Action OnCheckTrap;
     public Action<bool> OnRabbitCaught;
     public Action<string> OnDeleteKey;
+    public Action<int> OnWireSectionComplete;
 
     //UI
-    public Action<string, string> OnUpdateUI; //first string is to declare what UI type update it is, second string is the value you're updating to. //TODO - using string is best?
+    public Action<CommonEnums.UIType, string> OnUpdateUI; //first string is to declare what UI type update it is, second string is the value you're updating to. //TODO - using string is best?
+    public Action OnReturnMap;
+
+    //scene data
+    public Func<int> OnGetCurrentScene;
 
     private void Awake()
     {
