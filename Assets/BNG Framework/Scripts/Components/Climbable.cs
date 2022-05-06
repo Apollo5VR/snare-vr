@@ -48,6 +48,13 @@ namespace BNG {
             }
             
             base.DropItem(droppedBy);
+
+            //GG injection
+            if (BeingHeld == false)
+            {
+                gameObject.transform.parent.gameObject.SetActive(false);
+                Debug.Log("GG - WE DEACTIVATE CLIMBABLE ON DROP!");
+            }
         }
     }
 }

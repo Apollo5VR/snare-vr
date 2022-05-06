@@ -137,7 +137,7 @@ public class ProgressionController : MonoBehaviour
         if (startingPosition != null)
         {
             Debug.Log("OnSceneLoaded: " + scene.name);
-            StartCoroutine(playerTeleport.doTeleport(startingPosition.localPosition, startingPosition.localRotation, true));
+            StartCoroutine(playerTeleport.doTeleport(startingPosition.localPosition, startingPosition.localRotation, true, false));
         }
         else
         {
@@ -190,7 +190,11 @@ public class ProgressionController : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         OnLoadNextScene -= LoadNextScene;
         OnLoadChallengeScene -= LoadSpecificScene;
-        ScriptsConnector.Instance.OnGetCurrentScene -= GetCurrentScene;
+
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnGetCurrentScene -= GetCurrentScene;
+        }
     }
 }
 

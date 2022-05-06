@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BNG {
-
     public enum TeleportControls {
         // Rotate Thumbstick to initiate, release to teleport
         ThumbstickRotate,
@@ -109,7 +108,11 @@ namespace BNG {
         public float TeleportFadeSpeed = 10f;
 
         [Tooltip("Seconds to wait before initiating teleport. Useful if you want to fade the screen  before teleporting.")]
-        public float TeleportDelay = 0.2f;        
+        public float TeleportDelay = 0.2f;
+
+        [Tooltip("GG Custom Solution: To climb to destination")]
+        public bool usingClimbAlternative = false;
+        public GameObject climbableTool;
 
         CharacterController controller;
         BNGPlayerController playerController;
@@ -138,6 +141,8 @@ namespace BNG {
 
         void Start() {
             setupVariables();
+
+            climbableTool.SetActive(false);
         }
 
         bool setVariables = false;
@@ -493,7 +498,7 @@ namespace BNG {
         }
 
         //TODO - GG - potential revert this to private, but get a reference of this for Progression Controller
-        public IEnumerator doTeleport(Vector3 playerDestination, Quaternion playerRotation, bool rotatePlayer)
+        public IEnumerator doTeleport(Vector3 playerDestination, Quaternion playerRotation, bool rotatePlayer, bool climbMovement = true)
         {
 
             if(!setVariables) {
@@ -514,7 +519,19 @@ namespace BNG {
             float yOffset = 1 + cameraRig.localPosition.y - playerController.CharacterControllerYOffset;
 
             // Apply Teleport before offset is applied
-            controller.transform.position = playerDestination;
+            if (usingClimbAlternative && climbMovement)
+            {
+                //set start position scale as player position, end as destination
+                Vector3 heightAdjDestination = new Vector3(playerDestination.x, playerController.transform.position.y, playerDestination.z);
+                float dist = Vector3.Distance(playerController.transform.position, heightAdjDestination);
+
+                climbableTool.transform.localScale = new Vector3(climbableTool.transform.localScale.x, climbableTool.transform.localScale.y, dist);
+                climbableTool.SetActive(true);
+            }
+            else
+            {
+                controller.transform.position = playerDestination;
+            }
 
             // Apply offset
             controller.transform.localPosition -= new Vector3(0, yOffset, 0);
