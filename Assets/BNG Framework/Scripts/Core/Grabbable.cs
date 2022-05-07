@@ -430,6 +430,7 @@ namespace BNG {
         [Tooltip("for turret")]
         public bool isTurret = false;
         public bool isWire = false;
+        public bool isMap = false;
 
         /// <summary>
         /// Can the object be moved towards a Grabber. 
@@ -545,7 +546,7 @@ namespace BNG {
             for (int x = 0; x < heldByGrabbers.Count; x++)
             {
                 Grabber g = heldByGrabbers[x];
-                DropItem(g, true, true);
+                DropItem(g, true, false);
             }
         }
 

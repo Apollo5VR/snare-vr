@@ -401,6 +401,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -787,6 +788,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -2007,6 +2009,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -3436,6 +3439,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -3731,7 +3735,6 @@ GameObject:
   - component: {fileID: 908007492}
   - component: {fileID: 908007491}
   - component: {fileID: 908007496}
-  - component: {fileID: 908007495}
   - component: {fileID: 908007497}
   - component: {fileID: 908007498}
   - component: {fileID: 908007499}
@@ -3812,24 +3815,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908007490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.052400075, y: -0.024, z: -0.15}
-  m_LocalScale: {x: 0.060749937, y: 0.060749937, z: 0.060749937}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 776089219}
-  m_RootOrder: 5
+  m_Father: {fileID: 2146275610}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &908007495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908007490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08cfd35c55e2cf346a00faaf40ac61cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &908007496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,10 +3841,10 @@ MonoBehaviour:
   GrabSpeed: 15
   RemoteGrabbable: 0
   RemoteGrabMechanic: 0
-  RemoteGrabDistance: 2
+  RemoteGrabDistance: 0
   ThrowForceMultiplier: 0
   ThrowForceMultiplierAngular: 0
-  BreakDistance: 0
+  BreakDistance: 0.1
   HideHandGraphics: 1
   ParentToHands: 1
   ParentHandModel: 1
@@ -3898,6 +3889,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -3919,7 +3911,7 @@ MonoBehaviour:
       - m_Target: {fileID: 908007499}
         m_TargetAssemblyTypeName: MapController, Assembly-CSharp
         m_MethodName: ToggleMap
-        m_Mode: 6
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3930,19 +3922,7 @@ MonoBehaviour:
         m_CallState: 2
   onRelease:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 908007499}
-        m_TargetAssemblyTypeName: MapController, Assembly-CSharp
-        m_MethodName: ToggleMap
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   onBecomesClosestGrabbable:
     m_PersistentCalls:
       m_Calls: []
@@ -4132,6 +4112,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -4406,6 +4387,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -4792,6 +4774,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -5363,6 +5346,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -5988,6 +5972,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -6886,6 +6871,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -7246,6 +7232,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
@@ -7447,7 +7434,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.0524, y: -0.024, z: -0.15}
   m_LocalScale: {x: 0.060749937, y: 0.060749937, z: 0.060749937}
-  m_Children: []
+  m_Children:
+  - {fileID: 908007494}
   m_Father: {fileID: 776089219}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

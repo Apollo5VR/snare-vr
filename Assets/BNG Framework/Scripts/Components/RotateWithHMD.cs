@@ -39,6 +39,11 @@ namespace BNG {
         Transform camTransform;
 
         void Start() {
+            Setup();
+        }
+
+        void Setup()
+        {
             originalParent = transform.parent;
             followTransform = new GameObject().transform;
             followTransform.name = "RotateReferenceObject";
@@ -46,15 +51,18 @@ namespace BNG {
             followTransform.rotation = transform.rotation;
 
             // Parent the object to our character and let the hierarchy take care of positioning
-            if (ParentToCharacter) {
+            if (ParentToCharacter)
+            {
                 transform.parent = Character.transform;
             }
 
             // Set our reference transform to the Character object if it is available
-            if (Character) {
+            if (Character)
+            {
                 followTransform.parent = Character.transform;
             }
-            else {
+            else
+            {
                 followTransform.parent = originalParent;
             }
         }
@@ -68,8 +76,13 @@ namespace BNG {
 
         public void OnEnable()
         {
-            if (originalParent != null && spawnOnly)
+            if (spawnOnly)
             {
+                if(originalParent == null)
+                {
+                    Setup();
+                }
+
                 UpdatePosition();
             }
         }

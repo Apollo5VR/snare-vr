@@ -67,10 +67,9 @@ public class WireController : MonoBehaviour
 
     private void OnDestroy()
     {
-        ScriptsConnector.Instance.OnWireSectionComplete -= WireManipulations;
-
         if (ScriptsConnector.Instance != null)
         {
+            ScriptsConnector.Instance.OnWireSectionComplete -= WireManipulations;
             ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
             ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupSnareScene;
         }
@@ -209,12 +208,17 @@ public class WireController : MonoBehaviour
 
     IEnumerator CatchTimer(float time)
     {
-        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "TRAP TRIGGERS IN: " + time.ToString());
+        for(int i = 0; i < 10;  i++)
+        {
+            time--;
+            ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "TRAP TRIGGERS IN: " + time.ToString());
+        }
 
-        yield return new WaitForSeconds(time);
+        yield return null;
 
         //TODO - mock proto of a 10s trap
         //ScriptsConnector.Instance.OnCheckTrap?.Invoke();
         rabbit.SetActive(true);
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "YOU CAUGHT A RABBIT!");
     }
 }

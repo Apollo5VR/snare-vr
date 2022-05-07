@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour
     public Transform watchOrigin;
 
     public BNG.GrabbableHaptics selectionHaptics;
-    private BNG.Grabbable mapGrabber;
+    private BNG.Grabbable mapGrabbable;
 
     private Coroutine distCoroutine;
     private bool checkToggle;
@@ -22,7 +22,7 @@ public class MapController : MonoBehaviour
     public void Start()
     {
         selectionHaptics = gameObject.GetComponent<BNG.GrabbableHaptics>();
-        mapGrabber = gameObject.GetComponent<BNG.Grabbable>();
+        mapGrabbable = gameObject.GetComponent<BNG.Grabbable>();
         m_Material = m_Renderer.material;
 
         ScriptsConnector.Instance.OnReturnMap += ReturnMap;
@@ -45,42 +45,6 @@ public class MapController : MonoBehaviour
                 ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Health, health);
             }
         }
-
-        if(checkToggle)
-        {
-            //selectionHaptics.doHaptics(selectionHaptics.currentGrabber.HandSide);
-
-            dist = Vector3.Distance(gameObject.transform.position, watchOrigin.transform.position);
-
-            if (zoneSelector.gameObject.activeSelf)
-            {
-                if (dist < distanceTilLoad)
-                {
-                    ReturnMap();
-                }
-            }
-            else
-            {
-                if (dist > distanceTilLoad)
-                {
-                    zoneSelector.gameObject.SetActive(true);
-
-                    //relocate to 1ft out, force ungrab, unchild from right hand, relocate to above map, change color to green?
-                    mapGrabber.DropAll();
-                    gameObject.transform.SetParent(null);
-                    gameObject.transform.position = zoneSelector.transform.position;
-                    m_Material.color = new Color32(0, 255, 243, 0);
-
-                    string health = ScriptsConnector.Instance?.GetHealth.Invoke("playerID").ToString();
-                    ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Health, health);
-
-                    GetTime();
-
-                    //StopCoroutine(distCoroutine);
-                    checkToggle = false;
-                }
-            }
-        }
     }
 
     private void ReturnMap()
@@ -88,13 +52,11 @@ public class MapController : MonoBehaviour
         zoneSelector.gameObject.SetActive(false);
 
         //relocate to wrist, child to right hand, color grey
-        mapGrabber.DropAll();
         gameObject.transform.SetParent(watchOrigin.transform);
         gameObject.transform.position = watchOrigin.transform.position; //TODO need?
         m_Material.color = new Color32(0, 0, 0, 0);
 
         //StopCoroutine(distCoroutine);
-        checkToggle = false;
     }
 
     private async void GetTime()
@@ -107,62 +69,49 @@ public class MapController : MonoBehaviour
         }
     }
 
-    public void ToggleMap(bool isDrop)
+    public void ToggleMap()
     {
-        if(!isDrop)
-        {
             checkToggle = true;
-        }
-        else
-        {
-            checkToggle = false;
-        }
-        
-        //distCoroutine = StartCoroutine(MapGrabLoopCheck());
+            StartCoroutine(MapGrabLoopCheck()); 
     }
 
     private IEnumerator MapGrabLoopCheck()
     {
-        while(true)
+        while(checkToggle)
         {
-            //selectionHaptics.doHaptics(selectionHaptics.currentGrabber.HandSide);
-
             dist = Vector3.Distance(gameObject.transform.position, watchOrigin.transform.position);
 
             if (zoneSelector.gameObject.activeSelf)
             {
-                //if reach full 1 distance, then teleport
                 if (dist < distanceTilLoad)
                 {
-                    zoneSelector.gameObject.SetActive(false);
-
-                    //relocate to wrist, child to right hand, color grey
-                    mapGrabber.DropAll();
-                    gameObject.transform.position = watchOrigin.transform.position;
-                    gameObject.transform.SetParent(watchOrigin.transform);
-                    m_Material.SetColor("_EmissionColor", new Color32(0, 0, 0, 0));
-
-                    StopCoroutine(distCoroutine);
+                    checkToggle = false;
+                    mapGrabbable.DropAll();
+                    ReturnMap();
                 }
             }
             else
             {
-                //if reach full 1 distance, then teleport
                 if (dist > distanceTilLoad)
                 {
                     zoneSelector.gameObject.SetActive(true);
 
                     //relocate to 1ft out, force ungrab, unchild from right hand, relocate to above map, change color to green?
-                    mapGrabber.DropAll();
+                    mapGrabbable.DropAll();
                     gameObject.transform.SetParent(null);
                     gameObject.transform.position = zoneSelector.transform.position;
-                    m_Material.SetColor("_EmissionColor", new Color32(0, 255, 243, 0));
+                    m_Material.color = new Color32(0, 255, 243, 0);
 
-                    StopCoroutine(distCoroutine);
+                    string health = ScriptsConnector.Instance?.GetHealth.Invoke("playerID").ToString();
+                    ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Health, health);
+
+                    GetTime();
+
+                    checkToggle = false;
                 }
             }
 
-            return null;
+            yield return null;
         }
     }
 
