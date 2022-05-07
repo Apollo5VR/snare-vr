@@ -14,6 +14,19 @@
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
+# Lightmaps
+/[Aa]ssets/Scenes/Zone 2
+/[Aa]ssets/Scenes/Zone 1
+/[Aa]ssets/Scenes/Zone Practice
+/[Aa]ssets/Scenes/Home
+/[Aa]ssets/Scenes/Start
+*.exr
+*.exr.meta
+LightmapSnapshot.asset
+LightmapSnapshot.asset.meta
+LightingData.asset
+LightingData.asset.meta
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
