@@ -842,7 +842,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91596002}
   m_LocalRotation: {x: -0, y: -0.9516496, z: -0, w: 0.3071857}
-  m_LocalPosition: {x: -1.852, y: -1.787, z: 17.462}
+  m_LocalPosition: {x: -1.852, y: -1.449, z: 17.462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2353,6 +2353,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 1
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -3328,6 +3329,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 1
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -5905,6 +5907,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -8028,7 +8031,7 @@ MonoBehaviour:
         m_MethodName: ConsumeRabbit
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 694130386}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8154,6 +8157,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 0
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
@@ -20818,6 +20822,7 @@ MonoBehaviour:
   GrabPoints: []
   isTurret: 0
   isWire: 1
+  isMap: 0
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0

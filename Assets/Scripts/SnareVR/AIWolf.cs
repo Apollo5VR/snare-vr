@@ -15,9 +15,18 @@ public class AIWolf : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        destination = TurretProgressionController.Instance.OnGetDinoNest();
+        destination = ScriptsConnector.Instance.OnGetTrapDestination?.Invoke();
 
         thisZombieAgent.speed = speed;
         thisZombieAgent.SetDestination(destination.position);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.name == "arrow" || collision.gameObject.name == "DestinationAI")
+        {
+            ScriptsConnector.Instance.OnWolfDeath.Invoke(gameObject);
+            gameObject.SetActive(false);
+        }
     }
 }

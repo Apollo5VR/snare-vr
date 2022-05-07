@@ -69,10 +69,24 @@ public class MapController : MonoBehaviour
         }
     }
 
-    public void ToggleMap()
+    public void ToggleMap(bool isGrab)
     {
+        if(isGrab)
+        {
             checkToggle = true;
-            StartCoroutine(MapGrabLoopCheck()); 
+            StartCoroutine(MapGrabLoopCheck());
+        }
+        else
+        {
+            //drop all
+            mapGrabbable.DropAll();
+
+            if(zoneSelector.gameObject.activeSelf)
+            {
+                gameObject.transform.position = zoneSelector.transform.position;
+                gameObject.transform.SetParent(zoneSelector.transform);
+            }
+        }
     }
 
     private IEnumerator MapGrabLoopCheck()
@@ -98,7 +112,7 @@ public class MapController : MonoBehaviour
 
                     //relocate to 1ft out, force ungrab, unchild from right hand, relocate to above map, change color to green?
                     mapGrabbable.DropAll();
-                    gameObject.transform.SetParent(null);
+                    gameObject.transform.SetParent(zoneSelector.transform);
                     gameObject.transform.position = zoneSelector.transform.position;
                     m_Material.color = new Color32(0, 255, 243, 0);
 

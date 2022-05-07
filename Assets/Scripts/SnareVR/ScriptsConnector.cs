@@ -21,6 +21,11 @@ public class ScriptsConnector : MonoBehaviour
     public Action<string> OnDeleteKey;
     public Action<int> OnWireSectionComplete;
 
+    //archer scene
+    public Action OnStartWolfSequence;
+    public Action<GameObject> OnWolfDeath;
+    public Func<Transform> OnGetTrapDestination;
+
     //UI
     public Action<CommonEnums.UIType, string> OnUpdateUI; //first string is to declare what UI type update it is, second string is the value you're updating to. //TODO - using string is best?
     public Action OnReturnMap;

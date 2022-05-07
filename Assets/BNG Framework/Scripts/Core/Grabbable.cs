@@ -546,7 +546,7 @@ namespace BNG {
             for (int x = 0; x < heldByGrabbers.Count; x++)
             {
                 Grabber g = heldByGrabbers[x];
-                DropItem(g, true, false);
+                DropItem(g, true, true);
             }
         }
 

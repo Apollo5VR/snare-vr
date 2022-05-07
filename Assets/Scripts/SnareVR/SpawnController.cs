@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretRayCast : MonoBehaviour
+public class SpawnController : MonoBehaviour
 {
     /// <summary>
     /// How far we can shoot in meters
@@ -31,18 +31,23 @@ public class TurretRayCast : MonoBehaviour
     public float timeCounter; //TODO - private
     public GameObject[] randomSpawnLocations;
     public int randomNumber; //TODO - private
+    public int deathCount;
 
-    public bool start = false;
+    private void Start()
+    {
+        ScriptsConnector.Instance.OnStartWolfSequence += StartWolfSequence;
+        ScriptsConnector.Instance.OnWolfDeath += DestroyAfterDelay;
+    }
 
     public void StartWolfSequence()
     {
-        start = true;
+        StartCoroutine(WolfSequence());
     }
 
     // Update is called once per frame
-    void Update()
+    private IEnumerator WolfSequence()
     {
-        if (start)
+        while(deathCount < 6)
         {
             //if the count down reaches 0, respawn another zombie
             if (timeCounter <= 0)
@@ -62,59 +67,19 @@ public class TurretRayCast : MonoBehaviour
 
             //start countdown
             timeCounter = timeCounter - Time.deltaTime;
+
+            yield return null;
         }
+
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "ALL THE WOLVES ARE DEAD! (OR FULL)");
+        Debug.Log("done");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void DestroyAfterDelay(GameObject hitObj)
     {
-        if (other.gameObject.layer == validLayer)
-        {
-            //TODO - add a outline highlight so player can still see enemy
+        deathCount++;
 
-            TurretProgressionController.Instance.OnIncrementScore();
-
-            ApplyParticleFX(other.transform.position, Quaternion.identity);
-
-            StartCoroutine(DestroyAfterDelay(other.gameObject));
-        }
-
-        //depr - not needed right now
-        // push object if rigidbody
-        /*
-        Rigidbody hitRigid = other.attachedRigidbody;
-        if (hitRigid != null)
-        {
-            hitRigid.AddForceAtPosition(BulletImpactForce * MuzzlePointTransform.forward, hit.point);
-        }
-        */
-
-        // Damage if possible
-        /*
-        Damageable d = hit.collider.GetComponent<Damageable>();
-        if (d)
-        {
-            d.DealDamage(Damage, hit.point, hit.normal, true, gameObject, hit.collider.gameObject);
-
-            if (onDealtDamageEvent != null)
-            {
-                onDealtDamageEvent.Invoke(Damage);
-            }
-        }
-        
-
-        // Call event
-        if (onRaycastHitEvent != null)
-        {
-            onRaycastHitEvent.Invoke(hit);
-        }
-        */
-    }
-
-    private IEnumerator DestroyAfterDelay(GameObject hitObj)
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        RePoolEnemy(hitObj);
+        //RePoolEnemy(hitObj);
     }
 
     //TODO - actually create an object pool
@@ -138,6 +103,15 @@ public class TurretRayCast : MonoBehaviour
                 hole.TryAttachTo(attachTo);
             }
             */
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnStartWolfSequence -= StartWolfSequence;
+            ScriptsConnector.Instance.OnWolfDeath -= DestroyAfterDelay;
         }
     }
 }

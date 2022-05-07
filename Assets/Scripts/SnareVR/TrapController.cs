@@ -11,18 +11,20 @@ public class TrapController : MonoBehaviour
 {
     public GameObject wireAroundTree;
     public GameObject rabbit;
+    public Transform trapDestination;
 
     // Start is called before the first frame update
     void Start()
     {
         ScriptsConnector.Instance.OnWireSectionComplete += SetTrap;
+        ScriptsConnector.Instance.OnGetTrapDestination += GetDestination;
+        rabbit.SetActive(false);
         SetupTrapScene();
     }
 
-    // Update is called once per frame
-    void Update()
+    private Transform GetDestination()
     {
-        
+        return trapDestination;
     }
 
     private void SetTrap(int progessionPoint)
@@ -30,6 +32,12 @@ public class TrapController : MonoBehaviour
         if(progessionPoint == 2)
         {
 
+        }
+
+        //if zone 2, initiate wolf scenario
+        if (ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 4)
+        {
+            //do wolves - once all wolves eaten you or you killed, nothing. they can return to home or leave game
         }
     }
 
@@ -45,7 +53,6 @@ public class TrapController : MonoBehaviour
             {
                 //Users first time OR last session they checked trap, but didnt set up another one (we delete on snare check)
                 wireAroundTree.SetActive(false);
-                rabbit.SetActive(false);
 
                 ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "FIND & SET SNARE. NO SNARE? BUILD ONE AT HOME BASE");
             }
@@ -53,8 +60,6 @@ public class TrapController : MonoBehaviour
             {
                 if (time > 0)
                 {
-                    rabbit.SetActive(false);
-
                     //TODO - formatt not readable, refactor
                     ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Time, "TIME TILL TRAP TRIGGERED: " + time.ToString());
                 }
@@ -63,7 +68,6 @@ public class TrapController : MonoBehaviour
                     //Load directly into check trap mode
 
                     wireAroundTree.SetActive(true);
-                    rabbit.SetActive(false);
 
                     //automatically check trap on game loaded
                     ScriptsConnector.Instance.OnCheckTrap?.Invoke();
