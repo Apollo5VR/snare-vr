@@ -32,6 +32,7 @@ public class SpawnController : MonoBehaviour
     public GameObject[] randomSpawnLocations;
     public int randomNumber; //TODO - private
     public int deathCount;
+    public int attackSuccessCount;
 
     private void Start()
     {
@@ -47,7 +48,7 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     private IEnumerator WolfSequence()
     {
-        while(deathCount < 6)
+        while ((deathCount + attackSuccessCount) < 6)
         {
             //if the count down reaches 0, respawn another zombie
             if (timeCounter <= 0)
@@ -68,16 +69,31 @@ public class SpawnController : MonoBehaviour
             //start countdown
             timeCounter = timeCounter - Time.deltaTime;
 
-            yield return null;
+            yield return new WaitForSeconds(1);
         }
 
-        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "ALL THE WOLVES ARE DEAD! (OR FULL)");
         Debug.Log("done");
     }
 
-    private void DestroyAfterDelay(GameObject hitObj)
+    private void DestroyAfterDelay(GameObject hitObj, bool isKilled)
     {
-        deathCount++;
+        if(isKilled)
+        {
+            deathCount++;
+        }
+        else
+        {
+            attackSuccessCount++;
+        }
+
+        if(attackSuccessCount == 6)
+        {
+            ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "UH OH THEY DESTROYED YOUR TRAP. SET ANOTHER.");
+        }
+        else if ((deathCount + attackSuccessCount) == 6)
+        {
+            ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "ALL THE WOLVES ARE DEAD! (OR FULL)");
+        }
 
         //RePoolEnemy(hitObj);
     }

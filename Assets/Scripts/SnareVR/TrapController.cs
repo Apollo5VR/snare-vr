@@ -18,6 +18,7 @@ public class TrapController : MonoBehaviour
     {
         ScriptsConnector.Instance.OnWireSectionComplete += SetTrap;
         ScriptsConnector.Instance.OnGetTrapDestination += GetDestination;
+        wireAroundTree.SetActive(false);
         rabbit.SetActive(false);
         SetupTrapScene();
     }
@@ -31,13 +32,15 @@ public class TrapController : MonoBehaviour
     {
         if(progessionPoint == 2)
         {
-
+            wireAroundTree.SetActive(true);
+            ScriptsConnector.Instance.OnSetTrapTriggerTime?.Invoke();
         }
 
         //if zone 2, initiate wolf scenario
         if (ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 4)
         {
             //do wolves - once all wolves eaten you or you killed, nothing. they can return to home or leave game
+            ScriptsConnector.Instance.OnStartWolfSequence?.Invoke();
         }
     }
 

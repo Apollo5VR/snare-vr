@@ -23,9 +23,11 @@ public class AIWolf : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == "arrow" || collision.gameObject.name == "DestinationAI")
+        if(collision.gameObject.name == "Arrow(Clone)" || collision.gameObject.name == "DestinationAI")
         {
-            ScriptsConnector.Instance.OnWolfDeath.Invoke(gameObject);
+            bool isKilled = collision.gameObject.name == "Arrow(Clone)";
+
+            ScriptsConnector.Instance.OnWolfDeath.Invoke(gameObject, isKilled);
             gameObject.SetActive(false);
         }
     }

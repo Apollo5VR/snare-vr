@@ -23,7 +23,7 @@ public class ScriptsConnector : MonoBehaviour
 
     //archer scene
     public Action OnStartWolfSequence;
-    public Action<GameObject> OnWolfDeath;
+    public Action<GameObject, bool> OnWolfDeath;
     public Func<Transform> OnGetTrapDestination;
 
     //UI
