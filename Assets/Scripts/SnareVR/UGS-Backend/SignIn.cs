@@ -31,7 +31,6 @@ AppEventsLogger.activateApp(this);
 
     private async void Awake()
     {
-        /*
         if (!FB.IsInitialized)
         {
             // Initialize the Facebook SDK
@@ -42,7 +41,6 @@ AppEventsLogger.activateApp(this);
             // Already initialized, signal an app activation App Event
             FB.ActivateApp();
         }
-        */
 
         await UnityServices.InitializeAsync();
 
@@ -67,6 +65,7 @@ AppEventsLogger.activateApp(this);
         //You can listen to events to display custom messages
         AuthenticationService.Instance.SignInFailed += errorResponse =>
         {
+            successText.text = "Fail";
             Debug.LogError($"Sign in w FB failed with error code: {errorResponse.ErrorCode}");
         };
 
@@ -91,9 +90,9 @@ AppEventsLogger.activateApp(this);
 
     private async void CallFBLoginManual()
     {
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        //await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-        //await SignInFacebook("EAAEjPF8T9tMBAOhVIdGwg4cAZAu5oeqxk8joRVf8v9qqh5AVjZAZAfTyOmkOZBQZAMx3IWHyVq5WnZBY8AuMWjLFgyd7ZBBBd9W2f8alUMirglqP72j91IqnKPDh6T1kAvD8sk3JQsX3aeFjb6Y0xOP27lFayDQLOPOtHRQQBvo0GZAsjsshmiBoIZAN0vwREbUMOBTeAvCyIGMnNeIYLU6Cr");
+        await SignInFacebook("EAAEjPF8T9tMBAEN13uf5pOyjiZAThAxK4wVoZCgDbmMY7IlkaLRxXN97ZA8GjDwd0QH1crD5RHZBLwkBqSNkPGJWkZA1ItE1SEnI9GGmrrwklZBZBsZCuiaZAAVnlvYweZBqNMUx6PNKgemiuLJ88kzT8ldIKLEA32fZBNSYb6CXbLgaSdCi41eZCgIcKr8Ojs449NkBbSLhvK8nycxm3FKETehG");
     }
 
     private void InitializeFBLogin()

@@ -2278,7 +2278,14 @@ namespace BNG {
 
             // The player object can be used to determine if the object is about to move rapidly
             if (GameObject.FindGameObjectWithTag("Player")) {
-                return _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<BNGPlayerController>();
+                _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<BNGPlayerController>(true);
+
+                if(_player == null)
+                {
+                    _player = FindObjectOfType<BNGPlayerController>();
+                }
+
+                return _player;
             }
             else {
                 return _player = FindObjectOfType<BNGPlayerController>();

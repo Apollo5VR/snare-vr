@@ -11,7 +11,7 @@ namespace BNG {
 
         PlayerClimbing playerClimbing;
 
-        void Start() {
+        void OnEnable() {
             // Make sure Climbable is set to dual grab
             SecondaryGrabBehavior = OtherGrabBehavior.DualGrab;
 
@@ -27,7 +27,7 @@ namespace BNG {
                 BreakDistance = 0;
             }
 
-            if(player != null) {
+            if(playerClimbing == null && player != null) {
                 playerClimbing = player.gameObject.GetComponentInChildren<PlayerClimbing>();
             }
         }
@@ -52,8 +52,11 @@ namespace BNG {
             //GG injection
             if (BeingHeld == false)
             {
-                gameObject.transform.parent.gameObject.SetActive(false);
-                Debug.Log("GG - WE DEACTIVATE CLIMBABLE ON DROP!");
+                if (gameObject.transform.parent.gameObject != null)
+                {
+                    gameObject.transform.parent.gameObject.SetActive(false);
+                    Debug.Log("GG - WE DEACTIVATE CLIMBABLE ON DROP!");
+                }
             }
         }
     }

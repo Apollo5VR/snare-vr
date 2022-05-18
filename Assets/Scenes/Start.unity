@@ -362,7 +362,7 @@ MonoBehaviour:
   ParentHandModel: 1
   SnapHandModel: 1
   CanBeDropped: 1
-  CanBeSnappedToSnapZone: 1
+  CanBeSnappedToSnapZone: 0
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
@@ -749,7 +749,7 @@ MonoBehaviour:
   ParentHandModel: 1
   SnapHandModel: 1
   CanBeDropped: 1
-  CanBeSnappedToSnapZone: 1
+  CanBeSnappedToSnapZone: 0
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
@@ -1970,7 +1970,7 @@ MonoBehaviour:
   ParentHandModel: 1
   SnapHandModel: 1
   CanBeDropped: 1
-  CanBeSnappedToSnapZone: 1
+  CanBeSnappedToSnapZone: 0
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
@@ -2892,6 +2892,11 @@ PrefabInstance:
     - target: {fileID: 6179961375502454275, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179961375502454275, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: GrippingClimbable
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6179961375502454275, guid: 2af1d2045149fe743b81bc4d1a6f8406,
@@ -6039,7 +6044,7 @@ MonoBehaviour:
   ParentHandModel: 1
   SnapHandModel: 1
   CanBeDropped: 1
-  CanBeSnappedToSnapZone: 1
+  CanBeSnappedToSnapZone: 0
   ForceDisableKinematicOnDrop: 0
   InstantMovement: 0
   MakeChildCollidersGrabbable: 0
