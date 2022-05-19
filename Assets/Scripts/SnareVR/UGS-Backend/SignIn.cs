@@ -16,19 +16,23 @@ public class SignIn : MonoBehaviour
 {
     public Text successText;
     public bool testFBLogin = false;
-    //TODO - update this to ingest actual param
-    public void OnClickSignInFacebook() => CallFBLoginManual(0); //replacing the dynamic fb sdk login with manual 
+    public List<GameObject> buttons;
+    public void OnClickSignInFacebook(GameObject textObj) => CallFBLoginManual(textObj); //replacing the dynamic fb sdk login with manual 
 
-    //TODO - potentially put in appropriate OnCreate location and try, else delete
+
+    private IDictionary<string, string> players;
+    private bool isAnonymousLogin = true; //always true on start as we use Anon login to get FB Access Tokens, then we login to FB using select AT
+    
+    //Note: Used for when need to setup FB SDK for first time in Unity Project
     /*
-@Override
-public void onCreate()
-{
-super.onCreate();
-FacebookSdk.sdkInitialize(getApplicationContext());
-AppEventsLogger.activateApp(this);
-}
-*/
+    @Override
+    public void onCreate()
+    {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
+    AppEventsLogger.activateApp(this);
+    }
+    */
 
     private async void Awake()
     {
@@ -53,28 +57,56 @@ AppEventsLogger.activateApp(this);
             //Shows how to get an access token
             Debug.Log($"Access Token: {AuthenticationService.Instance.AccessToken}");
 
-            successText.text = "Success - Press X to open map, Grab location and Pull to Load";
+            string successMessage = "";
+            
+            if(isAnonymousLogin)
+            {
+                successMessage = "Anonymous sign in succeeded";
+                GrabFBAccessTokens();
+            }
+            //logged in via FB Access Token
+            else
+            {
+                successMessage = "FB sign in succeeded";
+                successText.text = "Success - Press X to open map, Grab location and Pull to Load";
+            }
 
-            const string successMessage = "Sign in succeeded!";
             Debug.Log(successMessage);
         };
 
         AuthenticationService.Instance.SignedOut += () =>
         {
-            Debug.Log("Signed Out!");
+            string successMessage = "";
+
+            if (isAnonymousLogin)
+            {
+                successMessage = "Anonymous loggout succeeded";
+            }
+            else
+            {
+                successMessage = "FB loggout succeeded";
+            }
+
+            Debug.Log(successMessage);
         };
         //You can listen to events to display custom messages
         AuthenticationService.Instance.SignInFailed += errorResponse =>
         {
-            successText.text = "Fail";
+            if (isAnonymousLogin)
+            {
+                successText.text = "Anonymous login fail";
+            }
+            else
+            {
+                successText.text = "FB login fail";
+            }
+
             Debug.LogError($"Sign in failed with error code: {errorResponse.ErrorCode}");
         };
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
-        AuthenticationService.Instance.SignOut();
-
-        #region expiredLoginMethods
+        #region depreciatedLoginMethods
         //SignInWithGoogleAsync(string idToken);
 
         //PlayGamesPlatform.Activate();
@@ -89,35 +121,61 @@ AppEventsLogger.activateApp(this);
     {
         if(testFBLogin)
         {
-            CallFBLoginManual(0);
+            GameObject basic = new GameObject();
+            basic.AddComponent<Text>();
+
+            CallFBLoginManual(basic);
             //InitializeFBLogin(); //the actual sdk login flow, which we are no longer doing 4.25.22
             testFBLogin = false;
         }
     }
 
-    private void GrabFBAccessTokens()
+    private async void GrabFBAccessTokens()
     {
-        //TODO - call Cloud Script to get list of access token - adds them to a dictionary
+        //call Cloud Script to get list of access token - adds them to a dictionary
+        if (Unity.Services.Authentication.AuthenticationService.Instance.IsSignedIn)
+        {
+            players = await CloudCodeManager.instance.CallGetFBAccessTokensEndpoint();
 
+            //activate player select buttons based on dictonary items
+            int i = 0;
+
+            foreach(string name in players.Keys)
+            {
+                //to prevent a dictionary exceeding buttons 10 (can refactor if we ever branch out from 10)
+                if(i <= buttons.Count)
+                {
+                    //do activate
+                    buttons[i].GetComponentInChildren<Text>().text = name;
+                    buttons[i].SetActive(true);
+                }
+
+                i++;
+            }
+        }
 
         //signs out of the anonymous account we are using to grab valid Facebook Access Tokens
         AuthenticationService.Instance.SignOut();
     }
 
-    //TODO - update this to be called on event of pointer click (and send the index value associated with buttons event)
-    private async void CallFBLoginManual(int userKey)
+    //called on event of pointer click when user selects a profile
+    private async void CallFBLoginManual(GameObject objUserKey)
     {
-        string accessToken = ""; // = Dictionary Key
+        string tokenKey = objUserKey.GetComponentInChildren<Text>().text; 
+        string accessToken = players[tokenKey];
 
+        isAnonymousLogin = false;
         await SignInFacebook(accessToken);
-        //"EAAEjPF8T9tMBAEN13uf5pOyjiZAThAxK4wVoZCgDbmMY7IlkaLRxXN97ZA8GjDwd0QH1crD5RHZBLwkBqSNkPGJWkZA1ItE1SEnI9GGmrrwklZBZBsZCuiaZAAVnlvYweZBqNMUx6PNKgemiuLJ88kzT8ldIKLEA32fZBNSYb6CXbLgaSdCi41eZCgIcKr8Ojs449NkBbSLhvK8nycxm3FKETehG"
     }
 
     private void InitializeFBLogin()
     {
         if(Application.isEditor)
         {
-            CallFBLoginManual(0);
+            GameObject basic = new GameObject();
+            basic.AddComponent<Text>();
+
+            CallFBLoginManual(basic);
         }
         else
         {
@@ -180,10 +238,7 @@ AppEventsLogger.activateApp(this);
     {
         try
         {
-            await AuthenticationService.Instance.SignInWithFacebookAsync(accessTokenStr);
-            Debug.Log("Signed in with Facebook!");
-            Debug.Log($"PlayedID: {AuthenticationService.Instance.PlayerId}");
-            //UpdateUI();
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessTokenStr);;
         }
         catch (RequestFailedException ex)
         {

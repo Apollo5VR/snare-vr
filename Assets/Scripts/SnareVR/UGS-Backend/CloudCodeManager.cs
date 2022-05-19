@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.CloudCode;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CloudCodeManager : MonoBehaviour
 {
@@ -37,6 +38,41 @@ public class CloudCodeManager : MonoBehaviour
         {
             instance = null;
         }
+    }
+
+    public async Task<IDictionary<string, string>> CallGetFBAccessTokensEndpoint()
+    {
+        IDictionary<string, string> testPlayers = new Dictionary<string, string>(); ;
+
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.LogError("Cloud Code can't be called because you're not logged in.");
+                throw new CloudCodeResultUnavailableException(null,
+                    "Not logged in to authentication in CallGetTrapTimeRemainingEndpoint.");
+            }
+
+            Debug.Log("Calling Cloud Code 'GetTrapTimeRemaining'.");
+
+            var testTokensObj = await CloudCode.CallEndpointAsync<TestPlayers>(
+                "GetFBAccessTokens", new object());
+
+            testPlayers = testTokensObj.testPlayers;
+
+            // Check that scene has not been unloaded while processing async wait to prevent throw.
+            if (this == null) return testPlayers;
+
+            Debug.Log("CloudCode script got player Dictionary");
+        }
+        catch (CloudCodeException e)
+        {
+            HandleCloudCodeException(e);
+            throw new CloudCodeResultUnavailableException(e,
+                "Handled exception in CheckTrap.");
+        }
+
+        return testPlayers;
     }
 
     public async Task<float> CallGetTrapTimeRemainingEndpoint()
@@ -227,6 +263,10 @@ public class CloudCodeManager : MonoBehaviour
         public float timeRemaining; //milliseconds
         public bool trapExists;
         public bool hasExpired;
+    }
+    public struct TestPlayers
+    {
+        public IDictionary<string,string> testPlayers; //10 max
     }
 
     // Struct used to receive result from Cloud Code.
