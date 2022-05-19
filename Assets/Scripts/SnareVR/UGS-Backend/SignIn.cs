@@ -16,7 +16,8 @@ public class SignIn : MonoBehaviour
 {
     public Text successText;
     public bool testFBLogin = false;
-    public void OnClickSignInFacebook() => CallFBLoginManual(); //replacing the dynamic fb sdk login with manual 
+    //TODO - update this to ingest actual param
+    public void OnClickSignInFacebook() => CallFBLoginManual(0); //replacing the dynamic fb sdk login with manual 
 
     //TODO - potentially put in appropriate OnCreate location and try, else delete
     /*
@@ -54,7 +55,7 @@ AppEventsLogger.activateApp(this);
 
             successText.text = "Success - Press X to open map, Grab location and Pull to Load";
 
-            const string successMessage = "Sign in w FB succeeded!";
+            const string successMessage = "Sign in succeeded!";
             Debug.Log(successMessage);
         };
 
@@ -66,9 +67,14 @@ AppEventsLogger.activateApp(this);
         AuthenticationService.Instance.SignInFailed += errorResponse =>
         {
             successText.text = "Fail";
-            Debug.LogError($"Sign in w FB failed with error code: {errorResponse.ErrorCode}");
+            Debug.LogError($"Sign in failed with error code: {errorResponse.ErrorCode}");
         };
 
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
+        AuthenticationService.Instance.SignOut();
+
+        #region expiredLoginMethods
         //SignInWithGoogleAsync(string idToken);
 
         //PlayGamesPlatform.Activate();
@@ -76,30 +82,42 @@ AppEventsLogger.activateApp(this);
         //PlayGamesPlatform.Instance.RequestServerSideAccess(true, thisAction);
 
         //LoginGooglePlayGames();
+        #endregion
     }
 
     public void Update()
     {
         if(testFBLogin)
         {
-            CallFBLoginManual();
+            CallFBLoginManual(0);
             //InitializeFBLogin(); //the actual sdk login flow, which we are no longer doing 4.25.22
             testFBLogin = false;
         }
     }
 
-    private async void CallFBLoginManual()
+    private void GrabFBAccessTokens()
     {
-        //await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        //TODO - call Cloud Script to get list of access token - adds them to a dictionary
 
-        await SignInFacebook("EAAEjPF8T9tMBAEN13uf5pOyjiZAThAxK4wVoZCgDbmMY7IlkaLRxXN97ZA8GjDwd0QH1crD5RHZBLwkBqSNkPGJWkZA1ItE1SEnI9GGmrrwklZBZBsZCuiaZAAVnlvYweZBqNMUx6PNKgemiuLJ88kzT8ldIKLEA32fZBNSYb6CXbLgaSdCi41eZCgIcKr8Ojs449NkBbSLhvK8nycxm3FKETehG");
+
+        //signs out of the anonymous account we are using to grab valid Facebook Access Tokens
+        AuthenticationService.Instance.SignOut();
+    }
+
+    //TODO - update this to be called on event of pointer click (and send the index value associated with buttons event)
+    private async void CallFBLoginManual(int userKey)
+    {
+        string accessToken = ""; // = Dictionary Key
+
+        await SignInFacebook(accessToken);
+        //"EAAEjPF8T9tMBAEN13uf5pOyjiZAThAxK4wVoZCgDbmMY7IlkaLRxXN97ZA8GjDwd0QH1crD5RHZBLwkBqSNkPGJWkZA1ItE1SEnI9GGmrrwklZBZBsZCuiaZAAVnlvYweZBqNMUx6PNKgemiuLJ88kzT8ldIKLEA32fZBNSYb6CXbLgaSdCi41eZCgIcKr8Ojs449NkBbSLhvK8nycxm3FKETehG"
     }
 
     private void InitializeFBLogin()
     {
         if(Application.isEditor)
         {
-            CallFBLoginManual();
+            CallFBLoginManual(0);
         }
         else
         {
