@@ -7,12 +7,12 @@ using Unity.Services.Core;
 using UnityEngine;
 //using GooglePlayGames;
 //using GooglePlayGames.BasicApi;
-using Facebook.Unity;
+//using Facebook.Unity;
 using System;
 using UnityEngine.UI;
 
 
-public class SignIn : MonoBehaviour
+public class SignInManager : MonoBehaviour
 {
     public Text successText;
     public bool testFBLogin = false;
@@ -36,6 +36,8 @@ public class SignIn : MonoBehaviour
 
     private async void Awake()
     {
+        //depreciate FB login init
+        /*
         if (!FB.IsInitialized)
         {
             // Initialize the Facebook SDK
@@ -46,6 +48,7 @@ public class SignIn : MonoBehaviour
             // Already initialized, signal an app activation App Event
             FB.ActivateApp();
         }
+        */
 
         await UnityServices.InitializeAsync();
 
@@ -168,6 +171,64 @@ public class SignIn : MonoBehaviour
         await SignInFacebook(accessToken);
     }
 
+    //note: a UGS specific method (does not require FB SDK)
+    private async Task SignInFacebook(string accessTokenStr)
+    {
+        try
+        {
+            await AuthenticationService.Instance.SignInWithFacebookAsync(accessTokenStr); ;
+        }
+        catch (RequestFailedException ex)
+        {
+            Debug.LogException(ex);
+            Debug.Log("Failed to sign in with Facebook!");
+            //SetException(ex);
+        }
+    }
+
+    //unused - for connecting anonymous users
+    async Task LinkWithFacebookAsync(string accessToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.LinkWithFacebookAsync(accessToken);
+            Debug.Log("Link is successful.");
+        }
+        catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
+        {
+            // Prompt the player with an error message.
+            Debug.LogError("This user is already linked with another account. Log in instead.");
+        }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    private void OnHideUnity(bool isGameShown)
+    {
+        if (!isGameShown)
+        {
+            // Pause the game - we will need to hide
+            Time.timeScale = 0;
+        }
+        else
+        {
+            // Resume the game - we're getting focus again
+            Time.timeScale = 1;
+        }
+    }
+
+    //depreciated Facebook and Google Play login methods
+    /*
     private void InitializeFBLogin()
     {
         if(Application.isEditor)
@@ -207,47 +268,6 @@ public class SignIn : MonoBehaviour
         }
     }
 
-    //unused - for connecting anonymous users
-    async Task LinkWithFacebookAsync(string accessToken)
-    {
-        try
-        {
-            await AuthenticationService.Instance.LinkWithFacebookAsync(accessToken);
-            Debug.Log("Link is successful.");
-        }
-        catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
-        {
-            // Prompt the player with an error message.
-            Debug.LogError("This user is already linked with another account. Log in instead.");
-        }
-        catch (AuthenticationException ex)
-        {
-            // Compare error code to AuthenticationErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-        catch (RequestFailedException ex)
-        {
-            // Compare error code to CommonErrorCodes
-            // Notify the player with the proper error message
-            Debug.LogException(ex);
-        }
-    }
-
-    private async Task SignInFacebook(string accessTokenStr)
-    {
-        try
-        {
-            await AuthenticationService.Instance.SignInWithFacebookAsync(accessTokenStr);;
-        }
-        catch (RequestFailedException ex)
-        {
-            Debug.LogException(ex);
-            Debug.Log("Failed to sign in with Facebook!");
-            //SetException(ex);
-        }
-    }
-
     private void InitCallback()
     {
         if (FB.IsInitialized)
@@ -263,21 +283,6 @@ public class SignIn : MonoBehaviour
         }
     }
 
-    private void OnHideUnity(bool isGameShown)
-    {
-        if (!isGameShown)
-        {
-            // Pause the game - we will need to hide
-            Time.timeScale = 0;
-        }
-        else
-        {
-            // Resume the game - we're getting focus again
-            Time.timeScale = 1;
-        }
-    }
-
-    /*
     private void OnSignInResult(SignInStatus signInStatus)
     {
         if (signInStatus == SignInStatus.Success)
@@ -290,8 +295,9 @@ public class SignIn : MonoBehaviour
         }
     }
     */
-    
 
+
+    /*
     async Task SignInWithGoogleAsync(string idToken)
     {
         try
@@ -335,9 +341,6 @@ public class SignIn : MonoBehaviour
         }
     }
 
-
-
-    /*
     private async void Awake()
     {
         // Cloud Save needs to be initialized along with the other Unity Services that
