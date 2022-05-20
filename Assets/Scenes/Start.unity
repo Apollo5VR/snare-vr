@@ -5471,7 +5471,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!65 &1055052112
 BoxCollider:
@@ -8038,6 +8038,7 @@ MonoBehaviour:
   - {fileID: 1675553359}
   - {fileID: 1755565600}
   - {fileID: 1565048722}
+  isAnonymousLogin: 1
 --- !u!114 &1651730673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9787,7 +9788,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &2051902118
 RectTransform:
