@@ -2432,6 +2432,7 @@ GameObject:
   - component: {fileID: 469605478}
   - component: {fileID: 469605477}
   - component: {fileID: 469605476}
+  - component: {fileID: 469605481}
   m_Layer: 5
   m_Name: LoginButton (3)
   m_TagString: Untagged
@@ -2454,10 +2455,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -122.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469605476
 MonoBehaviour:
@@ -2535,19 +2536,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 469605479}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 469605474}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &469605479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,6 +2575,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469605474}
   m_CullTransparentMesh: 0
+--- !u!114 &469605481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469605474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 469605474}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &526459213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2630,7 @@ GameObject:
   - component: {fileID: 526459217}
   - component: {fileID: 526459216}
   - component: {fileID: 526459215}
+  - component: {fileID: 526459220}
   m_Layer: 5
   m_Name: LoginButton (4)
   m_TagString: Untagged
@@ -2622,10 +2653,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -157.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526459215
 MonoBehaviour:
@@ -2703,19 +2734,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 526459218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 526459213}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &526459218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,6 +2773,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526459213}
   m_CullTransparentMesh: 0
+--- !u!114 &526459220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526459213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 526459213}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &530816989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,6 +3294,7 @@ GameObject:
   - component: {fileID: 698739570}
   - component: {fileID: 698739569}
   - component: {fileID: 698739568}
+  - component: {fileID: 698739573}
   m_Layer: 5
   m_Name: LoginButton (2)
   m_TagString: Untagged
@@ -3258,8 +3319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -104.16667}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchoredPosition: {x: 50.04358, y: -100}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &698739568
 MonoBehaviour:
@@ -3337,19 +3398,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698739571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 698739566}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &698739571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3388,6 +3437,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698739566}
   m_CullTransparentMesh: 0
+--- !u!114 &698739573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698739566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 698739566}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &753984042
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,7 +3607,7 @@ PrefabInstance:
     - target: {fileID: 1144915590546846139, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1247141268419097902, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
@@ -3567,6 +3657,36 @@ PrefabInstance:
     - target: {fileID: 2981720430411257789, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: GravityEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.atime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.033018887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.033018887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3165472505434009774, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3181413271429574108, guid: 2af1d2045149fe743b81bc4d1a6f8406,
@@ -3758,6 +3878,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CollisionLayers.m_Bits
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313933856963641802, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8929318598882422164, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
@@ -4397,6 +4522,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8638772089269558326, guid: d438cc23d9b8af241b1612661f3938b5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638772089269558326, guid: d438cc23d9b8af241b1612661f3938b5,
+        type: 3}
+      propertyPath: AddPhysicsRaycaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8638772089269558346, guid: d438cc23d9b8af241b1612661f3938b5,
         type: 3}
       propertyPath: m_Name
@@ -4407,8 +4542,7 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8638772089269558347, guid: d438cc23d9b8af241b1612661f3938b5, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d438cc23d9b8af241b1612661f3938b5, type: 3}
 --- !u!1 &851942936 stripped
 GameObject:
@@ -5466,7 +5600,7 @@ GameObject:
   - component: {fileID: 1055052114}
   - component: {fileID: 1055052113}
   - component: {fileID: 1055052112}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5561,6 +5695,7 @@ GameObject:
   - component: {fileID: 1066590042}
   - component: {fileID: 1066590041}
   - component: {fileID: 1066590040}
+  - component: {fileID: 1066590043}
   m_Layer: 5
   m_Name: TitleUI
   m_TagString: Untagged
@@ -5576,8 +5711,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066590038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 31.8}
-  m_LocalScale: {x: 0.14911638, y: 0.14911646, z: 0.049705505}
+  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 51814113}
   - {fileID: 1222963902}
@@ -5591,7 +5726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 10, y: -4}
+  m_AnchoredPosition: {x: 4.95, y: 8.26}
   m_SizeDelta: {x: 812, y: 506}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066590040
@@ -5601,7 +5736,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066590038}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -5610,7 +5745,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &1066590041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5644,7 +5779,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1131238556}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -5655,6 +5790,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1066590043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066590038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee805472840d5843b863535775bbe97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130708329
 GameObject:
   m_ObjectHideFlags: 0
@@ -5734,6 +5881,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1130708329}
   m_CullTransparentMesh: 0
+--- !u!20 &1131238556 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5117709272728731509, guid: 2af1d2045149fe743b81bc4d1a6f8406,
+    type: 3}
+  m_PrefabInstance: {fileID: 776089210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1147379202
 GameObject:
   m_ObjectHideFlags: 0
@@ -6126,6 +6279,7 @@ GameObject:
   - component: {fileID: 1279631983}
   - component: {fileID: 1279631982}
   - component: {fileID: 1279631981}
+  - component: {fileID: 1279631986}
   m_Layer: 5
   m_Name: LoginButton (6)
   m_TagString: Untagged
@@ -6148,10 +6302,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -227.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1279631981
 MonoBehaviour:
@@ -6229,19 +6383,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1279631984}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1279631979}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1279631984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6280,6 +6422,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279631979}
   m_CullTransparentMesh: 0
+--- !u!114 &1279631986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279631979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1279631979}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1303953698
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,6 +7003,8 @@ GameObject:
   - component: {fileID: 1368880933}
   - component: {fileID: 1368880932}
   - component: {fileID: 1368880936}
+  - component: {fileID: 1368880937}
+  - component: {fileID: 1368880938}
   m_Layer: 5
   m_Name: LoginButton
   m_TagString: Untagged
@@ -6845,7 +7030,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 35}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1368880932
 BoxCollider:
@@ -6903,19 +7088,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1368880934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1368880930}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1368880934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6974,6 +7147,88 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1368880937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368880930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1368880930}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1368880938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368880930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1368880930}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1372116388
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,6 +8005,7 @@ GameObject:
   - component: {fileID: 1565048726}
   - component: {fileID: 1565048725}
   - component: {fileID: 1565048724}
+  - component: {fileID: 1565048729}
   m_Layer: 5
   m_Name: LoginButton (9)
   m_TagString: Untagged
@@ -7772,10 +8028,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -332.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1565048724
 MonoBehaviour:
@@ -7853,19 +8109,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1565048727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1565048722}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1565048727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7904,6 +8148,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565048722}
   m_CullTransparentMesh: 0
+--- !u!114 &1565048729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565048722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1565048722}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1651730665
 GameObject:
   m_ObjectHideFlags: 0
@@ -8038,7 +8323,6 @@ MonoBehaviour:
   - {fileID: 1675553359}
   - {fileID: 1755565600}
   - {fileID: 1565048722}
-  isAnonymousLogin: 1
 --- !u!114 &1651730673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8193,6 +8477,7 @@ GameObject:
   - component: {fileID: 1675553363}
   - component: {fileID: 1675553362}
   - component: {fileID: 1675553361}
+  - component: {fileID: 1675553366}
   m_Layer: 5
   m_Name: LoginButton (7)
   m_TagString: Untagged
@@ -8215,10 +8500,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -262.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1675553361
 MonoBehaviour:
@@ -8296,19 +8581,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1675553364}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1675553359}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1675553364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8347,6 +8620,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675553359}
   m_CullTransparentMesh: 0
+--- !u!114 &1675553366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675553359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1675553359}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1687083588
 GameObject:
   m_ObjectHideFlags: 0
@@ -8443,6 +8757,7 @@ GameObject:
   - component: {fileID: 1755565604}
   - component: {fileID: 1755565603}
   - component: {fileID: 1755565602}
+  - component: {fileID: 1755565607}
   m_Layer: 5
   m_Name: LoginButton (8)
   m_TagString: Untagged
@@ -8465,10 +8780,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -297.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755565602
 MonoBehaviour:
@@ -8546,19 +8861,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1755565605}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1755565600}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1755565605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8597,6 +8900,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755565600}
   m_CullTransparentMesh: 0
+--- !u!114 &1755565607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755565600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1755565600}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1783845662
 GameObject:
   m_ObjectHideFlags: 0
@@ -8611,13 +8955,14 @@ GameObject:
   - component: {fileID: 1783845666}
   - component: {fileID: 1783845665}
   - component: {fileID: 1783845664}
+  - component: {fileID: 1783845669}
   m_Layer: 5
   m_Name: LoginButton (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1783845663
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8633,10 +8978,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -93.75}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1783845664
 MonoBehaviour:
@@ -8714,19 +9059,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1783845667}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1783845662}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1783845667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8765,6 +9098,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783845662}
   m_CullTransparentMesh: 0
+--- !u!114 &1783845669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783845662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1783845662}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1789127844
 GameObject:
   m_ObjectHideFlags: 0
@@ -8832,6 +9206,7 @@ GameObject:
   - component: {fileID: 1791446182}
   - component: {fileID: 1791446181}
   - component: {fileID: 1791446180}
+  - component: {fileID: 1791446185}
   m_Layer: 5
   m_Name: LoginButton (5)
   m_TagString: Untagged
@@ -8854,10 +9229,10 @@ RectTransform:
   m_Father: {fileID: 2051902118}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -192.5}
-  m_SizeDelta: {x: 100, y: 35}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791446180
 MonoBehaviour:
@@ -8935,19 +9310,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1791446183}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1651730672}
-        m_TargetAssemblyTypeName: SignIn, Assembly-CSharp
-        m_MethodName: OnClickSignInFacebook
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1791446178}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1791446183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8986,6 +9349,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791446178}
   m_CullTransparentMesh: 0
+--- !u!114 &1791446185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791446178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b3611da944e54da5e532e02ae2454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxDistance: 100
+  Enabled: 1
+  OnPointerClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651730672}
+        m_TargetAssemblyTypeName: SignInManager, Assembly-CSharp
+        m_MethodName: OnClickSignInFacebook
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1791446178}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerDownEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPointerUpEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1840820473
 GameObject:
   m_ObjectHideFlags: 0
@@ -9814,10 +10218,10 @@ RectTransform:
   m_Father: {fileID: 1066590039}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.9, y: 7.8}
-  m_SizeDelta: {x: 100, y: 125}
+  m_AnchorMin: {x: 0.28170666, y: 0.36777344}
+  m_AnchorMax: {x: 0.55946386, y: 0.7011077}
+  m_AnchoredPosition: {x: -2.5818481, y: -137.77779}
+  m_SizeDelta: {x: -125.451706, y: 224.44441}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2051902119
 MonoBehaviour:
@@ -9836,14 +10240,14 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildAlignment: 1
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleWidth: 1
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!1 &2146275609
 GameObject:
