@@ -10,7 +10,7 @@ namespace BNG
 {
     public class WandSpellsController : GrabbableEvents
     {
-        public SpellSelectionWheelManager spellSelectionWheelManager;
+        public ZoneSelectionManager spellSelectionWheelManager;
         public LayerMask spellLaserMask; //applies to objects so that only they are interactable (layermasks)
         public LayerMask spellWheelLaserMask;
         public GrabbableHaptics wandHaptics;

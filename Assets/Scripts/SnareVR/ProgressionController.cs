@@ -57,9 +57,10 @@ public class ProgressionController : MonoBehaviour
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
 
+        //depreciated - from SHVR
         //also called in below
-        autoProgressCR = TimerToEndScene(nextLevel, 300);
-        StartCoroutine(autoProgressCR);
+        //autoProgressCR = TimerToEndScene(nextLevel, 300);
+        //StartCoroutine(autoProgressCR);
     }
 
     //testing only

@@ -18,6 +18,8 @@ public class TrapController : MonoBehaviour
     {
         ScriptsConnector.Instance.OnWireSectionComplete += SetTrap;
         ScriptsConnector.Instance.OnGetTrapDestination += GetDestination;
+        ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupTrapScene;
+        ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
         wireAroundTree.SetActive(false);
         rabbit.SetActive(false);
         SetupTrapScene();
@@ -64,7 +66,10 @@ public class TrapController : MonoBehaviour
                 if (time > 0)
                 {
                     //TODO - formatt not readable, refactor
-                    ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Time, "TIME TILL TRAP TRIGGERED: " + time.ToString());
+                    TimeSpan t = TimeSpan.FromMilliseconds(time);
+                    //DateTime expirationDate = new DateTime(t.Ticks);
+
+                    ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "TRAP READY IN: " + t.Days + "D "  + t.Hours + "H "  + t.Minutes + "M."); //expirationDate.ToString("dd:hh:mm")
                 }
                 else if (time <= 0)
                 {
@@ -93,6 +98,33 @@ public class TrapController : MonoBehaviour
             {
                 //sceneView.Enable();
             }
+        }
+    }
+    private void RabbitCaught(bool caught)
+    {
+        string message = "";
+
+        if (caught)
+        {
+            message = "YOU CAUGHT A RABBIT! COLLECT & EAT.";
+            rabbit.SetActive(true);
+        }
+        else
+        {
+            message = "SORRY, NO RABBIT. SET ANOTHER TRAP.";
+        }
+
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, message);
+    }
+
+    private void OnDestroy()
+    {
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnWireSectionComplete -= SetTrap;
+            ScriptsConnector.Instance.OnGetTrapDestination -= GetDestination;
+            ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupTrapScene;
+            ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
         }
     }
 }

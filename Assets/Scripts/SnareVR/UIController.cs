@@ -84,17 +84,26 @@ public class UIController : MonoBehaviour
             timeRemaining -= Time.deltaTime * 1000; //equivalent of -1 sec
 
             //convert time remaining to day / hour / minute format
-            //TODO - is this overkill (heavy processing)?
             TimeSpan t = TimeSpan.FromMilliseconds(timeRemaining);
-            DateTime expirationDate = new DateTime(t.Ticks);
-            trapCaughtTimerText.text = "TTR: " + expirationDate.ToString("dd:hh:mm");
+            //DateTime expirationDate = new DateTime(t.Ticks);
+            trapCaughtTimerText.text = "Time: " + t.Days + "D " + t.Hours + "H " + t.Minutes + "M"; //expirationDate.ToString("dd:hh:mm");
         }
         else
         {
-            //TODO - relocate this to specific scenes or somewhere else?
+            if(timeRemaining == -1)
+            {
+                trapCaughtTimerText.text = "Time: No Trap Set";
+            }
+            else
+            {
+                timeRemaining = 0;
+                trapCaughtTimerText.text = "Time: Trap Ready";
+            }
+
+            //TODO - relocated this to specific scenes or somewhere else? to TrapController, make TrapController Universal
             //ScriptsConnector.Instance.OnCheckTrap?.Invoke();
-            timeRemaining = 0;
-            trapCaughtTimerText.text = "TTR: Trap Expired";
         }
+
+        //TODO - what about if there is no trap?
     }
 }

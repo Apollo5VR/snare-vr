@@ -4,9 +4,9 @@ using UnityEngine;
 using System;
 using Unity.Services.Analytics;
 
-    public class SpellSelectionWheelManager : MonoBehaviour
+    public class ZoneSelectionManager : MonoBehaviour
     {
-        public GameObject[] spellButtons;
+        public GameObject[] zoneButtons;
 
         public static Action<GameObject> OnSpellSelected;
 

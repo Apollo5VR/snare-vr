@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public SpellSelectionWheelManager zoneSelector;
+    public ZoneSelectionManager zoneSelector;
     public float distanceTilLoad = 0.25f;
     public float dist;
     public MeshRenderer m_Renderer;

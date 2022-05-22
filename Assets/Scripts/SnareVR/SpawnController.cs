@@ -50,6 +50,8 @@ public class SpawnController : MonoBehaviour
     {
         while ((deathCount + attackSuccessCount) < 6)
         {
+            float waitTime = 1;
+
             //if the count down reaches 0, respawn another zombie
             if (timeCounter <= 0)
             {
@@ -67,9 +69,9 @@ public class SpawnController : MonoBehaviour
             }
 
             //start countdown
-            timeCounter = timeCounter - Time.deltaTime;
+            timeCounter = timeCounter - waitTime;
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(waitTime);
         }
 
         Debug.Log("done");

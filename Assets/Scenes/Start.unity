@@ -1032,7 +1032,7 @@ GameObject:
   - component: {fileID: 207054221}
   - component: {fileID: 207054220}
   m_Layer: 5
-  m_Name: SpellSelectionWheelCanvas
+  m_Name: ZoneSelectionMapCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3054,7 +3054,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543991813}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.5171157}
+  m_LocalPosition: {x: 0, y: 0, z: 0.592}
   m_LocalScale: {x: 0.00191, y: 0.00191, z: 2.19549}
   m_Children:
   - {fileID: 1162836993}
@@ -3063,8 +3063,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 407.84424}
+  m_AnchoredPosition: {x: 0.02, y: 0.071}
+  m_SizeDelta: {x: 450, y: 407.84424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &543991815
 MonoBehaviour:
@@ -3079,7 +3079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: {fileID: 776089214}
-  Offset: {x: 0, y: 0.7, z: -0.75}
+  Offset: {x: -0.025, y: 0.4, z: -0.75}
   spawnOnly: 0
   RotateSpeed: 5
   MovementSmoothing: 0
@@ -5354,7 +5354,7 @@ GameObject:
   - component: {fileID: 1011240528}
   - component: {fileID: 1011240529}
   m_Layer: 0
-  m_Name: SpellSelectionWheel
+  m_Name: ZoneSelectionMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5415,7 +5415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfda5ab160c1e074087ea25449ef0019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellButtons:
+  zoneButtons:
   - {fileID: 1376451988}
   - {fileID: 87951347}
   - {fileID: 319872508}
@@ -6831,13 +6831,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HEALTH: '
+  m_Text: 'HEALTH: 101%'
 --- !u!222 &1322306460
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9744,8 +9744,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.05, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 123.5, y: 219.1}
-  m_SizeDelta: {x: -320, y: -359.84424}
+  m_AnchoredPosition: {x: 111, y: 219.1}
+  m_SizeDelta: {x: -294, y: -359.84424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1840820475
 MonoBehaviour:
@@ -9774,13 +9774,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TTR:'
+  m_Text: 'Time: 0D 24H 23M'
 --- !u!222 &1840820476
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9927,7 +9927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff929032749f09b40bc36b9f22e5aeba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPoints: 100
+  _healthPoints: 101
 --- !u!1 &1903685871
 GameObject:
   m_ObjectHideFlags: 0

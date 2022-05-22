@@ -58,11 +58,11 @@ public class WireController : MonoBehaviour
         wireAroundTree.SetActive(false);
         rabbit.SetActive(false);
 
-        SetupSnareScene();
+        //SetupSnareScene();
 
         ScriptsConnector.Instance.OnWireSectionComplete += WireManipulations;
-        ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
-        ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupSnareScene;
+        //ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
+        //ScriptsConnector.Instance.OnTrapTriggerTimeSet += SetupSnareScene; //note - we've relocated the trap set to zones, only building trap here - ie TrapController
     }
 
     private void OnDestroy()
@@ -70,8 +70,8 @@ public class WireController : MonoBehaviour
         if (ScriptsConnector.Instance != null)
         {
             ScriptsConnector.Instance.OnWireSectionComplete -= WireManipulations;
-            ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
-            ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupSnareScene;
+            //ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
+            //ScriptsConnector.Instance.OnTrapTriggerTimeSet -= SetupSnareScene;
         }
     }
 
@@ -80,7 +80,6 @@ public class WireController : MonoBehaviour
     {
         try
         {
-            //TODO - we've relocated the trap set to zones, only building trap here
             float time = -1; //await CloudCodeManager.instance.CallGetTrapTimeRemainingEndpoint();
 
             //TODO - better idea in the future to not user a hardcoded value to determine if a trap exists (should just pull if trap exists for this scenario)
@@ -198,12 +197,19 @@ public class WireController : MonoBehaviour
 
     private void RabbitCaught(bool caught)
     {
+        string message = "";
+
         if(caught)
         {
+            message = "YOU CAUGHT A RABBIT! COLLECT & EAT.";
             rabbit.SetActive(true);
         }
+        else
+        {
+            message = "SORRY, NO RABBIT. SET ANOTHER TRAP.";
+        }
 
-        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "CAUGHT RABBIT: " + caught.ToString());
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, message);
     }
 
     IEnumerator CatchTimer(float time)

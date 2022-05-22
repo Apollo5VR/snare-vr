@@ -71,6 +71,10 @@ public class LootBoxSceneManager : MonoBehaviour
                 //TODO call reward Item
                 ScriptsConnector.Instance.OnRabbitCaught?.Invoke(rabbitCaught);
             }
+            else
+            {
+                ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "SORRY, NO RABBIT CAUGHT. SET ANOTHER.");
+            }
 
             //TODO - update so we get this key string from some organizated location
             ScriptsConnector.Instance.OnDeleteKey?.Invoke("TRAP_TRIGGER_TIME");
