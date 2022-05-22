@@ -33,9 +33,16 @@ public class SpawnController : MonoBehaviour
     public int randomNumber; //TODO - private
     public int deathCount;
     public int attackSuccessCount;
+    public AudioClip wolfSpawn;
+    public AudioClip wolfAttack;
+    public AudioClip wolfDeath;
+
+    private AudioSource wolfAudio;
 
     private void Start()
     {
+        wolfAudio = GetComponent<AudioSource>();
+
         ScriptsConnector.Instance.OnStartWolfSequence += StartWolfSequence;
         ScriptsConnector.Instance.OnWolfDeath += DestroyAfterDelay;
     }
@@ -55,6 +62,8 @@ public class SpawnController : MonoBehaviour
             //if the count down reaches 0, respawn another zombie
             if (timeCounter <= 0)
             {
+                //play audio
+                wolfAudio.PlayOneShot(wolfSpawn);
 
                 //select one of the random spawn locations
                 randomNumber = Random.Range(0, 3);
@@ -81,10 +90,12 @@ public class SpawnController : MonoBehaviour
     {
         if(isKilled)
         {
+            wolfAudio.PlayOneShot(wolfDeath);
             deathCount++;
         }
         else
         {
+            wolfAudio.PlayOneShot(wolfAttack);
             attackSuccessCount++;
         }
 
