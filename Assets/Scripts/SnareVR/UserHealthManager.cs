@@ -29,12 +29,14 @@ public class UserHealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CacheHealthFromUGS();
+
         //TODO - check for Instance null
         ScriptsConnector.Instance.OnSetHealth += SetHealth;
-        ScriptsConnector.Instance.GetHealth += GetHealth;
+        ScriptsConnector.Instance.GetHealth += GetLocalHealth;
     }
 
-    private float GetHealth(string playerID)
+    private float GetLocalHealth(string playerID)
     {
         //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
 
@@ -52,12 +54,39 @@ public class UserHealthManager : MonoBehaviour
         ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }
 
+    public async void CacheHealthFromUGS()
+    {
+        try
+        {
+            //TODO - update this singleton to use the scriptsconnector
+            float health = await CloudCodeManager.instance.CallGetHealthRemainingEndpoint();
+            healthPoints = health;
+
+            if (this == null) return;
+        }
+        catch (CloudCodeResultUnavailableException)
+        {
+            // Exception already handled by CloudCodeManager
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
+        }
+        finally
+        {
+            if (this != null)
+            {
+                //sceneView.Enable();
+            }
+        }
+    }
+
     private void OnDestroy()
     {
         if(ScriptsConnector.Instance != null)
         {
             ScriptsConnector.Instance.OnSetHealth -= SetHealth;
-            ScriptsConnector.Instance.GetHealth -= GetHealth;
+            ScriptsConnector.Instance.GetHealth -= GetLocalHealth;
         }
     }
 }

@@ -185,6 +185,41 @@ public class CloudCodeManager : MonoBehaviour
         return caught; //TODO - GG - test if problems this could cause
     }
 
+    public async Task<float> CallGetHealthRemainingEndpoint()
+    {
+        float healthRemaining;
+
+        try
+        {
+            if (!AuthenticationService.Instance.IsSignedIn)
+            {
+                Debug.LogError("Cloud Code can't be called because you're not logged in.");
+                throw new CloudCodeResultUnavailableException(null,
+                    "Not logged in to authentication in CallGetHealthRemainingEndpoint.");
+            }
+
+            Debug.Log("Calling Cloud Code 'GetHealthRemaining'.");
+
+            var healthResult = await CloudCode.CallEndpointAsync<HealthRemainingResult>(
+                "GetHealthRemaining", new object());
+
+            // Check that scene has not been unloaded while processing async wait to prevent throw.
+            if (this == null) return healthResult.healthFloat;
+
+            healthRemaining = healthResult.healthFloat;
+
+            Debug.Log("CloudCode script for time time remaining: " + healthRemaining);
+        }
+        catch (CloudCodeException e)
+        {
+            HandleCloudCodeException(e);
+            throw new CloudCodeResultUnavailableException(e,
+                "Handled exception in CheckTrap.");
+        }
+
+        return healthRemaining;
+    }
+
     void HandleCloudCodeException(CloudCodeException e)
     {
         switch (e.ErrorCode)
@@ -267,6 +302,11 @@ public class CloudCodeManager : MonoBehaviour
     public struct TestPlayers
     {
         public IDictionary<string,string> testPlayers; //10 max
+    }
+
+    public struct HealthRemainingResult
+    {
+        public float healthFloat;
     }
 
     // Struct used to receive result from Cloud Code.
