@@ -52,7 +52,7 @@ public class WireController : MonoBehaviour
         //scene clear
         noBuilding.SetActive(false);
         halfCompleteWire.SetActive(false);
-        curvedLineA.gameObject.SetActive(false);
+        curvedLineA.gameObject.SetActive(true);
         curvedLineB.gameObject.SetActive(false);
         completeWire.SetActive(false);
         wireAroundTree.SetActive(false);

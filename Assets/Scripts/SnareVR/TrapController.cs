@@ -42,7 +42,7 @@ public class TrapController : MonoBehaviour
         if (ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 4)
         {
             //do wolves - once all wolves eaten you or you killed, nothing. they can return to home or leave game
-            ScriptsConnector.Instance.OnStartWolfSequence?.Invoke();
+            ScriptsConnector.Instance.OnStartEnemySpawnSequence?.Invoke();
         }
     }
 

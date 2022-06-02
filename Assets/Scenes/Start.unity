@@ -8521,10 +8521,10 @@ GameObject:
   - component: {fileID: 1651730666}
   - component: {fileID: 1651730668}
   - component: {fileID: 1651730671}
-  - component: {fileID: 1651730670}
   - component: {fileID: 1651730669}
   - component: {fileID: 1651730672}
   - component: {fileID: 1651730673}
+  - component: {fileID: 1651730670}
   m_Layer: 0
   m_Name: UnityGameServices
   m_TagString: Untagged
@@ -8591,7 +8591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1651730665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dda0ff4440b96154fac9d0c588be96d4, type: 3}
+  m_Script: {fileID: 11500000, guid: a2830a5c4b2094c31b1158c744c95c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_GetConfigsText: {fileID: 0}

@@ -29,9 +29,8 @@ public class UserHealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CacheHealthFromUGS();
-
         //TODO - check for Instance null
+        ScriptsConnector.Instance.OnCacheHealthFromUGS += CacheHealthFromUGS;
         ScriptsConnector.Instance.OnSetHealth += SetHealth;
         ScriptsConnector.Instance.GetHealth += GetLocalHealth;
     }
@@ -85,6 +84,7 @@ public class UserHealthManager : MonoBehaviour
     {
         if(ScriptsConnector.Instance != null)
         {
+            ScriptsConnector.Instance.OnCacheHealthFromUGS -= CacheHealthFromUGS;
             ScriptsConnector.Instance.OnSetHealth -= SetHealth;
             ScriptsConnector.Instance.GetHealth -= GetLocalHealth;
         }

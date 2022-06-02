@@ -6,8 +6,9 @@ using System;
 public class ScriptsConnector : MonoBehaviour
 {
     public static ScriptsConnector Instance { get; private set; }
-    
+
     //User Health data actions
+    public Action OnCacheHealthFromUGS;
     public Action<string, float> OnSetHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
     public Action<string, string> OnSaveHealthToUGS;
@@ -22,7 +23,7 @@ public class ScriptsConnector : MonoBehaviour
     public Action<int> OnWireSectionComplete;
 
     //archer scene
-    public Action OnStartWolfSequence;
+    public Action OnStartEnemySpawnSequence;
     public Action<GameObject, bool> OnWolfDeath;
     public Func<Transform> OnGetTrapDestination;
 
