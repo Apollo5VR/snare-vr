@@ -145,7 +145,10 @@ public class ProgressionController : MonoBehaviour
             Debug.Log("Player starting position not found");
         }
 
-        startingPosition = null;
+        //it trap points exist in scene, then place and prepare prefab
+        ScriptsConnector.Instance.OnPrepareTrap?.Invoke();
+
+    startingPosition = null;
     }
 
     private IEnumerator WaitTillRead()

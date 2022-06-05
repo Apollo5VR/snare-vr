@@ -4,16 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fire
-  - FireWork
   - haloObject
-  - Robe
-  - Ravenclaw
-  - Gryfindor
-  - Slytherin
-  - Hufflepuff
-  - Crest
-  - Shard
+  - TrapLocation
   layers:
   - Default
   - TransparentFX

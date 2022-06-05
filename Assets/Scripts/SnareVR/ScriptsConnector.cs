@@ -15,16 +15,18 @@ public class ScriptsConnector : MonoBehaviour
     //public Func<string, float> OnGetTimerFromUGS; //depreciated
 
     //Trap Data actions
+    public Action OnPrepareTrap;
     public Action OnSetTrapTriggerTime;
     public Action OnTrapTriggerTimeSet;
     public Action OnCheckTrap;
     public Action<bool> OnRabbitCaught;
+    public Action<GameObject> OnConsume;
     public Action<string> OnDeleteKey;
     public Action<int> OnWireSectionComplete;
 
     //archer scene
     public Action OnStartEnemySpawnSequence;
-    public Action<GameObject, bool> OnWolfDeath;
+    public Action<GameObject, bool> OnDeath;
     public Func<Transform> OnGetTrapDestination;
 
     //UI

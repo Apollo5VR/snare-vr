@@ -5,32 +5,30 @@ using UnityEngine.AI;
 
 //TODO - we are simply creating this class for forest enemy circumstances to implement generic inheritance technique
 //will likely back up and create a Character class that both enemy and ally units can inherit from / using some composition or interfaces for greater complexity / decoupling
-public class ForestEnemy : MonoBehaviour
+//design notes: what will be our unique implementations OR why we need to have a more generic base class?     
+//what will be different in onSpawn or Death for these? Maybe VFXs, attacks - one attacks ranged, one attacks close, but this opens for options later when we think of them
+public class ForestEnemy : MonoBehaviour, IDamageable
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //what will be our unique implementations OR why we need to have a more generic base class?     
-    //what will be different in onSpawn or Death for these? Maybe VFXs, attacks - one shoots, one strikes, but this opens for options later when we think of them
-
-    //VARIABLES / PROPERTIES
-    //3d model
-    public NavMeshAgent thisZombieAgent = null;
-    public Transform destination;
+    //difficulty
     public float speed = 0.0f;
-    public float health = 100;
-    //animation
 
-    //spawn - the stuff we want to uniquely happen for this enemy's setup (not actually being instantiated here)
+    //audio
+    public AudioClip spawnAudio;
+    public AudioClip attackAudio;
+    public AudioClip deathAudio;
+
+    private AudioSource enemyAudioSource;
+    private NavMeshAgent thisEnemyAgent;
+
+    // Start is called before the first frame update
+    void Awake()
+    {
+        InitializeHealth(100);
+        enemyAudioSource = GetComponent<AudioSource>();
+        thisEnemyAgent = GetComponent<NavMeshAgent>();
+    }
+
+    //note - is the actions we want to uniquely happen for this enemy's setup (not actually being instantiated here)
     public virtual void Spawn(float updatedSpeed, Transform spawnPosition, Transform updatedDestination)
     {
         Reset();
@@ -40,53 +38,56 @@ public class ForestEnemy : MonoBehaviour
         //can set to inspector value of greater than 0 to custom control the speed, otherwise will be set by the Controller
         if(speed == 0.0f)
         {
-            thisZombieAgent.speed = updatedSpeed;
+            thisEnemyAgent.speed = updatedSpeed;
         }
 
-        thisZombieAgent.SetDestination(updatedDestination.position);
+        gameObject.SetActive(true);
+        thisEnemyAgent.SetDestination(updatedDestination.position);
+
+        enemyAudioSource.PlayOneShot(spawnAudio);
     }
 
     //called every time Spawned so that returned to initial values (since will be pooled)
     //protected as it will only be called in this script and those that derive from it
     protected virtual void Reset()
     {
-        health = 100;
+        RestoreHealth();
     }
-
-    //curently will be called when ontriggerenter occurs (here) - protected virtual
-    //attack (for wolf it will be move to, for snake it wont be move, but will be spit)
 
     protected virtual void Attack(float damage)
     {
-        //wolfAudio.PlayOneShot(wolfAttack);
+        enemyAudioSource.PlayOneShot(attackAudio);
+
+        //TODO - sendDamage
+
+        //repool enemy 
+        //TODO - will build out more extensive system for animal to continue attacking, but keeping simple now.
+        StartCoroutine(WaitForAudioToRepool(attackAudio));
     }
 
-    //METHODS
-    //play audio
-
-    //take damange / death + repool (where is the pool stored? should be on the SpawnController & shouldnt care about type should only consider type Enemy...?)
-    public virtual void TakeDamage(float damage)
+    //TODO - consider implementing
+    protected virtual void ApplyParticleFX(Vector3 position, Quaternion rotation)
     {
-        health =- damage;
 
-        if(health < 0)
+    }
+
+    protected virtual void Repool()
+    {
+        gameObject.SetActive(false);
+    }
+
+    protected IEnumerator WaitForAudioToRepool(AudioClip clip)
+    {
+        while (enemyAudioSource.isPlaying)
         {
-            //die
-            //wolfAudio.PlayOneShot(wolfDeath);
-
-            ScriptsConnector.Instance.OnWolfDeath.Invoke(gameObject, true);
-
-            //repool
-            gameObject.SetActive(false);
+            yield return null;
         }
+
+        // place your code that should execute when the audio source has finised here.
+        Repool();
     }
 
-    public virtual void Repool()
-    {
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Arrow(Clone)")
         {
@@ -95,6 +96,44 @@ public class ForestEnemy : MonoBehaviour
         else if (collision.gameObject.name == "DestinationAI")
         {
             Attack(1);
+        }
+    }
+
+    //note: these are implemented from IDamagable
+    public float InitialHealth { get; set; }
+    public float CurrentHealth { get; set; }
+
+    public virtual void InitializeHealth(float initialHealth)
+    {
+        InitialHealth = initialHealth; //TODO - replace this hardcoded 100 with a dynamic value via param
+    }
+
+    //Question: is this going to lead to duplicative code when we use IDamagable otherwhere? is that a big problem?
+    public virtual void RestoreHealth(float restoreAmount = 0.0f)
+    {
+        if(restoreAmount == 0.0f)
+        {
+            CurrentHealth = InitialHealth;
+        }
+        else
+        {
+            CurrentHealth += (float)restoreAmount;
+        }
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        CurrentHealth = -damage;
+
+        //die
+        if (CurrentHealth <= 0)
+        {  
+            enemyAudioSource.PlayOneShot(deathAudio);
+
+            ScriptsConnector.Instance.OnDeath.Invoke(gameObject, true);
+
+            //repool
+            StartCoroutine(WaitForAudioToRepool(deathAudio));
         }
     }
 }

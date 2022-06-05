@@ -8,7 +8,7 @@ public class FireController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        ScriptsConnector.Instance.OnConsume += ConsumeRabbit;
     }
 
     //TODO - update to cooked? or a separate function?

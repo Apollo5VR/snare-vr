@@ -6,12 +6,14 @@ using System;
 using Unity.Services.Analytics;
 using System.Linq;
 
-//TODO - refactor this so it can progress to each scene - simply finding the appropriate objects to activate via its tag types
+//TODO - refactor this so it can progress to each scene - having all the GOs be children activated/deactivated
+//TODO - implement IDamageable
 public class TrapController : MonoBehaviour
 {
     public GameObject wireAroundTree;
     public GameObject rabbit;
     public Transform trapDestination;
+    public bool testTrapSet = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +41,8 @@ public class TrapController : MonoBehaviour
         }
 
         //if zone 2, initiate wolf scenario
-        if (ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 4)
+        //TODO - need to be updated to not use a number (and it will be 4 if we readd a scene)
+        if (ScriptsConnector.Instance.OnGetCurrentScene?.Invoke() == 3)
         {
             //do wolves - once all wolves eaten you or you killed, nothing. they can return to home or leave game
             ScriptsConnector.Instance.OnStartEnemySpawnSequence?.Invoke();
@@ -115,6 +118,15 @@ public class TrapController : MonoBehaviour
         }
 
         ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, message);
+    }
+
+    private void Update()
+    {
+        if(testTrapSet)
+        {
+            ScriptsConnector.Instance.OnStartEnemySpawnSequence?.Invoke();
+            testTrapSet = false;
+        }
     }
 
     private void OnDestroy()

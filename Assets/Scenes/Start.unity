@@ -178,7 +178,7 @@ MonoBehaviour:
   loadingLine: {fileID: 777923772}
   touchTime: 0
   distanceTilLoad: 0.3
-  sceneIndex: 4
+  sceneIndex: 3
   heightReturnOffset: 0.125
   dist: 0
 --- !u!65 &11047854
@@ -512,6 +512,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51814112}
   m_CullTransparentMesh: 0
+--- !u!1 &68193818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68193820}
+  - component: {fileID: 68193819}
+  - component: {fileID: 68193821}
+  m_Layer: 0
+  m_Name: TrapSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &68193819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68193818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fcfca9a8ded564baa09d08c20e46a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapLocationGOs: []
+  trapPrefab: {fileID: 6180728829430874140, guid: f5abae69c90aa6f4aba0a0f1df30b36c,
+    type: 3}
+--- !u!4 &68193820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68193818}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6933254, y: -0.6349293, z: 18.461658}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &68193821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68193818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3522f7dcc1f7e7489c6b7b443ac59c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &76345551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RingOnValidPickup: 1
   RingOnValidRemotePickup: 0
-  RingHelperScale: 2
+  RingHelperScale: 3
 --- !u!1 &322630925
 GameObject:
   m_ObjectHideFlags: 0
