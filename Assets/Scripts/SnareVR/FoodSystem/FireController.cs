@@ -8,28 +8,26 @@ public class FireController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScriptsConnector.Instance.OnConsume += ConsumeRabbit;
+        ScriptsConnector.Instance.OnConsume += Consume;
     }
 
     //TODO - update to cooked? or a separate function?
-    public void ConsumeRabbit(GameObject rabbit)
+    public void Consume(GameObject consumable)
     {
         //TODO - refactor to be more realistic consumption pattern/process
-        StartCoroutine(ConsumeDelay(2, rabbit));
+        StartCoroutine(ConsumeDelay(2, consumable));
     }
 
-    IEnumerator ConsumeDelay(float time, GameObject rabbit)
+    IEnumerator ConsumeDelay(float time, GameObject consumable)
     {
         yield return new WaitForSeconds(time);
 
-        rabbit.SetActive(false);
+        consumable.SetActive(false);
 
-        float healthMod = 5;
-        float userCurrentHealth = ScriptsConnector.Instance.GetHealth("playerId");
+        //TODO - we shouldnt handle manipulating health here, and the variable should be determined by the consumable type
+        float healthMod = 5; 
 
-        userCurrentHealth += healthMod;
-
-        ScriptsConnector.Instance?.OnSetHealth("playerId", userCurrentHealth);
+        ScriptsConnector.Instance?.OnModifyHealth("playerId", healthMod);
 
         ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "EWW, YOU ATE A RAW RABBIT! BUT YOUR HEALTH INCREASED.");
     }

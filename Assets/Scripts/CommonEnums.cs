@@ -51,4 +51,12 @@ public class CommonEnums : MonoBehaviour
         Time,
         Generic
     }
+
+    //TODO - depreciated - use replaced by ConsumableStateManager
+    public enum ConsumableState
+    {
+        Raw,
+        Cooking,
+        Cooked
+    }
 }

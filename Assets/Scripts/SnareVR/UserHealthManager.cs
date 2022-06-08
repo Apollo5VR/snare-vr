@@ -31,7 +31,7 @@ public class UserHealthManager : MonoBehaviour
     {
         //TODO - check for Instance null
         ScriptsConnector.Instance.OnCacheHealthFromUGS += CacheHealthFromUGS;
-        ScriptsConnector.Instance.OnSetHealth += SetHealth;
+        ScriptsConnector.Instance.OnModifyHealth += ModifyHealth;
         ScriptsConnector.Instance.GetHealth += GetLocalHealth;
     }
 
@@ -40,17 +40,6 @@ public class UserHealthManager : MonoBehaviour
         //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
 
         return healthPoints;
-    }
-
-    private void SetHealth(string playerId, float healthValue)
-    {
-        //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
-
-        //set health value
-        healthPoints = healthValue;
-
-        //TODO - if trying to reduce calls, relocate to on session quit / exit
-        ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }
 
     public async void CacheHealthFromUGS()
@@ -80,12 +69,22 @@ public class UserHealthManager : MonoBehaviour
         }
     }
 
+    private void ModifyHealth(string playerId, float healthMod)
+    {
+        //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
+
+        healthPoints += healthMod;
+
+        //TODO - if trying to reduce calls, relocate to on session quit / exit
+        ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
+    }
+
     private void OnDestroy()
     {
         if(ScriptsConnector.Instance != null)
         {
             ScriptsConnector.Instance.OnCacheHealthFromUGS -= CacheHealthFromUGS;
-            ScriptsConnector.Instance.OnSetHealth -= SetHealth;
+            ScriptsConnector.Instance.OnModifyHealth -= ModifyHealth;
             ScriptsConnector.Instance.GetHealth -= GetLocalHealth;
         }
     }

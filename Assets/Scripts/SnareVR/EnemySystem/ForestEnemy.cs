@@ -7,7 +7,7 @@ using UnityEngine.AI;
 //will likely back up and create a Character class that both enemy and ally units can inherit from / using some composition or interfaces for greater complexity / decoupling
 //design notes: what will be our unique implementations OR why we need to have a more generic base class?     
 //what will be different in onSpawn or Death for these? Maybe VFXs, attacks - one attacks ranged, one attacks close, but this opens for options later when we think of them
-public class ForestEnemy : MonoBehaviour, IDamageable
+public abstract class ForestEnemy : MonoBehaviour, IDamageable
 {
     //difficulty
     public float speed = 0.0f;

@@ -9,7 +9,7 @@ public class ScriptsConnector : MonoBehaviour
 
     //User Health data actions
     public Action OnCacheHealthFromUGS;
-    public Action<string, float> OnSetHealth;
+    public Action<string, float> OnModifyHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
     public Action<string, string> OnSaveHealthToUGS;
     //public Func<string, float> OnGetTimerFromUGS; //depreciated
