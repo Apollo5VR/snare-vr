@@ -585,7 +585,7 @@ namespace BNG
                                 {
                                     { "moreResponse", answer }
                                 };
-                                Events.CustomData("moreLevels", parameters);
+                                AnalyticsService.Instance.CustomData("moreLevels", parameters);
                             }
                         }
                     }

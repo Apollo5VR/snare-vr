@@ -91,7 +91,7 @@ public class HatController : MonoBehaviour
                     { "specificQuestion", "HatPickup" },
                     { "houseIndex", (int)response },
                 };
-            Events.CustomData("questionResponse", parameters);
+            AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
     }
 

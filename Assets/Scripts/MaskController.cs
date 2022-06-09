@@ -92,7 +92,7 @@ public class MaskController : MonoBehaviour
                     { "specificQuestion", "Masks" },
                     { "houseIndex", (int)response },
                 };
-            Events.CustomData("questionResponse", parameters);
+            AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
     }
 

@@ -61,7 +61,7 @@ public class SocialSceneController : MonoBehaviour
                     { "specificQuestion", "Social" },
                     { "houseIndex", (int)response },
                 };
-            Events.CustomData("questionResponse", parameters);
+            AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
     }
 

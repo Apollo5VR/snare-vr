@@ -157,7 +157,7 @@ public class TurretProgressionController : MonoBehaviour
                 { "specificQuestion", "DragonTurret" },
                 { "houseIndex", (int)response },
             };
-            Events.CustomData("questionResponse", parameters);
+            AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
 
         //if win

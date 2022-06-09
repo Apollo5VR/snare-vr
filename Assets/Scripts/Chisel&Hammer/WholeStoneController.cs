@@ -53,7 +53,7 @@ namespace BNG
                 { "specificQuestion", "RockCube" },
                 { "houseIndex", (int)response },
             };
-                Events.CustomData("questionResponse", parameters);
+                AnalyticsService.Instance.CustomData("questionResponse", parameters);
             }
 
 

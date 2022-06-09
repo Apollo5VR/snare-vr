@@ -173,7 +173,7 @@ public class CauldronController : MonoBehaviour
                                     { "specificQuestion", "Potion" },
                                     { "houseIndex", (int)houseResponse },
                                 };
-                                Events.CustomData("questionResponse", parameters);
+                                AnalyticsService.Instance.CustomData("questionResponse", parameters);
                             }
                         }
 

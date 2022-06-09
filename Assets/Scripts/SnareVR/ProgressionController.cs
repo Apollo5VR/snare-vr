@@ -116,7 +116,7 @@ public class ProgressionController : MonoBehaviour
                 //1.17 currently sceneIncrement 1 - 6
                 { "buildIndex", questionSelectionScene + sceneInt}
             };
-            Events.CustomData("sceneload_replay", parameters);
+            AnalyticsService.Instance.CustomData("sceneload_replay", parameters);
         }
 
         SceneManager.LoadScene(sceneInt);
@@ -181,7 +181,7 @@ public class ProgressionController : MonoBehaviour
             {
                 { "buildIndex", sceneBuildIndex }
             };
-            Events.CustomData("sceneload", parameters);
+            AnalyticsService.Instance.CustomData("sceneload", parameters);
         }
 
         yield return new WaitForSeconds(time);

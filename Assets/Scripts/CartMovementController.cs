@@ -62,7 +62,7 @@ public class CartMovementController : MonoBehaviour
                     { "specificQuestion", "Pets" },
                     { "houseIndex", (int)houseResponse },
                 };
-                Events.CustomData("questionResponse", parameters);
+                AnalyticsService.Instance.CustomData("questionResponse", parameters);
             }
         }
     }

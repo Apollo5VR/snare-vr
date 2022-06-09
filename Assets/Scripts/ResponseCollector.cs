@@ -185,7 +185,7 @@ public class ResponseCollector : MonoBehaviour
                 {
                     { "houseIndex", finalHouse },
                 };
-                Events.CustomData("finalResults", parameters);
+                AnalyticsService.Instance.CustomData("finalResults", parameters);
             }
 
         }

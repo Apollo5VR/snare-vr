@@ -96,7 +96,7 @@ using Unity.Services.Analytics;
                 { "specificQuestion", "TutorialSpellSelection" },
                 { "houseIndex", (int)houseResponse },
             };
-                    Events.CustomData("questionResponse", parameters);
+                     AnalyticsService.Instance.CustomData("questionResponse", parameters);
                 }
 
                 tutorialResponseRecorded = true;
