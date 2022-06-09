@@ -16,18 +16,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3654978030212558993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6179571369213264813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6be06bcef1155714188f3aeebb2c62b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6180728829180423716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,9 +31,9 @@ MonoBehaviour:
   onGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3654978030212558993}
-        m_TargetAssemblyTypeName: Rabbit, Assembly-CSharp
-        m_MethodName: Consume
+      - m_Target: {fileID: 6437275801006164322}
+        m_TargetAssemblyTypeName: ConsumableManager, Assembly-CSharp
+        m_MethodName: GetConsumed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -178,6 +166,19 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 0
+--- !u!114 &6437275801006164322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6179571369213264813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa6fdab302b3794d83be62a716300c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthModifier: 5
 --- !u!1 &6180728829430874140
 GameObject:
   m_ObjectHideFlags: 0

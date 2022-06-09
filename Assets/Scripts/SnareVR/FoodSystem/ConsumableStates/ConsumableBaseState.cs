@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class ConsumableBaseState
 {
-    public abstract void EnterState(ConsumableStateManager consumable);
-    public abstract void UpdateState(ConsumableStateManager consumable); 
+    public abstract void EnterState(ConsumableManager consumable);
+    public abstract void UpdateState(ConsumableManager consumable); 
 }

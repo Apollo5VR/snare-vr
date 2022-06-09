@@ -52,7 +52,7 @@ public class CommonEnums : MonoBehaviour
         Generic
     }
 
-    //TODO - depreciated - use replaced by ConsumableStateManager
+    //TODO - depreciated - use replaced by ConsumableManager
     public enum ConsumableState
     {
         Raw,
