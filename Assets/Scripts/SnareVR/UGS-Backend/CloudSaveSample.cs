@@ -28,7 +28,8 @@ public class CloudSaveSample : MonoBehaviour
 
     private Dictionary<string, string> m_CachedCloudData = new Dictionary<string, string>();
 
-    private async void Awake()
+    //note if returning to using await, need to make this async
+    private void Awake()
     {
         //This section deactivated 4.24 to make room for FB testin login script
         /*
@@ -128,7 +129,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            m_CachedCloudData = await SaveData.LoadAllAsync();
+            m_CachedCloudData = await  CloudSaveService.Instance.Data.LoadAllAsync();
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return;
@@ -182,7 +183,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            var keys = await SaveData.RetrieveAllKeysAsync();
+            var keys = await  CloudSaveService.Instance.Data.RetrieveAllKeysAsync();
 
             Debug.Log($"Keys count: {keys.Count}\n" + 
                         $"Keys: {String.Join(", ", keys)}");
@@ -217,7 +218,7 @@ public class CloudSaveSample : MonoBehaviour
                 oneElement.Add(key, value);
             }
 
-            await SaveData.ForceSaveAsync(oneElement);
+            await  CloudSaveService.Instance.Data.ForceSaveAsync(oneElement);
 
             Debug.Log($"Successfully saved {key}:{value}");
         }
@@ -242,7 +243,7 @@ public class CloudSaveSample : MonoBehaviour
                 { key, value }
             };
 
-            await SaveData.ForceSaveAsync(oneElement);
+            await  CloudSaveService.Instance.Data.ForceSaveAsync(oneElement);
 
             Debug.Log($"Successfully saved {key}:{value}");
         }
@@ -260,7 +261,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            var results = await SaveData.LoadAsync(new HashSet<string>{key});
+            var results = await  CloudSaveService.Instance.Data.LoadAsync(new HashSet<string>{key});
 
             if (results.TryGetValue(key, out string value))
             {
@@ -301,7 +302,7 @@ public class CloudSaveSample : MonoBehaviour
         {
             // If you wish to load only a subset of keys rather than everything, you
             // can call a method LoadAsync and pass a HashSet of keys into it.
-            var results = await SaveData.LoadAllAsync();
+            var results = await  CloudSaveService.Instance.Data.LoadAllAsync();
 
             Debug.Log($"Elements loaded!");
                 
@@ -324,7 +325,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            await SaveData.ForceDeleteAsync(key);
+            await CloudSaveService.Instance.Data.ForceDeleteAsync(key);
 
             Debug.Log($"Successfully deleted {key}");
         }

@@ -55,8 +55,9 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'GetTrapTimeRemaining'.");
 
-            var testTokensObj = await CloudCode.CallEndpointAsync<TestPlayers>(
-                "GetFBAccessTokens", new object());
+            //note: we can provide an empty dict here because we are not sending anything as params, if params, dict needs to be filled
+            var testTokensObj = await CloudCodeService.Instance.CallEndpointAsync<TestPlayers>(
+                "GetFBAccessTokens", new Dictionary<string, object>());
 
             testPlayers = testTokensObj.testPlayers;
 
@@ -90,8 +91,8 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'GetTrapTimeRemaining'.");
 
-            var timeResult = await CloudCode.CallEndpointAsync<TrapTimeRemainingResult>(
-                "GetTrapTimeRemaining", new object());
+            var timeResult = await CloudCodeService.Instance.CallEndpointAsync<TrapTimeRemainingResult>(
+                "GetTrapTimeRemaining", new Dictionary<string, object>());
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return timeResult.timeRemaining;
@@ -131,8 +132,8 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'SetTrapTriggerTime'.");
 
-            string timeResult = await CloudCode.CallEndpointAsync(
-                "SetTrapTriggerTime", new object());
+            string timeResult = await CloudCodeService.Instance.CallEndpointAsync(
+                "SetTrapTriggerTime", new Dictionary<string,object>());
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return;
@@ -162,8 +163,8 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'CheckTrap'.");
 
-            var trapResult = await CloudCode.CallEndpointAsync<CheckTrapResult>(
-                "CheckTrap", new object());
+            var trapResult = await CloudCodeService.Instance.CallEndpointAsync<CheckTrapResult>(
+                "CheckTrap", new Dictionary<string, object>());
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return trapResult.caught;
@@ -200,8 +201,8 @@ public class CloudCodeManager : MonoBehaviour
 
             Debug.Log("Calling Cloud Code 'GetHealthRemaining'.");
 
-            var healthResult = await CloudCode.CallEndpointAsync<HealthRemainingResult>(
-                "GetHealthRemaining", new object());
+            var healthResult = await CloudCodeService.Instance.CallEndpointAsync<HealthRemainingResult>(
+                "GetHealthRemaining", new Dictionary<string, object>());
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return healthResult.healthFloat;
