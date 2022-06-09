@@ -100,9 +100,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2224734348504425868}
   serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 25
+  m_Drag: 10
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   speed: 1.25
   spawnAudio: {fileID: 8300000, guid: 4a9fb7e6dc2c2624eb5c6a378c5763b1, type: 3}
   attackAudio: {fileID: 8300000, guid: 40c7c4b2606eee34aa01107415daf749, type: 3}
-  deathAudio: {fileID: 8300000, guid: 0a21bd39029a80d45a5d74cfd4fe6e10, type: 3}
+  deathAudio: {fileID: 8300000, guid: 81a266f169a53ef42931003778b3c1bc, type: 3}
 --- !u!195 &2223746443901201049
 NavMeshAgent:
   m_ObjectHideFlags: 0
