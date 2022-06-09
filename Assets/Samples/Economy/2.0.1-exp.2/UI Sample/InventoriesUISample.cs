@@ -219,8 +219,7 @@ public class InventoriesUISample : MonoBehaviour
         {
             PlayersInventoryItemId = playersInventoryItemId
         };
-        PlayersInventoryItem playersInventoryItem = await EconomyService.Instance.PlayerInventory.AddInventoryItemAsync(m_AddInventoryItemConfigIdInput.text, options);
-        ClearOutputTextBoxes();
+        PlayersInventoryItem playersInventoryItem = await EconomyService.Instance.PlayerInventory.AddInventoryItemAsync(options.PlayersInventoryItemId, options);
 
         if (playersInventoryItem != null)
         {

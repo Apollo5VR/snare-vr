@@ -12,6 +12,6 @@ public class CookedState : ConsumableBaseState
 
     public override void UpdateState(ConsumableManager consumable)
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

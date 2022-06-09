@@ -12,9 +12,10 @@ public class TrapSpawner : MonoBehaviour
     // Purpose: to spawn the trap in whichever scene is loaded (allow dynamic nature)
     void Start()
     {
-        //TODO - confirm scriptsconnector exists by time this is called
-        //subscribe to a scriptsconnector call to call spawntrap 
-        ScriptsConnector.Instance.OnPrepareTrap += SpawnTrap;
+        if (ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnPrepareTrap += SpawnTrap;
+        }
     }
 
     //only happens on scene load / start
@@ -44,6 +45,9 @@ public class TrapSpawner : MonoBehaviour
 
     private void OnDestroy()
     {
-        ScriptsConnector.Instance.OnPrepareTrap -= SpawnTrap;
+        if(ScriptsConnector.Instance != null)
+        {
+            ScriptsConnector.Instance.OnPrepareTrap -= SpawnTrap;
+        }
     }
 }

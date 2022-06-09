@@ -36,10 +36,7 @@ public abstract class ForestEnemy : MonoBehaviour, IDamageable
         transform.position = spawnPosition.position;
 
         //can set to inspector value of greater than 0 to custom control the speed, otherwise will be set by the Controller
-        if(speed == 0.0f)
-        {
-            thisEnemyAgent.speed = updatedSpeed;
-        }
+        thisEnemyAgent.speed = (speed == 0.0f) ? updatedSpeed : speed;
 
         gameObject.SetActive(true);
         thisEnemyAgent.SetDestination(updatedDestination.position);
@@ -87,13 +84,13 @@ public abstract class ForestEnemy : MonoBehaviour, IDamageable
         Repool();
     }
 
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.name == "Arrow(Clone)")
+        if (collider.gameObject.name == "Arrow(Clone)")
         {
             TakeDamage(100);
         }
-        else if (collision.gameObject.name == "DestinationAI")
+        else if (collider.gameObject.name == "DestinationAI")
         {
             Attack(1);
         }

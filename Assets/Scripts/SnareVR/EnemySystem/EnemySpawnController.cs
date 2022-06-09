@@ -10,20 +10,21 @@ public class EnemySpawnController : MonoBehaviour
     [Tooltip("Tooltip")]
     [Header("Header For Use")]
     //Script Purpose: To create a countdown clock that respawns enemies
-
+    public bool debug = false;
     public int enemyMaxCount = 10;
     public ForestEnemy[] forestEnemyPrefabs; //grabbed from Resources folder
     public GameObject[] randomSpawnLocations;
+    public float timeCounter = 5.0f;
 
     private Transform destination;
     private List<List<ForestEnemy>> forestEnemies = new List<List<ForestEnemy>>(); //multi-dimensional list
     private bool sequenceOver;
-    private float timeCounter = 5.0f;
-    private float originalTime = 5.0f;
+    private float originalTime;
     private int deathCount;
 
     private void Start()
     {
+        originalTime = timeCounter;
         InitializeEnemyPool();
         sequenceOver = false;
         ScriptsConnector.Instance.OnStartEnemySpawnSequence += StartSpawnSequence;
@@ -85,6 +86,15 @@ public class EnemySpawnController : MonoBehaviour
         return returnObject;
     }
 
+    public void Update()
+    {
+        if (debug)
+        {
+            StartSpawnSequence();
+            debug = false;
+        }
+    }
+
     public void StartSpawnSequence()
     {
         StartCoroutine(SpawnSequence());
@@ -107,10 +117,10 @@ public class EnemySpawnController : MonoBehaviour
                 int randomType = Random.Range(0, 2);
 
                 //spawn at chosen random location
-                ForestEnemy enemy = RetrieveEnemyFromPool(0); //testing only
+                ForestEnemy enemy = RetrieveEnemyFromPool(0); //proto/testing only
                 //ForestEnemy enemy = RetrieveEnemyFromPool(randomType);
 
-                enemy.Spawn(3.0f, randomSpawnLocations[randomLocation].transform, destination);
+                enemy.Spawn(1.1f, randomSpawnLocations[randomLocation].transform, destination);
 
                 spawnedCount++;
 
@@ -119,7 +129,7 @@ public class EnemySpawnController : MonoBehaviour
             }
 
             //start countdown
-            timeCounter =- waitTime;
+            timeCounter = timeCounter - waitTime;
 
             yield return new WaitForSeconds(waitTime);
         }
