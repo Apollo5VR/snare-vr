@@ -20,7 +20,7 @@ namespace BNG
 
         public Action<CommonEnums.HouseResponses> OnRockInteraction;
 
-        private void Awake()
+        protected override void Awake()
         {
             if (Instance == null)
             {
@@ -30,6 +30,8 @@ namespace BNG
             {
                 Destroy(gameObject);
             }
+
+            base.Awake();
         }
 
         // Start is called before the first frame update
