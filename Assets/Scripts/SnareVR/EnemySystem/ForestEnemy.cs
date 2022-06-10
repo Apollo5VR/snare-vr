@@ -10,6 +10,7 @@ using UnityEngine.AI;
 public abstract class ForestEnemy : MonoBehaviour, IDamageable
 {
     //difficulty
+    public bool useInspectorSpeed = false;
     public float speed = 0.0f;
 
     //audio
@@ -36,7 +37,7 @@ public abstract class ForestEnemy : MonoBehaviour, IDamageable
         transform.position = spawnPosition.position;
 
         //can set to inspector value of greater than 0 to custom control the speed, otherwise will be set by the Controller
-        thisEnemyAgent.speed = (speed == 0.0f) ? updatedSpeed : speed;
+        thisEnemyAgent.speed = useInspectorSpeed ? speed : updatedSpeed;
 
         gameObject.SetActive(true);
         thisEnemyAgent.SetDestination(updatedDestination.position);
