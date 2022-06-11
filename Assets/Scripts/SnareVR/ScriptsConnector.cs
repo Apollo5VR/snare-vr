@@ -7,8 +7,11 @@ public class ScriptsConnector : MonoBehaviour
 {
     public static ScriptsConnector Instance { get; private set; }
 
+    //UGS Cache Init Operations
+    public Action OnGetHealthFromUGS;
+
     //User Health data actions
-    public Action OnCacheHealthFromUGS;
+    public Action OnStoreHealthFromUGSCache; //depreciated - remove
     public Action<string, float> OnModifyHealth;
     public Func<string, float> GetHealth; //can only sub this once (func)
     public Action<string, string> OnSaveHealthToUGS;

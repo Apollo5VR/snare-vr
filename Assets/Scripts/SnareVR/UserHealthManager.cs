@@ -25,12 +25,13 @@ public class UserHealthManager : MonoBehaviour
 
     [SerializeField]
     private float _healthPoints = 100.0f;
+    private bool healthGrabbed;
 
     // Start is called before the first frame update
     void Start()
     {
         //TODO - check for Instance null
-        ScriptsConnector.Instance.OnCacheHealthFromUGS += CacheHealthFromUGS;
+        //ScriptsConnector.Instance.OnStoreHealthFromUGSCache += StoreHealthFromUGSCache;
         ScriptsConnector.Instance.OnModifyHealth += ModifyHealth;
         ScriptsConnector.Instance.GetHealth += GetLocalHealth;
     }
@@ -38,35 +39,18 @@ public class UserHealthManager : MonoBehaviour
     private float GetLocalHealth(string playerID)
     {
         //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
+        if(!healthGrabbed)
+        {
+            StoreHealthFromUGSCache();
+        }
+
 
         return healthPoints;
     }
 
-    public async void CacheHealthFromUGS()
+    public void StoreHealthFromUGSCache()
     {
-        try
-        {
-            //TODO - update this singleton to use the scriptsconnector
-            float health = await CloudCodeManager.instance.CallGetHealthRemainingEndpoint();
-            healthPoints = health;
-
-            if (this == null) return;
-        }
-        catch (CloudCodeResultUnavailableException)
-        {
-            // Exception already handled by CloudCodeManager
-        }
-        catch (Exception e)
-        {
-            Debug.LogException(e);
-        }
-        finally
-        {
-            if (this != null)
-            {
-                //sceneView.Enable();
-            }
-        }
+        healthPoints = CloudCodeDataCache.Instance.HealthPoints;
     }
 
     private void ModifyHealth(string playerId, float healthMod)
@@ -83,7 +67,7 @@ public class UserHealthManager : MonoBehaviour
     {
         if(ScriptsConnector.Instance != null)
         {
-            ScriptsConnector.Instance.OnCacheHealthFromUGS -= CacheHealthFromUGS;
+            ScriptsConnector.Instance.OnStoreHealthFromUGSCache -= StoreHealthFromUGSCache;
             ScriptsConnector.Instance.OnModifyHealth -= ModifyHealth;
             ScriptsConnector.Instance.GetHealth -= GetLocalHealth;
         }
