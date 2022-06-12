@@ -1,26 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
-using Random = System.Random;
 
-public class PlayModeTesting
+public class NewTestScript
 {
-    [UnityTest]
-    public IEnumerator TestHealthMinMax()
-    {
-        GameObject delGO = new GameObject();
-        //UserHealthManager healthManager = new UserHealthManager();
-
-        yield return null;
-    }
-
-
-    /*
     // A Test behaves as an ordinary method
     [Test]
     public void NewTestScriptSimplePasses()
@@ -37,5 +22,5 @@ public class PlayModeTesting
         // Use yield to skip a frame.
         yield return null;
     }
-    */
 }
+
