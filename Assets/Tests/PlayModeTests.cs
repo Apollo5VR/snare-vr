@@ -5,9 +5,16 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+
 public class PlayModeTests
 {
     //Arrange, Act, Assert
+
+    [SetUp]
+    public void Setup()
+    {
+         //any values that need to be updated before all the tests start
+    }
 
     [UnityTest]
     public IEnumerator TestModifyHealth()
@@ -25,6 +32,12 @@ public class PlayModeTests
         userHealthAfter = TestScriptsConnector.GetHealth.Invoke("playerID");
 
         Assert.AreEqual(userHealthBefore, userHealthAfter - modAmount);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+
     }
 
     /*
