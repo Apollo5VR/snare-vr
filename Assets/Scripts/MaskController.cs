@@ -84,6 +84,8 @@ public class MaskController : MonoBehaviour
         //TODO - start the chase 
         StartCoroutine(EngageChaseSequence(selectedMask));
 
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         if (!Application.isEditor)
         {
             //Analytics Beta
@@ -94,6 +96,7 @@ public class MaskController : MonoBehaviour
                 };
             AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
+        */
     }
 
     private IEnumerator EngageChaseSequence(GameObject mask)

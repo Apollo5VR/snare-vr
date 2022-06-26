@@ -53,6 +53,8 @@ public class SocialSceneController : MonoBehaviour
 
         ResponseCollector.Instance.OnResponseSelected -= SocialCommand;
 
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         if (!Application.isEditor)
         {
             //Analytics Beta
@@ -63,6 +65,7 @@ public class SocialSceneController : MonoBehaviour
                 };
             AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
+        */
     }
 
     void Destroy()

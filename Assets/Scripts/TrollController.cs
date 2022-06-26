@@ -78,6 +78,8 @@ public class TrollController : MonoBehaviour {
         //will usually happen only 1x, but can happen more if you "change your mind" last second (part of the test)
         ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
 
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         if (!Application.isEditor)
         {
             //Analytics Beta
@@ -88,6 +90,7 @@ public class TrollController : MonoBehaviour {
             };
             AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
+        */
 
         switch ((int)response)
         {

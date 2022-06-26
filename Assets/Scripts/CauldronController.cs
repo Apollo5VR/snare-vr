@@ -165,6 +165,8 @@ public class CauldronController : MonoBehaviour
                         {
                             ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
 
+                            //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+                            /*
                             if (!Application.isEditor)
                             {
                                 //Analytics Beta
@@ -175,6 +177,7 @@ public class CauldronController : MonoBehaviour
                                 };
                                 AnalyticsService.Instance.CustomData("questionResponse", parameters);
                             }
+                            */
                         }
 
                         finalResponseSent = true;

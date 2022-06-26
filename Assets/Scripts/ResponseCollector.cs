@@ -178,6 +178,8 @@ public class ResponseCollector : MonoBehaviour
                 //crowdCheer.Play();
             }
 
+            //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
             if (!Application.isEditor)
             {
                 //Analytics Beta
@@ -187,6 +189,7 @@ public class ResponseCollector : MonoBehaviour
                 };
                 AnalyticsService.Instance.CustomData("finalResults", parameters);
             }
+        */
 
         }
         //if multiple equal the same, determine inconclusive

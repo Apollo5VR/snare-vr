@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
-using Unity.Services.Analytics;
+//using Unity.Services.Analytics;
 
 public class ProgressionController : MonoBehaviour
 {
@@ -107,6 +107,8 @@ public class ProgressionController : MonoBehaviour
 
     public void LoadSpecificScene(int sceneInt = 1)
     {
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         //TODO - update this for Snare VR
         if (!Application.isEditor)
         {
@@ -118,6 +120,7 @@ public class ProgressionController : MonoBehaviour
             };
             AnalyticsService.Instance.CustomData("sceneload_replay", parameters);
         }
+        */
 
         SceneManager.LoadScene(sceneInt);
     }
@@ -174,6 +177,8 @@ public class ProgressionController : MonoBehaviour
             }
         }
 
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         if (!Application.isEditor)
         {
             //Analytics Beta
@@ -183,6 +188,7 @@ public class ProgressionController : MonoBehaviour
             };
             AnalyticsService.Instance.CustomData("sceneload", parameters);
         }
+        */
 
         yield return new WaitForSeconds(time);
 

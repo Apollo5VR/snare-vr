@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.Services.Analytics;
+//using Unity.Services.Analytics;
 
     public class ZoneSelectionManager : MonoBehaviour
     {
@@ -11,7 +11,7 @@ using Unity.Services.Analytics;
         public static Action<GameObject> OnSpellSelected;
 
         private bool tutorialResponseRecorded;
-        private BNG.WandSpellsController wandSpellsController;
+        //private BNG.WandSpellsController wandSpellsController;
 
         //depreciated - redundant since we use Action based sub 
         /*
@@ -63,31 +63,33 @@ using Unity.Services.Analytics;
 
             switch (spellButton.gameObject.name)
             {
-                case "Accio":
-                    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Accio;
-                    houseResponse = CommonEnums.HouseResponses.Ravenclaw;
-                    break;
-                case "Baubil":
-                    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Baubil; //now Lightning
-                    houseResponse = CommonEnums.HouseResponses.Gryfindor;
-                    break;
-                case "WingardiumLeviosa":
-                    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.WingardiumLeviosa;
-                    houseResponse = CommonEnums.HouseResponses.Hufflepuff;
-                    break;
-                case "Incendio":
-                    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Incendio;
-                    houseResponse = CommonEnums.HouseResponses.Slytherin;
-                    break;
-                default:
-                    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.None;
-                    break;
+                //case "Accio":
+                //    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Accio;
+                //    houseResponse = CommonEnums.HouseResponses.Ravenclaw;
+                //    break;
+                //case "Baubil":
+                //    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Baubil; //now Lightning
+                //    houseResponse = CommonEnums.HouseResponses.Gryfindor;
+                //    break;
+                //case "WingardiumLeviosa":
+                //    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.WingardiumLeviosa;
+                //    houseResponse = CommonEnums.HouseResponses.Hufflepuff;
+                //    break;
+                //case "Incendio":
+                //    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.Incendio;
+                //    houseResponse = CommonEnums.HouseResponses.Slytherin;
+                //    break;
+                //default:
+                //    wandSpellsController.spellSelected = CommonEnums.AvailableSpells.None;
+                //    break;
             }
 
             if (!tutorialResponseRecorded)
             {
-                ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
+                //ResponseCollector.Instance.OnResponseSelected?.Invoke(houseResponse);
 
+            //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
                 if (!Application.isEditor)
                 {
                     //Analytics Beta
@@ -98,6 +100,7 @@ using Unity.Services.Analytics;
             };
                      AnalyticsService.Instance.CustomData("questionResponse", parameters);
                 }
+        */
 
                 tutorialResponseRecorded = true;
             }

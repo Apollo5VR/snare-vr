@@ -83,6 +83,8 @@ public class HatController : MonoBehaviour
 
         ResponseCollector.Instance.OnResponseSelected?.Invoke(response);
 
+        //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
+        /*
         if (!Application.isEditor)
         {
             //Analytics Beta
@@ -93,6 +95,7 @@ public class HatController : MonoBehaviour
                 };
             AnalyticsService.Instance.CustomData("questionResponse", parameters);
         }
+        */
     }
 
     void Update()

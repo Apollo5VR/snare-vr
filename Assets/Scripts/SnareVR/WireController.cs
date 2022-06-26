@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-using Unity.Services.Analytics;
+//using Unity.Services.Analytics;
 using System.Linq;
 
 public class WireController : MonoBehaviour
 {
     public static WireController Instance { get; private set; }
     //refernce to wire render array
-    public IndieMarc.CurvedLine.CurvedLine3D curvedLineA;
-    public IndieMarc.CurvedLine.CurvedLine3D curvedLineB;
+    public IndieMarc.CurvedLine.CurvedLine3D curvedLineA;  
+    public IndieMarc.CurvedLine.CurvedLine3D curvedLineB; 
     public GameObject configJointPrefab;
     //rerence to wire joint array
     public GameObject[] configJoints;

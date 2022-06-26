@@ -1,0 +1,27 @@
+{
+    "name": "MainTests",
+    "rootNamespace": "",
+    "references": [
+        "Analytics",
+        "Unity.Services.Authentication",
+        "Unity.Services.CloudCode",
+        "Unity.Services.CloudSave.Editor",
+        "Unity.Services.Core",
+        "BNGlocal",
+        "IndieMaclocal",
+        "Unity.Services.CloudSave"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Unity.Analytics.Editor.dll",
+        "Mono.Cecil.dll",
+        "Unity.Analytics.StandardEvents.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

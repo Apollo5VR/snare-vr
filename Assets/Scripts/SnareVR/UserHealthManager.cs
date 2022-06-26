@@ -39,6 +39,7 @@ public class UserHealthManager : MonoBehaviour
     private float GetLocalHealth(string playerID)
     {
         //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
+
         if(!healthGrabbed)
         {
             StoreHealthFromUGSCache();
