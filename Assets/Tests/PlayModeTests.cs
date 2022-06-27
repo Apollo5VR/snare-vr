@@ -16,22 +16,25 @@ public class PlayModeTests
          //any values that need to be updated before all the tests start
     }
 
+    //TODO - need to disable ScriptsConnector in following functions for this to run
     [UnityTest]
     public IEnumerator TestModifyHealth()
     {
         //arrange
-        float userHealthBefore = TestScriptsConnector.GetHealth.Invoke("playerID");
-        float modAmount = 5.0f;
+        UserHealthManager manager = new UserHealthManager();
+
+        float userHealthBefore = manager.healthPoints;
+        float modAmount = -5.0f;
         float userHealthAfter;
 
         //Act
-        TestScriptsConnector.OnModifyHealth?.Invoke("player", modAmount);
+        manager.ModifyHealth("playerID", modAmount);
 
         yield return null;
 
-        userHealthAfter = TestScriptsConnector.GetHealth.Invoke("playerID");
+        userHealthAfter = manager.healthPoints;
 
-        Assert.AreEqual(userHealthBefore, userHealthAfter - modAmount);
+        Assert.AreNotEqual(userHealthBefore, userHealthAfter);
     }
 
     [TearDown]

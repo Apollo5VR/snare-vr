@@ -54,12 +54,13 @@ public class UserHealthManager : MonoBehaviour
         healthPoints = CloudCodeDataCache.Instance.HealthPoints;
     }
 
-    private void ModifyHealth(string playerId, float healthMod)
+    internal void ModifyHealth(string playerId, float healthMod)
     {
         //TODO - V2 - set the health by playerId (ie if the player this script connected matches playerId, update adequetely) 
 
-        healthPoints += healthMod;
+        healthPoints = healthMod;
 
+        //TODO - CRITICAL - reactivate this after done testing unit
         //TODO - if trying to reduce calls, relocate to on session quit / exit
         ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }
