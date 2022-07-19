@@ -60,7 +60,6 @@ public class UserHealthManager : MonoBehaviour
 
         healthPoints = healthMod;
 
-        //TODO - CRITICAL - reactivate this after done testing unit
         //TODO - if trying to reduce calls, relocate to on session quit / exit
         ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }

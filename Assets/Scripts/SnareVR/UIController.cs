@@ -23,33 +23,6 @@ public class UIController : MonoBehaviour
         ScriptsConnector.Instance.OnUpdateUI += UpdateUI;
     }
 
-    /*
-    void Update()
-    {
-        if (timerIsRunning)
-        {
-            if (timeRemaining > 0)
-            {
-                timeRemaining -= Time.deltaTime * 1000; //equivalent of -1 sec
-
-                //convert time remaining to day / hour / minute format
-                //TODO - is this overkill (heavy processing)?
-                TimeSpan t = TimeSpan.FromMilliseconds(timeRemaining);
-                DateTime expirationDate = new DateTime(t.Ticks);
-                trapCaughtTimerText.text = expirationDate.ToString("dd:hh:mm");
-            }
-            else
-            {
-                ScriptsConnector.Instance.OnCheckTrap?.Invoke();
-
-                Debug.Log("Did you catch something?");
-                timeRemaining = 0;
-                timerIsRunning = false;
-            }
-        }
-    }
-    */
-
     private void UpdateUI(CommonEnums.UIType type, string updatedValue)
     {
         Debug.Log("type of " + type.ToString() + " with value: " + updatedValue);
