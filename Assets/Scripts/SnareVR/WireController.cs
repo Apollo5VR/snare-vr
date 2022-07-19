@@ -75,6 +75,7 @@ public class WireController : MonoBehaviour
         }
     }
 
+    //depreciated as we only contain this script in HOME scene (we dont need to control the trap with this script anymore)
     //call on start to set state and save a local value to the WireController
     public async void SetupSnareScene()
     {

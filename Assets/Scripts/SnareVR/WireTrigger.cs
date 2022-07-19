@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//depreciated since state machine refactor
 public class WireTrigger : MonoBehaviour
 {
     public int progressionInt;
