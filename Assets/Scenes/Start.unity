@@ -497,7 +497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: d097911c0371e3646a19bc6e471e267e, type: 3}
+  m_Texture: {fileID: 2800000, guid: caf2f2bcc3af00e47a20538cbe9b3ac7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3826,7 +3826,7 @@ PrefabInstance:
     - target: {fileID: 1447509482941922035, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1447509483763425493, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
@@ -3881,7 +3881,7 @@ PrefabInstance:
     - target: {fileID: 3181413271429574108, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3671052058629859464, guid: 2af1d2045149fe743b81bc4d1a6f8406,
         type: 3}

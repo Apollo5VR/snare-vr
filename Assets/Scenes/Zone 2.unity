@@ -2032,6 +2032,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10fd0b3af091244fbf7f038dfc1acdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   enemyMaxCount: 10
   forestEnemyPrefabs:
   - {fileID: 2223746443901201048, guid: daebffdff9530e14185fddae19ed1364, type: 3}
@@ -2039,6 +2040,7 @@ MonoBehaviour:
   - {fileID: 1769006365}
   - {fileID: 1120091462}
   - {fileID: 735660772}
+  timeCounter: 5
 --- !u!4 &170734654
 Transform:
   m_ObjectHideFlags: 0

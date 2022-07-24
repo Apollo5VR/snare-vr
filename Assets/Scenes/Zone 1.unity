@@ -7558,8 +7558,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 732962342}
-        m_TargetAssemblyTypeName: FireController, Assembly-CSharp
-        m_MethodName: ConsumeRabbit
+        m_TargetAssemblyTypeName: FireController, MainTests
+        m_MethodName: Consume
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 694130386}
@@ -11267,6 +11267,7 @@ MonoBehaviour:
   wireAroundTree: {fileID: 1891416998}
   rabbit: {fileID: 694130386}
   trapDestination: {fileID: 0}
+  testTrapSet: 0
 --- !u!4 &1043429614
 Transform:
   m_ObjectHideFlags: 0
