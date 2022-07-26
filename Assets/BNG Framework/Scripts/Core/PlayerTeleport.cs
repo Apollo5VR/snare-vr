@@ -113,6 +113,8 @@ namespace BNG {
         [Tooltip("GG Custom Solution: To climb to destination")]
         public bool usingClimbAlternative = false;
         public GameObject climbableTool;
+        public GameObject climbableCollider;
+        public GameObject climbableEnd; //TODO - consider ways to simplify / not require three references
 
         CharacterController controller;
         BNGPlayerController playerController;
@@ -142,7 +144,19 @@ namespace BNG {
         void Start() {
             setupVariables();
 
-            climbableTool.SetActive(false);
+            if (climbableTool != null)
+            {
+                climbableTool.SetActive(false);
+            }
+            else
+            {
+                if(usingClimbAlternative)
+                {
+                    usingClimbAlternative = false;
+                    //TODO - disable for build / add #ifEditor
+                    Debug.Log("Need Climbable Object assigned in Inspector");
+                }
+            }
         }
 
         bool setVariables = false;
@@ -522,11 +536,14 @@ namespace BNG {
             if (usingClimbAlternative && climbMovement)
             {
                 //set start position scale as player position, end as destination
-                Vector3 heightAdjDestination = new Vector3(playerDestination.x, playerController.transform.position.y, playerDestination.z);
-                float dist = Vector3.Distance(playerController.transform.position, heightAdjDestination);
-
-                climbableTool.transform.localScale = new Vector3(climbableTool.transform.localScale.x, climbableTool.transform.localScale.y, dist);
+                climbableTool.transform.position = new Vector3(climbableTool.transform.position.x, playerController.transform.position.y, climbableTool.transform.position.z);
                 climbableTool.SetActive(true);
+                climbableEnd.transform.position = new Vector3(playerDestination.x, climbableEnd.transform.position.y, playerDestination.z);
+                
+                Vector3 heightAdjDestination = new Vector3(climbableEnd.transform.position.x, climbableCollider.transform.position.y, climbableEnd.transform.position.z);
+                float dist = Vector3.Distance(climbableTool.transform.position, heightAdjDestination);
+                climbableCollider.transform.LookAt(heightAdjDestination);
+                climbableCollider.transform.localScale = new Vector3(climbableCollider.transform.localScale.x, climbableCollider.transform.localScale.y, dist);
             }
             else
             {

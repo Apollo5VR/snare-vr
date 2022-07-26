@@ -52,9 +52,10 @@ namespace BNG {
             //GG injection
             if (BeingHeld == false)
             {
-                if (gameObject.transform.parent.gameObject != null)
+                //TODO - optimize this, not great to be using this vague parent parent business
+                if (gameObject.transform.parent.parent.gameObject != null)
                 {
-                    gameObject.transform.parent.gameObject.SetActive(false);
+                    gameObject.transform.parent.parent.gameObject.SetActive(false);
                     Debug.Log("GG - WE DEACTIVATE CLIMBABLE ON DROP!");
                 }
             }
