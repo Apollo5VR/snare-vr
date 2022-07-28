@@ -28,8 +28,10 @@ public class MapController : MonoBehaviour
         ScriptsConnector.Instance.OnReturnMap += ReturnMap;
     }
 
+    #if UNITY_EDITOR
     public void Update()
     {
+        //testing only
         if (BNG.InputBridge.Instance.XButtonUp)
         {
             if (zoneSelector.gameObject.activeSelf)
@@ -46,6 +48,7 @@ public class MapController : MonoBehaviour
             }
         }
     }
+    #endif
 
     private void ReturnMap()
     {
@@ -55,8 +58,6 @@ public class MapController : MonoBehaviour
         gameObject.transform.SetParent(watchOrigin.transform);
         gameObject.transform.position = watchOrigin.transform.position; //TODO need?
         m_Material.color = new Color32(0, 0, 0, 0);
-
-        //StopCoroutine(distCoroutine);
     }
 
     private async void GetTime()
@@ -91,6 +92,7 @@ public class MapController : MonoBehaviour
 
     private IEnumerator MapGrabLoopCheck()
     {
+        //TODO - room for optimization here 7.28 - review in Profiler
         while(checkToggle)
         {
             dist = Vector3.Distance(gameObject.transform.position, watchOrigin.transform.position);
@@ -102,6 +104,7 @@ public class MapController : MonoBehaviour
                     checkToggle = false;
                     mapGrabbable.DropAll();
                     ReturnMap();
+                    m_Material.color = new Color32(0, 0, 0, 0);
                 }
             }
             else
@@ -110,7 +113,7 @@ public class MapController : MonoBehaviour
                 {
                     zoneSelector.gameObject.SetActive(true);
 
-                    //relocate to 1ft out, force ungrab, unchild from right hand, relocate to above map, change color to green?
+                    //relocate to 1ft out, force ungrab, unchild from right hand, relocate to above map, change color to green
                     mapGrabbable.DropAll();
                     gameObject.transform.SetParent(zoneSelector.transform);
                     gameObject.transform.position = zoneSelector.transform.position;

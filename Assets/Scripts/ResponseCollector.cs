@@ -101,7 +101,7 @@ public class ResponseCollector : MonoBehaviour
         {
             challengeSceneSelected = (int)response + 1; //12.20 to reupdate for Santa addition (1 level) - TODO - refactor eventually for infinite levels
             sceneSelectionResponse = false;
-            ProgressionController.Instance.OnLoadChallengeScene((int)response); //note: +1 to align with actual scene num
+            ProgressionController.Instance.OnLoadSelectedScene((int)response); //note: +1 to align with actual scene num
         }
     }
 
@@ -236,7 +236,7 @@ public class ResponseCollector : MonoBehaviour
         yield return new WaitForSeconds(10);
 
         //exclude 0 which is a none scene & 1 which is potions scene (has 2 responses)
-        ProgressionController.Instance.OnLoadChallengeScene((int)UnityEngine.Random.Range(2, 5));
+        ProgressionController.Instance.OnLoadSelectedScene((int)UnityEngine.Random.Range(2, 5));
     }
 
     private void SwapRobeColors(int finalHouse)

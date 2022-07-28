@@ -24,6 +24,7 @@ public class TriggerSpellSelection : MonoBehaviour
 
     private void Update()
     {
+        //TODO - could use refactor - view Profiler
         if(isGrabbed)
         {
             //update line width based on distance of this object from line
@@ -34,12 +35,12 @@ public class TriggerSpellSelection : MonoBehaviour
             //if reach full 1 distance, then teleport
             if (dist > distanceTilLoad)
             {
-                Debug.Log("weve passed 1 distance, load scene " + sceneIndex);
                 selectionGrabber.DropAll();
 
-                //call return map here - 
                 ScriptsConnector.Instance.OnReturnMap();
-                ProgressionController.Instance.OnLoadChallengeScene(sceneIndex);
+
+                //TODO - this is where we can refactor for async load (improve run time) - view profiler
+                ProgressionController.Instance.OnLoadSelectedScene(sceneIndex);
             }
         }
     }

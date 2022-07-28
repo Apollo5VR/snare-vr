@@ -10,6 +10,8 @@ public class WireTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //TODO refactor this to be not dumb
+        //TODO - grabCube logic now depreciated, only used for sending event to Observer for initiating Wolf Attack Sequence
+        //TODO - potentially refactor to use a state machine for keeping cached value
         if(other.name == "GrabCube" || other.name == "CompletedWireGrabber")
         {
             if(other.name == "CompletedWireGrabber")

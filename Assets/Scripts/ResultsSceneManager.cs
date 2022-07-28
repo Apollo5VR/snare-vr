@@ -29,7 +29,7 @@ public class ResultsSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         //0 is the questions scene
-        ProgressionController.Instance.OnLoadChallengeScene(0);
+        ProgressionController.Instance.OnLoadSelectedScene(0);
     }
 
     private IEnumerator CloseGame()

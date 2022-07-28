@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using System;
 //using Unity.Services.Analytics;
 
+//TODO - remove depreciated logic from last prototype
 public class ProgressionController : MonoBehaviour
 {
     public static ProgressionController Instance { get; private set; }
@@ -16,14 +17,11 @@ public class ProgressionController : MonoBehaviour
     public bool testNewScene = false;
 
     public Action<float> OnLoadNextScene;
-    public Action<int> OnLoadChallengeScene;
+    public Action<int> OnLoadSelectedScene;
     public Func<BNG.PlayerTeleport> OnRequestTeleporter;
 
     private int nextLevel;
     private IEnumerator autoProgressCR;
-
-    private int questionSelectionScene = 4;
-    private int resultsScene = 10; //originally 10, gets updated if more scenes added
 
     private void Awake()
     {
@@ -46,24 +44,18 @@ public class ProgressionController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        resultsScene = SceneManager.sceneCountInBuildSettings - 2;
-
         //subs
         SceneManager.sceneLoaded += OnSceneLoaded;
         OnLoadNextScene += LoadNextScene;
-        OnLoadChallengeScene += LoadSpecificScene;
+        OnLoadSelectedScene += LoadSpecificScene;
         OnRequestTeleporter += PassTeleporter;
         ScriptsConnector.Instance.OnGetCurrentScene += GetCurrentScene;
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-
-        //depreciated - from SHVR
-        //also called in below
-        //autoProgressCR = TimerToEndScene(nextLevel, 300);
-        //StartCoroutine(autoProgressCR);
     }
 
     //testing only
+    #if UNITY_EDITOR
     public void Update()
     {
         if (debugProgressNextScene)
@@ -72,6 +64,7 @@ public class ProgressionController : MonoBehaviour
             SceneManager.LoadScene(nextLevel);
         }
     }
+    #endif
 
     private int GetCurrentScene()
     {
@@ -80,8 +73,9 @@ public class ProgressionController : MonoBehaviour
 
     private void LoadNextScene(float time)
     {
-        //depreciated
-        //sceneLoadingBlackSphere.SetActive(true);
+        //readded 7.28
+        sceneLoadingBlackSphere.SetActive(true);
+
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         int level = 0;
 
@@ -91,11 +85,6 @@ public class ProgressionController : MonoBehaviour
             level = 1; //update this number to the test scene
             StartCoroutine(TimerToEndScene(level, time));
             return;
-        }
-        //note: manual selection added for 1st go through all scenes, then choice of 1 replay
-        if (isManualSelection && (buildIndex > questionSelectionScene && buildIndex < resultsScene))
-        {
-            level = resultsScene;
         }
         else
         {
@@ -121,6 +110,8 @@ public class ProgressionController : MonoBehaviour
             AnalyticsService.Instance.CustomData("sceneload_replay", parameters);
         }
         */
+        //readded 7.28
+        sceneLoadingBlackSphere.SetActive(true);
 
         SceneManager.LoadScene(sceneInt);
     }
@@ -130,53 +121,29 @@ public class ProgressionController : MonoBehaviour
         StopAllCoroutines();
 
         nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        if(nextLevel < 6)
-        {
-            autoProgressCR = TimerToEndScene(nextLevel, 210);
-            StartCoroutine(autoProgressCR);
-        }
 
         Transform startingPosition = GameObject.Find("StartingPosition").transform;
 
         if (startingPosition != null)
         {
-            Debug.Log("OnSceneLoaded: " + scene.name);
             StartCoroutine(playerTeleport.doTeleport(startingPosition.localPosition, startingPosition.localRotation, true, false));
         }
         else
         {
-            Debug.Log("Player starting position not found");
+            Debug.LogError("Player starting position not found");
         }
 
         //it trap points exist in scene, then place and prepare prefab
         ScriptsConnector.Instance.OnPrepareTrap?.Invoke();
 
-    startingPosition = null;
-    }
+        startingPosition = null;
 
-    private IEnumerator WaitTillRead()
-    {
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(nextLevel);
-    }
-
-    public void DelayedSceneProgression(int sceneBuildIndex, float time)
-    {
-        //GG - deactivating since we want the user to remain as long as theyd like
-        //StartCoroutine(TimerToEndScene(sceneBuildIndex, time));
+        //readded 7.28
+        sceneLoadingBlackSphere.SetActive(false);
     }
 
     private IEnumerator TimerToEndScene(int sceneBuildIndex, float time)
     {
-        //if a user triggers end scene by completing all actions, stop the auto progress
-        if(time < 30)
-        {
-            if(autoProgressCR != null)
-            {
-                StopCoroutine(autoProgressCR);
-            }
-        }
-
         //TODO - refactor to one location (so we only need 1 script to have Analytics dependency)
         /*
         if (!Application.isEditor)
@@ -199,7 +166,7 @@ public class ProgressionController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         OnLoadNextScene -= LoadNextScene;
-        OnLoadChallengeScene -= LoadSpecificScene;
+        OnLoadSelectedScene -= LoadSpecificScene;
 
         if(ScriptsConnector.Instance != null)
         {

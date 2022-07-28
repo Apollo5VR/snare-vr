@@ -55,7 +55,7 @@ public class HatController : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         //note: replaced loading questions scene with just auto loading into the first question
-        ProgressionController.Instance.OnLoadChallengeScene(1);
+        ProgressionController.Instance.OnLoadSelectedScene(1);
     }
 
     //TODO - adjust this to actually mean something
