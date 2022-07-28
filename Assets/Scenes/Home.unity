@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: f7104e57eae53ed44820e790011bbb36
+  m_OcclusionCullingData: {fileID: 36300000, guid: 9cb1a37516865274ea83864a3b2e336c,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -6628,7 +6629,7 @@ MonoBehaviour:
   debug_mesh: 0
   auto_refresh_editor: 1
   auto_refresh_playmode: 1
-  refresh_rate: 0.01
+  refresh_rate: 0.05
   frustum_cull_playmode: 1
   frustum_cull_radius: 1
 --- !u!33 &619167524
@@ -19021,7 +19022,7 @@ MonoBehaviour:
   debug_mesh: 0
   auto_refresh_editor: 1
   auto_refresh_playmode: 1
-  refresh_rate: 0.01
+  refresh_rate: 0.05
   frustum_cull_playmode: 1
   frustum_cull_radius: 1
 --- !u!33 &1777860292
