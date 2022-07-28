@@ -1,9 +1,7 @@
 {
-    "name": "BNGlocal",
+    "name": "TestsConnector",
     "rootNamespace": "",
-    "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor",
         "WindowsStandalone32",
@@ -13,7 +11,7 @@
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
