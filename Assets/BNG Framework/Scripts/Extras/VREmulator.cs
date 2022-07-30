@@ -11,20 +11,36 @@ namespace BNG {
         [Tooltip("Use Emulator if true and HMDIsActive is false")]
         public bool EmulatorEnabled = true;
 
+        [Tooltip("Set to false if you want to use in standalone builds as well as the editor")]
+        public bool EditorOnly = true;
+
+        [Tooltip("If true the game window must have focus for the emulator to be active")]
+        public bool RequireGameFocus = true;
+
         [Header("Input : ")]
         [SerializeField]
         [Tooltip("Action set used specifically to mimic or supplement a vr setup")]
         public InputActionAsset EmulatorActionSet;
 
-        [Header("Player Controls")]
+        [Header("Player Teleportation")]
+        [Tooltip("Will set the PlayerTeleport component's ForceStraightArrow = true while the emulator is active.")]
+        public bool ForceStraightTeleportRotation = true;
 
         [Header("Move Player Up / Down")]
+        [Tooltip("If true, move the player eye offset up / down whenever PlayerUpAction / PlayerDownAction is called.")]
+        public bool AllowUpDownControls = true;
 
         [Tooltip("Unity Input Action used to move the player up")]
         public InputActionReference PlayerUpAction;
 
         [Tooltip("Unity Input Action used to move the player down")]
         public InputActionReference PlayerDownAction;
+
+        [Tooltip("Minimum height in meters the player can shrink to when using the PlayerDownAction")]
+        public float MinPlayerHeight = 0.2f;
+
+        [Tooltip("Maximum height in meters the player can grow to when using the PlayerUpAction")]
+        public float MaxPlayerHeight = 5f;
 
         [Header("Head Look")]
         [Tooltip("Unity Input Action used to lock the camera in game mode to look around")]
@@ -64,6 +80,8 @@ namespace BNG {
         [Tooltip("Unity Input Action used to mimic having your thumb near a button")]
         public InputActionReference RightThumbNearAction;
 
+       
+
         float mouseRotationX;
         float mouseRotationY;
 
@@ -76,6 +94,7 @@ namespace BNG {
 
         BNGPlayerController player;
         SmoothLocomotion smoothLocomotion;
+        PlayerTeleport playerTeleport;
         bool didFirstActivate = false;
 
         Grabber grabberLeft;
@@ -88,6 +107,8 @@ namespace BNG {
 
         public Vector3 LeftControllerPosition = new Vector3(-0.2f, -0.2f, 0.5f);
         public Vector3 RightControllerPosition = new Vector3(0.2f, -0.2f, 0.5f);
+
+        bool priorStraightSetting;
 
         void Start() {
 
@@ -112,7 +133,17 @@ namespace BNG {
                 player.ElevateCameraIfNoHMDPresent = true;
                 _originalPlayerYOffset = player.ElevateCameraHeight;
 
-                smoothLocomotion = player.GetComponentInChildren<SmoothLocomotion>();
+                smoothLocomotion = player.GetComponentInChildren<SmoothLocomotion>(true);
+
+                // initialize component if it's currently disabled
+                if(smoothLocomotion != null && !smoothLocomotion.isActiveAndEnabled) {
+                    smoothLocomotion.CheckControllerReferences();
+                }
+
+                playerTeleport = player.GetComponentInChildren<PlayerTeleport>(true);
+                if(playerTeleport) {
+                    priorStraightSetting = playerTeleport.ForceStraightArrow;
+                }
 
                 if (smoothLocomotion == null) {
                     Debug.Log("No Smooth Locomotion component found. Will not be able to use SmoothLocomotion without calling it manually.");
@@ -141,7 +172,7 @@ namespace BNG {
         void Update() {
 
             //// Considerd absent if specified or unknown status
-            //bool userAbsent = XRDevice.userPresence == UserPresenceState.NotPresent || XRDevice.userPresence == UserPresenceState.Unknown;
+            // bool userAbsent = XRDevice.userPresence == UserPresenceState.NotPresent || XRDevice.userPresence == UserPresenceState.Unknown;
             // Updated to show in Debug Settings
             HMDIsActive = InputBridge.Instance.HMDActive;
 
@@ -152,11 +183,14 @@ namespace BNG {
                     onFirstActivate();
                 }
 
-                CheckHeadControls();
+                // Require focus
+                if (HasRequiredFocus()) {
+                    CheckHeadControls();
 
-                UpdateControllerPositions();
+                    UpdateControllerPositions();
 
-                CheckPlayerControls();
+                    CheckPlayerControls();
+                }
             }
 
             // Device came online after emulator had started
@@ -165,13 +199,28 @@ namespace BNG {
             }
         }
 
+        public virtual bool HasRequiredFocus() {
+
+            // No Focus Required
+            if(EditorOnly == false || RequireGameFocus == false) {
+                return true;
+            }
+
+            return Application.isFocused;
+        }
+
         public void CheckHeadControls() {
 
             // Hold LockCameraAction (example : right mouse button down ) to move camera around
             if (LockCameraAction != null) {
-                // Lock
-                if(LockCameraAction.action.ReadValue<float>() == 1) {
 
+                // Lock
+                if (LockCameraAction.action.ReadValue<float>() == 1) {
+
+                    // Lock Camera and cursor
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                   
                     Vector3 mouseLook = Vector2.zero;
                     if(CameraLookAction != null) {
                         mouseLook = CameraLookAction.action.ReadValue<Vector2>();
@@ -188,10 +237,6 @@ namespace BNG {
 
                     // Move PLayer on X Axis
                     player.transform.Rotate(0, mouseLook.x * CameraLookSensitivityX, 0);
-
-                    // Lock Camera and cursor
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
                 }
                 // Unlock Camera
                 else {
@@ -199,7 +244,7 @@ namespace BNG {
                     Cursor.visible = true;
                 }
             }
-        }
+        }        
 
         float prevVal;
         /// <summary>
@@ -212,6 +257,11 @@ namespace BNG {
                 return;
             }
 
+            // Window doesn't have focus
+            if(!HasRequiredFocus()) {
+                return;
+            }
+
             // Make sure grabbers are assigned
             checkGrabbers();
 
@@ -220,7 +270,7 @@ namespace BNG {
                 prevVal = InputBridge.Instance.LeftTrigger;
                 InputBridge.Instance.LeftTrigger = LeftTriggerAction.action.ReadValue<float>();
                 InputBridge.Instance.LeftTriggerDown = prevVal < InputBridge.Instance.DownThreshold && InputBridge.Instance.LeftTrigger >= InputBridge.Instance.DownThreshold;
-                InputBridge.Instance.LeftTriggerUp = prevVal >= InputBridge.Instance.DownThreshold && InputBridge.Instance.LeftTrigger == 0;
+                InputBridge.Instance.LeftTriggerUp = prevVal > InputBridge.Instance.DownThreshold && InputBridge.Instance.LeftTrigger < InputBridge.Instance.DownThreshold;
             }
 
             if (LeftGripAction != null) {
@@ -235,10 +285,12 @@ namespace BNG {
 
             // Simulate Right Controller states
             if (RightTriggerAction!= null) {
+                float rightTriggerVal = RightTriggerAction.action.ReadValue<float>();
+
                 prevVal = InputBridge.Instance.RightTrigger;
                 InputBridge.Instance.RightTrigger = RightTriggerAction.action.ReadValue<float>();
                 InputBridge.Instance.RightTriggerDown = prevVal < InputBridge.Instance.DownThreshold && InputBridge.Instance.RightTrigger >= InputBridge.Instance.DownThreshold;
-                InputBridge.Instance.RightTriggerUp = prevVal >= InputBridge.Instance.DownThreshold && InputBridge.Instance.RightTrigger == 0;
+                InputBridge.Instance.RightTriggerUp = prevVal > InputBridge.Instance.DownThreshold && InputBridge.Instance.RightTrigger < InputBridge.Instance.DownThreshold;
             }
 
             if (RightGripAction != null) {
@@ -254,12 +306,24 @@ namespace BNG {
 
         public void CheckPlayerControls() {
 
-            // Player Up / Down
-            if (PlayerUpAction != null && PlayerUpAction.action.ReadValue<float>() == 1) {
-                player.ElevateCameraHeight = Mathf.Clamp(player.ElevateCameraHeight + Time.deltaTime, 0.2f, 5f);
+            // Require focus
+            if(EditorOnly && !Application.isEditor) {
+                return;
             }
-            else if (PlayerDownAction != null && PlayerDownAction.action.ReadValue<float>() == 1) {
-                player.ElevateCameraHeight = Mathf.Clamp(player.ElevateCameraHeight - Time.deltaTime, 0.2f, 5f);
+
+            // Player Up / Down
+            if(AllowUpDownControls) {
+                if (PlayerUpAction != null && PlayerUpAction.action.ReadValue<float>() == 1) {
+                    player.ElevateCameraHeight = Mathf.Clamp(player.ElevateCameraHeight + Time.deltaTime, MinPlayerHeight, MaxPlayerHeight);
+                }
+                else if (PlayerDownAction != null && PlayerDownAction.action.ReadValue<float>() == 1) {
+                    player.ElevateCameraHeight = Mathf.Clamp(player.ElevateCameraHeight - Time.deltaTime, MinPlayerHeight, MaxPlayerHeight);
+                }
+            }
+
+            // Force Forward Arrow
+            if(ForceStraightTeleportRotation && playerTeleport != null && playerTeleport.ForceStraightArrow == false) {
+                playerTeleport.ForceStraightArrow = true;
             }
 
             // Player Move Forward / Back, Snap Turn
@@ -267,8 +331,21 @@ namespace BNG {
                 // Manually allow player movement if the smooth locomotion component is disabled
                 smoothLocomotion.CheckControllerReferences();
                 smoothLocomotion.UpdateInputs();
-                smoothLocomotion.MoveCharacter();
+
+                if(smoothLocomotion.ControllerType == PlayerControllerType.CharacterController) {
+                    smoothLocomotion.MoveCharacter();
+                }
+                else if (smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+                    smoothLocomotion.MoveRigidCharacter();
+                }
             }
+        }
+
+        void FixedUpdate() {
+            // Player Move Forward / Back, Snap Turn
+            //if (smoothLocomotion != null && smoothLocomotion.enabled == false && smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+            //    smoothLocomotion.MoveRigidCharacter();
+            //}
         }
 
         public virtual void UpdateControllerPositions() {
@@ -320,6 +397,11 @@ namespace BNG {
             // Reset Player
             if (player) {
                 player.ElevateCameraHeight = _originalPlayerYOffset;
+            }
+
+            // Reset Teleport Status
+            if(ForceStraightTeleportRotation && playerTeleport) {
+                playerTeleport.ForceStraightArrow = priorStraightSetting;
             }
 
             didFirstActivate = false;

@@ -63,9 +63,11 @@ namespace BNG {
 
             grabPoint = (GrabPoint)target;
             bool inPrefabMode = false;
+            /*
 #if UNITY_EDITOR
             inPrefabMode = UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() != null;
 #endif
+            */
 
             // Double check that there wasn't an object left in the scene
             checkForExistingPreview(); 
@@ -188,11 +190,13 @@ namespace BNG {
             RightHandPreview.gameObject.hideFlags = HideFlags.HideAndDontSave;
             //RightHandPreview.gameObject.hideFlags = HideFlags.DontSave;
 
+            /*
 #if UNITY_EDITOR
             if (grabPoint != null) {
                 grabPoint.UpdatePreviews();
             }
 #endif
+            */
             showingRightHand = true;
         }
 
@@ -205,11 +209,13 @@ namespace BNG {
             LeftHandPreview.gameObject.hideFlags = HideFlags.HideAndDontSave;
             // LeftHandPreview.gameObject.hideFlags = HideFlags.DontSave;
 
+            /*
 #if UNITY_EDITOR
             if (grabPoint != null) {
                 grabPoint.UpdatePreviews();
             }
 #endif
+            */
             showingLeftHand = true;
         }
 
@@ -293,13 +299,14 @@ namespace BNG {
 
                 anim.SetInteger("Pose", handPose);
                 anim.Update(Time.deltaTime);
-
+/*
 #if UNITY_EDITOR
                 // Only set dirty if not in prefab mode
                 if(UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null) {
                     UnityEditor.EditorUtility.SetDirty(anim.gameObject);
                 }
 #endif
+*/
             }
         }
 

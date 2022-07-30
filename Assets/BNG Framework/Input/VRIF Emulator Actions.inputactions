@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Increase Player Height",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "9a07229e-920a-4324-8d60-ce8fedb06aa6",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -31,7 +31,7 @@
                 },
                 {
                     "name": "Decrease Player Height",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "3d421c66-43c7-4c9d-a0f4-866aa5158b03",
                     "expectedControlType": "Button",
                     "processors": "",

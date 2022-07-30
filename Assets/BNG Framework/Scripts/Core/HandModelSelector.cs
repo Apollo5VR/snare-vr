@@ -134,14 +134,14 @@ namespace BNG {
             // Change UI Pointer position depending on if we're using Oculus Hands or Oculus Controller Model
             // This is for the demo. Typically this would be fixed to a bone or transform
             // Oculus Touch Controller is positioned near the front
-            if (activatedLeftModel.transform.name.StartsWith("OculusTouchForQuestAndRift") && uiPoint != null) {
+            if ((activatedLeftModel.transform.name.StartsWith("OculusTouchForQuestAndRift") || activatedLeftModel.transform.name.StartsWith("ControllerReferences")) && uiPoint != null) {
                 uiPoint.transform.localPosition = new Vector3(0, 0, 0.0462f);
-                uiPoint.transform.localEulerAngles = new Vector3(0, -4.5f, 0);
+                uiPoint.transform.localEulerAngles = new Vector3(0, 0f, 0);
             }
             // Hand Model
             else if (_selectedHandGFX != 0 && uiPoint != null) {
-                uiPoint.transform.localPosition = new Vector3(0.045f, 0.07f, 0.12f);
-                uiPoint.transform.localEulerAngles = new Vector3(-9.125f, 4.65f, 0);
+                uiPoint.transform.localPosition = new Vector3(0.0392f, 0.0033f, 0.0988f);
+                uiPoint.transform.localEulerAngles = new Vector3(0, 0, 0);
             }
 
             if (save) {

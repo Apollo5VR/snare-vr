@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab52d2f563d6a2547a95671c153ebbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handPoseType: 1
+  handPoseType: 0
   SelectedHandPose: {fileID: 0}
   HandPose: 0
   LeftHandIsValid: 1
@@ -902,7 +902,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0.00051378505, y: 0.38251227, z: 0.004651994}
+  - {x: 0.00051378505, y: 0.38251227, z: 0.004652009}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.5
@@ -2534,7 +2534,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0.00051378505, y: 0.38251227, z: 0.004651994}
+  - {x: 0.00051378505, y: 0.38251227, z: 0.004652009}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.5

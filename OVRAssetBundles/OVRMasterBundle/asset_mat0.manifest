@@ -1,0 +1,53 @@
+ManifestFileVersion: 0
+CRC: 2391189886
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 881a361e9dd129f8ea15cb4d9e227352
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 82515b3694a1e5beae009c48c1198c34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/BNG Framework/Materials/GridOrange.mat
+- Assets/Obi/Samples/RopeAndRod/SampleResources/Materials/RedRope.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/36 GREEN-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/35 GREEN-MEDIUM-LPUP.mat
+- Assets/BNG Framework/Materials/Pistol.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/9 BROWN-DARKEST-LPUP.mat
+- Assets/BNG Framework/Materials/GridYellow.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/14 BROWN LIGHTEST-LPUP.mat
+- Assets/SimpleFantasyInteriors/Materials/SimpleFantasyInteriorsMaterial.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/17 GREY-DARKEST-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/29 ORANGE-LIGHT-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/57 BLACK-LPUP.mat
+- Assets/BNG Framework/Materials/GridWhite.mat
+- Assets/BNG Framework/Materials/Skybox Blue.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/28 ORANGE-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/Emission/61 EMISSION-ORANGE-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/19 GREY-MEDIUM-LPUP.mat
+- Assets/BNG Framework/Materials/GridRed.mat
+- Assets/BNG Framework/Materials/TeleportLine.mat
+- Assets/BNG Framework/Materials/ValidTeleport.mat
+- Assets/BNG Framework/Materials/Grey Skybox.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/12 BROWN-LPUP.mat
+- Assets/BNG Framework/Models/Hands/phong4.mat
+- Assets/BNG Framework/Materials/Glow.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/18 GREY-DARK-LPUP.mat
+- Assets/BNG Framework/Models/Hands/phong3.mat
+- Assets/SimpleFantasyInteriors/Materials/LightBlue.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/6 SKIN-LIGHTEST-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/64 GLASS-LPUP.mat
+- Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/BlackUnlit.mat
+Dependencies:
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_png0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_psd0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_shader0

@@ -1,0 +1,70 @@
+ManifestFileVersion: 0
+CRC: 2543961674
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0a7b289f4938e677492d244779de8be0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: cc15991c8c9897635be901f2deab0c8c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_cap_touch_thumb_mask_anim.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_hold_generic_anim.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_fist_anim.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Terrains_M/Worlds_M/world-forest.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/stump-small.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Animals_M/deer.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-simple.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_cap_touch_anim.fbx
+- Assets/BNG Framework/Models/Hands/hands_r_gloves_mat06.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_cap_touch_index_mask_anim.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Survival_M/fireplace.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_thumbs_up_anim.fbx
+- Assets/Models/rabbitArm.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_relax_mid_fist_anim.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_hold_ping_pong_ball_anim.fbx
+- Assets/BNG Framework/Models/BNG_Gun_Rifle.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/shrub-round.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_relax_3qtr_fist_anim.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/People_M/Rigs_M/man-sweater_Rig.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-lime.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Tools_M/shovel.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-fir.fbx
+- Assets/Models/SnareLoopComplete.fbx
+- Assets/SimpleFantasyInteriors/Models/Prefabbed/SM_Prop_Book_Open_01.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_pinch_anim.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-dead.fbx
+- Assets/BNG Framework/Models/Hands/OculusHands/r_hand_point_anim.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Animals_M/butterfly.fbx
+- Assets/BNG Framework/Models/BNG_Gun_Pistol.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Animals_M/rat.fbx
+Dependencies:
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_png0

@@ -313,6 +313,20 @@ namespace BNG {
         public Vector2 LeftTouchPadAxis;
         public Vector2 RightTouchPadAxis;
 
+        [Header("Finger Tracking")]
+        [Tooltip("SteamVR Only - Shows the curl value of the thumb. 0 = Fully extended, 1 = Fully Curled")]
+        public float LeftThumbCurl = 0f;
+        public float LeftIndexCurl = 0f;
+        public float LeftMiddleCurl = 0f;
+        public float LeftRingCurl = 0f;
+        public float LeftPinkyCurl = 0f;
+
+        [Tooltip("SteamVR Only - Shows the curl value of the thumb. 0 = Fully extended, 1 = Fully Curled")]
+        public float RightThumbCurl = 0f;
+        public float RightIndexCurl = 0f;
+        public float RightMiddleCurl = 0f;
+        public float RightRingCurl = 0f;
+        public float RightPinkyCurl = 0f;
 
         #endregion
 
@@ -446,9 +460,9 @@ namespace BNG {
 #if STEAM_VR_SDK
             SteamVRSupport = true;
 
+            // Warn that input source has not been set, even though the SteamVR SDK is present.
             if(InputSource != XRInputSource.SteamVR) {
-                Debug.Log("SteamVR SDK detected. Switching Input Source from " + InputSource.ToString() + " to SteamVR.");
-                InputSource = XRInputSource.SteamVR;
+                Debug.Log("SteamVR SDK detected, but not set as source on InputBridge. Recommend switching input Source from " + InputSource.ToString() + " to SteamVR.");
             }
 
             // Set the default action set if not provided
@@ -488,8 +502,9 @@ namespace BNG {
         }
 
         public virtual void UpdateInputs() {
-            // SteamVR uses an action system
-            if (InputSource == XRInputSource.SteamVR && SteamVRSupport) {
+
+            // SteamVR uses an action system. Only update if HMD is reported as Active
+            if (InputSource == XRInputSource.SteamVR && SteamVRSupport && HMDActive) {
                 UpdateSteamInput();
             }
             // Use OVRInput to get more Oculus Specific inputs, such as "Near Touch"
@@ -533,7 +548,7 @@ namespace BNG {
             RightThumbstickUp = prevBool == true && RightThumbstick == false;
             
             LeftThumbNear = SteamVR_Actions.vRIF_LeftThumbstickNear.state;
-            // LeftThumbNear = SteamVR_Actions.vRIF_LeftTrackpadNear.state;
+            //LeftThumbNear = SteamVR_Actions.vRIF_LeftTrackpadNear.state;
             RightThumbNear = SteamVR_Actions.vRIF_RightThumbstickNear.state;
             //RightThumbNear = SteamVR_Actions.vRIF_RightTrackpadNear.state;
 
@@ -548,14 +563,14 @@ namespace BNG {
             prevVal = LeftTrigger;
             LeftTrigger = correctValue(SteamVR_Actions.vRIF_LeftTrigger.axis);
             LeftTriggerDown = prevVal < _downThreshold && LeftTrigger >= _downThreshold;
-            LeftTriggerUp = prevVal >= _downThreshold && LeftTrigger == 0;
-            // LeftTriggerNear = SteamVR_Actions.vRIF_LeftTriggerNear.state;
+            LeftTriggerUp = prevVal > _downThreshold && LeftTrigger < _downThreshold;
+            LeftTriggerNear = SteamVR_Actions.vRIF_LeftTriggerNear.state;
 
             prevVal = RightTrigger;
             RightTrigger = correctValue(SteamVR_Actions.vRIF_RightTrigger.axis);
             RightTriggerDown = prevVal < _downThreshold && RightTrigger >= _downThreshold;
-            RightTriggerUp = prevVal >= _downThreshold && RightTrigger == 0;
-            // RightTriggerNear = SteamVR_Actions.vRIF_RightTriggerNear.state;
+            RightTriggerUp = prevVal > _downThreshold && RightTrigger < _downThreshold;
+            RightTriggerNear = SteamVR_Actions.vRIF_RightTriggerNear.state;
 
             AButton = SteamVR_Actions.vRIF_AButton.state;
             AButtonDown = SteamVR_Actions.vRIF_AButton.stateDown;
@@ -569,6 +584,19 @@ namespace BNG {
             YButton = SteamVR_Actions.vRIF_YButton.state;
             YButtonDown = SteamVR_Actions.vRIF_YButton.stateDown;
             YButtonUp = SteamVR_Actions.vRIF_YButton.stateUp;
+
+            // Hand Tracking (Ie Valve Knuckles Finger Tracking)
+            LeftThumbCurl = SteamVR_Actions.vRIF_SkeletonLeftHand.thumbCurl;
+            LeftIndexCurl = SteamVR_Actions.vRIF_SkeletonLeftHand.indexCurl;
+            LeftMiddleCurl = SteamVR_Actions.vRIF_SkeletonLeftHand.middleCurl;
+            LeftRingCurl = SteamVR_Actions.vRIF_SkeletonLeftHand.ringCurl;
+            LeftPinkyCurl = SteamVR_Actions.vRIF_SkeletonLeftHand.pinkyCurl;
+
+            RightThumbCurl = SteamVR_Actions.vRIF_SkeletonRightHand.thumbCurl;
+            RightIndexCurl = SteamVR_Actions.vRIF_SkeletonRightHand.indexCurl;
+            RightMiddleCurl = SteamVR_Actions.vRIF_SkeletonRightHand.middleCurl;
+            RightRingCurl = SteamVR_Actions.vRIF_SkeletonRightHand.ringCurl;
+            RightPinkyCurl = SteamVR_Actions.vRIF_SkeletonRightHand.pinkyCurl;
 
             //prevBool = StartButton;
             //StartButton = SteamVR_Actions.vRIF_StartButton.state;
@@ -637,12 +665,12 @@ namespace BNG {
 
             prevVal = LeftTrigger;
             LeftTrigger = correctValue(getFeatureUsage(primaryLeftController, CommonUsages.trigger));
-            LeftTriggerUp = prevVal >= _downThreshold && LeftTrigger == 0;
+            LeftTriggerUp = prevVal > _downThreshold && LeftTrigger < _downThreshold;
             LeftTriggerDown = prevVal < _downThreshold && LeftTrigger >= _downThreshold;            
 
             prevVal = RightTrigger;
             RightTrigger = correctValue(getFeatureUsage(primaryRightController, CommonUsages.trigger));
-            RightTriggerUp = prevVal >= _downThreshold && RightTrigger == 0;
+            RightTriggerUp = prevVal > _downThreshold && RightTrigger < _downThreshold;
             RightTriggerDown = prevVal < _downThreshold && RightTrigger >= _downThreshold;
 
             // While OculusUsages.indexTouch is recommended, only CommonUsages.indexTouch is currently providing proper values on certain platforms
@@ -743,7 +771,7 @@ namespace BNG {
             LeftTrigger = correctValue(leftTrigger.ReadValue<float>());
             LeftTriggerDown = prevVal < _downThreshold && LeftTrigger >= _downThreshold;
             LeftTriggerNear = correctValue(leftTriggerNear.ReadValue<float>()) > 0;
-            LeftTriggerUp = prevVal >= _downThreshold && LeftTrigger == 0;
+            LeftTriggerUp = prevVal > _downThreshold && LeftTrigger < _downThreshold;
 
             prevVal = RightGrip;
             RightGrip = correctValue(rightGrip.ReadValue<float>());
@@ -752,8 +780,8 @@ namespace BNG {
             prevVal = RightTrigger;
             RightTrigger = correctValue(rightTrigger.ReadValue<float>());
             RightTriggerDown = prevVal < _downThreshold && RightTrigger >= _downThreshold;
-            RightTriggerNear = correctValue(rightTriggerNear.ReadValue<float>()) > 0;
-            RightTriggerUp = prevVal >= _downThreshold && RightTrigger == 0;
+            RightTriggerNear = correctValue(rightTriggerNear.ReadValue<float>()) > 0;            
+            RightTriggerUp = prevVal > _downThreshold && RightTrigger < _downThreshold;
 
             LeftThumbstickAxis = leftThumbstick.ReadValue<Vector2>();
             var prevBool = LeftThumbstick;
@@ -961,13 +989,13 @@ namespace BNG {
             RightGripDown = Pvr_UnitySDKAPI.Controller.UPvr_GetKeyDown(rightHand, Pvr_UnitySDKAPI.Pvr_KeyCode.Right);
 
             prevVal = LeftTrigger;
-            LeftTrigger = Pvr_UnitySDKAPI.Controller.UPvr_GetControllerTriggerValue(leftHand) / 255f;            
-            LeftTriggerUp = prevVal >= _downThreshold && LeftTrigger == 0;            
+            LeftTrigger = Pvr_UnitySDKAPI.Controller.UPvr_GetControllerTriggerValue(leftHand) / 255f;                        
+            LeftTriggerUp = prevVal > _downThreshold && LeftTrigger < _downThreshold;
             LeftTriggerDown = prevVal < _downThreshold && LeftTrigger >= _downThreshold;
 
             prevVal = RightTrigger;
             RightTrigger = Pvr_UnitySDKAPI.Controller.UPvr_GetControllerTriggerValue(rightHand) / 255f;
-            RightTriggerUp = prevVal >= _downThreshold && RightTrigger == 0;            
+            RightTriggerUp = prevVal > _downThreshold && RightTrigger < _downThreshold;
             RightTriggerDown = prevVal < _downThreshold && RightTrigger >= _downThreshold;
 
             prevBool = AButton;
@@ -1000,21 +1028,29 @@ namespace BNG {
 
             InputDevice hmd = GetHMD();
 
-            // Can bail early
+            // Check if hmd is valid from XRInput
             if (hmd.isValid == false) {
                 HMDActive = false;
-                return;
             }
 
             // Make sure the device supports the presence feature
             bool userPresent = false;
             bool presenceFeatureSupported = hmd.TryGetFeatureValue(CommonUsages.userPresence, out userPresent);
-            if(presenceFeatureSupported) {
+            if (presenceFeatureSupported) {
                 HMDActive = userPresent;
             }
             else {
                 HMDActive = XRSettings.isDeviceActive;
             }
+
+#if STEAM_VR_SDK
+            if(!HMDActive) {
+                // SteamVR doesn't always directly report as active, but we can double check against the device name
+                if(!string.IsNullOrEmpty(GetHMDName())) {
+                    HMDActive = true;
+                }
+            }
+#endif
         }
 
         /// <summary>
@@ -1148,9 +1184,9 @@ namespace BNG {
         /// </summary>
         /// <returns></returns>
         public virtual bool GetSupportsIndexTouch() {
-            if(IsOculusDevice && LoadedSDK == SDKProvider.OculusSDK) {
-
-            }
+            //if(IsOculusDevice && LoadedSDK == SDKProvider.OculusSDK) {
+            //    return true;
+            //}
 
             return true;
         }
@@ -1177,7 +1213,11 @@ namespace BNG {
         }
 
         public virtual bool GetSupportsThumbTouch() {
-            return IsOculusDevice && LoadedSDK == SDKProvider.OculusSDK;
+            //if (IsOculusDevice && LoadedSDK == SDKProvider.OculusSDK) {
+            //    return true;
+            //}
+
+            return true;
         }
 
         public virtual bool GetIsOculusDevice() {
@@ -1483,13 +1523,17 @@ namespace BNG {
             if (InputSource == XRInputSource.OVRInput) {
                 StartCoroutine(Vibrate(frequency, amplitude, duration, hand));
             }
-            else if (InputSource == XRInputSource.SteamVR && SteamVRSupport) {
+            else if (InputSource == XRInputSource.SteamVR && SteamVRSupport && HMDActive) {
 #if STEAM_VR_SDK
                 if (hand == ControllerHand.Right) {
-                    SteamVR_Actions.vRIF_Haptic.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.RightHand);
+                    if(SteamVR_Actions.vRIF_Haptic != null) {
+                        SteamVR_Actions.vRIF_Haptic.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.RightHand);
+                    }
                 }
                 else {
-                    SteamVR_Actions.vRIF_Haptic.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.LeftHand);
+                    if (SteamVR_Actions.vRIF_Haptic != null) {
+                        SteamVR_Actions.vRIF_Haptic.Execute(0, duration, frequency, amplitude, SteamVR_Input_Sources.LeftHand);
+                    }
                 }                
 #endif
             }

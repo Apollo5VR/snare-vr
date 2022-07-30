@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 1251262823
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 50676b786af900c7e05c55ccdca1e809
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Audio/wolfAttack.mp3
+Dependencies: []

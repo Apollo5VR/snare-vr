@@ -37,6 +37,9 @@ namespace BNG {
         [Tooltip("If true, will set Time.fixedDeltaTime to the device refresh rate")]
         public bool SetFixedDelta = false;
 
+        [Tooltip("If true, will check for input in Update to slow down time. If false you'll need to call SlowTime() / ResumeTime() manually from script")]
+        public bool CheckInput = true;
+
         public bool TimeSlowing
         {
             get { return _slowingTime;  }
@@ -63,13 +66,16 @@ namespace BNG {
 
         void Update() {
 
-            if (SlowTimeInputDown() || ForceTimeScale) {
-                SlowTime();
-            }
-            else {
-                ResumeTime();
+            if(CheckInput) {
+                if (SlowTimeInputDown() || ForceTimeScale) {
+                    SlowTime();
+                }
+                else {
+                    ResumeTime();
+                }
             }
         }
+
 
         /// <summary>
         /// Returns true if SlowTimeAction is being held down

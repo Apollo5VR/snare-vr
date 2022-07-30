@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 2453165861
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fcfef1cd62a5309f2686215b24124604
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Audio/wolfSpawn.wav
+- Assets/BNG Framework/Sounds/drop-reverse.wav
+- Assets/BNG Framework/Sounds/bow_sounds.wav
+- Assets/Audio/wolfDeath.wav
+- Assets/BNG Framework/Sounds/click.wav
+- Assets/BNG Framework/Sounds/drop.wav
+Dependencies: []

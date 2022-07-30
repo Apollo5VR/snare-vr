@@ -25,6 +25,7 @@ public class PluginsEditor : EditorWindow {
 
     static bool IsUnity2019 = false;
     static bool IsUnity2020 = false;
+    static bool IsUnity2021 = false;
 
     static bool InstallingOpenXR = false;
 
@@ -71,6 +72,10 @@ public class PluginsEditor : EditorWindow {
 #if UNITY_2020_0_OR_NEWER
         IsUnity2019 = false;
         IsUnity2020 = true;
+#endif
+#if UNITY_2021_0_OR_NEWER
+        IsUnity2020 = false;
+        IsUnity2021 = true;
 #endif
     }
 
@@ -226,9 +231,10 @@ public class PluginsEditor : EditorWindow {
             if (InstallingOpenXR) {
                 EditorGUILayout.LabelField(" <i>Installing OpenXR...</i>", rt);
             }
-            else if (UsingOpenXR == false && GUILayout.Button("Install OpenXR Plugin", EditorStyles.miniButton)) {
-                InstallOpenXR();
-            }
+            // OpenXR is built-in to Unity in 2021. Removing this for now as the user can just install from the package manager.
+            //else if (UsingOpenXR == false && GUILayout.Button("Install OpenXR Plugin", EditorStyles.miniButton)) {
+            //    InstallOpenXR();
+            //}
 
             GUILayout.FlexibleSpace();
 
@@ -250,6 +256,10 @@ public class PluginsEditor : EditorWindow {
                     if (GUILayout.Button("Install OpenXR Plugin")) {
                         InstallOpenXR();
                     }
+                }
+                else if (IsUnity2021) {
+                    // 2021 is handled internally
+                    EditorGUILayout.LabelField("OpenXR :  (install from within XR-Management)", rt);
                 }
             }
         }

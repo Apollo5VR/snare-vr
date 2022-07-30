@@ -73,12 +73,14 @@ namespace BNG {
             // Update Kinematic Status.
             if (rb) {
                 rb.isKinematic = KinematicWhileInactive && !grab.BeingHeld;
-            }                        
+            }
+
+            // Align lever with Grabber
+            doJoystickLook();
 
             // Lock our local position and axis in Update to avoid jitter
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
-
 
             // Get the modified angle of of the lever. Use this to get percentage based on Min and Max angles.
             currentRotation = transform.localEulerAngles;
@@ -131,14 +133,17 @@ namespace BNG {
         }
 
         void FixedUpdate() {
-            // Align lever with Grabber
-            doJoystickLook();
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
 
         void doJoystickLook() {
 
             // Do Lever Look
             if (grab != null && grab.BeingHeld) {
+
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
 
                 // Store original rotation to be used with smooth look
                 Quaternion originalRot = transform.rotation;
@@ -154,11 +159,14 @@ namespace BNG {
                 if (UseSmoothLook) {
                     Quaternion newRot = transform.rotation;
                     transform.rotation = originalRot;
-                    transform.rotation = Quaternion.Lerp(transform.rotation, newRot, Time.deltaTime * SmoothLookSpeed);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, newRot, Time.fixedDeltaTime * SmoothLookSpeed);
                 }
             }
             else if (grab != null && !grab.BeingHeld && rb.isKinematic) {
                 transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * SmoothLookSpeed);
+
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
         }
         // Callback for lever percentage change
@@ -169,8 +177,6 @@ namespace BNG {
         }
 
         public virtual void OnJoystickChange(Vector2 joystickVector) {
-            
-
             if (onJoystickVectorChange != null) {
                 onJoystickVectorChange.Invoke(joystickVector);
             }

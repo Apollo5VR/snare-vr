@@ -338,8 +338,13 @@ namespace BNG {
         }
 
         void OnEnable() {
-            ThisGrabber.enabled = true;
-            DisableGrabber.enabled = false;
+            if(DisableGrabber) {
+                DisableGrabber.enabled = false;
+            }
+
+            if (ThisGrabber) {
+                ThisGrabber.enabled = true;
+            }
 
             if (ThisRemoteGrabber) {
                 ThisRemoteGrabber.enabled = true;

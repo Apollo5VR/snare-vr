@@ -1,0 +1,99 @@
+ManifestFileVersion: 0
+CRC: 2876450982
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4076e234cf51d0d89a5bb74da81e0c13
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: bdac878dbf437362f5df49a101dec996
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d1443aa27a222504396be04accef8228, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fae0edb295fc87242879fb97370490a6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5fa6fdab302b3794d83be62a716300c3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9e219c5bb2ac0cf49b11e564caef17eb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f10fd0b3af091244fbf7f038dfc1acdc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ad179a9e83dba5142adaaf7737678e8b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bdb02f0a3fa6caa4dbf061508f2f261c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 719b1f495ba206f4e8f97e02f438e865, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1e0db408e0bfc214cbfc09541d3a1fb9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8b4cde4cf3c67744fa0394839eb46dcf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9b5b1b54556836a49948cf0f09394c28, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 144
+  Script: {instanceID: 0}
+- Class: 153
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 195
+  Script: {instanceID: 0}
+- Class: 196
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 238
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/Zone 2.unity
+Dependencies:
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_asset0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_png0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_prefab0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_prefab1

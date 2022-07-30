@@ -11,12 +11,19 @@ namespace BNG {
     /// </summary>
     public class HandJet : GrabbableEvents {
 
+        [Tooltip("Movement Speed to apply if using a CharacterController, or Force to apply if using a Rigidbody controller.")]
         public float JetForce = 10f;
+
+        [Tooltip("Enabled while jetting")]
         public ParticleSystem JetFX;
+        
+        [Tooltip("If true the player will float in the air when not jetting. (Works for Rigidbody player only)")]
+        public bool DisableGravityWhileHeld = true;
 
         CharacterController characterController;
         SmoothLocomotion smoothLocomotion;
         PlayerGravity playerGravity;
+        Rigidbody playerRigid;
 
         AudioSource audioSource;
 
@@ -27,6 +34,7 @@ namespace BNG {
                 characterController = player.GetComponentInChildren<CharacterController>();
                 playerGravity = player.GetComponentInChildren<PlayerGravity>();
                 smoothLocomotion = player.GetComponentInChildren<SmoothLocomotion>();
+                playerRigid = player.GetComponent<Rigidbody>();
             }
             else {
                 Debug.Log("No player object found.");
@@ -47,9 +55,21 @@ namespace BNG {
             base.OnTrigger(triggerValue);
         }
 
+        // Apply force to player in Fixed Update
+        public void FixedUpdate() {
+            if(grab != null && grab.BeingHeld && addRigidForce != null && addRigidForce != Vector3.zero) {
+                if(playerRigid) {
+                    playerRigid.AddForce(addRigidForce, ForceMode.Force);
+                }
+            }
+        }
+
         public override void OnGrab(Grabber grabber) {
-            // enforce gravity
-            ChangeGravity(false);
+            // disable gravity
+            if(DisableGravityWhileHeld) {
+                ChangeGravity(false);
+            }
+            
         }
 
         public void ChangeGravity(bool gravityOn) {
@@ -61,16 +81,37 @@ namespace BNG {
         public override void OnRelease() {
             stopJet();
 
-            // enforce gravity
-            ChangeGravity(true);
+            // re-enforce gravity
+            if (DisableGravityWhileHeld) {
+                ChangeGravity(true);
+            }
         }
 
+        Vector3 moveDirection;
+        Vector3 addRigidForce;
+
         void doJet(float triggerValue) {
-            Vector3 moveDirection = transform.forward * JetForce;
+            moveDirection = transform.forward * JetForce;
 
             // Use smooth loco method if available
             if (smoothLocomotion) {
-                smoothLocomotion.MoveCharacter(moveDirection * Time.deltaTime * triggerValue);
+                if(smoothLocomotion.ControllerType == PlayerControllerType.CharacterController) {
+                    smoothLocomotion.MoveCharacter(moveDirection * Time.deltaTime * triggerValue);
+                }
+                else if (smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+                    //smoothLocomotion.MoveRigidPlayer(moveDirection * triggerValue);
+                    
+                    // Handle this in LFixedUpdate
+                    // Rigidbody rb = smoothLocomotion.GetComponent<Rigidbody>();
+
+                    // moveDirection += new Vector3(0, smoothLocomotion.RigidBodyGravity, 0);
+
+                    addRigidForce = moveDirection * triggerValue;
+                    // rb.AddRelativeForce(moveDirection * triggerValue, fm);
+
+                    // smoothLocomotion.MoveCharacter(moveDirection * Time.deltaTime * triggerValue);
+                }
+
             }
             // Fall back to character controller
             else if (characterController) {
@@ -78,7 +119,7 @@ namespace BNG {
             }
 
             // Gravity is always off while jetting
-            ChangeGravity(false);
+            ChangeGravity(false);            
 
             // Sound
             if (!audioSource.isPlaying) {
@@ -106,6 +147,12 @@ namespace BNG {
             if (JetFX != null && JetFX.isPlaying) {
                 JetFX.Stop();
             }
+
+            if (DisableGravityWhileHeld == false) {                
+                ChangeGravity(true);
+            }
+
+            addRigidForce = Vector3.zero;
         }
 
         public override void OnTriggerUp() {

@@ -14,9 +14,21 @@ namespace BNG {
 
         public string PoseName = "Default";
 
+        [Tooltip("The currently selected hand pose. Change this to automatically update the pose in Update")]
         public HandPose CurrentPose;
 
+        [Header("Animation Properties")]
+        [Tooltip("The speed at which to lerp the bones when changing hand poses")]
         public float AnimationSpeed = 15f;
+
+        [Tooltip("If true the local rotation of each bone will be updated while changing hand poses. This should generally be true if you are adjusting a hand pose.")]
+        public bool UpdateJointRotations = true;
+
+        [Tooltip("If true the local position of each bone will be updated while changing hand poses. Typically this will be false as joints only adjust their rotations.")]
+        public bool UpdateJointPositions = false;
+
+        [Tooltip("If true the local position of the wrist will be updated. Useful if you need to move the entire hand.")]
+        public bool UpdateWristPosition = true;
 
         // Hand Pose Transform Definitions
         public HandPoseDefinition HandPoseJoints {
@@ -98,6 +110,15 @@ namespace BNG {
             return GetJointsFromTransforms(OtherJoints);
         }
 
+        public int GetTotalJointsCount() {
+
+            if(ThumbJoints == null || IndexJoints == null) {
+                return 0;
+            }
+
+            return ThumbJoints.Count + IndexJoints.Count + MiddleJoints.Count + RingJoints.Count + PinkyJoints.Count + OtherJoints.Count + (WristJoint != null ? 1 : 0);
+        }
+
         public Transform GetTip(List<Transform> transforms) {
             if(transforms != null) {
                 return transforms[transforms.Count - 1];
@@ -164,8 +185,12 @@ namespace BNG {
             };
         }
 
+        public virtual void UpdateHandPose(HandPose handPose, bool lerp) {
+            UpdateHandPose(handPose.Joints, lerp);
+        }
+
         public virtual void UpdateHandPose(HandPoseDefinition pose, bool lerp) {
-            UpdateJoint(pose.WristJoint, WristJoint, lerp);
+            UpdateJoint(pose.WristJoint, WristJoint, lerp, UpdateWristPosition, UpdateJointRotations);
             UpdateJoints(pose.ThumbJoints, ThumbJoints, lerp);
             UpdateJoints(pose.IndexJoints, IndexJoints, lerp);
             UpdateJoints(pose.MiddleJoints, MiddleJoints, lerp);
@@ -174,27 +199,45 @@ namespace BNG {
             UpdateJoints(pose.OtherJoints, OtherJoints, lerp);
         }
 
-        public virtual void UpdateJoint(FingerJoint fromJoint, Transform toTransform, bool doLerp) {
+        public virtual void UpdateJoint(FingerJoint fromJoint, Transform toTransform, bool doLerp, bool updatePosition, bool updateRotation) {
+            UpdateJoint(fromJoint, toTransform, doLerp ? Time.deltaTime * AnimationSpeed : 1, updatePosition, updateRotation);
+        }
+
+        public virtual void UpdateJoint(FingerJoint fromJoint, Transform toTransform, float lerpAmount, bool updatePosition, bool updateRotation) {
 
             // Invalid joint
-            if(fromJoint == null || toTransform == null) {
+            if (fromJoint == null || toTransform == null) {
                 return;
             }
 
-            if (doLerp) {
-                toTransform.localPosition = Vector3.Lerp(toTransform.localPosition, fromJoint.LocalPosition, Time.deltaTime * AnimationSpeed);
-                toTransform.localRotation = Quaternion.Lerp(toTransform.localRotation, fromJoint.LocalRotation, Time.deltaTime * AnimationSpeed);
+            // Lerp
+            if (lerpAmount != 1) {
+                if(updatePosition) {
+                    toTransform.localPosition = Vector3.Lerp(toTransform.localPosition, fromJoint.LocalPosition, lerpAmount);
+                }
+                if(UpdateJointRotations) {
+                    toTransform.localRotation = Quaternion.Lerp(toTransform.localRotation, fromJoint.LocalRotation, lerpAmount);
+                }
             }
+            // Instantaneous can directly set the local position and rotation
             else {
-                toTransform.localPosition = fromJoint.LocalPosition;
-                toTransform.localRotation = fromJoint.LocalRotation;
+                if (UpdateJointPositions) {
+                    toTransform.localPosition = fromJoint.LocalPosition;
+                }
+                if (UpdateJointRotations) {
+                    toTransform.localRotation = fromJoint.LocalRotation;
+                }
             }
         }
 
         public virtual void UpdateJoints(List<FingerJoint> joints, List<Transform> toTransforms, bool doLerp) {
+            UpdateJoints(joints, toTransforms, doLerp ? Time.deltaTime * AnimationSpeed : 1);
+        }
+
+        public virtual void UpdateJoints(List<FingerJoint> joints, List<Transform> toTransforms, float lerpAmount) {
 
             // Sanity check
-            if(joints == null || toTransforms == null) {
+            if (joints == null || toTransforms == null) {
                 return;
             }
 
@@ -207,18 +250,18 @@ namespace BNG {
             bool verifyTransformName = jointCount != transformsCount;
             for (int x = 0; x < jointCount; x++) {
                 // Make sure the indexes match
-                if(x < toTransforms.Count) {
+                if (x < toTransforms.Count) {
 
                     // Joint may have not been assigned or destroyed
-                    if(joints[x] == null || toTransforms[x] == null) {
+                    if (joints[x] == null || toTransforms[x] == null) {
                         continue;
                     }
 
-                    if(verifyTransformName && joints[x].TransformName == toTransforms[x].name) {
-                        UpdateJoint(joints[x], toTransforms[x], doLerp);
+                    if (verifyTransformName && joints[x].TransformName == toTransforms[x].name) {
+                        UpdateJoint(joints[x], toTransforms[x], lerpAmount, UpdateJointPositions, UpdateJointRotations);
                     }
-                    else if(verifyTransformName == false) {
-                        UpdateJoint(joints[x], toTransforms[x], doLerp);
+                    else if (verifyTransformName == false) {
+                        UpdateJoint(joints[x], toTransforms[x], lerpAmount, UpdateJointPositions, UpdateJointRotations);
                     }
                 }
             }
@@ -244,6 +287,7 @@ namespace BNG {
         /// <param name="poseName"></param>
         /// <returns></returns>
         public virtual void SavePoseAsScriptablObject(string poseName) {
+            /*
 #if UNITY_EDITOR
             
             string fileName = poseName + ".asset";
@@ -277,6 +321,7 @@ namespace BNG {
 #else
     Debug.Log("Scriptable Objects can only be saved from within the Unity Editor. Consider storing in another format like JSON instead.");
 #endif
+            */
         }
 
         /// <summary>
@@ -307,8 +352,9 @@ namespace BNG {
             // Save the new pose
             SavePoseAsScriptablObject(formattedPoseName);
         }
-
+        /*
         public virtual HandPose GetHandPoseScriptableObject() {
+            
 #if UNITY_EDITOR
             var poseObject = UnityEditor.Editor.CreateInstance<HandPose>();
             poseObject.PoseName = PoseName;
@@ -326,8 +372,9 @@ namespace BNG {
 #else
     return null;
 #endif
+            
         }
-
+        */
 
         // How long to check for animations while in the editor mode
         float editorAnimationTime = 0f;
@@ -361,6 +408,7 @@ namespace BNG {
         }
 
         void OnDrawGizmos() {
+            /*
 #if UNITY_EDITOR
             // Update every frame even while in editor
             if (!Application.isPlaying) {
@@ -368,6 +416,7 @@ namespace BNG {
                 UnityEditor.SceneView.RepaintAll();
             }
 #endif
+            */
         }
     }
 }

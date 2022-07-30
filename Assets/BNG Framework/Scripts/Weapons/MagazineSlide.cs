@@ -12,6 +12,7 @@ namespace BNG {
         /// <summary>
         /// Clip transform name must contain this to be considered valid
         /// </summary>
+        [Tooltip("Clip transform name must contain this to be considered valid")]
         public string AcceptableMagazineName = "Clip";
 
         /// <summary>
@@ -151,7 +152,9 @@ namespace BNG {
             HeldMagazine.DropItem(grabber, false, false);
 
             // Play Sound
-            VRUtils.Instance.PlaySpatialClipAt(ClipAttachSound, transform.position, 1f);
+            if(ClipAttachSound && Time.timeSinceLevelLoad > 0.1f) {
+                VRUtils.Instance.PlaySpatialClipAt(ClipAttachSound, transform.position, 1f);
+            }
 
             // Move to desired location before locking in place
             moveMagazine(Vector3.zero);

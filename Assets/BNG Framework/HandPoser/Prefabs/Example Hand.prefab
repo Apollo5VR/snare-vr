@@ -523,7 +523,7 @@ MonoBehaviour:
   MiddleFingerCollider: {fileID: 403373444602473636}
   RingFingerCollider: {fileID: 403373444617697103}
   PinkyFingerCollider: {fileID: 403373444070465508}
-  UpdateContinuously: 1
+  UpdateContinuously: 0
   IdleHandPose: {fileID: 0}
   CollisionLayerMask:
     serializedVersion: 2

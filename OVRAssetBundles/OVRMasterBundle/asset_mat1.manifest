@@ -1,0 +1,41 @@
+ManifestFileVersion: 0
+CRC: 1437048178
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: aea0e97cf01f967a308f26157868ab10
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 82515b3694a1e5beae009c48c1198c34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/Transparent/48 TRANSPARENT
+  BLUE-LPUP.mat
+- Assets/BNG Framework/Materials/StringMaterial.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/Emission/59 EMISSION-WHITE-LPUP.mat
+- Assets/BNG Framework/Materials/GridBlack.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/atlas-LPUP.mat
+- Assets/BNG Framework/Materials/GridDark.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/13 BROWN-LIGHT-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/20 GREY-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/26 RED-DARK-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/46 BLUE-LIGHEST-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/15 BROWN-WHITE-LPUP.mat
+- Assets/BNG Framework/Materials/NavyFloor.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/39 GREEN-WHITE-LPUP.mat
+- Assets/BNG Framework/Materials/Pink.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/21 GREY-LIGHT-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/10 BROWN-DARK-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/11 BROWN-MEDIUM-LPUP.mat
+- Assets/polyperfect/Low Poly Ultimate Pack/- Materials/Colors/37 GREEN-LIGHT-LPUP.mat
+Dependencies:
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_png0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_psd0

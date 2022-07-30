@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace BNG {
@@ -31,6 +32,9 @@ namespace BNG {
         /// </summary>
         [Tooltip("The default grab button for all Grabbables. A Grabbable can manually override this default.")]
         public GrabButton DefaultGrabButton = GrabButton.Grip;
+
+        [Tooltip("(Optional) Input Action used to enact grab action.")]
+        public InputActionReference GrabAction;
 
         [Header("Hold / Release")]
         /// <summary>
@@ -252,7 +256,7 @@ namespace BNG {
             }
         }
 
-        void updateFreshGrabStatus() {
+        protected virtual void updateFreshGrabStatus() {
             // Update Fresh Grab status
             if (getGrabInput(GrabButton.Grip) <= ReleaseGripAmount) {
                 // We release grab, so this is considered fresh
@@ -372,6 +376,11 @@ namespace BNG {
             if (closestHoldType == HoldType.HoldDown) {
                 bool grabInput = getGrabInput(closestGrabButton) >= GripAmount;
 
+                if (!grabInput && GrabAction != null) {
+                    // Check Input Action
+                    grabInput = GrabAction.action.ReadValue<float>() >= GripAmount;
+                }
+
                 if (closestGrabButton == GrabButton.Grip && !FreshGrip) {
                     return false;
                 }
@@ -389,7 +398,7 @@ namespace BNG {
 
             return false;
         }
-        
+
         HoldType getHoldType(Grabbable grab) {
             HoldType closestHoldType = grab.Grabtype;
 
@@ -563,7 +572,6 @@ namespace BNG {
 
             // Fire off Grabber 'before' grab event
             onGrabEvent?.Invoke(item);
-
 
             // Let item know it's been grabbed
             item.GrabItem(this);

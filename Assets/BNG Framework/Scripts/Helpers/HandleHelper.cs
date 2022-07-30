@@ -68,7 +68,7 @@ namespace BNG {
                     thisGrab.DropItem(false, false);
                 }
 
-                lastAngularVelocity = rb.angularVelocity;
+                lastAngularVelocity = rb.angularVelocity * -1;
             }
         }
 

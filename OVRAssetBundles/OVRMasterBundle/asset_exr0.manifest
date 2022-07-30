@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 3658268923
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5cf125fd99584e91bb38c38da0574f6d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e6e651bdddca608c77d51fff2e12d033
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/Zone Practice/Lightmap-6_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-9_comp_light.exr
+- Assets/Scenes/Start/ReflectionProbe-0.exr
+- Assets/Scenes/Zone Practice/Lightmap-3_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-5_comp_light.exr
+- Assets/Scenes/Start/Lightmap-0_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-2_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-0_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-1_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-11_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-10_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-4_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-8_comp_light.exr
+- Assets/Scenes/Zone Practice/Lightmap-7_comp_light.exr
+- Assets/Scenes/Zone Practice/ReflectionProbe-0.exr
+Dependencies: []

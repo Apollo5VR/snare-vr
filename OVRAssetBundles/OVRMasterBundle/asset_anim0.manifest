@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1060131674
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 60fa22ee1af1890e34d2f58fb8e8f081
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: af57576da81d5d3ce45807ac11234de6
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/BNG Framework/Animation/RockRight.anim
+- Assets/BNG Framework/Animation/PistolRight.anim
+Dependencies: []

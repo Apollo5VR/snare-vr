@@ -1,0 +1,47 @@
+ManifestFileVersion: 0
+CRC: 1346101160
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0c1d51ab6e88b82278faffc124ca3a80
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/Zone Practice/Lightmap-8_comp_dir.png
+- Packages/com.unity.inputsystem/InputSystem/Editor/Icons/InputSystemUIInputModule@64.png
+- Assets/Scenes/Zone Practice/Lightmap-9_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-4_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-2_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-5_comp_dir.png
+- Assets/Obi/Samples/RopeAndRod/SampleResources/Textures/Rope_OCC.png
+- Assets/BNG Framework/Models/Hands/golves_low_golves_matt_Normal.png
+- Assets/Scenes/Zone Practice/Lightmap-7_comp_dir.png
+- Assets/Obi/Samples/RopeAndRod/SampleResources/Textures/Rope_red.png
+- Assets/BNG Framework/Textures/pistol_emissive.png
+- Assets/Scenes/Zone Practice/Lightmap-10_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-1_comp_dir.png
+- Assets/IndieMarc/CurvedLine/Demo/Textures/footsteps.png
+- Assets/Scenes/Start/Lightmap-0_comp_dir.png
+- Assets/BNG Framework/Models/Hands/golves_low_golves_matt_Height.png
+- Assets/polyperfect/Low Poly Ultimate Pack/- Textures/atlas-albedo-LPUP.png
+- Assets/BNG Framework/Textures/BNG_Atlas_A.png
+- Assets/BNG Framework/Models/Hands/golves_low_golves_matt_Diffuse02.png
+- Assets/Scenes/Zone Practice/Lightmap-3_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-11_comp_dir.png
+- Assets/SimpleFantasyInteriors/Textures/SimpleFantasyInteriorsTexture.png
+- Assets/BNG Framework/Models/Hands/lightV03_hand.png
+- Assets/Scenes/Zone Practice/Lightmap-0_comp_dir.png
+- Assets/Scenes/Zone Practice/Lightmap-6_comp_dir.png
+- Assets/polyperfect/Low Poly Ultimate Pack/- Textures/atlas-specular-LPUP.png
+- Assets/polyperfect/Low Poly Ultimate Pack/- Textures/atlas-emission-LPUP.png
+- Assets/Obi/Samples/RopeAndRod/SampleResources/Textures/Rope_NRM.png
+- Assets/Images/NoBuilding.png
+Dependencies: []

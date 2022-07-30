@@ -1,0 +1,83 @@
+ManifestFileVersion: 0
+CRC: 530603703
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 855e6a5295ad763d4b896f398b585a66
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b6b4912edefbedc4baa57e7b723815ed
+HashAppended: 0
+ClassTypes:
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8f7e67b5626124d0db9886e6cd2aacff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 775ad4994fda946d1a5936c7e2dfc785, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 238
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Obi
+  ClassName: Obi.ObiAerodynamicConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiBendConstraintsBatch
+- AssemblyName: Obi
+  ClassName: Obi.ObiBendConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiBendTwistConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiChainConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiColorDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiDistanceConstraintsBatch
+- AssemblyName: Obi
+  ClassName: Obi.ObiDistanceConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiMassDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiNativeFloatList
+- AssemblyName: Obi
+  ClassName: Obi.ObiNativeIntList
+- AssemblyName: Obi
+  ClassName: Obi.ObiNativeVector2List
+- AssemblyName: Obi
+  ClassName: Obi.ObiNormalDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiPath
+- AssemblyName: Obi
+  ClassName: Obi.ObiPhaseDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiPointsDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiRotationalMassDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiShapeMatchingConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiSkinConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiStretchShearConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiTetherConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiThicknessDataChannel
+- AssemblyName: Obi
+  ClassName: Obi.ObiVolumeConstraintsData
+- AssemblyName: Obi
+  ClassName: Obi.ObiWingedPoint
+- AssemblyName: Obi
+  ClassName: Obi.PathControlPointEvent
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
+Assets:
+- Assets/BNG Framework/Models/Triangle.asset
+- Assets/BNG Framework/Models/Cylinder.asset
+- Assets/Obi/Samples/RopeAndRod/SampleResources/Blueprints/Straight short rope -
+  G.asset
+- Assets/Scenes/Zone 2/NavMesh.asset
+Dependencies: []

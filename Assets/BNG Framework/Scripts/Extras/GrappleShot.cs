@@ -5,13 +5,28 @@ using UnityEngine;
 namespace BNG {
     public class GrappleShot : GrabbableEvents {
 
+        [Header("Range")]
         public float MaxRange = 100f;
+
+        [Header("CharacterController Grapple Settings")]
+        [Tooltip("(CharacterController Player Only) How much movement speed to apply to the CharacterController to move towards the grapple")]
         public float GrappleReelForce = 0.5f;
 
-        // currentGrappleDistance must be greater than this to reel in
+        [Tooltip("currentGrappleDistance must be greater than this to reel in")]
         public float MinReelDistance = 0.25f;
 
+        [Header("Rigidbody Grapple Settings")]
+        [Tooltip("(Rigidbody Player Only) How much force to apply to the player to move towards the grapple")]
+        public float GrappleForce = 3f;
+
+        [Tooltip("(Rigidbody Player Only) Type of ForceMode to use to move the player towards the grapple point. ForceMode. ForceMode.Acceleration will let you preserve momentum and Swing Around. Use lower number for Acceleration (ex : 3). ForceMode.Velocity will immediately alter your player's velocity, resulting in a smooth but linear movement. Use higher numbers (ex : 200).")]
+        public ForceMode GrappleForceMode = ForceMode.Acceleration;
+
+        [Header("Raycast Layers")]
+
         public LayerMask GrappleLayers;
+
+        [Header("Component definitions")]
 
         public Transform MuzzleTransform;
         public Transform HitTargetPrefab;
@@ -29,10 +44,13 @@ namespace BNG {
         SmoothLocomotion smoothLocomotion;
         PlayerGravity playerGravity;
         PlayerClimbing playerClimbing;
+        Rigidbody playerRigid;
 
         AudioSource audioSource;
 
         // How far away the grapple is in meters
+        [Header("Shown for Debug :")]
+
         public float currentGrappleDistance = 0;
 
         bool validTargetFound = false;// Is there something valid to grapple on to
@@ -56,6 +74,7 @@ namespace BNG {
                 smoothLocomotion = player.GetComponentInChildren<SmoothLocomotion>();
                 playerGravity = player.GetComponentInChildren<PlayerGravity>();
                 playerClimbing = player.GetComponentInChildren<PlayerClimbing>();
+                playerRigid = player.GetComponent<Rigidbody>();
             }
             else {
                 Debug.Log("No player object found.");
@@ -276,7 +295,17 @@ namespace BNG {
 
                     // Use smooth loco method if available
                     if(smoothLocomotion) {
-                        smoothLocomotion.MoveCharacter(moveDirection * Time.deltaTime * triggerValue);
+                        if (smoothLocomotion.ControllerType == PlayerControllerType.CharacterController) {
+                            smoothLocomotion.MoveCharacter(moveDirection * Time.deltaTime * triggerValue);
+                        }
+                        else if (smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+                            if(GrappleForceMode == ForceMode.VelocityChange) {
+                                playerRigid.velocity = Vector3.MoveTowards(playerRigid.velocity, (moveDirection * GrappleForce) * Time.fixedDeltaTime, 1f);
+                            }
+                            else {
+                                playerRigid.AddForce(moveDirection * GrappleForce, GrappleForceMode);
+                            }
+                        }
                     }
                     // Fall back to character controller
                     else if(characterController) {

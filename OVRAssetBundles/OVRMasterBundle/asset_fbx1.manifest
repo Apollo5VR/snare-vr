@@ -1,0 +1,58 @@
+ManifestFileVersion: 0
+CRC: 3194255992
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6f4f6ab333d962418da14c08f1fa5b47
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fee1c6e80ce93dc43c78a279afa71396
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/log-birch.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Mushrooms_M/mushroom-toadstool.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Stones_M/rock-pillar.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Stones_M/stone-diamond.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Clouds_M/cloud-big.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-beech.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-birch.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Grass_M/grass-clumb.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Flowers_M/roses.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Animals_M/wolf.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Terrains_M/terrain-mountains.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Stones_M/stone-flat.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Props_M/guidepost.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Grass_M/grass-basic.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Mushrooms_M/mushroom-toadstool-green.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-spruce.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/tree-tall.fbx
+- Assets/Models/SnareLoop.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Nature_T/stone-diamond.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Stones_M/stone-round.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Grass_M/grass-long.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Space_M/moon.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Mushrooms_M/mushroom-boletus.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Animals_M/bear.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/log.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Tools_M/axe.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Clouds_M/cloud-small.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/stump.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Trees_M/logs.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Others_M/water-wave-circle.fbx
+Dependencies: []

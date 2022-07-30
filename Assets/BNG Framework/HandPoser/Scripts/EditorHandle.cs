@@ -11,7 +11,7 @@ namespace BNG {
         public float Radius = 0.000875f;
 
         public Color BaseColor = new Color(255f, 255f, 255f, 0.1f);
-
+/*
 #if UNITY_EDITOR
         void OnEnable() {
             this.gameObject.hideFlags = HideFlags.None;
@@ -49,6 +49,7 @@ namespace BNG {
             Gizmos.DrawSphere(transform.position, 0.003f);
         }
 #endif
+*/
     }
 }
 

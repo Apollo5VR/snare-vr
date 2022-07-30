@@ -120,7 +120,9 @@ namespace BNG {
             closestPoint = newPoint;
 
             // Update hand animation
-            dummyGrabbable.CustomHandPose = newPoint.HandPose;
+            // dummyGrabbable.CustomHandPose = newPoint.HandPose;
+            dummyGrabbable.handPoseType = newPoint.handPoseType;
+            dummyGrabbable.SelectedHandPose = newPoint.SelectedHandPose;
 
             // Move Hand Graphics if they are available
             if (currentGrabber != null && currentGrabber.HandsGraphics != null) {

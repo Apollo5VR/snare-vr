@@ -53,7 +53,7 @@ namespace BNG {
         }
 
         
-
+        /*
         public void SaveAs() {
 
             GetWindow<HandPoseSaveAs>().Close();
@@ -74,6 +74,7 @@ namespace BNG {
                 inspectedPoser.CurrentPose = poseObject;
             }
         }
+        */
 
 
         void OnGUI() {
@@ -120,7 +121,7 @@ namespace BNG {
             GUILayout.FlexibleSpace();
 
             if (GUILayout.Button(" Save as... ", EditorStyles.miniButton)) {
-                SaveAs();
+                //SaveAs();
             }
 
             var initialColor = GUI.backgroundColor;

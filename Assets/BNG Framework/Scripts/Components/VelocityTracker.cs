@@ -102,7 +102,7 @@ namespace BNG {
             else {
                 // Add the playspace rotation in if necessary
                 if(playSpace != null) {
-                    return playSpace.transform.rotation* vel;
+                    return playSpace.transform.rotation * vel;
                 }
 
                 return vel;

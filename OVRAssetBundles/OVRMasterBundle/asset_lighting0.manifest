@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 509005937
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ddc6b6fcb0a2b0f72e61384b2ba6ac69
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4a124a79f3cd96c32e82437ed953faa0
+HashAppended: 0
+ClassTypes:
+- Class: 850595691
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/StarttSettings.lighting
+Dependencies: []

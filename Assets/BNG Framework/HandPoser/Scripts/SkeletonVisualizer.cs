@@ -29,7 +29,7 @@ namespace BNG {
             if (isQuiting) {
                 return;
             }
-
+/*
 #if UNITY_EDITOR
             // Remove any components we had added
             if (Application.isEditor && !Application.isPlaying) {
@@ -38,8 +38,9 @@ namespace BNG {
                 UnityEditor.SceneView.RepaintAll();
             }
 #endif
+*/
         }
-
+/*
 #if UNITY_EDITOR
         void OnDrawGizmos() {
 
@@ -100,6 +101,7 @@ namespace BNG {
             }
         }
 #endif
+*/
 
 
         /// <summary>

@@ -66,6 +66,7 @@ namespace BNG {
         public bool ShowAngleGizmo = true;
 
         #region Editor
+        /*
 #if UNITY_EDITOR
         // Make sure animators update in the editor mode to show hand positions
         // By using OnDrawGizmosSelected we only call this function if the object is selected in the editor
@@ -104,6 +105,7 @@ namespace BNG {
             }
         }
 #endif
+        */
 
         bool offsetFound = false;
 
@@ -205,13 +207,14 @@ namespace BNG {
                     if(animators[x].isActiveAndEnabled) {
                         animators[x].Update(Time.deltaTime);
                     }
-
+/*
 #if UNITY_EDITOR
                     // Only set dirty if not in prefab mode
                     if (UnityEditor.Experimental.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage() == null) {
                         UnityEditor.EditorUtility.SetDirty(animators[x].gameObject);
                     }
 #endif
+*/
                 }
                 // Disable the animator in editor mode if using handpose
                 else if (handPoseType == HandPoseType.HandPose && SelectedHandPose != null) {

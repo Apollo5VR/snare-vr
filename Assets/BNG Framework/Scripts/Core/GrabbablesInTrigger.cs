@@ -37,7 +37,28 @@ namespace BNG {
         /// <summary>
         /// Should we call events on grabbables
         /// </summary>
+        [Header("Events")]
         public bool FireGrabbableEvents = true;
+
+        /// <summary>
+        /// If true, Grabbables in the trigger will only be considered valid if no objects are in the way between it and this transform
+        /// </summary>
+        [Header("Collision Checks")]
+        [Tooltip("If true, Grabbables in the trigger will only be considered valid if no objects are in the way between it and this transform")]
+        public bool RaycastRemoteGrabbables = false;
+
+        /// <summary>
+        /// If true, Remote Grabbables must not have any collisions between the Main Camera and the Remote Grabbable we are trying to reach. This can help prevent grabbing items through walls or around corners.
+        /// </summary>
+        [Tooltip(" If true, Remote Grabbables must not have any collisions between the Main Camera and the Remote Grabbable we are trying to reach. This can help prevent grabbing items through walls or around corners.")]
+        public bool RemoteGrabbablesMustBeVisible = false;
+
+        /// <summary>
+        /// If RaycastRemoteGrabbables is true, use these layers to detect collisions between the grabber and the potential grabbable object. By Default only looking for collisions on the "Default" layer
+        /// </summary>
+        [Tooltip("If RaycastRemoteGrabbables is true, use these layers to detect collisions between the grabber and the potential grabbable object. By Default only looking for collisions on the 'Default' layer")]
+        public LayerMask RemoteCollisionLayers = 1;
+
 
         // Cache these variables for GC
         private Grabbable _closest;
@@ -45,11 +66,18 @@ namespace BNG {
         private float _thisDistance;
         private Dictionary<Collider, Grabbable> _valids;
         private Dictionary<Collider, Grabbable> _filtered;
+        private Transform _eyeTransform;
+
 
         void Start() {
             NearbyGrabbables = new Dictionary<Collider, Grabbable>();
             ValidGrabbables = new Dictionary<Collider, Grabbable>();
             ValidRemoteGrabbables = new Dictionary<Collider, Grabbable>();
+
+            // Used to check if an object is between the eye and this object if RemoteGrabbablesMustBeVisible is true
+            if (Camera.main != null) {
+                _eyeTransform = Camera.main.transform;
+            }
         }
 
         void Update() {
@@ -73,7 +101,7 @@ namespace BNG {
         void updateClosestRemoteGrabbables() {
 
             // Assign closest remote grabbable
-            ClosestRemoteGrabbable = GetClosestGrabbable(ValidRemoteGrabbables, true);
+            ClosestRemoteGrabbable = GetClosestGrabbable(ValidRemoteGrabbables, true, RaycastRemoteGrabbables);
 
             // We can't have a closest remote grabbable if we are over a grabbable.
             // The closestGrabbable always takes precedent of the closestRemoteGrabbable
@@ -82,7 +110,7 @@ namespace BNG {
             }
         }
 
-        public virtual Grabbable GetClosestGrabbable(Dictionary<Collider, Grabbable> grabbables, bool remoteOnly = false) {
+        public virtual Grabbable GetClosestGrabbable(Dictionary<Collider, Grabbable> grabbables, bool remoteOnly = false, bool raycastCheck = false) {
             _closest = null;
             _lastDistance = 9999f;
 
@@ -109,6 +137,20 @@ namespace BNG {
                         continue;
                     }
 
+                    // Do raycast check last to save a physics check
+                    if(raycastCheck && !kvp.Value.RemoteGrabbing) {
+                        if(CheckObjectBetweenGrabbable(transform.position, kvp.Value)) {
+                            continue;
+                        }
+
+                        // So far no obstructions. Check if an object is between the camera
+                        if(RemoteGrabbablesMustBeVisible && _eyeTransform != null) {
+                            if (CheckObjectBetweenGrabbable(_eyeTransform.position, kvp.Value)) {
+                                continue;
+                            }
+                        }
+                    }
+
                     // This is now our closest grabbable
                     _lastDistance = _thisDistance;
                     _closest = kvp.Value;
@@ -116,6 +158,31 @@ namespace BNG {
             }
 
             return _closest;
+        }
+
+
+        /// <summary>
+        /// Check if there is an object / collision between the starting transform (our Grabber) and the grabbable object
+        /// </summary>        
+        /// <returns>True if there is an object between the starting position and the grabbable position</returns>
+        public virtual bool CheckObjectBetweenGrabbable(Vector3 startingPosition, Grabbable theGrabbable) {
+            RaycastHit hit;
+            if (Physics.Linecast(startingPosition, theGrabbable.transform.position, out hit, RemoteCollisionLayers, QueryTriggerInteraction.Ignore)) {
+
+                // Something in the way
+                float hitDistance = Vector3.Distance(startingPosition, hit.point);
+                if (hit.collider.gameObject != theGrabbable.gameObject) {
+                    if(hitDistance > 0.09f) {
+                        // Debug.Log("Something in-between : " + hit.collider.gameObject.name + " At Distance : " + hitDistance);
+                        return true;
+                    }
+                    else {
+                        // Debug.Log("Something in between but very close : " + hit.collider.gameObject.name);
+                    }
+                }
+            }
+
+            return false;
         }
 
         public Dictionary<Collider, Grabbable> GetValidGrabbables(Dictionary<Collider, Grabbable> grabs) {
@@ -127,7 +194,7 @@ namespace BNG {
 
             // Check for objects that need to be removed from RemoteGrabbables
             foreach (var kvp in grabs) {
-                if (isValidGrabbale(kvp.Key, kvp.Value) && !_valids.ContainsKey(kvp.Key)) {
+                if (isValidGrabbable(kvp.Key, kvp.Value) && !_valids.ContainsKey(kvp.Key)) {
                     _valids.Add(kvp.Key, kvp.Value);
                 }
             }
@@ -135,7 +202,7 @@ namespace BNG {
             return _valids;
         }
 
-        protected virtual bool isValidGrabbale(Collider col, Grabbable grab) {
+        protected virtual bool isValidGrabbable(Collider col, Grabbable grab) {
 
             // Object has been deactivated. Remove it
             if (col == null || grab == null || !grab.isActiveAndEnabled || !col.enabled) {
@@ -176,8 +243,6 @@ namespace BNG {
                     }
 
                     // Collision check via raycast
-
-
                     _filtered.Add(g.Key, g.Value);
                 }
             }

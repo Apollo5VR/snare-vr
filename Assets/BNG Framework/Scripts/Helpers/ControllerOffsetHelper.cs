@@ -71,18 +71,42 @@ namespace BNG {
         }
 
         public virtual ControllerOffset GetControllerOffset(string controllerName) {
-            return ControllerOffsets.FirstOrDefault(x => thisControllerModel.StartsWith(x.ControllerName));
+
+            var offset = ControllerOffsets.FirstOrDefault(x => thisControllerModel.StartsWith(x.ControllerName));
+
+            // This is an OpenXR controller - fallback to a generic offset
+            if(offset == null && controllerName.EndsWith("OpenXR")) {
+                return GetOpenXROffset();
+            }
+
+            return offset;
         }
 
         public virtual void DefineControllerOffsets() {
             ControllerOffsets = new List<ControllerOffset>();
 
-            // Sample Offsets :
+            // Sample OpenVR Offsets :
             // Oculus Touch OpenVR :  "OpenVR Controller(Oculus Quest (Right Controller)) - Right"
             // HTC Vive Wand : "OpenVR Controller(Vive Controller MV) - Right"
             // Vive Cosmos : "OpenVR Controller(vive_cosmos_controller) - Right"
             // Valve Knuckles OpenVR : "OpenVR Controller(Knuckles Right) -Right"
             // Windows WMR - HP 1440 - VR 1000 : "OpenVR Controller(WindowsMR: 0x045E/0x065B/0/2) - Right"
+
+            ControllerOffsets.Add(new ControllerOffset() {
+                ControllerName = "Oculus Touch Controller OpenXR",
+                LeftControllerPositionOffset = new Vector3(0.002f, -0.02f, 0.04f),
+                RightControllerPositionOffset = new Vector3(-0.002f, -0.02f, 0.04f),
+                LeftControllerRotationOffset = new Vector3(60.0f, 0.0f, 0.0f),
+                RightControlleRotationOffset = new Vector3(60.0f, 0.0f, 0.0f)
+            });
+
+            ControllerOffsets.Add(new ControllerOffset() {
+                ControllerName = "Index Controller OpenXR",
+                LeftControllerPositionOffset = new Vector3(0.002f, -0.02f, 0.04f),
+                RightControllerPositionOffset = new Vector3(-0.002f, -0.02f, 0.04f),
+                LeftControllerRotationOffset = new Vector3(60.0f, 0.0f, 0.0f),
+                RightControlleRotationOffset = new Vector3(60.0f, 0.0f, 0.0f)
+            });
 
             // Oculus Touch on Oculus SDK is at correct orientation by default
             // Example  : "Oculus Touch Controller - Right"
@@ -107,7 +131,22 @@ namespace BNG {
                 LeftControllerRotationOffset = new Vector3(40.0f, 0.0f, 0.0f),
                 RightControlleRotationOffset = new Vector3(40.0f, 0.0f, 0.0f)
             });
-            
+        }
+
+        /// <summary>
+        /// Returns a generic offset for OpenXR controllers not defined in DefineControllerOffsets(). 
+        /// All OpenXR controllers appear to have about a 60 degree rotation in Unity, for example.
+        /// Override this method if you need to specify a different offset (or none at all)
+        /// </summary>
+        /// <returns></returns>
+        public virtual ControllerOffset GetOpenXROffset() {
+            return new ControllerOffset() {
+                ControllerName = "Controller OpenXR",
+                LeftControllerPositionOffset = new Vector3(0.002f, -0.02f, 0.04f),
+                RightControllerPositionOffset = new Vector3(-0.002f, -0.02f, 0.04f),
+                LeftControllerRotationOffset = new Vector3(60.0f, 0.0f, 0.0f),
+                RightControlleRotationOffset = new Vector3(60.0f, 0.0f, 0.0f)
+            };
         }
     }
 

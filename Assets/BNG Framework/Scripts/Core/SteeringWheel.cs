@@ -294,7 +294,7 @@ namespace BNG {
 
             return returnValue;
         }                
-
+/*
 #if UNITY_EDITOR
         public void OnDrawGizmosSelected() {
             if (ShowEditorGizmos && !Application.isPlaying) {
@@ -335,6 +335,7 @@ namespace BNG {
             }
         }
 #endif
+*/
     }
 }
 

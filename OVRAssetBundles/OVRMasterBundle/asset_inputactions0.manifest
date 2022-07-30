@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 3632832284
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8f6ff2199eab064f04108491f513ce32
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 94e1140c81e83c69902f3434ca66e30b
+HashAppended: 0
+ClassTypes:
+- Class: 114
+  Script: {fileID: 11500000, guid: 39fa3d8997a24136984ca6e2c99902bc, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputAction
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputActionMap
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputBinding
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme
+- AssemblyName: Unity.InputSystem
+  ClassName: UnityEngine.InputSystem.InputControlScheme/DeviceRequirement
+Assets:
+- Assets/BNG Framework/Input/VRIF Emulator Actions.inputactions
+- Assets/BNG Framework/Input/VRIF Default Input Actions.inputactions
+- Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions
+Dependencies: []

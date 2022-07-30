@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 2313891284
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f6b64add252c1eec7acb015e5a51934b
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fee1c6e80ce93dc43c78a279afa71396
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Nature_T/tree-trunk.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/T/- Meshes_T/Nature_T/grass-clumb.fbx
+- Assets/polyperfect/Low Poly Ultimate Pack/M/- Meshes_M/Nature_M/Grass_M/grass.fbx
+Dependencies: []

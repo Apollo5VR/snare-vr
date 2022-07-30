@@ -1,0 +1,437 @@
+ManifestFileVersion: 0
+CRC: 4034740868
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 82ceab7413db85065587e2a10b05bbb2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9051576389690db7f9e9df94c4e4cf06
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: ab2114bdc8544297b417dfefe9f1e410, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ab52d2f563d6a2547a95671c153ebbb3, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 45802d8126c80674886a1c7b14960856, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 6adc4fd6a6abfed4f907473a5fffa431, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b90ed01ac5d94e9468b242b4c38496a8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b98ba066fd33ded4aa6474529973e6fb, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b82ce7588ea2eb74e864e8834b8aaa05, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2705215ac5b84b70bacc50632be6e391, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 470b955f5c71e0742bd023ab27b0629a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ad074644ff568a14187a3690cfbd7534, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a946f7344c486704badbda60741c6c19, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c575c9380b9d239499fadf100ef2800b, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e477cb3cbcb6aeb43a3f8a3f063ccb1a, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d095236d72305f645a71d717903e9d8f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b3d881e962d099f4a8eb492ef7e9a8c0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ee7737c43f5734f87be9e49d1bbfba78, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c079485b3cec8a14c85546b51a8b27b7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 78565d1a7df53dc43951ba503a0c8417, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 70c2f484f132c044097f03d65cac3b24, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 134
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Assembly-CSharp
+  ClassName: BNG.FingerJoint
+- AssemblyName: Assembly-CSharp
+  ClassName: BNG.HandPoseDefinition
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphPairAdjustmentRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_GlyphValueRecord
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Sprite
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteCharacter
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_SpriteGlyph
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Style
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.UnityEvent
+- AssemblyName: UnityEngine.IMGUIModule
+  ClassName: UnityEngine.GUISettings
+- AssemblyName: UnityEngine.IMGUIModule
+  ClassName: UnityEngine.GUIStyle
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.FontData
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+Assets:
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Middle.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Grip Shaft.asset
+- Assets/Obi/Editor/Resources/Icons/ObiProfiler Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiAmbientForceZone Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiSkinnedClothRenderer Icon.png
+- Assets/Obi/Editor/Resources/HandleButton.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Ping Pong.asset
+- Assets/Obi/Editor/Resources/Icons/ObiParticleRenderer Icon.png
+- Assets/Obi/Editor/Resources/SelectIcon.psd
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeEdge Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 6.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 1.asset
+- Assets/BNG Framework/Editor/Resources/DefaultGrabbableItem.prefab
+- Assets/BNG Framework/Editor/Resources/handIconRight.png
+- Assets/Resources/BillingMode.json
+- Assets/Oculus/Voice/Resources/voicesdk_texts_en-us.json
+- Assets/Obi/Editor/Resources/FillButton.psd
+- Assets/Obi/Editor/Resources/Icons/ObiSkinConstraints Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiRopeCursor Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiVolumeConstraints Icon.png
+- Assets/Obi/Editor/Resources/ToggleableGroupBg.psd
+- Assets/BNG Framework/Resources/Robot/Materials/Robot_Color.mat
+- Assets/Obi/Editor/Resources/FrontfacesButton.psd
+- Assets/Obi/Editor/Resources/PlayButton.psd
+- Assets/Oculus/VR/Resources/Underlay Impostor.shader
+- Assets/Obi/Editor/Resources/PauseButton.psd
+- Assets/Obi/Editor/Resources/RestoreButton.psd
+- Assets/Obi/Editor/Resources/RotateControlPoint.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Peace 2.asset
+- Assets/Oculus/VR/Resources/Underlay Transparent Occluder.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Rounded.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 10.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Tight.asset
+- Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeCube Icon.png
+- Assets/BNG Framework/Resources/Robot/Robot Controller.controller
+- Assets/Obi/Editor/Resources/Icons/ObiSoftbodySkinner Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Ball Small.asset
+- Assets/Obi/Editor/Resources/Icons/ObiCollisionMaterial Icon.png
+- Assets/QuickOutline/Resources/Shaders/OutlineFill.shader
+- Assets/Obi/Editor/Resources/PinButton.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 2.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Sign 2.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Ring.asset
+- Assets/Obi/Resources/GUI/ProfilerSkin.guiskin
+- Assets/Obi/Resources/GUI/task_bck.png
+- Assets/Obi/Resources/ObiMaterials/StandardVertexColors.shader
+- Assets/Obi/Editor/Resources/RemoveButton.psd
+- Assets/Obi/Editor/Resources/SmoothButton.psd
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/witai_texts_en-us.json
+- Assets/Oculus/Voice/Resources/voicesdk_heroart.png
+- Assets/Obi/Editor/Resources/Icons/ObiRod Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinky.asset
+- Assets/Obi/Editor/Resources/Icons/ObiUpdater Icon.png
+- Assets/Obi/Editor/Resources/StopRecButton.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch 3.asset
+- Assets/Obi/Resources/GUI/thread_bck.png
+- Assets/Oculus/VR/Resources/OVRMRCameraFrame.shader
+- Assets/Obi/Editor/Resources/PaddingMaterial.mat
+- Assets/BNG Framework/Resources/Robot/Robot Kyle.prefab
+- Assets/Obi/Editor/Resources/Icons/ObiRopeMeshRenderer Icon.png
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/UnderlayTransparentOccluderImposter.shader
+- Assets/BNG Framework/Resources/Arrow2.prefab
+- Assets/BNG Framework/HandPoser/Poses/Resources/Sign 1.asset
+- Assets/Obi/Editor/Resources/OrientControlPoint.psd
+- Assets/BNG Framework/Editor/Resources/DefaultGrabPointItem.prefab
+- Assets/BNG Framework/HandPoser/Poses/Resources/Sign 3.asset
+- Assets/Obi/Editor/Resources/RadiusIndicator.psd
+- Assets/Obi/Editor/Resources/PencilButton.psd
+- Assets/Obi/Editor/Resources/Icons/ObiStretchShearConstraints Icon.png
+- Assets/Obi/Editor/Resources/OpenCloseCurve.psd
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeMesh Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiParticlePicker Icon.png
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+- Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset
+- Assets/Obi/Editor/Resources/Icons/ObiClothProxy Icon.png
+- Assets/Oculus/VR/Resources/Unlit Transparent Color.shader
+- Assets/BNG Framework/Editor/Resources/RightHandModelsEditorPreview.prefab
+- Assets/Obi/Editor/Resources/EditorParticle.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/OK.asset
+- Assets/Obi/Editor/Resources/BrushIcon.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Grip 2.asset
+- Assets/Obi/Editor/Resources/Icons/ObiRigidbody Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 3.asset
+- Assets/QuickOutline/Resources/Materials/OutlineFill.mat
+- Assets/Obi/Resources/GUI/profiler_toolbar.png
+- Assets/Obi/Editor/Resources/ClearTethersButton.psd
+- Assets/TextMesh Pro/Resources/Sprite Assets/EmojiOne.asset
+- Assets/Obi/Editor/Resources/Icons/ObiClothRenderer Icon.png
+- Assets/Obi/Editor/Resources/UnpinButton.psd
+- Assets/Obi/Editor/Resources/Icons/ObiTearableCloth Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiDistanceField Icon.png
+- Assets/Resources/OculusPlatformSettings.asset
+- Assets/Obi/Resources/GUI/profiler_bck.png
+- Assets/Obi/Editor/Resources/GaussianButton.psd
+- Assets/Obi/Editor/Resources/Icons/ObiSphericalForceZone Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 7.asset
+- Assets/Obi/Editor/Resources/BrushHandle.psd
+- Assets/Obi/Editor/Resources/DistanceFieldPreview.mat
+- Assets/Obi/Editor/Resources/Icons/ObiCurve Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiDistanceConstraints Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiPlant Icon.png
+- Assets/Obi/Editor/Resources/SeparatorLine.psd
+- Assets/Obi/Resources/ObiMaterials/SimpleParticleShader.shader
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeSphere Icon.png
+- Assets/BNG Framework/Editor/Resources/v.png
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat
+- Assets/Obi/Editor/Resources/Icons/ObiSolver Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Horns.asset
+- Assets/Obi/Resources/DefaultRopeSection.asset
+- Assets/Obi/Editor/Resources/TranslateControlPoint.psd
+- Assets/Obi/Editor/Resources/StopButton.psd
+- Assets/Obi/Editor/Resources/UVSpaceColorMaterial.mat
+- Assets/Obi/Resources/GUI/scroll_peg.png
+- Assets/Obi/Resources/ObiMaterials/InstancedStandard.mat
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaToMask.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/UIOverlay.shader
+- Assets/BNG Framework/Resources/Robot/Robot Kyle.fbx
+- Assets/Obi/Editor/Resources/ClearButton.psd
+- Assets/Obi/Editor/Resources/InvertButton.psd
+- Assets/Obi/Editor/Resources/PropertyGradientMaterial.shader
+- Assets/Obi/Editor/Resources/RemoveControlPoint.psd
+- Assets/Oculus/VR/Resources/OVRMRUnlit.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 0.asset
+- Assets/Obi/Editor/Resources/Icons/ObiActorBlueprint Icon.png
+- Assets/Obi/Editor/Resources/LeafButton.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 5.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 9.asset
+- Assets/QuickOutline/Resources/Shaders/OutlineMask.shader
+- Assets/Obi/Editor/Resources/EditCurves.psd
+- Assets/Obi/Resources/ObiMaterials/Particle.mat
+- Assets/Obi/Editor/Resources/Icons/ObiRopeChainRenderer Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Up.asset
+- Assets/Resources/OVRPlatformToolSettings.asset
+- Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt
+- Assets/Oculus/VR/Resources/Texture2D Blit.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Point.asset
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/witai.png
+- Assets/BNG Framework/Resources/RingHelper.prefab
+- Assets/BNG Framework/HandPoser/Poses/Resources/Thumb.asset
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Drop Shadow.mat
+- Assets/Obi/Editor/Resources/StepButton.psd
+- Assets/Obi/Editor/Resources/Icons/ObiParticleHandle Icon.png
+- Assets/Obi/Editor/Resources/EditorLines.mat
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterMaterialFluid Icon.png
+- Assets/Obi/Editor/Resources/AddControlPoint.psd
+- Assets/Obi/Editor/Resources/PaddingShader.shader
+- Assets/Obi/Editor/Resources/AddTetherButton.psd
+- Assets/Obi/Editor/Resources/RecButton.psd
+- Assets/Obi/Editor/Resources/obi_editor_logo.png
+- Assets/Obi/Resources/ObiMaterials/DistanceFieldRendering.mat
+- Assets/Obi/Editor/Resources/MaskButton.psd
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/DepthOverwrite.shader
+- Assets/Obi/Editor/Resources/Icons/ObiCloth Icon.png
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/wit-ai-title.png
+- Assets/Obi/Editor/Resources/Icons/ObiSkinnedCloth Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Closed.asset
+- Assets/Obi/Editor/Resources/Icons/ObiBone Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Open.asset
+- Assets/Oculus/VR/Resources/OVRMRCameraFrameLit.shader
+- Assets/Obi/Editor/Resources/Icons/ObiAerodynamicConstraints Icon.png
+- Assets/Oculus/VR/Resources/Cubemap Blit.shader
+- Assets/Obi/Editor/Resources/Icons/ObiRopeLineRenderer Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 12.asset
+- Assets/BNG Framework/Resources/Arrow.prefab
+- Assets/BNG Framework/HandPoser/Poses/Resources/Surfer.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Wave.asset
+- Assets/Obi/Editor/Resources/EditParticles.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 11.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Rocker.asset
+- Assets/Obi/Editor/Resources/RewindButton.psd
+- Assets/BNG Framework/Editor/Resources/LeftHandModelsEditorPreview.prefab
+- Assets/BNG Framework/HandPoser/Poses/Resources/Wide Open.asset
+- Assets/Resources/OVRBuildConfig.asset
+- Assets/Obi/Editor/Resources/Icons/ObiFluidRenderer Icon.png
+- Assets/Resources/OvrAvatarSettings.asset
+- Assets/Obi/Editor/Resources/ShowTangentHandles.psd
+- Assets/Obi/Editor/Resources/OptimizeButton.psd
+- Assets/Obi/Editor/Resources/SelectedWorld_bck.psd
+- Assets/Oculus/VR/Resources/OVRMRUnlitTransparent.shader
+- Assets/Obi/Editor/Resources/BranchButton.png
+- Assets/Obi/Editor/Resources/TrunkButton.png
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeSquare Icon.png
+- Assets/BNG Framework/Editor/Resources/v_64.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Ring.asset
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterMaterialGranular Icon.png
+- Assets/Obi/Editor/Resources/PinTranslation.psd
+- Assets/Obi/Editor/Resources/DistanceFieldPreview.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose.asset
+- Assets/BNG Framework/Editor/Resources/handIconSelected.png
+- Assets/Obi/Editor/Resources/Icons/ObiShapeMatchingConstraints Icon.png
+- Assets/Obi/Editor/Resources/TopologyPreviewBorder.mat
+- Assets/Obi/Editor/Resources/Icons/ObiBendConstraints Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiPinConstraints Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiTetherConstraints Icon.png
+- Assets/Obi/Editor/Resources/VoxelMaterial.mat
+- Assets/Obi/Resources/ObiMaterials/ParticleShader.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch 2.asset
+- Assets/Obi/Editor/Resources/PropertyGradientMaterial.mat
+- Assets/Obi/Editor/Resources/TopologyPreview.mat
+- Assets/BNG Framework/HandPoser/Poses/Resources/New Pose 1.asset
+- Assets/Obi/Editor/Resources/TextureIcon.psd
+- Assets/Obi/Resources/ObiMaterials/DistanceFieldSlice.shader
+- Assets/BNG Framework/HandPoser/Poses/Resources/Generic.asset
+- Assets/Obi/Editor/Resources/Icons/ObiSoftbody Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Tight 2.asset
+- Assets/Obi/Editor/Resources/Icons/ObiRigidbody2D Icon.png
+- Assets/BNG Framework/Editor/Resources/DefaultEventSystem.prefab
+- Assets/Obi/Editor/Resources/Icons/ObiRope Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch 1.asset
+- Assets/Obi/Editor/Resources/Icons/ObiEmitter Icon.png
+- Assets/Obi/Editor/Resources/VoxelMaterial.shader
+- Assets/Obi/Editor/Resources/Icons/ObiRopeExtrudedRenderer Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 8.asset
+- Assets/Obi/Editor/Resources/TopologyBorders.shader
+- Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Large.asset
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaBlended.shader
+- Assets/Obi/Editor/Resources/Icons/ObiChainConstraints Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiBendTwistConstraints Icon.png
+- Assets/Obi/Editor/Resources/UVSpaceColor.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Opaque.shader
+- Assets/Obi/Editor/Resources/ScaleControlPoint.psd
+- Assets/Obi/Editor/Resources/Icons/ObiStitcher Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Middle.asset
+- Assets/Obi/Editor/Resources/Icons/ObiDistanceFieldRenderer Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Grip 3.asset
+- Assets/BNG Framework/Editor/Resources/handIconSelectedRight.png
+- Assets/Obi/Editor/Resources/EditorParticle.mat
+- Assets/Obi/Editor/Resources/BackfacesButton.psd
+- Assets/Obi/Resources/ObiMaterials/particle.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pose 4.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Cupped.asset
+- Assets/Obi/Editor/Resources/EditorLineShader.shader
+- Assets/Obi/Editor/Resources/Icons/ObiMeshTopology Icon.png
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_AlphaCutout.shader
+- Assets/Obi/Editor/Resources/Icons/ObiCollider2D Icon.png
+- Assets/Obi/Editor/Resources/Icons/ObiRopeSection Icon.png
+- Assets/Obi/Editor/Resources/ShowThicknessHandles.psd
+- Assets/Resources/ONSPSettings.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pistol.asset
+- Assets/Obi/Editor/Resources/RemoveIcon.psd
+- Assets/BNG Framework/HandPoser/Poses/Resources/Sign 4.asset
+- Assets/TextMesh Pro/Resources/TMP Settings.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Sign 5.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Ball Med.asset
+- Assets/BNG Framework/HandPoser/Poses/Resources/Grip 1.asset
+- Assets/Obi/Editor/Resources/Icons/ObiEmitterShapeDisk Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/HoldType.asset
+- Assets/QuickOutline/Resources/Materials/OutlineMask.mat
+- Assets/Obi/Editor/Resources/AddIcon.psd
+- Assets/Obi/Editor/Resources/Icons/ObiCollider Icon.png
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Underlay.shader
+- Assets/Oculus/Interaction/Runtime/Resources/Shaders/Imposter_Underlay_AA.shader
+- Assets/BNG Framework/Editor/Resources/handIcon.png
+- Assets/Oculus/Voice/Lib/Wit.ai/Resources/continue-with-fb.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Peace.asset
+- Assets/Obi/Editor/Resources/Icons/ObiTearableClothRenderer Icon.png
+- Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Flat.asset
+Dependencies:
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_controller0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_fbx0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_inputactions0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_psd0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_ttf0
+- G:/2020VRProjects/SnareVR/snare-vr/OVRAssetBundles/OVRMasterBundle/asset_wav0

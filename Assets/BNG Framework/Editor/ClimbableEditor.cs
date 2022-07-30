@@ -111,7 +111,10 @@ namespace BNG {
             EditorGUILayout.PropertyField(snapHandModel);
 
             EditorGUILayout.PropertyField(canBeDropped);           
-            EditorGUILayout.PropertyField(CanBeSnappedToSnapZone);            
+            EditorGUILayout.PropertyField(CanBeSnappedToSnapZone);
+
+            EditorGUILayout.PropertyField(breakDistance);
+
             EditorGUILayout.PropertyField(CustomHandPose);
 
             EditorGUILayout.PropertyField(GrabPoints);

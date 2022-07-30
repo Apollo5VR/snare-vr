@@ -13,6 +13,12 @@ namespace BNG {
         [Tooltip("This setting determines if LeftPointerTransform or RightPointerTransform will be used as a forward vector for World Space UI events")]
         public ControllerHand SelectedHand = ControllerHand.Right;
 
+#if XRIT_INTEGRATION
+        [Header("XR Interaction Toolkit Options : ")]
+        public bool UseXRInteractionToolkitUISystem = true;
+
+#endif
+
         [Tooltip("A transform on the left controller to use when raycasting for world space UI events")]
         public Transform LeftPointerTransform;
 
@@ -22,7 +28,7 @@ namespace BNG {
         [Tooltip("Controller Binding to use for input down, up, etc.")]
         public List<ControllerBinding> ControllerInput = new List<ControllerBinding>() { ControllerBinding.RightTrigger };
 
-        [Tooltip("Unity Input Action used to enable sprinting")]
+        [Tooltip("Unity Input Action used to simulate a click or touch event")]
         public InputActionReference UIInputAction;
 
         [Tooltip("If true a PhysicsRaycaster component will be added to the UI camera, allowing physical objects to use IPointer events such as OnPointClick, OnPointEnter, etc.")]
@@ -68,14 +74,40 @@ namespace BNG {
         }
 
         protected override void Awake() {
+#if XRIT_INTEGRATION
+            if(!UseXRInteractionToolkitUISystem) {
+                initEventSystem();
+            }
+#else
+        initEventSystem();
+#endif
+        }
 
+        protected virtual void initEventSystem() {
             UpdateControllerHand(SelectedHand);
+
+            AssignCameraToAllCanvases(cameraCaster);
 
             EventData = new PointerEventData(eventSystem);
             EventData.position = new Vector2(cameraCaster.pixelWidth / 2, cameraCaster.pixelHeight / 2);
+        }
 
-            AssignCameraToAllCanvases(cameraCaster);
-        }       
+        protected override void Start() {
+            base.Start();
+
+#if XRIT_INTEGRATION
+            if (UseXRInteractionToolkitUISystem) {
+                AssignCameraToAllCanvases(Camera.main);
+
+                if (this.gameObject.activeSelf) {
+                    // Debug.Log("Diabling VRIF's VRUISystem since XR Interaction Kit UI support is enabled");
+                    this.enabled = false;
+                }
+            }
+#else
+        AssignCameraToAllCanvases(cameraCaster);
+#endif
+        }
 
         void init() {
             if(cameraCaster == null) {
@@ -99,7 +131,17 @@ namespace BNG {
         }
 
         public override void Process() {
+#if XRIT_INTEGRATION
+            // XRIT doesn't process here
+            if(UseXRInteractionToolkitUISystem == false) {
+                DoProcess();
+            }
+#else
+           DoProcess();
+#endif
+        }
 
+        public void DoProcess() {
             // Input isn't ready if this Camera Caster's gameObject isn't active
             if (EventData == null || !CameraCasterReady()) {
                 return;
@@ -119,13 +161,13 @@ namespace BNG {
             ExecuteEvents.Execute(EventData.pointerDrag, EventData, ExecuteEvents.dragHandler);
 
             // Handle scroll
-            if(RightThumbstickScroll) {
+            if (RightThumbstickScroll) {
                 EventData.scrollDelta = InputBridge.Instance.RightThumbstickAxis;
                 if (!Mathf.Approximately(EventData.scrollDelta.sqrMagnitude, 0)) {
                     ExecuteEvents.Execute(ExecuteEvents.GetEventHandler<IScrollHandler>(EventData.pointerCurrentRaycast.gameObject), EventData, ExecuteEvents.scrollHandler);
                 }
             }
-            
+
             // Press Events
             inputDown = InputReady();
 
@@ -134,7 +176,7 @@ namespace BNG {
                 PressDown();
             }
             // On Held Down
-            else if(inputDown) {
+            else if (inputDown) {
                 Press();
             }
             // On Release
@@ -153,8 +195,8 @@ namespace BNG {
             }
 
             // Check Unity Action
-            if (UIInputAction != null) {
-                return UIInputAction.action.ReadValue<float>() == 1f;
+            if (UIInputAction != null && UIInputAction.action.ReadValue<float>() == 1f) {
+                return true;
             }
 
             // Check for bound controller button
@@ -260,11 +302,25 @@ namespace BNG {
         }
 
         public virtual void AddCanvas(Canvas canvas) {
-            AddCanvasToCamera(canvas, cameraCaster);
+#if XRIT_INTEGRATION
+            if(UseXRInteractionToolkitUISystem) {
+                AddCanvasToCamera(canvas, Camera.main);
+
+                // Add raycaster if not already present
+                canvas.gameObject.AddComponent<UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster>();
+            }
+            else {
+                AddCanvasToCamera(canvas, cameraCaster);
+            }
+#else
+        AddCanvasToCamera(canvas, cameraCaster);
+#endif
         }
 
         public virtual void AddCanvasToCamera(Canvas canvas, Camera cam) {
-            canvas.worldCamera = cam;
+            if(cam != null) {
+                canvas.worldCamera = cam;
+            }
         }
 
         public virtual void UpdateControllerHand(ControllerHand hand) {

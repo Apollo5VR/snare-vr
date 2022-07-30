@@ -1,0 +1,149 @@
+ManifestFileVersion: 0
+CRC: 1934176172
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: asset_resources
+      Dependencies:
+        Dependency_0: asset_ttf0
+        Dependency_1: asset_controller0
+        Dependency_2: asset_mat0
+        Dependency_3: asset_mat1
+        Dependency_4: asset_fbx0
+        Dependency_5: asset_wav0
+        Dependency_6: asset_inputactions0
+        Dependency_7: asset_psd0
+    Info_1:
+      Name: scene_start
+      Dependencies:
+        Dependency_0: asset_resources
+        Dependency_1: asset_ttf0
+        Dependency_2: asset_mat0
+        Dependency_3: asset_fbx0
+        Dependency_4: asset_prefab0
+        Dependency_5: asset_wav0
+        Dependency_6: asset_png0
+        Dependency_7: asset_inputactions0
+        Dependency_8: asset_asset0
+        Dependency_9: asset_lighting0
+        Dependency_10: asset_exr0
+        Dependency_11: asset_jpg0
+        Dependency_12: asset_jpg0
+    Info_2:
+      Name: scene_zone practice
+      Dependencies:
+        Dependency_0: asset_mat0
+        Dependency_1: asset_mat1
+        Dependency_2: asset_prefab0
+        Dependency_3: asset_prefab1
+        Dependency_4: asset_png0
+        Dependency_5: asset_exr0
+    Info_3:
+      Name: scene_home
+      Dependencies:
+        Dependency_0: asset_mat0
+        Dependency_1: asset_mat1
+        Dependency_2: asset_prefab0
+        Dependency_3: asset_prefab1
+        Dependency_4: asset_png0
+    Info_4:
+      Name: scene_zone 2
+      Dependencies:
+        Dependency_0: asset_mat0
+        Dependency_1: asset_mat1
+        Dependency_2: asset_prefab0
+        Dependency_3: asset_prefab1
+        Dependency_4: asset_png0
+        Dependency_5: asset_asset0
+    Info_5:
+      Name: asset_ttf0
+      Dependencies: {}
+    Info_6:
+      Name: asset_controller0
+      Dependencies:
+        Dependency_0: asset_fbx0
+        Dependency_1: asset_anim0
+    Info_7:
+      Name: asset_mat0
+      Dependencies:
+        Dependency_0: asset_shader0
+        Dependency_1: asset_png0
+        Dependency_2: asset_psd0
+    Info_8:
+      Name: asset_mat1
+      Dependencies:
+        Dependency_0: asset_png0
+        Dependency_1: asset_psd0
+    Info_9:
+      Name: asset_shader0
+      Dependencies: {}
+    Info_10:
+      Name: asset_fbx0
+      Dependencies:
+        Dependency_0: asset_mat0
+        Dependency_1: asset_png0
+    Info_11:
+      Name: asset_fbx1
+      Dependencies: {}
+    Info_12:
+      Name: asset_fbx2
+      Dependencies: {}
+    Info_13:
+      Name: asset_prefab0
+      Dependencies:
+        Dependency_0: asset_resources
+        Dependency_1: asset_ttf0
+        Dependency_2: asset_controller0
+        Dependency_3: asset_mat0
+        Dependency_4: asset_mat1
+        Dependency_5: asset_fbx0
+        Dependency_6: asset_fbx1
+        Dependency_7: asset_fbx2
+        Dependency_8: asset_wav0
+        Dependency_9: asset_inputactions0
+        Dependency_10: asset_asset0
+    Info_14:
+      Name: asset_prefab1
+      Dependencies:
+        Dependency_0: asset_mat0
+        Dependency_1: asset_mat1
+        Dependency_2: asset_fbx0
+        Dependency_3: asset_fbx1
+        Dependency_4: asset_fbx2
+        Dependency_5: asset_prefab0
+        Dependency_6: asset_wav0
+        Dependency_7: asset_png0
+        Dependency_8: asset_mp30
+    Info_15:
+      Name: asset_wav0
+      Dependencies: {}
+    Info_16:
+      Name: asset_png0
+      Dependencies: {}
+    Info_17:
+      Name: asset_inputactions0
+      Dependencies: {}
+    Info_18:
+      Name: asset_asset0
+      Dependencies: {}
+    Info_19:
+      Name: asset_lighting0
+      Dependencies: {}
+    Info_20:
+      Name: asset_psd0
+      Dependencies: {}
+    Info_21:
+      Name: asset_anim0
+      Dependencies: {}
+    Info_22:
+      Name: asset_exr0
+      Dependencies: {}
+    Info_23:
+      Name: asset_jpg0
+      Dependencies: {}
+    Info_24:
+      Name: asset_jpg0
+      Dependencies: {}
+    Info_25:
+      Name: asset_mp30
+      Dependencies: {}

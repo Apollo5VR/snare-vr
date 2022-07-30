@@ -6,7 +6,7 @@ using UnityEngine.Events;
 namespace BNG {
 
     /// <summary>
-    /// An example weapon script. A more configurable Raycast weapon will be available later.
+    /// An example weapon script that can fire Raycasts or Projectile objects
     /// </summary>
     public class RaycastWeapon : GrabbableEvents {
 
@@ -241,11 +241,11 @@ namespace BNG {
         /// <summary>
         /// Is the slide / receiver forced back due to last shot
         /// </summary>
-        bool slideForcedBack = false;
+        protected bool slideForcedBack = false;
 
-        WeaponSlide ws;
+        protected WeaponSlide ws;
 
-        private bool readyToShoot = true;
+        protected bool readyToShoot = true;
 
         void Start() {
             weaponRigid = GetComponent<Rigidbody>();
@@ -339,7 +339,7 @@ namespace BNG {
             }
         }
 
-        bool playedEmptySound = false;
+        protected bool playedEmptySound = false;
         
         public virtual void Shoot() {
 
@@ -454,7 +454,7 @@ namespace BNG {
                 grab.RequestSpringTime(RecoilDuration);
 
                 // Apply the Recoil Force
-                weaponRigid.AddForceAtPosition(transform.TransformDirection(RecoilForce), MuzzlePointTransform.position, ForceMode.VelocityChange);
+                weaponRigid.AddForceAtPosition(MuzzlePointTransform.TransformDirection(RecoilForce), MuzzlePointTransform.position, ForceMode.VelocityChange);
             }
         }
 
@@ -585,7 +585,7 @@ namespace BNG {
             }
         }
 
-        IEnumerator shotRoutine;        
+        protected IEnumerator shotRoutine;        
 
         // Randomly scale / rotate to make them seem different
         void randomizeMuzzleFlashScaleRotation() {
@@ -626,7 +626,7 @@ namespace BNG {
             GameObject.Destroy(shell, 5);
         }
 
-        IEnumerator doMuzzleFlash() {
+        protected virtual IEnumerator doMuzzleFlash() {
             MuzzleFlashObject.SetActive(true);
             yield return new  WaitForSeconds(0.05f);
 
@@ -637,7 +637,7 @@ namespace BNG {
         }
 
         // Animate the slide back, eject casing, pull slide back
-        IEnumerator animateSlideAndEject() {
+        protected virtual IEnumerator animateSlideAndEject() {
 
             // Start Muzzle Flash
             MuzzleFlashObject.SetActive(true);
