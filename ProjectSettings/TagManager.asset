@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - haloObject
-  - TrapLocation
   - SnarePart
+  - TrapLocation
   layers:
   - Default
   - TransparentFX
@@ -16,11 +15,11 @@ TagManager:
   - UI
   - 
   - 
-  - Spellable
+  - Restricted
   - Player
-  - Interactable
-  - IgnorePlayer
-  - Wand
+  - Grabbable
+  - 
+  - 
   - 
   - 
   - 
