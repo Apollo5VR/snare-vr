@@ -1,3 +1,4 @@
+/*
 using TMPro;
 using Unity.Services.Economy;
 using Unity.Services.Economy.Model;
@@ -140,3 +141,4 @@ public class VirtualPurchasesUISample : MonoBehaviour
         return true;
     }
 }
+*/

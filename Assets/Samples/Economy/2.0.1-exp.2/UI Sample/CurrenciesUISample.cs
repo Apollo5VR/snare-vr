@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using TMPro;
 using Unity.Services.Core;
@@ -227,3 +228,4 @@ public class CurrenciesUISample : MonoBehaviour
         return true;
     }
 }
+*/

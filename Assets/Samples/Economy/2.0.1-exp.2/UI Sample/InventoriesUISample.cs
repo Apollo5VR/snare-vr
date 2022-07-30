@@ -1,3 +1,4 @@
+/*
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using TMPro;
@@ -47,6 +48,8 @@ public class InventoriesUISample : MonoBehaviour
     [SerializeField]
     int m_ItemsPerFetch = 20;
 
+    //TODO - temp disabled for build - needs resolution (cant ref ScriptsConnector)
+    /*
     void Awake()
     {
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
@@ -298,3 +301,4 @@ public class InventoriesUISample : MonoBehaviour
         return true;
     }
 }
+*/
