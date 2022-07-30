@@ -11,7 +11,8 @@ namespace BNG {
 
         PlayerClimbing playerClimbing;
 
-        void OnEnable() {
+        void OnEnable()
+        {
             // Make sure Climbable is set to dual grab
             SecondaryGrabBehavior = OtherGrabBehavior.DualGrab;
 
@@ -27,7 +28,8 @@ namespace BNG {
                 BreakDistance = 0;
             }
 
-            if(playerClimbing == null && player != null) {
+            if (playerClimbing == null && player != null)
+            {
                 playerClimbing = player.gameObject.GetComponentInChildren<PlayerClimbing>();
             }
         }

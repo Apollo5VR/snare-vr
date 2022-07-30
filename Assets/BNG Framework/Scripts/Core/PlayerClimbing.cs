@@ -28,7 +28,6 @@ namespace BNG {
         [Tooltip("Duration of haptics to play on grab if 'ApplyHapticsOnGrab' is true")]
         public float VibrateDuration = 0.1f;
 
-
         // Any climber grabbers in use
         List<Grabber> climbers;
 
@@ -37,6 +36,23 @@ namespace BNG {
         CharacterController characterController;
         SmoothLocomotion smoothLocomotion;
         PlayerGravity playerGravity;
+        Rigidbody playerRigid;
+
+        public bool IsRigidbodyPlayer {
+            get {
+                if (_checkedRigidPlayer) {
+                    return _isRigidPlayer;
+                }
+                else {
+                    _isRigidPlayer = smoothLocomotion != null && smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody;
+                    _checkedRigidPlayer = true;
+                    return _isRigidPlayer;
+                }
+            }
+        }
+
+        bool _checkedRigidPlayer = false;
+        bool _isRigidPlayer = false;
 
         [Header("Shown for Debug : ")]
         /// <summary>
@@ -57,6 +73,7 @@ namespace BNG {
             characterController = GetComponentInChildren<CharacterController>();
             smoothLocomotion = GetComponentInChildren<SmoothLocomotion>();
             playerGravity = GetComponentInChildren<PlayerGravity>();
+            playerRigid = GetComponent<Rigidbody>();
         }
 
         public void LateUpdate() {
@@ -166,7 +183,7 @@ namespace BNG {
                             moveDirection = controllerMoveAmount;
 
                             // Check if Climbable object moved position
-                            moveDirection -= climber.PreviousPosition - climber.DummyTransform.position; ;
+                            moveDirection -= climber.PreviousPosition - climber.DummyTransform.position;
                         }
 
                         count++;
@@ -175,7 +192,12 @@ namespace BNG {
 
                 // Apply movement to player
                 if (smoothLocomotion) {
-                    smoothLocomotion.MoveCharacter(moveDirection);
+                    if(smoothLocomotion.ControllerType == PlayerControllerType.CharacterController) {
+                        smoothLocomotion.MoveCharacter(moveDirection);
+                    }
+                    else if(smoothLocomotion.ControllerType == PlayerControllerType.Rigidbody) {
+                        DoPhysicalClimbing();
+                    }
                 }
                 else if(characterController) {
                     characterController.Move(moveDirection);
@@ -197,6 +219,35 @@ namespace BNG {
             }
 
             wasGrippingClimbable = GrippingClimbable;
+        }
+
+        void DoPhysicalClimbing() {
+            int count = 0;
+            float length = climbers.Count;
+
+            Vector3 movementVelocity = Vector3.zero;
+
+            for (int i = 0; i < length; i++) {
+                Grabber climber = climbers[i];
+                if (climber != null && climber.HoldingItem) {
+
+                    Vector3 positionDelta = climber.transform.position - climber.DummyTransform.position;
+
+                    // Always use last grabbed hand
+                    if (count == length - 1) {
+                        movementVelocity = positionDelta;
+
+                        // Check if Climbable object moved position
+                        movementVelocity -= climber.PreviousPosition - climber.DummyTransform.position;
+                    }
+
+                    count++;
+                }
+            }
+
+            if(movementVelocity.magnitude > 0) {
+                playerRigid.velocity = Vector3.MoveTowards(playerRigid.velocity, (-movementVelocity * 2000f) * Time.fixedDeltaTime, 1f);
+            }
         }
 
         void onGrabbedClimbable() {

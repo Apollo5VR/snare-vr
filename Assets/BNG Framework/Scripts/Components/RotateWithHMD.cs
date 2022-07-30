@@ -7,6 +7,9 @@ namespace BNG {
     // This will rotate a transform along with a users headset. Useful for keeping an object aligned with the camera, independent of the player capsule collider.
     public class RotateWithHMD : MonoBehaviour {
 
+        [Tooltip("The Transform to rotate along with")]
+        public Transform FollowTransform;
+
         /// <summary>
         /// The Character Capsule to  rotate along with
         /// </summary>
@@ -18,8 +21,6 @@ namespace BNG {
         /// </summary>
         public Vector3 Offset = new Vector3(0, -0.25f, 0);
 
-        public bool spawnOnly = false;
-
         public float RotateSpeed = 5f;
 
         public float MovementSmoothing = 0;
@@ -28,6 +29,9 @@ namespace BNG {
 
         [Tooltip("If true this transform will be parented to the characterController. Set this to true if you want the position and rotation to align with the character controller without delay.")]
         public bool ParentToCharacter = false;
+
+        //GG - unique handler
+        public bool spawnOnly = false;
 
         Transform originalParent;
 
@@ -38,12 +42,12 @@ namespace BNG {
 
         Transform camTransform;
 
-        void Start() {
+        void Start()
+        {
             Setup();
         }
 
-        void Setup()
-        {
+        void Setup() {
             originalParent = transform.parent;
             followTransform = new GameObject().transform;
             followTransform.name = "RotateReferenceObject";
@@ -51,38 +55,40 @@ namespace BNG {
             followTransform.rotation = transform.rotation;
 
             // Parent the object to our character and let the hierarchy take care of positioning
-            if (ParentToCharacter)
-            {
+            if (ParentToCharacter) {
                 transform.parent = Character.transform;
             }
 
             // Set our reference transform to the Character object if it is available
-            if (Character)
-            {
+            if(FollowTransform) {
+                followTransform.parent = FollowTransform;
+            }
+            else if (Character) {
                 followTransform.parent = Character.transform;
             }
-            else
-            {
+            else {
                 followTransform.parent = originalParent;
             }
         }
 
-        void LateUpdate() {
-            if(!spawnOnly)
-            {
-                UpdatePosition();
-            }
-        }
-
+        //GG - unique handler 
         public void OnEnable()
         {
             if (spawnOnly)
             {
-                if(originalParent == null)
+                if (originalParent == null)
                 {
                     Setup();
                 }
 
+                UpdatePosition();
+            }
+        }
+
+        void LateUpdate()
+        {
+            if (!spawnOnly)
+            {
                 UpdatePosition();
             }
         }
@@ -104,14 +110,18 @@ namespace BNG {
 
             // Offset from Character's body if available
             Vector3 worldOffset = Vector3.zero;
-            if (Character != null) {
+            if(FollowTransform) {
+                worldOffset = FollowTransform.position - FollowTransform.TransformVector(Offset);
+            }
+            else if (Character) {
                 worldOffset = Character.transform.position - Character.transform.TransformVector(Offset);
             } 
 
             Vector3 moveToPosition = new Vector3(worldOffset.x, camTransform.position.y - Offset.y, worldOffset.z);
             transform.position = Vector3.SmoothDamp(transform.position, moveToPosition, ref velocity, MovementSmoothing);
 
-            if(!spawnOnly)
+            //GG - unique handler
+            if (!spawnOnly)
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, followTransform.rotation, Time.deltaTime * RotateSpeed);
             }

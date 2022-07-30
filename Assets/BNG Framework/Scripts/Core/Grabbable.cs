@@ -9,6 +9,7 @@ namespace BNG {
     /// An object that can be picked up by a Grabber
     /// </summary>
     public class Grabbable : MonoBehaviour {
+
         /// <summary>
         /// Is this object currently being held by a Grabber
         /// </summary>
@@ -293,7 +294,7 @@ namespace BNG {
         // Total distance between the Grabber and Grabbable.
         float journeyLength;
 
-        public float OriginalScale { get; private set; }
+        public Vector3 OriginalScale { get; private set; }
 
         // Keep track of objects that are colliding with us
         [Header("Shown for Debug : ")]
@@ -426,11 +427,8 @@ namespace BNG {
         public List<Transform> GrabPoints;
 
         //GG - my custom stuff
-        [Header("Turret")]
-        [Tooltip("for turret")]
-        public bool isTurret = false;
-        public bool isWire = false;
-        public bool isMap = false;
+        [Header("For SnareVR custom")]
+        public bool isWire = false; //and map?
 
         /// <summary>
         /// Can the object be moved towards a Grabber. 
@@ -515,10 +513,10 @@ namespace BNG {
 
             // Set Original Scale based in World coordinates if available
             if (transform.parent != null) {
-                OriginalScale = transform.parent.TransformVector(transform.localScale).x;
+                OriginalScale = transform.parent.TransformVector(transform.localScale);
             }
             else {
-                OriginalScale = transform.localScale.x;
+                OriginalScale = transform.localScale;
             }
 
             initialHandPoseId = CustomHandPose;
@@ -539,8 +537,8 @@ namespace BNG {
                     }
                 }
             }
-        }   
-        
+        }
+
         public virtual void DropAll()
         {
             for (int x = 0; x < heldByGrabbers.Count; x++)
@@ -1211,8 +1209,7 @@ namespace BNG {
                 }
                 // Check if a grabber is holding this object
                 else if (heldByGrabbers != null && heldByGrabbers.Count > 1) {
-                    //TODO - GG reactivating this 1.3
-                    destination = Quaternion.Lerp(destination, GetGrabberQuaternion(heldByGrabbers[1], true), TwoHandedRotationLerpAmount);
+                    // destination = Quaternion.Lerp(destination, GetGrabberQuaternion(heldByGrabbers[1], true), TwoHandedRotationLerpAmount);
                 }
             }
 
@@ -1261,16 +1258,7 @@ namespace BNG {
             }
             else if (GrabMechanic == GrabType.Precise) {
                 movePosition(grabTransform.position);
-
-                //GG
-                if(isTurret)
-                {
-                    moveRotation(Quaternion.Lerp(transform.rotation, GetGrabbersAveragedRotation(), Time.deltaTime * 2));
-                }
-                else
-                {
-                    moveRotation(grabTransform.rotation);
-                }
+                moveRotation(grabTransform.rotation);
             }
         }
 
@@ -1463,9 +1451,10 @@ namespace BNG {
             return primaryGrabOffset;
         }
 
-        public virtual void GrabItem(Grabber grabbedBy) {
-
-            if(isWire)
+        public virtual void GrabItem(Grabber grabbedBy) 
+        {
+            //GG - custom addition
+            if (isWire)
             {
                 rigid.constraints = RigidbodyConstraints.None;
             }
@@ -1815,6 +1804,9 @@ namespace BNG {
                 // Release the object
                 if(releaseItem) {
 
+                    // We know the item is no longer being held. Can set this before calling any drop events
+                    BeingHeld = false;
+
                     LastDropTime = Time.time;
 
                     // Release item and apply physics force to it
@@ -1834,8 +1826,8 @@ namespace BNG {
                         }
                     }
 
-                    //GG
-                    if(isWire)
+                    //GG - custom addition
+                    if (isWire)
                     {
                         rigid.constraints = RigidbodyConstraints.FreezeAll;
                     }
@@ -1878,7 +1870,7 @@ namespace BNG {
                 // didParentHands = false;
             }
 
-            BeingHeld = heldByGrabbers != null && heldByGrabbers.Count > 0;
+            BeingHeld = heldByGrabbers != null && heldByGrabbers.Count > 0;            
         }
 
         void clearLookAtTransform() {
@@ -1971,7 +1963,7 @@ namespace BNG {
         }
 
         public void ResetScale() {
-            transform.localScale = new Vector3(OriginalScale, OriginalScale, OriginalScale);
+            transform.localScale = OriginalScale;
         }
 
         public void ResetParent() {
@@ -2278,14 +2270,7 @@ namespace BNG {
 
             // The player object can be used to determine if the object is about to move rapidly
             if (GameObject.FindGameObjectWithTag("Player")) {
-                _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<BNGPlayerController>(true);
-
-                if(_player == null)
-                {
-                    _player = FindObjectOfType<BNGPlayerController>();
-                }
-
-                return _player;
+                return _player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<BNGPlayerController>();
             }
             else {
                 return _player = FindObjectOfType<BNGPlayerController>();
