@@ -39,6 +39,11 @@ namespace EconomySample
             await WriteLockExample();
         }
 
+        private void Start()
+        {
+            ScriptsConnector.Instance.OnRabbitCaught += IncrementRabbitPelt;
+        }
+
         private async Task ListAllCurrencyIds()
         {
             try
@@ -64,6 +69,44 @@ namespace EconomySample
             try
             {
                 PlayerBalance updatedBalance = await EconomyService.Instance.PlayerBalances.SetBalanceAsync(currencyId, newBalance);
+                Debug.Log($"{updatedBalance.CurrencyId} set to {updatedBalance.Balance}");
+            }
+            catch (EconomyRateLimitedException e)
+            {
+                Debug.LogError($"{e} - Retry after {e.RetryAfter}");
+            }
+            catch (EconomyException e)
+            {
+                Debug.LogError(e);
+            }
+        }
+
+        private void IncrementRabbitPelt(bool caught)
+        {
+            OnGainRabbitPelt();
+        }
+
+        public async void OnGainRabbitPelt()
+        {
+            try
+            {
+                await IncrementPlayersBalance("RABBITPELT", 1);
+            }
+            catch (CloudCodeResultUnavailableException)
+            {
+                // Exception already handled by CloudCodeManager
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }
+
+        private async Task IncrementPlayersBalance(string currencyId, int amount)
+        {
+            try
+            {
+                PlayerBalance updatedBalance = await EconomyService.Instance.PlayerBalances.IncrementBalanceAsync(currencyId, amount);
                 Debug.Log($"{updatedBalance.CurrencyId} set to {updatedBalance.Balance}");
             }
             catch (EconomyRateLimitedException e)

@@ -1,4 +1,3 @@
-/*
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using TMPro;
@@ -49,7 +48,6 @@ public class InventoriesUISample : MonoBehaviour
     int m_ItemsPerFetch = 20;
 
     //TODO - temp disabled for build - needs resolution (cant ref ScriptsConnector)
-    /*
     void Awake()
     {
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
@@ -121,6 +119,8 @@ public class InventoriesUISample : MonoBehaviour
         }
     }
 
+    //GG - commenting out "Keys" broken
+    /*
     public async void FetchInstances()
     {
         if (!IsAuthenticationSignedIn())
@@ -162,6 +162,7 @@ public class InventoriesUISample : MonoBehaviour
             m_GetPlayersInventoryItemsText.text = outputString;
         }
     }
+    */
 
     public async void FetchNextInstances()
     {
@@ -251,6 +252,8 @@ public class InventoriesUISample : MonoBehaviour
         m_DeleteInstanceText.text = $"Deleted players inventory item with ID {m_DeletePlayersInventoryItemIdInput.text}";
     }
 
+    //GG - commenting out "Keys" broken
+    /*
     public async void UpdateInstance()
     {
         if (!IsAuthenticationSignedIn())
@@ -280,6 +283,7 @@ public class InventoriesUISample : MonoBehaviour
             }
         }
     }
+    */
 
     void ClearOutputTextBoxes()
     {
@@ -301,4 +305,3 @@ public class InventoriesUISample : MonoBehaviour
         return true;
     }
 }
-*/
