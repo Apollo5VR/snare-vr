@@ -47,10 +47,14 @@ public class InventoriesUISample : MonoBehaviour
     [SerializeField]
     int m_ItemsPerFetch = 20;
 
+    private List<InventoryItemDefinition> items;
+
     //TODO - temp disabled for build - needs resolution (cant ref ScriptsConnector)
     void Awake()
     {
         ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
+        ScriptsConnector.Instance.OnRequestItems += RequestItems;
+        ScriptsConnector.Instance.OnRequestItemNames += RequestItemNames;
     }
 
     void OnDestroy()
@@ -70,6 +74,25 @@ public class InventoriesUISample : MonoBehaviour
         }
     }
 
+    private void RequestItems()
+    {
+        FetchInventoryItems();
+    }
+    private List<string> RequestItemNames()
+    {
+        //TODO - refactor, good opportunity to use ref or out here
+        List<string> itemNames = new List<string>();
+
+        //FetchInventoryItems();
+
+        foreach (var item in items)
+        {
+            itemNames.Add(item.Name);
+        }
+
+        return itemNames;
+    }
+
     public async void FetchInventoryItems()
     {
         if (!IsAuthenticationSignedIn())
@@ -78,8 +101,8 @@ public class InventoriesUISample : MonoBehaviour
         }
 
         string outputString = "";
-        List<InventoryItemDefinition> items = await EconomyService.Instance.Configuration.GetInventoryItemsAsync();
-        ClearOutputTextBoxes();
+        items = await EconomyService.Instance.Configuration.GetInventoryItemsAsync();
+        //ClearOutputTextBoxes();
         if (items.Count == 0)
         {
             m_GetConfigsText.text = "No items";
@@ -90,7 +113,7 @@ public class InventoriesUISample : MonoBehaviour
             {
                 outputString += $"ID: {item.Id}, Name: {item.Name}\n";
             }
-            m_GetConfigsText.text = outputString;
+            //m_GetConfigsText.text = outputString;
         }
     }
 

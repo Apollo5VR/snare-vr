@@ -39,6 +39,10 @@ public class ScriptsConnector : MonoBehaviour
     //scene data
     public Func<int> OnGetCurrentScene;
 
+    //inventory
+    public Action OnRequestItems;
+    public Func<List<string>> OnRequestItemNames;
+
     private void Awake()
     {
         if (Instance == null)
