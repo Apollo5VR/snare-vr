@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3976da977cb49238499ea3b4c237ae, type: 3}
+  m_Name: ProfileDataSourceSettings
+  m_EditorClassIdentifier: 
+  profileGroupTypes:
+  - m_GroupTypePrefix: Built-In
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+    - m_Suffix: LoadPath
+      m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+  - m_GroupTypePrefix: Editor Hosted
+    m_Variables:
+    - m_Suffix: BuildPath
+      m_Value: ServerData/[BuildTarget]
+    - m_Suffix: LoadPath
+      m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+  - m_GroupTypePrefix: CCD.5662566b-8e38-4e14-a213-e27a897b7a87.8a9b053b-7973-46e8-b5cd-3d1877bb71da.latest
+    m_Variables:
+    - m_Suffix: CcdBucketName
+      m_Value: Android
+    - m_Suffix: CcdBucketId
+      m_Value: 8a9b053b-7973-46e8-b5cd-3d1877bb71da
+    - m_Suffix: CcdBadgeName
+      m_Value: latest
+    - m_Suffix: PromoteOnly
+      m_Value: False
+    - m_Suffix: BuildPath
+      m_Value: CCDBuildData/8a9b053b-7973-46e8-b5cd-3d1877bb71da/latest
+    - m_Suffix: LoadPath
+      m_Value: https://5662566b-8e38-4e14-a213-e27a897b7a87.client-api.unity3dusercontent.com/client_api/v1/buckets/8a9b053b-7973-46e8-b5cd-3d1877bb71da/release_by_badge/latest/entry_by_path/content/?path=
