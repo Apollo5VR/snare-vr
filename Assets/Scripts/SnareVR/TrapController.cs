@@ -62,7 +62,7 @@ public class TrapController : MonoBehaviour
                 //Users first time OR last session they checked trap, but didnt set up another one (we delete on snare check)
                 wireAroundTree.SetActive(false);
 
-                ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "FIND & SET SNARE. NO SNARE? BUILD ONE AT HOME BASE");
+                ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "FIND & SET SNARE. Use Left Joystick to Target Green Circle. Release. Then Grab rope to pull yourself to destination.");
             }
             else
             {

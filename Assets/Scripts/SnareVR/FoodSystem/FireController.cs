@@ -25,7 +25,7 @@ public class FireController : MonoBehaviour
         consumable.SetActive(false);
 
         //TODO - we shouldnt handle manipulating health here, and the variable should be determined by the consumable type
-        float healthMod = 5; 
+        float healthMod = 50; 
 
         ScriptsConnector.Instance?.OnModifyHealth("playerId", healthMod);
 

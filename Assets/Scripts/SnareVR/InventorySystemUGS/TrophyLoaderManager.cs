@@ -20,7 +20,7 @@ public class TrophyLoaderManager : MonoBehaviour
 
     private IEnumerator WaitThis()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
 
         List<string> itemNames = ScriptsConnector.Instance.OnRequestItemNames?.Invoke();
 

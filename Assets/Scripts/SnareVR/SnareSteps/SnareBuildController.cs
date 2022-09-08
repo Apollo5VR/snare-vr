@@ -33,7 +33,9 @@ public class SnareBuildController: StateController<SnareBuildController>
 
         CurrentState = buildStates[stateIndex];
 
-        CurrentState.EnterState(this);  
+        CurrentState.EnterState(this);
+
+        ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "Construct Snare Trap on Workbench. Grab Cube and Pull to Green.");
     }
 
     protected override void Update()
@@ -55,6 +57,7 @@ public class SnareBuildController: StateController<SnareBuildController>
         else
         {
             Debug.Log("Snare Sequence Complete");
+            ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "Snare Complete! Grab and Store in Hip Slot. Don't forget your bow!");
             return;
         }
 

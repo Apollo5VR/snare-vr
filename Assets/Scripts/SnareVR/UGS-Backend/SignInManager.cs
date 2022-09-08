@@ -69,12 +69,13 @@ public class SignInManager : MonoBehaviour
             {
                 successMessage = "Anonymous sign in succeeded";
                 GrabFBAccessTokens();
+                ScriptsConnector.Instance.OnUpdateUI(CommonEnums.UIType.Generic, "");
             }
             //logged in via FB Access Token
             else
             {
                 successMessage = "FB sign in succeeded";
-                successText.text = "Success - Press X to open map, Grab location and Pull to Load";
+                successText.text = "Success - Press X to open map, Grab Location Cube and Pull to Load";
                 ScriptsConnector.Instance.OnGetHealthFromUGS();
             }
 
