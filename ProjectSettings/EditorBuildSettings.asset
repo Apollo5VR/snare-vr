@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Zone Practice.unity
     guid: 81689de5f778b3c4c8491a272d6fcc20
   - enabled: 1
-    path: Assets/Scenes/BaseCamp.unity
+    path: Assets/Scenes/WorkBench.unity
     guid: f7104e57eae53ed44820e790011bbb36
   - enabled: 1
     path: Assets/Scenes/Cabin.unity
