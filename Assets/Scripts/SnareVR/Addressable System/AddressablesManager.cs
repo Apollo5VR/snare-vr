@@ -38,4 +38,10 @@ public class AddressablesManager : MonoBehaviour
     {
         
     }
+
+    private void OnDestroy()
+    {
+        m_TrophyLoadingHandle.Completed -= OnTrophiesInstantiated;
+        Addressables.Release(m_TrophyLoadingHandle);
+    }
 }
