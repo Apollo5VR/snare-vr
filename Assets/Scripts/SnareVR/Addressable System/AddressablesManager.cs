@@ -20,7 +20,7 @@ public class AddressablesManager : MonoBehaviour
 
     private void SetTrophies()
     {
-        m_TrophyLoadingHandle = Addressables.InstantiateAsync("deer", m_TrophyAnchors[0]);//bearhead
+        m_TrophyLoadingHandle = Addressables.InstantiateAsync("bearhead", m_TrophyAnchors[0]);//bearhead
 
         m_TrophyLoadingHandle.Completed += OnTrophiesInstantiated;
     }
