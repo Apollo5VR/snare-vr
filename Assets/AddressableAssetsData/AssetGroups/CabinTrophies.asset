@@ -18,11 +18,11 @@ MonoBehaviour:
   m_GUID: 867d5e365fa8f8149994b11e7c176552
   m_SerializeEntries:
   - m_GUID: 142c23b2a525b7c4792ca4eca210bee7
-    m_Address: bearhead
+    m_Address: trophy1
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: aa79f8e11b1752f4b81b6a7a84d83070
-    m_Address: deer
+  - m_GUID: d9b2c9ea069d80147b366bcef3c349a7
+    m_Address: trophy2
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0
