@@ -374,7 +374,7 @@ PrefabInstance:
     - target: {fileID: 6588462907999482434, guid: ad5649a331f3b914bbf8647b36308a32,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6789101550431394455, guid: ad5649a331f3b914bbf8647b36308a32,
         type: 3}
@@ -498,6 +498,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5649a331f3b914bbf8647b36308a32, type: 3}
+--- !u!1 &3603811576602293975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3569402441329174413, guid: ad5649a331f3b914bbf8647b36308a32,
+    type: 3}
+  m_PrefabInstance: {fileID: 255120864696570202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &871072990510242174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603811576602293975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad179a9e83dba5142adaaf7737678e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7067792073007560994}
+        m_TargetAssemblyTypeName: ConsumableManager, Assembly-CSharp
+        m_MethodName: GetConsumed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls: []
+  onBecomesClosestGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onNoLongerClosestGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onBecomesClosestRemoteGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onNoLongerClosestRemoteGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onGrip:
+    m_PersistentCalls:
+      m_Calls: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1Down:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1Up:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2Down:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2Up:
+    m_PersistentCalls:
+      m_Calls: []
+  onSnapZoneEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSnapZoneExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &6030147983013755298 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5775088854211307768, guid: ad5649a331f3b914bbf8647b36308a32,
@@ -522,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa6fdab302b3794d83be62a716300c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthModifier: 5
+  healthModifier: 50
 --- !u!1001 &6180728829180423713
 PrefabInstance:
   m_ObjectHideFlags: 0
