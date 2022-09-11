@@ -48,6 +48,11 @@ namespace EconomySample
             ScriptsConnector.Instance.OnRabbitCaught += IncrementRabbitPelt;
         }
 
+        private void OnDestroy()
+        {
+            ScriptsConnector.Instance.OnRabbitCaught -= IncrementRabbitPelt;
+        }
+
         private async Task ListAllCurrencyIds()
         {
             try
