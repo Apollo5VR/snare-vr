@@ -85,9 +85,12 @@ public class InventoriesUISample : MonoBehaviour
 
         //FetchInventoryItems();
 
-        foreach (var item in items)
+        if(items.Count != 0)
         {
-            itemNames.Add(item.Name);
+            foreach (var item in items)
+            {
+                itemNames.Add(item.Name);
+            }
         }
 
         return itemNames;

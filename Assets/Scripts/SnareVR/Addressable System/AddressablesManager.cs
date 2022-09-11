@@ -8,17 +8,30 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class AddressablesManager : MonoBehaviour
 {
     [SerializeField]
-    private Transform[] m_TrophyAnchors;
+    private BoxCollider[] m_TrophyAnchors;
 
-    private AsyncOperationHandle m_TrophyLoadingHandle;
+    public Material animalMat;
+    //public BoxCollider boxCollider;
+    //public GameObject bear;
 
-    public BoxCollider boxCollider;
-    public GameObject bear;
+    //private AsyncOperationHandle m_TrophyLoadingHandle;
+
+    [SerializeField]
+    private List<AssetReference> _trophyReferences;
+
+    private List<string> userValidTrophies;
+    private List<GameObject> addressableGOs;
+
+    private void Awake()
+    {
+        ScriptsConnector.Instance.OnRequestItems?.Invoke();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetTrophies();
+        addressableGOs = new List<GameObject>();
+        StartCoroutine(WaitThis());
     }
 
     private void SetTrophies()
@@ -28,22 +41,59 @@ public class AddressablesManager : MonoBehaviour
         //these inventory items will match the exact names of the CCD items, allowing to determine "if has inventory item, spawn CCD item of same name"
         //then simply load them up 1 - 4 on the trophy stands via those stored transform locations (always the same)
         //Sizing? Handled by below (means new object has to be confined within the 1:1:1 box collider format we use for trophies
+        userValidTrophies = ScriptsConnector.Instance.OnRequestItemNames?.Invoke();
 
-        //Collider collider = bear.GetComponent<BoxCollider>();
-        //GameObject bearGo = Instantiate(bear, boxCollider.transform);
-        //bearGo.transform.localScale = new Vector3(boxCollider.bounds.size.x / collider.bounds.size.x, boxCollider.bounds.size.y / collider.bounds.size.y, boxCollider.bounds.size.z / collider.bounds.size.z);  //change to actual adjustment
+        foreach (var trophy in _trophyReferences)
+        {
+            //skip loading trophies user does not have in their inventory
+            //if(!userValidTrophies.Contains(trophy.editorAsset.name))
+            //{
+            //    continue;
+            //}
 
-        m_TrophyLoadingHandle = Addressables.InstantiateAsync("trophy1", m_TrophyAnchors[0]);//bearhead
+            Addressables.InstantiateAsync(trophy).Completed += (obj) =>
+            {
+                BoxCollider transformLocation = ReturnLocationAvailable();
 
-        m_TrophyLoadingHandle.Completed += OnTrophiesInstantiated;
+                GameObject resultGO = obj.Result;
+                addressableGOs.Add(resultGO);
+                Collider collider = resultGO.GetComponent<BoxCollider>();
+                //GameObject trophyGo = Instantiate(go, boxCollider.transform); //depreciated 9.10, instantiated earlier
+                resultGO.transform.parent = transformLocation.transform;
+                resultGO.transform.localScale = new Vector3(transformLocation.bounds.size.x / collider.bounds.size.x, transformLocation.bounds.size.y / collider.bounds.size.y, transformLocation.bounds.size.z / collider.bounds.size.z);  //change to actual adjustment
+                resultGO.transform.position = transformLocation.transform.position;
+                resultGO.transform.localRotation = Quaternion.identity;
+
+                resultGO.GetComponentInChildren<MeshRenderer>().material = animalMat;
+
+                Debug.Log("Trophy has successfully loaded & positioned");
+            };
+        }
     }
 
-    private void OnTrophiesInstantiated(AsyncOperationHandle obj)
+    private BoxCollider ReturnLocationAvailable()
     {
-        if(obj.Status == AsyncOperationStatus.Succeeded)
+        BoxCollider collider = null;
+
+        foreach(BoxCollider box in m_TrophyAnchors)
         {
-            Debug.Log("Trophies have successfully loaded");
+            if(box.transform.childCount == 0)
+            {
+                collider = box;
+                break;
+            }
         }
+
+        return collider;
+    }
+
+    private IEnumerator WaitThis()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        userValidTrophies = ScriptsConnector.Instance.OnRequestItemNames?.Invoke();
+
+        SetTrophies();
     }
 
     // Update is called once per frame
@@ -54,7 +104,11 @@ public class AddressablesManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        m_TrophyLoadingHandle.Completed -= OnTrophiesInstantiated;
-        Addressables.Release(m_TrophyLoadingHandle);
+        foreach (var trophy in addressableGOs)
+        {
+            //TODO - to do this we need the AssetReference stored?
+
+            Addressables.ReleaseInstance(trophy);
+        }
     }
 }

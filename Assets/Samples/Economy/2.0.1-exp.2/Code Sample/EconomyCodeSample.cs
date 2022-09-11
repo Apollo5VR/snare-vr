@@ -90,7 +90,7 @@ namespace EconomySample
         {
             try
             {
-                await IncrementPlayersBalance("RABBITPELT", 1);
+                await IncrementPlayersBalance("rabbitpelt", 1);
             }
             catch (CloudCodeResultUnavailableException)
             {
