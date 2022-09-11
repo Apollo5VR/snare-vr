@@ -14,10 +14,13 @@ namespace EconomySample
     {
         private async void Awake()
         {
+            //depreciated this is example code only GG
+            /*
             // Economy needs to be initialized and then the user must sign in.
             await UnityServices.InitializeAsync();
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
+            
             // NOTE: You need to set up your Economy configuration with the items used in here before running this sample,
             // or alternatively alter the sample to to work with your current configuration.
             await ListAllCurrencyIds();
@@ -37,6 +40,7 @@ namespace EconomySample
             await RedeemApplePurchase("APPLE_PURCHASE", "PURCHASE_RECEIPT", 10, "USD");
 
             await WriteLockExample();
+            */
         }
 
         private void Start()

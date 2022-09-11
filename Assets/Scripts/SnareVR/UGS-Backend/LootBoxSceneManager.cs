@@ -20,7 +20,7 @@ public class LootBoxSceneManager : MonoBehaviour
     {
         if(test)
         {
-            SetTrapTriggeredTime();
+            ScriptsConnector.Instance.OnRabbitCaught?.Invoke(true);
             test = false;
         }
     }

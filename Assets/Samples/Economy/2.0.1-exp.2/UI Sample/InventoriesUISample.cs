@@ -52,7 +52,7 @@ public class InventoriesUISample : MonoBehaviour
     //TODO - temp disabled for build - needs resolution (cant ref ScriptsConnector)
     void Awake()
     {
-        ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
+        //ScriptsConnector.Instance.OnRabbitCaught += RabbitCaught;
         ScriptsConnector.Instance.OnRequestItems += RequestItems;
         ScriptsConnector.Instance.OnRequestItemNames += RequestItemNames;
     }
@@ -61,7 +61,9 @@ public class InventoriesUISample : MonoBehaviour
     {
         if (ScriptsConnector.Instance != null)
         {
-            ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
+            //ScriptsConnector.Instance.OnRabbitCaught -= RabbitCaught;
+            ScriptsConnector.Instance.OnRequestItems -= RequestItems;
+            ScriptsConnector.Instance.OnRequestItemNames -= RequestItemNames;
         }
     }
 
