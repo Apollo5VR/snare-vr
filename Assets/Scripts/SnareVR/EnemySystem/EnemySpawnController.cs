@@ -29,8 +29,6 @@ public class EnemySpawnController : MonoBehaviour
         sequenceOver = false;
         ScriptsConnector.Instance.OnStartEnemySpawnSequence += StartSpawnSequence;
         ScriptsConnector.Instance.OnDeath += ProgressTicker;
-
-        Debug.Log("GG - we ran this!");
     }
 
     private void InitializeEnemyPool()
