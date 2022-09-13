@@ -11,7 +11,6 @@ public class ProgressionController : MonoBehaviour
 {
     public static ProgressionController Instance { get; private set; }
     public BNG.PlayerTeleport playerTeleport;
-    public GameObject sceneLoadingBlackSphere;
     public bool isManualSelection = false;
     public bool debugProgressNextScene;
     public bool testNewScene = false;
@@ -22,6 +21,12 @@ public class ProgressionController : MonoBehaviour
 
     private int nextLevel;
     private IEnumerator autoProgressCR;
+
+    [SerializeField]
+    private GameObject sceneLoadingBlackRenderer;
+
+    [SerializeField]
+    private Transform sceneLoadingProgressIndicator;
 
     private void Awake()
     {
@@ -55,16 +60,17 @@ public class ProgressionController : MonoBehaviour
     }
 
     //testing only
-    #if UNITY_EDITOR
+    
     public void Update()
     {
+        #if UNITY_EDITOR
         if (debugProgressNextScene)
         {
             debugProgressNextScene = false;
-            SceneManager.LoadScene(nextLevel);
+            LoadNextScene(0);
         }
+        #endif
     }
-    #endif
 
     private int GetCurrentScene()
     {
@@ -74,12 +80,12 @@ public class ProgressionController : MonoBehaviour
     private void LoadNextScene(float time)
     {
         //readded 7.28
-        sceneLoadingBlackSphere.SetActive(true);
+        sceneLoadingBlackRenderer.SetActive(true);
 
         int buildIndex = SceneManager.GetActiveScene().buildIndex;
         int level = 0;
 
-        //for testing only
+        //for testing only - TODO - remove / refactor to editor only code
         if(testNewScene)
         {
             level = 1; //update this number to the test scene
@@ -111,7 +117,7 @@ public class ProgressionController : MonoBehaviour
         }
         */
         //readded 7.28
-        sceneLoadingBlackSphere.SetActive(true);
+        sceneLoadingBlackRenderer.SetActive(true);
 
         SceneManager.LoadScene(sceneInt);
     }
@@ -139,7 +145,7 @@ public class ProgressionController : MonoBehaviour
         startingPosition = null;
 
         //readded 7.28
-        sceneLoadingBlackSphere.SetActive(false);
+        sceneLoadingBlackRenderer.SetActive(false);
     }
 
     private IEnumerator TimerToEndScene(int sceneBuildIndex, float time)
@@ -159,7 +165,45 @@ public class ProgressionController : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        SceneManager.LoadScene(sceneBuildIndex);
+        //TODO - refactor to async load
+        //SceneManager.LoadScene(sceneBuildIndex);
+        StartCoroutine(RunProgressFillCR(sceneBuildIndex));
+    }
+
+    private IEnumerator RunProgressFillCR(int sceneBuildIndex)
+    {
+        float timeSlowFast = 0.0f;
+        float target = 0.0f;
+        float xScale = 0.0f;
+        sceneLoadingProgressIndicator.localScale = new Vector3(xScale, sceneLoadingProgressIndicator.localScale.y, sceneLoadingProgressIndicator.localScale.z);
+
+        //TODO - any clever reasons to use Additive? (but then would have to run Unload manuall when done with those scenes)
+        var scene = SceneManager.LoadSceneAsync(sceneBuildIndex, LoadSceneMode.Single);
+        scene.allowSceneActivation = false;
+
+        //TODO - condition for only when loading? dont want this running all the time
+        while (sceneLoadingProgressIndicator.localScale.x < 1.0f)
+        {
+            //if scene not ready
+            if(scene.progress < 0.9f)
+            {
+                target = scene.progress;
+                timeSlowFast = 0.1f;
+            }
+            else
+            {
+                target = 1;
+                timeSlowFast = 1.0f;
+            }
+
+            xScale = Mathf.MoveTowards(sceneLoadingProgressIndicator.localScale.x, target, Time.deltaTime/timeSlowFast);
+
+            sceneLoadingProgressIndicator.localScale = new Vector3(xScale, sceneLoadingProgressIndicator.localScale.y, sceneLoadingProgressIndicator.localScale.z);
+
+            yield return null;
+        }
+
+        scene.allowSceneActivation = true;
     }
 
     private void OnDestroy()
