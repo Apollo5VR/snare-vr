@@ -14,13 +14,14 @@ public class TrophyLoaderManager : MonoBehaviour
 
     void Start()
     {
+        //TODO - refactor these two requests to 1 async
         //TODO - very horrible race condition, refactor once out of proto
         StartCoroutine(WaitThis());
     } 
 
     private IEnumerator WaitThis()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
 
         List<string> itemNames = ScriptsConnector.Instance.OnRequestItemNames?.Invoke();
 
