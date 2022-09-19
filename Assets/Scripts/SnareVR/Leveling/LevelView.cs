@@ -72,4 +72,21 @@ public class LevelView : MonoBehaviour
             levelDetails.OnLevelChanged -= LevelSystem_OnLevelChanged;
         }
     }
+
+    //required to save for the user manually quiting the game on an android device
+    private void OnApplicationPause(bool pause)
+    {
+        if(pause)
+        {
+            //TODO - need to centralize all this end game / pause saving calls to one location / script
+            ScriptsConnector.Instance.OnSaveXpToUGS?.Invoke("PLAYER_LEVELING_DETAILS", levelDetails);
+        }
+    }
+
+#if UNITY_EDITOR
+    private void OnApplicationQuit()
+    {
+        ScriptsConnector.Instance.OnSaveXpToUGS?.Invoke("PLAYER_LEVELING_DETAILS", levelDetails);
+    }
+#endif
 }

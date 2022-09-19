@@ -13,6 +13,12 @@ public class StatsObject
     public float staminaFloat;
 }
 
+public class PlayerLevelingObj
+{
+    public int level;
+    public int xp;
+}
+
 /*
 public class SampleObject
 {
@@ -110,8 +116,10 @@ public class CloudSaveSample : MonoBehaviour
         //await ListAllKeys();
         //await RetrieveEverything();
 
+        ScriptsConnector.Instance.OnCacheDataFromUGS += CacheDataGG;
         ScriptsConnector.Instance.OnSaveHealthToUGS += SaveHealthToUGS;
         ScriptsConnector.Instance.OnDeleteKey += DeleteKey;
+        ScriptsConnector.Instance.OnSaveXpToUGS += SaveXPCloudData;
         //ScriptsConnector.Instance.OnGetTimerFromUGS += GetTimerFromUGS;
     }
 
@@ -119,9 +127,16 @@ public class CloudSaveSample : MonoBehaviour
     {
         if (ScriptsConnector.Instance != null)
         {
+            ScriptsConnector.Instance.OnCacheDataFromUGS -= CacheDataGG;
             ScriptsConnector.Instance.OnSaveHealthToUGS -= SaveHealthToUGS;
             ScriptsConnector.Instance.OnDeleteKey -= DeleteKey;
+            ScriptsConnector.Instance.OnSaveXpToUGS -= SaveXPCloudData;
         }
+    }
+
+    public void CacheDataGG()
+    {
+        var unusedCache = LoadAndCacheData();
     }
 
     //TODO - utilize this later
@@ -129,7 +144,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            m_CachedCloudData = await  CloudSaveService.Instance.Data.LoadAllAsync();
+            m_CachedCloudData = await CloudSaveService.Instance.Data.LoadAllAsync();
 
             // Check that scene has not been unloaded while processing async wait to prevent throw.
             if (this == null) return;
@@ -138,11 +153,49 @@ public class CloudSaveSample : MonoBehaviour
             {
                 m_CachedCloudData = new Dictionary<string, string>();
             }
+            else
+            {
+                //send out the various data to their relevant locations
+                string key = "PLAYER_LEVELING_DETAILS";
+                PlayerLevelingDetails levelDetails;
+                if (m_CachedCloudData.TryGetValue(key, out string value))
+                {
+                    levelDetails = JsonUtility.FromJson<PlayerLevelingDetails>(value); //TODO - V2 - update to actual playerId for multiplayer functionality
+                }
+                //TODO - in case server down need some other exception check to make sure we're not overwriting data that simply couldnt be retrieved (but likely saving will be down too, so shouldnt overwrite)
+                //TODO - this is a bad move though, we're caching a group of data and even saving here won't update the cache (unless we add to the cache object
+                //Test new this new code to resolve
+                else
+                {
+                    Debug.Log($"There is no such key as {key}! Saving new");
+
+                    PlayerLevelingObj outgoingLvlObj = new PlayerLevelingObj
+                    {
+                        level = 0,
+                        xp = 0
+                    };
+
+                    await ForceSaveObjectData(key, outgoingLvlObj);
+
+                    levelDetails = await RetrieveSpecificData<PlayerLevelingDetails>(key);
+
+                    //TODO - test reactivating
+                    m_CachedCloudData.Add(key, JsonUtility.ToJson(outgoingLvlObj));
+                }
+
+                ScriptsConnector.Instance?.OnSetXp("playerId", levelDetails);
+            }
         }
         catch (Exception e)
         {
             Debug.LogException(e);
         }
+    }
+
+    private async void SaveXPCloudData(string key, object value)
+    {
+        await ForceSaveObjectData(key, value);
+        Debug.Log("Saved: " + value.ToString());
     }
 
     private async void SaveHealthToUGS(string key, string value)
@@ -232,7 +285,7 @@ public class CloudSaveSample : MonoBehaviour
         }
     }
 
-    private async Task ForceSaveObjectData(string key, StatsObject value)
+    private async Task ForceSaveObjectData(string key, object value)
     {
         try
         {
@@ -261,7 +314,7 @@ public class CloudSaveSample : MonoBehaviour
     {
         try
         {
-            var results = await  CloudSaveService.Instance.Data.LoadAsync(new HashSet<string>{key});
+            var results = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string>{key});
 
             if (results.TryGetValue(key, out string value))
             {
@@ -302,7 +355,7 @@ public class CloudSaveSample : MonoBehaviour
         {
             // If you wish to load only a subset of keys rather than everything, you
             // can call a method LoadAsync and pass a HashSet of keys into it.
-            var results = await  CloudSaveService.Instance.Data.LoadAllAsync();
+            var results = await CloudSaveService.Instance.Data.LoadAllAsync();
 
             Debug.Log($"Elements loaded!");
                 

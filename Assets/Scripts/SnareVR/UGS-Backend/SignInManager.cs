@@ -76,7 +76,7 @@ public class SignInManager : MonoBehaviour
             {
                 successMessage = "FB sign in succeeded";
                 successText.text = "Success - Press X to open map, Grab Location Cube and Pull to Load";
-                ScriptsConnector.Instance.OnGetHealthFromUGS();
+                ScriptsConnector.Instance.OnCacheDataFromUGS();
             }
 
             Debug.Log(successMessage);

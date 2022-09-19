@@ -60,7 +60,7 @@ public class UserHealthManager : MonoBehaviour
 
         healthPoints += healthMod;
 
-        //TODO - if trying to reduce calls, relocate to on session quit / exit
+        //TODO - if trying to reduce calls, relocate to on session quit / exit / application.pause
         ScriptsConnector.Instance.OnSaveHealthToUGS?.Invoke("stats", healthPoints.ToString());
     }
 

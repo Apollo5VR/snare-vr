@@ -8,7 +8,7 @@ public class ScriptsConnector : MonoBehaviour
     public static ScriptsConnector Instance { get; private set; }
 
     //UGS Cache Init Operations
-    public Action OnGetHealthFromUGS;
+    public Action OnCacheDataFromUGS;
 
     //User Health data actions
     public Action OnStoreHealthFromUGSCache; //depreciated - remove
@@ -42,6 +42,10 @@ public class ScriptsConnector : MonoBehaviour
     //inventory
     public Action OnRequestItems;
     public Func<List<string>> OnRequestItemNames;
+
+    //xp
+    public Action<string, PlayerLevelingDetails> OnSetXp;
+    public Action<string, PlayerLevelingDetails> OnSaveXpToUGS;
 
     private void Awake()
     {

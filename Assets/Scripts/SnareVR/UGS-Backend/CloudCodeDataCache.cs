@@ -19,13 +19,12 @@ public class CloudCodeDataCache : Singleton<CloudCodeDataCache>
     // Start is called before the first frame update
     void Start()
     {
-        ScriptsConnector.Instance.OnGetHealthFromUGS += GrabAndCacheGSData;
+        ScriptsConnector.Instance.OnCacheDataFromUGS += CacheDataViaCloudScripts;
     }
 
-    public void GrabAndCacheGSData()
+    public void CacheDataViaCloudScripts()
     {
         CacheHealthFromUGS();
-
 
         //TODO - add the other data for cached items
     }
@@ -59,7 +58,7 @@ public class CloudCodeDataCache : Singleton<CloudCodeDataCache>
     {
         if(ScriptsConnector.Instance != null)
         {
-            ScriptsConnector.Instance.OnGetHealthFromUGS -= GrabAndCacheGSData;
+            ScriptsConnector.Instance.OnCacheDataFromUGS -= CacheDataViaCloudScripts;
         }
     }
 }
