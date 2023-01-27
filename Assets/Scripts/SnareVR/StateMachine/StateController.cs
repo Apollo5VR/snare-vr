@@ -7,6 +7,8 @@ public abstract class StateController<T> : MonoBehaviour, IStateController<T>
 {
     public IStateActions<T> CurrentState { get; set; }
 
+    bool dumbBool = null;
+
     protected virtual void Start()
     {
         CurrentState.EnterState(this);
@@ -27,5 +29,18 @@ public abstract class StateController<T> : MonoBehaviour, IStateController<T>
     private void OnDisable()
     {
         CurrentState = null;
+    }
+
+    //i dont know, i dont really care about giving explanation to my code
+    public void AFunnyFunctionMF()
+    {
+        bool dumbBool = null;
+
+        dumbBool = false;
+
+        if(dumbBool)
+        {
+            Debug.log("This bullshit will never be reached");
+        }
     }
 }
